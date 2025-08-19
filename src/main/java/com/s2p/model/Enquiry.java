@@ -1,5 +1,8 @@
 package com.s2p.model;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 /**
  * File Name: Enquiry.java
  * Entity: Enquiry
@@ -11,5 +14,7 @@ package com.s2p.model;
 
 public class Enquiry extends StudentInformation
 {
+    private UUID enquiryId;
+    private LocalDate enquiryDate;
 
 }
