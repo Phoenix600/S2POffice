@@ -1,0 +1,83 @@
+
+
+# Fetching Operations
+1. Login
+2. Signup
+3. Forget Password
+4. Analytics PDF
+5. Student Admission Invoice Email
+6. Student Fees Installment Invoice
+
+
+1. Enquiry Along With Source
+2. Enquiry To Admission
+3. Fee And Fee Structure
+
+
+# Signup
+1. Login
+2. Sign Up
+3. Forget Password
+
+# Enquiry ---> 100    +  Source
+
+# Admission ---> 50
+- Name
+- College
+- Branch
+- Year
+- Mobile
+- Email
+- Pass-out Year
+- Course Opt For
+- Batch
+- Batch Time
+- Fee Structure
+
+# Branch
+Branch Name
+
+# College
+
+# Payment Mode
+
+# Course
+
+# Fees Management
+
+# Batch
+
+# Installment Structure
+
+# Up Coming Fees Notification Feature
+
+
+# Generate PDF Invoice
+    - Fee Invoice
+    - Admission Invoice
+
+# Static Entities Are Master
+    - Country
+        - State
+        - Country
+    - Branch
+    - College
+    - Course
+
+# Student Should Be Able To Take Admission Without Enquiry (Edge Case)
+
+
+# Search APIs And Filters (Pagination And Sorting)
+# Filter On Batches
+# Filter On Batches Along With Time
+- Date Of Admission
+
+
+
+# Application
+SUPER ADMIN
+ADMIN
+TEACHER
+STUDENT
+
+https://www.codejava.net/frameworks/spring/spring-data-jpa-composite-primary-key-examples
