@@ -1,7 +1,9 @@
 package com.s2p.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
 
 /**
  * File Name: CourseFeeInstallmentTransactions.java
@@ -14,7 +16,23 @@ import jakarta.persistence.IdClass;
 
 @Entity
 @IdClass(CourseFees.class)
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class CourseFeeInstallmentTransactions
 {
+    @Id
+    private UUID courseFeesID;
 
+    @Id
+    private Long transactionId;
+
+    @Id
+    private Double courseFees;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID CourseFeeInstallmentTransactions;
 }
