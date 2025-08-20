@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -28,6 +30,7 @@ public class Admission extends BaseEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private UUID admissionId;
 
+    private LocalDate admissionDate;
 
 
 
