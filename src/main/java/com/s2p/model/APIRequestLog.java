@@ -1,24 +1,22 @@
 package com.s2p.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CurrentTimestamp;
 
 import java.time.LocalDateTime;
 
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
-public class APIRequestLog{
-
+@ToString
+public class APIRequestLog
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long apiRequestId;
 
     private String method;
 
@@ -30,14 +28,13 @@ public class APIRequestLog{
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    private int status; // response status code
-
-    @Column(columnDefinition = "TEXT")
-    private String responseBody; // optional, if you capture responses too
-
-    @CurrentTimestamp
-    private LocalDateTime timestamp;
-
     @Column(nullable = false)
     private String callerName;
+
+    @OneToOne
+    @JoinColumn(
+            name = "api_response_id", referencedColumnName = "apiResponseId",
+            nullable = false
+    )
+    private ApiResponseLog responseLog;
 }
