@@ -14,7 +14,6 @@ import java.util.UUID;
  * Description:
  */
 
-@Entity
 @IdClass(CourseFees.class)
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,9 +1,8 @@
-package com.s2p.model;
+package com.s2p.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,20 +14,18 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@IdClass(CourseFees.class)
-public class CourseFeeStructure
+public class CourseFeeInstallmentTransactionsDto
 {
     @Id
-    @Column(nullable = false)
     private UUID courseFeesID;
 
     @Id
-    @Column(nullable = false)
     private Long transactionId;
 
     @Id
-    @Column(nullable = false)
     private Double courseFees;
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID CourseFeeInstallmentTransactions;
 }

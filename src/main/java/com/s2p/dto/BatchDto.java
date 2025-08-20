@@ -1,37 +1,29 @@
-package com.s2p.model;
+package com.s2p.dto;
 
-import jakarta.persistence.*;
+import com.s2p.model.Course;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * File Name: Batch.java
- * Entity: Batch
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description:
- */
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
-public class Batch extends BaseEntity
+public class BatchDto
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-	private UUID batchId;
+    private UUID batchId;
 
     @Column(nullable = true)
     private String batchName;
@@ -42,6 +34,5 @@ public class Batch extends BaseEntity
     @Column(nullable = false)
     private LocalTime endTime;
 
-    @ManyToMany
     private Set<Course> courseSet = new HashSet<>();
 }

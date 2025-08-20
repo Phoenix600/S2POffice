@@ -1,7 +1,13 @@
 package com.s2p.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * File Name: Users.java
@@ -12,6 +18,10 @@ import jakarta.persistence.Transient;
  * Description:
  */
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Users extends BaseEntity
 {
 	@Column(unique = true)

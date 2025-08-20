@@ -1,9 +1,7 @@
-package com.s2p.model;
+package com.s2p.dto;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@IdClass(CourseFees.class)
-public class CourseFeeStructure
+public class CourseFeeStructureDto
 {
     @Id
     @Column(nullable = false)
@@ -29,6 +26,4 @@ public class CourseFeeStructure
     @Id
     @Column(nullable = false)
     private Double courseFees;
-
-
 }

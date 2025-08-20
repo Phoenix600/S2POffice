@@ -1,5 +1,7 @@
-package com.s2p.model;
+package com.s2p.dto;
 
+import com.s2p.model.Batch;
+import com.s2p.model.Course;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -11,25 +13,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * File Name: StudentInformation.java
- * Entity: StudentInformation
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description:
- */
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
-public class StudentInformation extends BaseEntity
-{
+public class StudentInformationDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private UUID studentId;
+    private UUID studentId;
 
     private String firstName;
 
@@ -49,9 +40,7 @@ public class StudentInformation extends BaseEntity
     @Column(nullable = true)
     private Boolean isGraduated;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Batch> batches = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Course> courses = new HashSet<>();
 }

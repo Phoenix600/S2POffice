@@ -1,33 +1,25 @@
-package com.s2p.model;
+package com.s2p.dto;
 
-import jakarta.persistence.*;
+import com.s2p.model.Batch;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.PackagePrivate;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * File Name: Course.java
- * Entity: Course
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description:
- */
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
-public class Course extends BaseEntity
+public class CourseDto
 {
-	// Add Fields Here
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID courseId;
@@ -41,6 +33,5 @@ public class Course extends BaseEntity
     @Column(nullable = false)
     private Byte courseDurationInMonths;
 
-    @ManyToMany
     private Set<Batch> batches = new HashSet<>();
 }
