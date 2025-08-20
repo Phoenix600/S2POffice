@@ -3,6 +3,8 @@ package com.s2p.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,6 +14,6 @@ public class Roles extends BaseEntity
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long rolesId;
+	private UUID rolesId;
 	private String rolesName;
 }
