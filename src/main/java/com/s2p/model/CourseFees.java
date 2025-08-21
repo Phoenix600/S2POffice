@@ -16,16 +16,23 @@ import java.util.UUID;
  * Description:
  */
 
-@Embeddable
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class CourseFees extends BaseEntity implements Serializable
+public class CourseFees extends BaseEntity
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID courseFeesID;
+
 	private Long transactionId;
+
 	private Double courseFees;
+
+	@Embedded
+	private CourseFeeStructure feeStructure;
 
 	@Override
 	public boolean equals(Object o) {

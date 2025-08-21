@@ -25,10 +25,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name = "student_information")
 public class StudentInformation extends BaseEntity
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
 	private UUID studentId;
 
     private String firstName;
@@ -49,9 +50,20 @@ public class StudentInformation extends BaseEntity
     @Column(nullable = true)
     private Boolean isGraduated;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_batches",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "batch_id")
+    )
     private Set<Batch> batches = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
     private Set<Course> courses = new HashSet<>();
 }

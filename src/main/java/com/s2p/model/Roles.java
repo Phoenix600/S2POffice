@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Roles extends BaseEntity
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID rolesId;
 	private String rolesName;
 }

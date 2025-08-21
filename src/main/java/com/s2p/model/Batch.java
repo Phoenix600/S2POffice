@@ -43,5 +43,13 @@ public class Batch extends BaseEntity
     private LocalTime endTime;
 
     @ManyToMany
+    @JoinTable(
+            name = "batch_courses",
+            joinColumns = @JoinColumn(name = "batch_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
     private Set<Course> courseSet = new HashSet<>();
+
+    @ManyToMany(mappedBy = "batches")
+    private Set<StudentInformation> students = new HashSet<>();
 }

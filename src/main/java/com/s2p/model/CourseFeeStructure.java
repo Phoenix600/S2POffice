@@ -1,9 +1,6 @@
 package com.s2p.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,18 +12,16 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@IdClass(CourseFees.class)
+@Embeddable
 public class CourseFeeStructure
 {
-    @Id
+
     @Column(nullable = false)
     private UUID courseFeesID;
 
-    @Id
     @Column(nullable = false)
     private Long transactionId;
 
-    @Id
     @Column(nullable = false)
     private Double courseFees;
 
