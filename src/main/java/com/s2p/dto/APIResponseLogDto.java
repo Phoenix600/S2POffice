@@ -1,6 +1,6 @@
 package com.s2p.dto;
 
-import com.s2p.model.APIRequestLog;
+import com.s2p.model.ApiRequestLog;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +31,5 @@ public class APIResponseLogDto
     private String host;
 
     @JoinColumn(name = "api_response_id", referencedColumnName = "apiResponseId")
-    private APIRequestLog requestLog;
+    private ApiRequestLog requestLog;
 }

@@ -1,7 +1,6 @@
 package com.s2p.dto.masterDto;
 
-import com.s2p.master.CollegeBranch;
-import jakarta.persistence.*;
+import com.s2p.master.model.Department;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +20,5 @@ public class CollegeDto
 
     private String collegeName;
 
-    private Set<CollegeBranch> collegeBranchSet = new LinkedHashSet<>();
+    private Set<Department> departmentSet = new LinkedHashSet<>();
 }

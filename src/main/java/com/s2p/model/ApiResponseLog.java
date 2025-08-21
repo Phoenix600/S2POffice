@@ -30,7 +30,7 @@ public class ApiResponseLog {
 
     private String host;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST,targetEntity = APIRequestLog.class)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST,targetEntity = ApiRequestLog.class)
     @JoinColumn(name = "api_response_id", referencedColumnName = "apiResponseId")
-    private APIRequestLog requestLog;
+    private ApiRequestLog requestLog;
 }
