@@ -1,6 +1,5 @@
 package com.s2p.master;
 
-import com.s2p.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,32 +8,23 @@ import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
-
-/**
- * File Name: State.java
- * Entity: State
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description:
- */
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class State extends BaseEntity
+public class CollegeBranch
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-	private UUID stateId;
+    private UUID collegeBranchId;
 
     @Column(unique = true, nullable = false)
-    private String stateName;
+    private String collegeBranchName;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private Set<City> cities = new HashSet<>();
-
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    private Set<College> college = new HashSet<>();
 }

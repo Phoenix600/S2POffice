@@ -1,16 +1,27 @@
 package com.s2p.master;
 
 import com.s2p.model.BaseEntity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-/**
- * File Name: Branch.java
- * Entity: Branch
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description:
- */
+import java.util.UUID;
 
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Branch extends BaseEntity {
-	// Add Fields Here
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID branchId;
+
+    @Column(nullable = false, length = 255)
+    private String branchName;
+
 }

@@ -27,7 +27,7 @@ import java.util.UUID;
 @Entity
 public class Course extends BaseEntity
 {
-	// Add Fields Here
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID courseId;
