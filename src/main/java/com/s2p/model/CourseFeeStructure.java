@@ -22,7 +22,7 @@ public class CourseFeeStructure
     @Column(nullable = false)
     private Long transactionId;
 
-    @Column(nullable = false)
+    @Column(name = "course_fees", nullable = false)
     private Double courseFees;
 
 
