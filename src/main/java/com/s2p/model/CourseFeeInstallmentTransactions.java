@@ -15,7 +15,6 @@ import java.util.UUID;
  */
 
 @Entity
-@IdClass(CourseFees.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -23,14 +22,6 @@ import java.util.UUID;
 @ToString
 public class CourseFeeInstallmentTransactions
 {
-    @Id
-    private UUID courseFeesID;
-
-    @Id
-    private Long transactionId;
-
-    @Id
-    private Double courseFees;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

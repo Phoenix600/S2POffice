@@ -6,20 +6,11 @@ import jakarta.persistence.IdClass;
 
 import java.util.UUID;
 
-@IdClass(CourseFees.class)
 public class CourseFeeStructure
 {
-    @Id
-    @Column(nullable = false)
-    private UUID courseFeesID;
-
-    @Id
-    @Column(nullable = false)
-    private Long transactionId;
 
     @Id
     @Column(nullable = false)
     private Double courseFees;
-
 
 }
