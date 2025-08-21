@@ -1,6 +1,13 @@
 package com.s2p.master;
 
 import com.s2p.model.BaseEntity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.*;
 
 /**
  * File Name: College.java
@@ -11,7 +18,24 @@ import com.s2p.model.BaseEntity;
  * Description:
  */
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
 public class College extends BaseEntity
 {
-	// Add Fields Here
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+	private UUID collegeId;
+
+    @Column(nullable = false, unique = true)
+    private String collegeName;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinTable(
+            joinColumns = { @JoinColumn(name = "college_id")    },
+            inverseJoinColumns = { @JoinColumn(name = "college_branch_id" )}
+    )
+    private Set<CollegeBranch> collegeBranchSet = new LinkedHashSet<>();
 }

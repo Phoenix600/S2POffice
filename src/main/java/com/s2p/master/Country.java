@@ -1,6 +1,15 @@
 package com.s2p.master;
 
 import com.s2p.model.BaseEntity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * File Name: Country.java
@@ -11,7 +20,21 @@ import com.s2p.model.BaseEntity;
  * Description:
  */
 
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Country extends BaseEntity
 {
-	// Add Fields Here
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+	private UUID countryId;
+
+    @Column(nullable = false, unique = true)
+    private String country;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Set<State> states = new HashSet<>();
+
 }
