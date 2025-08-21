@@ -20,8 +20,6 @@ import java.util.UUID;
 @Setter
 public class CourseDto
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID courseId;
 
     @Column(nullable = false)

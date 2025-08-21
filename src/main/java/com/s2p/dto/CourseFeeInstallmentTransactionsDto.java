@@ -16,16 +16,11 @@ import java.util.UUID;
 @Setter
 public class CourseFeeInstallmentTransactionsDto
 {
-    @Id
     private UUID courseFeesID;
 
-    @Id
     private Long transactionId;
 
-    @Id
     private Double courseFees;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID CourseFeeInstallmentTransactions;
 }

@@ -16,8 +16,6 @@ import java.time.LocalDateTime;
 @Setter
 public class APIResponseLogDto
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long apiResponseId;
 
     private int status;

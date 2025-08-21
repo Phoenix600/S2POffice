@@ -15,15 +15,12 @@ import java.util.UUID;
 @Setter
 public class CourseFeeStructureDto
 {
-    @Id
     @Column(nullable = false)
     private UUID courseFeesID;
 
-    @Id
     @Column(nullable = false)
     private Long transactionId;
 
-    @Id
     @Column(nullable = false)
     private Double courseFees;
 }

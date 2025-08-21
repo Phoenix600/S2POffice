@@ -13,8 +13,6 @@ import lombok.Setter;
 @Setter
 public class APIRequestLogDto
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long apiRequestId;
 
     private String method;

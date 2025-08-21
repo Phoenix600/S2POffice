@@ -18,8 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class StudentInformationDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private UUID studentId;
 
     private String firstName;

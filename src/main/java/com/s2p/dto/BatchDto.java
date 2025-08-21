@@ -21,8 +21,6 @@ import java.util.UUID;
 @Setter
 public class BatchDto
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID batchId;
 
     @Column(nullable = true)

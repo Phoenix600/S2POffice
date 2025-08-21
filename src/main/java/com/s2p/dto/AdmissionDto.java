@@ -17,8 +17,6 @@ import java.util.UUID;
 @Setter
 public class AdmissionDto
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID admissionId;
 
     private LocalDate admissionDate;
