@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.PackagePrivate;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * File Name: Course.java
@@ -46,4 +44,7 @@ public class Course extends BaseEntity
 
     @ManyToMany(mappedBy = "courses")
     private Set<StudentInformation> students = new HashSet<>();
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CourseFees> courseFees = new ArrayList<>();
 }

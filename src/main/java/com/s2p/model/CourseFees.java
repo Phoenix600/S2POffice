@@ -1,5 +1,6 @@
 package com.s2p.model;
 
+import com.s2p.master.AcademicYear;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,14 @@ public class CourseFees extends BaseEntity
 
 	@Embedded
 	private CourseFeeStructure feeStructure;
+
+	@ManyToOne
+	@JoinColumn(name = "academic_year_id", nullable = false)
+	private AcademicYear academicYear;
+
+	@ManyToOne
+	@JoinColumn(name = "course_id", nullable = false)
+	private Course course;
 
 	@Override
 	public boolean equals(Object o) {
