@@ -15,15 +15,7 @@ import java.util.UUID;
 @Embeddable
 public class CourseFeeStructure
 {
-
-    @Column(nullable = false)
-    private UUID courseFeesID;
-
-    @Column(nullable = false)
-    private Long transactionId;
-
-    @Column(name = "course_fees", nullable = false)
-    private Double courseFees;
-
+    @Column(name = "amount", nullable = false)
+    private Double amount;
 
 }
