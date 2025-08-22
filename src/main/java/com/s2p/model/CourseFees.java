@@ -1,9 +1,12 @@
 package com.s2p.model;
 
+import com.s2p.master.AcademicYear;
 import com.s2p.master.model.AcademicYear;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
