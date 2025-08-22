@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class ApiResponseLog {
+public class ApiResponseLog<A> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

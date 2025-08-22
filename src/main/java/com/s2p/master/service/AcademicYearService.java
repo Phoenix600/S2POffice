@@ -1,7 +1,7 @@
 package com.s2p.master.service;
 
-import com.s2p.dto.masterDto.AcademicYearDto;
-import com.s2p.master.model.AcademicYear;
+import com.s2p.master.AcademicYear;
+import com.s2p.master.Dto.AcademicYearDto;
 import com.s2p.master.repository.AcademicYearRepository;
 import com.s2p.util.AcademicYearUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ public class AcademicYearService implements IAcademicYearService{
 
     @Autowired
     AcademicYearRepository academicYearRepository;
-
-
 
     @Override
     public AcademicYearDto createAcademicYear(AcademicYearDto academicYearDto)

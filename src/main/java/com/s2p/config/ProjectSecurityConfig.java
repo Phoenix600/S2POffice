@@ -70,10 +70,26 @@ class ProjectSecurityConfig
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                 .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession", "/apiLogin").permitAll());
         http.formLogin(withDefaults());
-        http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
+        http.httpBasic(hbc -> hbc.authenticationEntryPoint(new  CustomBasicAuthenticationEntryPoint()));
         http.exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomerAccessDeniedHandler()));
 
-                return http.build();
+        http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        // Allow registration without authentication
+                        .requestMatchers("api/v1/auth/admin/register").permitAll()
+
+                        // Allow login endpoint also
+                        .requestMatchers("/api/v1/authController/login").permitAll()
+
+                        // Everything else requires authentication
+                        .anyRequest().authenticated()
+                )
+                .formLogin(Customizer.withDefaults());
+
+        return http.build();
+
+
 
 	}
 

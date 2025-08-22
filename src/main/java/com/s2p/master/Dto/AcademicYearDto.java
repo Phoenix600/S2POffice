@@ -1,4 +1,4 @@
-package com.s2p.dto.masterDto;
+package com.s2p.master.Dto;
 
 import com.s2p.model.CourseFees;
 import lombok.AllArgsConstructor;

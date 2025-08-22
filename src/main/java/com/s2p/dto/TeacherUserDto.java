@@ -1,4 +1,4 @@
-package com.s2p.dto.masterDto;
+package com.s2p.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CityDto
+
+public class TeacherUserDto
 {
-    private UUID cityId;
-    private String stateName;
+    private UUID teacherUserId;
 }

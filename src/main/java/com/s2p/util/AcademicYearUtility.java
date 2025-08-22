@@ -1,7 +1,7 @@
 package com.s2p.util;
 
-import com.s2p.dto.masterDto.AcademicYearDto;
-import com.s2p.master.model.AcademicYear;
+import com.s2p.master.AcademicYear;
+import com.s2p.master.Dto.AcademicYearDto;
 
 public class AcademicYearUtility
 {

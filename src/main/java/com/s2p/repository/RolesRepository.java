@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface RolesRepository extends JpaRepository<Roles,UUID>
 {
+    Roles findByRolesName(String adminUsers);
 }

@@ -1,6 +1,5 @@
-package com.s2p.dto.masterDto;
+package com.s2p.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class BranchDto
+public class StudentUserDto
 {
-    private UUID branchId;
+    private UUID studentUserId;
 
-    private String branchName;
 }

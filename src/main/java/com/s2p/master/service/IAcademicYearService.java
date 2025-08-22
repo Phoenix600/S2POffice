@@ -1,6 +1,6 @@
 package com.s2p.master.service;
 
-import com.s2p.dto.masterDto.AcademicYearDto;
+import com.s2p.master.Dto.AcademicYearDto;
 
 import java.util.Set;
 import java.util.UUID;
