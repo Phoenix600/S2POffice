@@ -2,6 +2,7 @@ package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
+import com.s2p.dto.LoginResponseDto;
 import com.s2p.dto.RegisterResponseDto;
 import com.s2p.dto.SuperAdminUserDto;
 import com.s2p.master.dto.StudentUsersDto;
@@ -141,14 +142,14 @@ public class AuthController
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
     }
 
-    //    http://localhost/8080/api/v1/public/apiLogin
+//    //    http://localhost/8080/api/v1/public/apiLogin
 //    @PostMapping("/apiLogin")
 //    public ResponseEntity<LoginResponseDto> apiLogin (@RequestBody LoginRequestDto loginRequest)
 //    {
 //        String jwt = "";
-////        Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUsername(),
-////                loginRequest.getPassword());
-////        Authentication authenticationResponse = authenticationManager.authenticate(authentication);
+//        Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUsername(),
+//                loginRequest.getPassword());
+//        Authentication authenticationResponse = authenticationManager.authenticate(authentication);
 //        if(null != authenticationResponse && authenticationResponse.isAuthenticated())
 //        {
 //

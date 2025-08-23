@@ -10,6 +10,7 @@ import com.s2p.util.CourseUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +30,10 @@ public class AdmissionServiceImpl implements IAdmissionService
     }
 
     @Override
-    public AdmissionDto getAdmissionById(UUID admissionId) {
+    public AdmissionDto getAdmissionById(UUID admissionId)
+    {
+        Admission admission = admissionRepository.findById(admissionId).orElseThrow(() -> new RuntimeException("Admission Not Found With AdmissionId :- " + admissionId));
+
         return null;
     }
 
