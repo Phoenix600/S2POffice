@@ -1,5 +1,6 @@
 package com.s2p.dto;
 
+import com.s2p.model.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,5 @@ public class SuperAdminUserDto
     private UUID superAdminUserId;
     private String email;
     private String username;
-
+	private String roles;
 }

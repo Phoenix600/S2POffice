@@ -2,6 +2,8 @@ package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
+import com.s2p.dto.LoginResponseDto;
+import com.s2p.dto.RegisterResponseDto;
 import com.s2p.dto.SuperAdminUserDto;
 import com.s2p.master.Dto.StudentUsersDto;
 import com.s2p.model.*;
@@ -47,7 +49,7 @@ public class AuthController
 
     //POST:-  http://localhost:8080/api/v1/auth/admin/register
     @PostMapping("/superAdmin/register")
-    public ResponseEntity<SuperAdminUserDto> registerSuperAdmin(
+    public ResponseEntity<LoginResponseDto> registerSuperAdmin(
             @Parameter(description = "User registration data", required = true)
             @RequestBody Users users)
     {
@@ -82,9 +84,15 @@ public class AuthController
                     .expiration(new java.util.Date((new java.util.Date()).getTime() + 30000000))
                     .signWith(secretKey).compact();
         }
-
-        return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt)
-                .body(new LoginResponseDto(SecurityContextHolder.getContext().getAuthentication().getName(), jwt));
+//
+//        return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt)
+//                .body(new LoginResponseDto(SecurityContextHolder.getContext().getAuthentication().getName(), jwt));
+		
+	    RegisterResponseDto registerResponseDto = new RegisterResponseDto();
+		registerResponseDto.setEmail(superAdminUsers.getEmail());
+		registerResponseDto.setRolesDto( superAdminUsers.getRoles());
+	 
+		return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt).body();
 
 
         // ==================================
