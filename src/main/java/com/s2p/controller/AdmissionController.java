@@ -23,12 +23,11 @@ public class AdmissionController
     public ResponseEntity<ApiResponseDto<AdmissionDto>> createAdmission(@RequestBody AdmissionDto admissionDto)
     {
         AdmissionDto response = admissionServiceImpl.createAdmission(admissionDto);
-//
+
         ApiResponseDto apiResponseDto = new ApiResponseDto();
-//
-//        apiResponseDto.setStatus(response);
 
         return new ResponseEntity<>(apiResponseDto, HttpStatus.CREATED);
-
     }
+
+
 }
