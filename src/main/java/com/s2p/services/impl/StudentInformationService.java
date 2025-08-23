@@ -3,6 +3,7 @@ package com.s2p.services.impl;
 import com.s2p.dto.StudentInformationDto;
 import com.s2p.services.IStudentInformationService;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -19,6 +20,11 @@ public class StudentInformationService implements IStudentInformationService {
 
     @Override
     public Set<StudentInformationDto> getAllStudents() {
+        return Set.of();
+    }
+
+    @Override
+    public Set<StudentInformationDto> getAllStudentsByAdmissionDate(LocalDate admissionDate) {
         return Set.of();
     }
 

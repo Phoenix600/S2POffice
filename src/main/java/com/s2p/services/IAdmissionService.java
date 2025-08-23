@@ -1,8 +1,10 @@
 package com.s2p.services;
 
 import com.s2p.dto.AdmissionDto;
+import com.s2p.dto.StudentInformationDto;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public interface IAdmissionService
