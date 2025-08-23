@@ -16,6 +16,9 @@ public enum EApiResponseMessage implements IMessage {
     DATA_UPDATED("Data updated successfully"),
     DATA_DELETED("Data deleted successfully"),
 
+    // -- Resource Handling --
+    RESOURCE_NOT_FOUND("Resource not found"),
+
     // --- Errors ---
     INTERNAL_ERROR("An internal server error occurred"),
     BAD_REQUEST("Invalid request"),
@@ -24,9 +27,11 @@ public enum EApiResponseMessage implements IMessage {
     TIMEOUT("Request timed out"),
 
     // --- Validation ---
+    VALIDATION_FAILED("Request validation failed. Please check the input fields."),
     INVALID_INPUT("Invalid input provided"),
     MISSING_REQUIRED_FIELD("Missing required field"),
     CONSTRAINT_VIOLATION("Data violates constraints");
+
 
     private final String message;
 
