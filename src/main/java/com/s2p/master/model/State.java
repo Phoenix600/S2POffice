@@ -34,7 +34,7 @@ public class State extends BaseEntity
     @Column(unique = true, nullable = false)
     private String stateName;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "state")
     private Set<City> cities = new HashSet<>();
 
 }

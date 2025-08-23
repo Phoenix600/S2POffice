@@ -5,14 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class CityDto
-{
+public class CityDto {
+
     private UUID cityId;
+
+    @NotBlank(message = "State name is mandatory")
     private String stateName;
+
+    @NotBlank(message = "City name is mandatory")
+    private String cityName; // Added for completeness
 }

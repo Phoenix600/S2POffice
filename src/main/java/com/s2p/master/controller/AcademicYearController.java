@@ -15,21 +15,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/AcademicYear")
 public class AcademicYearController
 {
-    @Autowired
-    AcademicYearService academicYearService;
 
-    //POST:-  http://localhost:8080/api/v1/createAcademicYear
-    @PostMapping("/createAcademicYear")
-    public ResponseEntity<ApiResponseLog<AcademicYearDto>> createAcademicYear(@RequestBody AcademicYearDto academicYearDto)
-    {
-        AcademicYearDto response = academicYearService.createAcademicYear(academicYearDto);
-
-        ApiResponseLog<AcademicYearDto> apiResponseLog = new ApiResponseLog<>();
-
-//        apiResponseLog.setStatus(response.getAcademicYear());
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
-
-
-    }
 }

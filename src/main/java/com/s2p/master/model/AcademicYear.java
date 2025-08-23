@@ -24,6 +24,6 @@ public class AcademicYear
 
     private Integer academicYear;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "course")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "academicYear")
     private List<CourseFees> courseFees = new ArrayList<>();
 }

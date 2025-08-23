@@ -3,6 +3,7 @@ package com.s2p.exceptions;
 import com.s2p.constants.EOperationStatus;
 import com.s2p.core.ErrorResponseDto;
 import com.s2p.dto.ApiResponseDto;
+import com.s2p.master.exception.BadRequestException;
 import com.s2p.message.EApiResponseMessage;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -41,6 +42,7 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<ApiResponseDto<ErrorResponseDto>>(apiResponseDto,HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponseDto<ErrorResponseDto>> handleValidationExceptions(
             MethodArgumentNotValidException exception, WebRequest webRequest) {
@@ -63,6 +65,7 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(apiResponseDto, HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiResponseDto<ErrorResponseDto>> handleConstraintViolationException(
             ConstraintViolationException exception, WebRequest webRequest) {
@@ -87,6 +90,7 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(apiResponseDto, HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponseDto<ErrorResponseDto>> handleResourceNotFoundException(
             ResourceNotFoundException exception, WebRequest webRequest) {
@@ -106,5 +110,24 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(apiResponseDto, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiResponseDto<ErrorResponseDto>> handleBadRequestException(
+            BadRequestException exception, WebRequest webRequest) {
+
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+                webRequest.getDescription(false),
+                HttpStatus.BAD_REQUEST,
+                exception.getMessage(),
+                LocalDateTime.now());
+
+        ApiResponseDto<ErrorResponseDto> apiResponseDto = new ApiResponseDto<>();
+        apiResponseDto.setStatus(EOperationStatus.RESULT_FAILURE);
+        apiResponseDto.setMessage(EApiResponseMessage.BAD_REQUEST.getMessage());
+        apiResponseDto.setData(errorResponseDto);
+
+        return new ResponseEntity<>(apiResponseDto, HttpStatus.BAD_REQUEST);
+    }
+
 
 }

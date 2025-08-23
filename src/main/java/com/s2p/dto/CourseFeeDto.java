@@ -1,9 +1,8 @@
 package com.s2p.dto;
 
-import com.s2p.master.AcademicYear;
+import com.s2p.master.model.AcademicYear;
 import com.s2p.model.Course;
 import com.s2p.model.CourseFeeStructure;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

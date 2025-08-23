@@ -5,20 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class StudentUsersDto {
+public class CountryDto {
 
-    private UUID studentUserId;
+    private UUID countryId;
 
-    @NotBlank(message = "Student name is mandatory")
-    private String studentName;
-
-    @NotBlank(message = "Email is mandatory")
-    private String email;
+    @NotBlank(message = "Country name is mandatory")
+    private String country;
 }
