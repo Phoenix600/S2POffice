@@ -1,6 +1,5 @@
-package com.s2p.master.model;
+package com.s2p.master.dto;
 
-import com.s2p.model.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,24 +11,15 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-/**
- * File Name: City.java
- * Entity: City
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description:
- */
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class City extends BaseEntity
+public class StudentUsersDto
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID cityId;
-    private String cityName;
+    private UUID studentUserId;
+
 }

@@ -1,6 +1,6 @@
 package com.s2p.master.service;
 
-import com.s2p.master.Dto.CityDto;
+import com.s2p.master.dto.CityDto;
 import com.s2p.master.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

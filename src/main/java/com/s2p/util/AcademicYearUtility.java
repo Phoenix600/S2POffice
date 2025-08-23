@@ -1,11 +1,7 @@
 package com.s2p.util;
 
 import com.s2p.master.AcademicYear;
-import com.s2p.master.Dto.AcademicYearDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.s2p.master.dto.AcademicYearDto;
 
 
 public class AcademicYearUtility

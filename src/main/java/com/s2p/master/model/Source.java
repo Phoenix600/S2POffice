@@ -1,4 +1,4 @@
-package com.s2p.master.Dto;
+package com.s2p.master.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,10 +16,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class StudentUsersDto
+public class Source
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID studentUserId;
-
+    private UUID sourceId;
+    private String sourceName;
 }

@@ -7,12 +7,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -78,7 +81,7 @@ class ProjectSecurityConfig
                 .authorizeHttpRequests(auth -> auth
                         // Allow registration without authentication
                         .requestMatchers("api/v1/auth/admin/register").permitAll()
-
+                        .requestMatchers("api/v1/auth/superAdmin/register").permitAll()
                         // Allow login endpoint also
                         .requestMatchers("/api/v1/authController/login").permitAll()
 
@@ -108,5 +111,17 @@ class ProjectSecurityConfig
 	{
 		return new HaveIBeenPwnedRestApiPasswordChecker();
 	}
+
+    /// Custom Authentication Manager
+
+    ///  Adding Complete Flow For Custom Authentication Provider
+    @Bean
+    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder)
+    {
+        var authenticationProvider = new S2POfficeUsernameAndPasswordAuthenticationProvider(userDetailsService,passwordEncoder);
+        ProviderManager providerManager = new ProviderManager(authenticationProvider);
+        providerManager.setEraseCredentialsAfterAuthentication(false);
+        return providerManager;
+    }
 
 }

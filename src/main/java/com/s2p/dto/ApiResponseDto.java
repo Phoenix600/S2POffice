@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class ApiResponse<T>
+public class ApiResponseDto<T>
 {
     private String message;
     private EOperationStatus status;

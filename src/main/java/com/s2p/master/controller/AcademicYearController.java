@@ -1,6 +1,6 @@
 package com.s2p.master.controller;
 
-import com.s2p.master.Dto.AcademicYearDto;
+import com.s2p.master.dto.AcademicYearDto;
 import com.s2p.master.service.AcademicYearService;
 import com.s2p.model.ApiResponseLog;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.s2p.master.Dto;
+package com.s2p.master.dto;
 
 import com.s2p.master.model.Department;
 import lombok.AllArgsConstructor;

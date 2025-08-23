@@ -1,6 +1,6 @@
 package com.s2p.util;
 
-import com.s2p.master.Dto.StudentUsersDto;
+import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.StudentUsers;
 
 public class StudentUsersUtility

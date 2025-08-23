@@ -2,27 +2,25 @@ package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
-import com.s2p.dto.LoginResponseDto;
 import com.s2p.dto.RegisterResponseDto;
 import com.s2p.dto.SuperAdminUserDto;
-import com.s2p.master.Dto.StudentUsersDto;
+import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.*;
 import com.s2p.repository.*;
 import com.s2p.util.AdminUserUtility;
+import com.s2p.util.RolesUtility;
 import com.s2p.util.SuperAdminUserUtility;
 import com.s2p.util.StudentUsersUtility;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,7 +47,7 @@ public class AuthController
 
     //POST:-  http://localhost:8080/api/v1/auth/admin/register
     @PostMapping("/superAdmin/register")
-    public ResponseEntity<LoginResponseDto> registerSuperAdmin(
+    public ResponseEntity<RegisterResponseDto> registerSuperAdmin(
             @Parameter(description = "User registration data", required = true)
             @RequestBody Users users)
     {
@@ -69,7 +67,7 @@ public class AuthController
         // =================================
         String jwt = "";
         Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(superAdminUsers.getEmail(),
-                superAdminUsers.getPwd());
+                users.getPwd());
         Authentication authenticationResponse = authenticationManager.authenticate(authentication);
         if(null != authenticationResponse && authenticationResponse.isAuthenticated())
         {
@@ -90,9 +88,10 @@ public class AuthController
 		
 	    RegisterResponseDto registerResponseDto = new RegisterResponseDto();
 		registerResponseDto.setEmail(superAdminUsers.getEmail());
-		registerResponseDto.setRolesDto(superAdminUsers.getRoles());
-	 
-		return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt).body();
+		registerResponseDto.setRolesDto(RolesUtility.toRolesDto(superAdminUsers.getRoles()));
+        registerResponseDto.setToken(jwt);
+
+		return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt).body(registerResponseDto);
 
 
         // ==================================

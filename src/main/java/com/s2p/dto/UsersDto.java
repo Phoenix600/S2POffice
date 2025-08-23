@@ -2,6 +2,8 @@ package com.s2p.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,17 +14,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UsersDto {
-    @Column(unique = true)
+    @NotNull
     private String username;
 
-    @Column(unique = true)
+    @NotNull
+    @Email
     private String email;
 
-    @Transient
+    @NotNull
+    @Email
     private String confirmEmail;
 
+    @NotNull
     private String pwd;
 
-    @Transient
+    @NotNull
     private String confirmPwd;
 }

@@ -1,6 +1,6 @@
 package com.s2p.master.service;
 
-import com.s2p.master.Dto.CityDto;
+import com.s2p.master.dto.CityDto;
 
 import java.util.Set;
 import java.util.UUID;
