@@ -7,13 +7,19 @@ import java.util.Set;
 import java.util.UUID;
 
 public class CourseFeeInstallmentTransactionsService implements ICourseFeeInstallmentTransactions {
+
     @Override
-    public CourseFeeInstallmentTransactionsDto getTransactionById(UUID courseFeeInstallmentTransactions) {
+    public CourseFeeInstallmentTransactionsDto getCourseFeeInstallmentTransactionById(UUID courseFeeInstallmentTransactions) {
         return null;
     }
 
     @Override
     public Set<CourseFeeInstallmentTransactionsDto> getAllCourseFeeInstallmentTransactions() {
         return Set.of();
+    }
+
+    @Override
+    public CourseFeeInstallmentTransactionsDto deleteCourseFeeInstallmentTransactionById(UUID courseFeeInstallmentTransactions) {
+        return null;
     }
 }

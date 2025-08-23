@@ -7,7 +7,9 @@ import java.util.UUID;
 
 public interface ICourseFeeInstallmentTransactions
 {
-    public abstract CourseFeeInstallmentTransactionsDto getTransactionById(UUID courseFeeInstallmentTransactions);
+    public abstract CourseFeeInstallmentTransactionsDto getCourseFeeInstallmentTransactionById(UUID courseFeeInstallmentTransactions);
 
     public abstract Set<CourseFeeInstallmentTransactionsDto> getAllCourseFeeInstallmentTransactions();
+
+    public abstract CourseFeeInstallmentTransactionsDto deleteCourseFeeInstallmentTransactionById(UUID courseFeeInstallmentTransactions);
 }
