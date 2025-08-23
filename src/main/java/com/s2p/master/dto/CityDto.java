@@ -1,5 +1,6 @@
 package com.s2p.master.dto;
 
+import com.s2p.master.model.State;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,7 @@ public class CityDto {
 
     @NotBlank(message = "City name is mandatory")
     private String cityName; // Added for completeness
+
+
+
 }
