@@ -13,6 +13,7 @@ public interface IAdmissionService
 
     public abstract List<AdmissionDto> getAllAdmissions();
 
+
     public abstract AdmissionDto partialUpdateAdmissionById(UUID admissionId);
 
     public abstract AdmissionDto updateAdmissionById(UUID admissionId);
