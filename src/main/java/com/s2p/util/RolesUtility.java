@@ -2,6 +2,10 @@ package com.s2p.util;
 
 import com.s2p.dto.RolesDto;
 import com.s2p.model.Roles;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.management.relation.Role;
 
@@ -13,6 +17,7 @@ import javax.management.relation.Role;
  * Date: 23/08/25
  * Description:
  */
+
 
 public abstract class RolesUtility
 {
@@ -28,10 +33,6 @@ public abstract class RolesUtility
 		RolesDto rolesDto = new RolesDto();
 		return rolesDto;
 	}
-	
-	private RolesUtility()
-	{
-		// Restrict Instantiation
-	}
+
 }
 

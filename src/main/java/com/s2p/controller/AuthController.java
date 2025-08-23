@@ -90,7 +90,7 @@ public class AuthController
 		
 	    RegisterResponseDto registerResponseDto = new RegisterResponseDto();
 		registerResponseDto.setEmail(superAdminUsers.getEmail());
-		registerResponseDto.setRolesDto( superAdminUsers.getRoles());
+		registerResponseDto.setRolesDto(superAdminUsers.getRoles());
 	 
 		return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt).body();
 

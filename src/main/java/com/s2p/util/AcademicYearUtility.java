@@ -2,10 +2,15 @@ package com.s2p.util;
 
 import com.s2p.master.AcademicYear;
 import com.s2p.master.Dto.AcademicYearDto;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 public class AcademicYearUtility
 {
-    public static AcademicYear toAcademicYearEntity(AcademicYearDto academicYearDto)
+    public final static AcademicYear toAcademicYearEntity(AcademicYearDto academicYearDto)
     {
         AcademicYear academicYear = new AcademicYear();
 
@@ -15,7 +20,7 @@ public class AcademicYearUtility
         return  academicYear;
     }
 
-    public static AcademicYearDto toAcademicYearDto(AcademicYear academicYear)
+    public final static AcademicYearDto toAcademicYearDto(AcademicYear academicYear)
     {
         AcademicYearDto academicYearDto = new AcademicYearDto();
 

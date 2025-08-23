@@ -4,20 +4,27 @@ import com.s2p.dto.AdminUserDto;
 import com.s2p.dto.SuperAdminUserDto;
 import com.s2p.model.AdminUsers;
 import com.s2p.model.SuperAdminUsers;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 public class SuperAdminUserUtility {
 
-    public static SuperAdminUsers toSuperAdminUserEntity(SuperAdminUserDto superAdminUserDto)
+    public final static SuperAdminUsers toSuperAdminUserEntity(SuperAdminUserDto superAdminUserDto)
     {
         SuperAdminUsers superAdminUsers = new SuperAdminUsers();
 
         superAdminUsers.setSuperAdminUserId(superAdminUserDto.getSuperAdminUserId());
-    // #TODO: Harsh Update All Utility Methods
+        superAdminUsers.setEmail(superAdminUserDto.getEmail());
+        superAdminUsers.setUsername(superAdminUserDto.getUsername());
+
 
         return superAdminUsers;
     }
 
-    public static SuperAdminUserDto toSuperAdminUserDto(SuperAdminUsers superAdminUsers)
+    public final static SuperAdminUserDto toSuperAdminUserDto(SuperAdminUsers superAdminUsers)
     {
         SuperAdminUserDto superAdminUserDto = new SuperAdminUserDto();
 

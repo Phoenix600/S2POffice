@@ -16,11 +16,12 @@ import java.util.UUID;
 @Setter
 public class CourseFeeInstallmentTransactionsDto
 {
+    private UUID CourseFeeInstallmentTransactionsId;
+
     private UUID courseFeesID;
 
     private Long transactionId;
 
     private Double courseFees;
 
-    private UUID CourseFeeInstallmentTransactions;
 }

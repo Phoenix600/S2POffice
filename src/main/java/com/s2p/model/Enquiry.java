@@ -27,5 +27,4 @@ public class Enquiry extends StudentInformation
 {
     private UUID enquiryId;
     private LocalDate enquiryDate;
-
 }

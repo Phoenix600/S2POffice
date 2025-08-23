@@ -25,5 +25,5 @@ public class CourseFeeInstallmentTransactions
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID courseFeeInstallmentTransactions;
+    private UUID courseFeeInstallmentTransactionsId;
 }
