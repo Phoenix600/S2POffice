@@ -11,7 +11,7 @@ import lombok.Setter;
 
 public class StudentInformationUtility
 {
-    public final StudentInformation toStudentInformationEntity(StudentInformationDto studentInformationDto) {
+    public static final StudentInformation toStudentInformationEntity(StudentInformationDto studentInformationDto) {
         StudentInformation studentInformation = new StudentInformation();
 
         studentInformation.setStudentId(studentInformationDto.getStudentId());
@@ -26,7 +26,7 @@ public class StudentInformationUtility
         return studentInformation;
     }
 
-    public final StudentInformationDto toStudentInformationDto(StudentInformation studentInformation)
+    public static final StudentInformationDto toStudentInformationDto(StudentInformation studentInformation)
     {
         StudentInformationDto studentInformationDto = new StudentInformationDto();
 
