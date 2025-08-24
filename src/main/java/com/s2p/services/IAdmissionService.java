@@ -17,7 +17,7 @@ public interface IAdmissionService
 
     public abstract AdmissionDto partialUpdateAdmissionById(UUID admissionId);
 
-    public abstract AdmissionDto updateAdmissionById(UUID admissionId);
+    public abstract AdmissionDto updateAdmissionById(UUID admissionId, AdmissionDto admissionDto);
 
     public abstract AdmissionDto deleteAdmissionById(UUID admissionId);
 }

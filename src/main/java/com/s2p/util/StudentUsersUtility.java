@@ -1,5 +1,6 @@
 package com.s2p.util;
 
+import com.s2p.dto.StudentUserDto;
 import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.StudentUsers;
 
@@ -13,7 +14,7 @@ public class StudentUsersUtility
         return studentUsers;
     }
 
-    public static StudentUsersDto toStudentUserDto(StudentUsers studentUsers) {
+    public static StudentUserDto toStudentUserDto(StudentUsers studentUsers) {
         StudentUsersDto studentUsersDto = new StudentUsersDto();
 
         studentUsersDto.setStudentUserId(studentUsers.getStudentUserId());

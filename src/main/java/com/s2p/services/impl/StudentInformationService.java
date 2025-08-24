@@ -8,15 +8,19 @@ import com.s2p.services.IStudentInformationService;
 import com.s2p.util.StudentInformationUtility;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.time.LocalDate;
 import java.util.*;
 
 
-@RequiredArgsConstructor
+@Service
 public class StudentInformationService implements IStudentInformationService
 {
-    public final StudentInformationRepository studentInformationRepository;
+    @Autowired
+    StudentInformationRepository studentInformationRepository;
 
 
     @Override
@@ -62,18 +66,18 @@ public class StudentInformationService implements IStudentInformationService
         return result;
     }
 
-    @Override
-    public Set<StudentInformationDto> getAllStudentsByAdmissionDate(LocalDate admissionDate)
-    {
-        List<StudentInformation> students = studentInformationRepository.findByAdmissionDate(admissionDate);
-        Set<StudentInformationDto> result = new HashSet<>();
-
-        for (StudentInformation student : students) {
-            result.add(StudentInformationUtility.toStudentInformationDto(student));
-        }
-
-        return result;
-    }
+//    @Override
+//    public Set<StudentInformationDto> getAllStudentsByAdmissionDate(LocalDate admissionDate)
+//    {
+//        List<StudentInformation> students = studentInformationRepository.findByAdmissionDate(admissionDate);
+//        Set<StudentInformationDto> result = new HashSet<>();
+//
+//        for (StudentInformation student : students) {
+//            result.add(StudentInformationUtility.toStudentInformationDto(student));
+//        }
+//
+//        return result;
+//    }
 
     @Override
     public StudentInformationDto partialUpdateStudentInformationById(UUID studentId) {
@@ -90,6 +94,7 @@ public class StudentInformationService implements IStudentInformationService
         }
 
         StudentInformation existingStudent = optionalStudent.get();
+
         existingStudent.setFirstName(studentInformationDto.getFirstName());
         existingStudent.setLastName(studentInformationDto.getLastName());
         existingStudent.setEmail(studentInformationDto.getEmail());
@@ -116,4 +121,7 @@ public class StudentInformationService implements IStudentInformationService
 
         return StudentInformationUtility.toStudentInformationDto(student);
     }
+
+
+
 }

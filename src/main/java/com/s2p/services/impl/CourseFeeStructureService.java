@@ -1,39 +1,80 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.CourseFeeStructureDto;
+import com.s2p.exceptions.ResourceNotFoundException;
+import com.s2p.model.CourseFeeStructure;
+import com.s2p.repository.CourseFeeStructureRepository;
 import com.s2p.services.ICourseFeeStructureService;
+import com.s2p.util.CourseFeesStructureUtility;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
-public class CourseFeeStructureService implements ICourseFeeStructureService {
+public class CourseFeeStructureService implements ICourseFeeStructureService
+{
+    @Autowired
+    CourseFeeStructureRepository courseFeeStructureRepository;
+
     @Override
     public CourseFeeStructureDto createCourseFeeStructure(CourseFeeStructureDto courseFeeStructureDto) {
-        return null;
+        CourseFeeStructure entity = CourseFeesStructureUtility.toCourseFeeStructureEntity(courseFeeStructureDto);
+        CourseFeeStructure saved = courseFeeStructureRepository.save(entity);
+        return CourseFeesStructureUtility.toCourseFeeStructureDto(saved);
     }
 
     @Override
     public CourseFeeStructureDto getCourseFeeStructureById(UUID courseFeeStructureId) {
-        return null;
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findById(courseFeeStructureId);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
+        }
+
+        return CourseFeesStructureUtility.toCourseFeeStructureDto(optional.get());
     }
 
     @Override
     public Set<CourseFeeStructureDto> getAllCourseFeeStructures() {
-        return Set.of();
+        List<CourseFeeStructure> structures = courseFeeStructureRepository.findAll();
+        Set<CourseFeeStructureDto> result = new HashSet<>();
+
+        for (CourseFeeStructure structure : structures) {
+            result.add(CourseFeesStructureUtility.toCourseFeeStructureDto(structure));
+        }
+        return result;
     }
 
     @Override
-    public CourseFeeStructureDto partialUpdateCourseFeeStructureById(UUID courseFeeStructureId) {
+    public CourseFeeStructureDto partialUpdateCourseFeeStructureById(UUID courseFeeStructureI, CourseFeeStructureDto courseFeeStructureDto) {
         return null;
     }
 
     @Override
-    public CourseFeeStructureDto updateCourseFeeStructureById(UUID courseFeeStructureId) {
-        return null;
+    public CourseFeeStructureDto updateCourseFeeStructureById(UUID courseFeeStructureId, CourseFeeStructureDto courseFeeStructureDto)
+    {
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findById(courseFeeStructureId);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
+        }
+
+        CourseFeeStructure existing = optional.get();
+        existing.setAmount(courseFeeStructureDto.getAmount());
+
+        CourseFeeStructure updated = courseFeeStructureRepository.save(existing);
+        return CourseFeesStructureUtility.toCourseFeeStructureDto(updated);
     }
 
     @Override
     public CourseFeeStructureDto deleteCourseFeeStructureById(UUID courseFeeStructureId) {
-        return null;
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findById(courseFeeStructureId);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
+        }
+
+        CourseFeeStructure entity = optional.get();
+        courseFeeStructureRepository.delete(entity);
+        return CourseFeesStructureUtility.toCourseFeeStructureDto(entity);
     }
 }

@@ -2,7 +2,6 @@ package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
-import com.s2p.dto.LoginResponseDto;
 import com.s2p.dto.RegisterResponseDto;
 import com.s2p.dto.SuperAdminUserDto;
 import com.s2p.master.dto.StudentUsersDto;
@@ -41,7 +40,7 @@ public class AuthController
     private final SuperAdminRepository superAdminRepository;
     private final AdminUsersRepository adminUsersRepository;
     private final TeacherRepository teacherRepository;
-    private final StudentRepository studentRepository;
+    private final StudentUserRepository studentUserRepository;
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -136,7 +135,7 @@ public class AuthController
         studentUser.setPwd(passwordEncoder.encode(users.getPwd()));
         studentUser.setRoles(roles);
 
-        studentUser = studentRepository.save(studentUser);
+        studentUser = studentUserRepository.save(studentUser);
         StudentUsersDto savedStudent = StudentUsersUtility.toStudentUserDto(studentUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);

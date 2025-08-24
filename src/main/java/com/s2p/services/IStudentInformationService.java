@@ -15,7 +15,7 @@ public interface IStudentInformationService
 
     public abstract Set<StudentInformationDto> getAllStudents();
 
-    public abstract Set<StudentInformationDto> getAllStudentsByAdmissionDate(LocalDate admissionDate);
+//    public abstract Set<StudentInformationDto> getAllStudentsByAdmissionDate(LocalDate admissionDate);
 
     public abstract StudentInformationDto partialUpdateStudentInformationById(UUID studentId);
 

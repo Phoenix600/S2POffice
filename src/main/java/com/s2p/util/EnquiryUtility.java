@@ -10,7 +10,7 @@ import lombok.Setter;
 
 public class EnquiryUtility
 {
-    public final Enquiry toEnquiryEntity(EnquiryDto enquiryDto)
+    public static final Enquiry toEnquiryEntity(EnquiryDto enquiryDto)
     {
         Enquiry enquiry = new Enquiry();
 
@@ -20,7 +20,7 @@ public class EnquiryUtility
         return enquiry;
     }
 
-    public final EnquiryDto toEnquiryDto(Enquiry enquiry)
+    public static final EnquiryDto toEnquiryDto(Enquiry enquiry)
     {
         EnquiryDto enquiryDto = new EnquiryDto();
 

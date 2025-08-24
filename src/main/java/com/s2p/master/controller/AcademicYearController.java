@@ -18,7 +18,7 @@ public class AcademicYearController
     @Autowired
     AcademicYearService academicYearService;
 
-    //POST:-  http://localhost:8080/api/v1/createAcademicYear
+    //POST:-  http://localhost:8080/api/v1/AcademicYear/createAcademicYear
     @PostMapping("/createAcademicYear")
     public ResponseEntity<ApiResponseLog<AcademicYearDto>> createAcademicYear(@RequestBody AcademicYearDto academicYearDto)
     {
