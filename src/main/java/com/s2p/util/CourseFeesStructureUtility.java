@@ -13,18 +13,19 @@ public class CourseFeesStructureUtility
 {
     public final static CourseFeeStructure toCourseFeeStructureEntity(CourseFeeStructureDto courseFeeStructureDto)
     {
-        CourseFeeStructure courseFeeStructure = new CourseFeeStructure();
-
-        courseFeeStructure.setAmount(courseFeeStructureDto.getAmount());
-
-        return courseFeeStructure;
+//        CourseFeeStructure courseFeeStructure = new CourseFeeStructure();
+//
+//        courseFeeStructure.setAmount(courseFeeStructureDto.getAmount());
+//
+//        return courseFeeStructure;
+        return null;
     }
 
     public final static CourseFeeStructureDto toCourseFeeStructureDto(CourseFeeStructure courseFeeStructure)
     {
         CourseFeeStructureDto courseFeeStructureDto = new CourseFeeStructureDto();
 
-        courseFeeStructureDto.setAmount(courseFeeStructure.getAmount());
+//        courseFeeStructureDto.setAmount(courseFeeStructure.getAmount());
 
         return courseFeeStructureDto;
     }
