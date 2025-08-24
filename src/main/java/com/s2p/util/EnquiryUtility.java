@@ -6,27 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
-
-public class EnquiryUtility
+@Mapper(componentModel = "spring")
+public interface EnquiryUtility
 {
-    public final Enquiry toEnquiryEntity(EnquiryDto enquiryDto)
-    {
-        Enquiry enquiry = new Enquiry();
-
-        enquiry.setEnquiryId(enquiryDto.getEnquiryId());
-        enquiry.setEnquiryDate(enquiryDto.getEnquiryDate());
-
-        return enquiry;
-    }
-
-    public final EnquiryDto toEnquiryDto(Enquiry enquiry)
-    {
-        EnquiryDto enquiryDto = new EnquiryDto();
-
-        enquiryDto.setEnquiryId(enquiry.getEnquiryId());
-        enquiryDto.setEnquiryDate(enquiry.getEnquiryDate());
-
-        return enquiryDto;
-    }
+    public abstract Enquiry toEnquiryEntity(EnquiryDto enquiryDto);
+    public abstract EnquiryDto toEnquiryDto(Enquiry enquiry);
 }

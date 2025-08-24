@@ -39,6 +39,9 @@ public class Course extends BaseEntity
     @Column(nullable = false)
     private Byte courseDurationInMonths;
 
+    @ManyToMany
+    private Set<Enquiry> enquirySet = new HashSet<>();
+
     @ManyToMany(mappedBy = "courseSet")
     private Set<Batch> batches = new HashSet<>();
 

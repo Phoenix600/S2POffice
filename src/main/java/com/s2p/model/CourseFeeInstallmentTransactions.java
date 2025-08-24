@@ -20,10 +20,27 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class CourseFeeInstallmentTransactions
+public class CourseFeeInstallmentTransactions extends BaseEntity
 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID courseFeeInstallmentTransactionsId;
+
+    private Double paidAmount;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(
+            name = "course_id",
+            referencedColumnName = "courseId"
+    )
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "course_fee_structure_id", referencedColumnName = "courseFeeStructureId")
+    private CourseFeeStructure courseFeeStructure;
+
+    @ManyToOne
+    @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
+    private StudentUsers studentUsers;
 }

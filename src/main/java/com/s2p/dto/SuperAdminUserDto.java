@@ -18,5 +18,5 @@ public class SuperAdminUserDto
     private UUID superAdminUserId;
     private String email;
     private String username;
-	private String roles;
+	private RolesDto roles;
 }

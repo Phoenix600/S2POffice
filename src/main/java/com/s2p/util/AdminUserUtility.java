@@ -6,20 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
 
+@Mapper(componentModel = "spring")
+public interface AdminUserUtility {
 
-public class AdminUserUtility {
+    public abstract AdminUsers toAdminUserEntity(AdminUserDto adminUserDto);
+    public abstract AdminUserDto toAdminUserDto(AdminUsers adminUsers);
 
-    public final static AdminUsers toAdminUserEntity(AdminUserDto adminUserDto) {
-        AdminUsers adminUsers = new AdminUsers();
-        adminUsers.setAdminUserId(adminUserDto.getAdminUserId());
-        return adminUsers;
-    }
-
-    public final static AdminUserDto toAdminUserDto(AdminUsers adminUsers) {
-        AdminUserDto adminUserDto = new AdminUserDto();
-        adminUserDto.setAdminUserId(adminUsers.getAdminUserId());
-        return adminUserDto;
-    }
 }

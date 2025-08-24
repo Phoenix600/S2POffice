@@ -30,7 +30,7 @@ public class StudentInformation extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-	private UUID studentId;
+	private UUID studentInformationId;
 
     private String firstName;
 
@@ -41,7 +41,7 @@ public class StudentInformation extends BaseEntity
 
     private String collegeName;
 
-    private String degreeName;
+    private String departName;
 
     private String semester;
 
@@ -50,11 +50,17 @@ public class StudentInformation extends BaseEntity
     @Column(nullable = true)
     private Boolean isGraduated;
 
+    private Boolean isAdmitted;
+
+
+    @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.PERSIST,optional = true)
+    @JoinColumn(name = "enquiry_id",referencedColumnName = "enquiryId")
+    private Enquiry enquiry;
 
     @ManyToMany
     @JoinTable(
             name = "student_batches",
-            joinColumns = @JoinColumn(name = "student_id"),
+            joinColumns = @JoinColumn(name = "student_information_id"),
             inverseJoinColumns = @JoinColumn(name = "batch_id")
     )
     private Set<Batch> batches = new HashSet<>();
@@ -62,8 +68,12 @@ public class StudentInformation extends BaseEntity
     @ManyToMany
     @JoinTable(
             name = "student_courses",
-            joinColumns = @JoinColumn(name = "student_id"),
+            joinColumns = @JoinColumn(name = "student_information_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private Set<Course> courses = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "course_fee_structure_id", referencedColumnName = "courseFeeStructureId")
+    private CourseFeeStructure courseFeeStructure;
 }

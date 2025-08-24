@@ -6,27 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
 
-
-public class CourseFeesStructureUtility
+@Mapper(componentModel = "spring")
+public interface CourseFeesStructureUtility
 {
-    public final static CourseFeeStructure toCourseFeeStructureEntity(CourseFeeStructureDto courseFeeStructureDto)
-    {
-//        CourseFeeStructure courseFeeStructure = new CourseFeeStructure();
-//
-//        courseFeeStructure.setAmount(courseFeeStructureDto.getAmount());
-//
-//        return courseFeeStructure;
-        return null;
-    }
+    public abstract CourseFeeStructure toCourseFeeStructureEntity(CourseFeeStructureDto courseFeeStructureDto);
+    public abstract CourseFeeStructureDto toCourseFeeStructureDto(CourseFeeStructure courseFeeStructure);
 
-    public final static CourseFeeStructureDto toCourseFeeStructureDto(CourseFeeStructure courseFeeStructure)
-    {
-        CourseFeeStructureDto courseFeeStructureDto = new CourseFeeStructureDto();
-
-//        courseFeeStructureDto.setAmount(courseFeeStructure.getAmount());
-
-        return courseFeeStructureDto;
-    }
 }

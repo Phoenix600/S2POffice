@@ -2,22 +2,11 @@ package com.s2p.util;
 
 import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.StudentUsers;
-
-public class StudentUsersUtility
+import org.mapstruct.Mapper;
+@Mapper(componentModel = "spring")
+public interface StudentUsersUtility
 {
-    public static StudentUsers toStudentUserEntity(StudentUsersDto studentUsersDto) {
-        StudentUsers studentUsers = new StudentUsers();
+    public abstract StudentUsers toStudentUserEntity(StudentUsersDto studentUsersDto);
+    public abstract StudentUsersDto toStudentUserDto(StudentUsers studentUsers);
 
-        studentUsers.setStudentUserId(studentUsersDto.getStudentUserId());
-
-        return studentUsers;
-    }
-
-    public static StudentUsersDto toStudentUserDto(StudentUsers studentUsers) {
-        StudentUsersDto studentUsersDto = new StudentUsersDto();
-
-        studentUsersDto.setStudentUserId(studentUsers.getStudentUserId());
-
-        return studentUsersDto;
-    }
 }

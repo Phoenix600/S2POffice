@@ -45,6 +45,10 @@ public class AuthController
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final SuperAdminUserUtility superAdminUserUtility;
+    private final RolesUtility rolesUtility;
+    private final AdminUserUtility adminUserUtility;
+    private final StudentUsersUtility studentUsersUtility;
 
     //POST:-  http://localhost:8080/api/v1/auth/admin/register
     @PostMapping("/superAdmin/register")
@@ -62,7 +66,7 @@ public class AuthController
         superAdminUsers.setRoles(roles);
 
         superAdminUsers = superAdminRepository.save(superAdminUsers);
-        SuperAdminUserDto superDtoResponse = SuperAdminUserUtility.toSuperAdminUserDto(superAdminUsers);
+        SuperAdminUserDto superDtoResponse = superAdminUserUtility.toSuperAdminUserDto(superAdminUsers);
 
 
         // =================================
@@ -89,7 +93,7 @@ public class AuthController
 		
 	    RegisterResponseDto registerResponseDto = new RegisterResponseDto();
 		registerResponseDto.setEmail(superAdminUsers.getEmail());
-		registerResponseDto.setRolesDto(RolesUtility.toRolesDto(superAdminUsers.getRoles()));
+		registerResponseDto.setRolesDto(rolesUtility.toRolesDto(superAdminUsers.getRoles()));
         registerResponseDto.setToken(jwt);
 
 		return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt).body(registerResponseDto);
@@ -116,7 +120,7 @@ public class AuthController
         adminUser.setRoles(roles);
 
         adminUser = adminUsersRepository.save(adminUser);
-        AdminUserDto adminUserDto = AdminUserUtility.toAdminUserDto(adminUser);
+        AdminUserDto adminUserDto = adminUserUtility.toAdminUserDto(adminUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(adminUserDto);
     }
@@ -137,7 +141,7 @@ public class AuthController
         studentUser.setRoles(roles);
 
         studentUser = studentRepository.save(studentUser);
-        StudentUsersDto savedStudent = StudentUsersUtility.toStudentUserDto(studentUser);
+        StudentUsersDto savedStudent = studentUsersUtility.toStudentUserDto(studentUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
     }

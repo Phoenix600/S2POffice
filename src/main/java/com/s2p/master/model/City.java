@@ -1,10 +1,7 @@
 package com.s2p.master.model;
 
 import com.s2p.model.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +30,7 @@ public class City extends BaseEntity
     private UUID cityId;
     private String cityName;
 
-
+    @ManyToOne
+    @JoinColumn(name = "state_id", referencedColumnName = "stateId")
+    private State state;
 }
