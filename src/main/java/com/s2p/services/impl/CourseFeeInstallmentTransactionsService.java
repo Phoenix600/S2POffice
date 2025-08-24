@@ -7,9 +7,11 @@ import com.s2p.repository.CourseFeeInstallmentTransactionsRepository;
 import com.s2p.services.ICourseFeeInstallmentTransactions;
 import com.s2p.util.CourseFeeInstallmentTransactionsUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class CourseFeeInstallmentTransactionsService implements ICourseFeeInstallmentTransactions
 {
     @Autowired

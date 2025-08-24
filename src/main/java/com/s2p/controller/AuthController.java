@@ -3,8 +3,8 @@ package com.s2p.controller;
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
 import com.s2p.dto.RegisterResponseDto;
+import com.s2p.dto.StudentUserDto;
 import com.s2p.dto.SuperAdminUserDto;
-import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.*;
 import com.s2p.repository.*;
 import com.s2p.util.AdminUserUtility;
@@ -39,7 +39,7 @@ public class AuthController
 {
     private final SuperAdminRepository superAdminRepository;
     private final AdminUsersRepository adminUsersRepository;
-    private final TeacherRepository teacherRepository;
+    private final TeacherUserRepository teacherUserRepository;
     private final StudentUserRepository studentUserRepository;
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
@@ -122,7 +122,7 @@ public class AuthController
 
     // POST   http://localhost:8080/api/v1/public/student/register
     @PostMapping("student/register")
-    public ResponseEntity<StudentUsersDto> registerStudent(
+    public ResponseEntity<StudentUserDto> registerStudent(
             @Parameter(description = "User registration data", required = true)
            @RequestBody Users users)
     {
@@ -136,7 +136,7 @@ public class AuthController
         studentUser.setRoles(roles);
 
         studentUser = studentUserRepository.save(studentUser);
-        StudentUsersDto savedStudent = StudentUsersUtility.toStudentUserDto(studentUser);
+        StudentUserDto savedStudent = StudentUsersUtility.toStudentUserDto(studentUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
     }

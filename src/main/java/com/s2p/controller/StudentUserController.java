@@ -5,7 +5,7 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.StudentUserDto;
 import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.message.EApiResponseMessage;
-import com.s2p.services.impl.StduentUserService;
+import com.s2p.services.impl.StudentUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +21,11 @@ public class StudentUserController
 {
 
     @Autowired
-    StduentUserService studentUserService;
+    StudentUserService studentUserService;
 
     // ✅ Create StudentUser
     @PostMapping
-    public ResponseEntity<ApiResponseDto<StudentUserDto>> createStudentUser(@RequestBody StudentUsersDto studentUserDto) {
+    public ResponseEntity<ApiResponseDto<StudentUserDto>> createStudentUser(@RequestBody StudentUserDto studentUserDto) {
         StudentUserDto created = studentUserService.createStudentUser(studentUserDto);
 
         ApiResponseDto<StudentUserDto> response = new ApiResponseDto<>();
@@ -38,8 +38,8 @@ public class StudentUserController
 
     // ✅ Get StudentUser by ID
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<StudentUserDto>> getStudentUserById(@PathVariable("id") UUID studentUserIdd) {
-        StudentUserDto dto = studentUserService.getStudentUserById(studentUserIdd);
+    public ResponseEntity<ApiResponseDto<StudentUserDto>> getStudentUserById(@PathVariable("id") UUID studentUserId) {
+        StudentUserDto dto = studentUserService.getStudentUserById(studentUserId);
 
         ApiResponseDto<StudentUserDto> response = new ApiResponseDto<>();
         response.setStatus(EOperationStatus.RESULT_SUCCESS);

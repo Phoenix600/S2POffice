@@ -6,19 +6,19 @@ import com.s2p.model.StudentUsers;
 
 public class StudentUsersUtility
 {
-    public static StudentUsers toStudentUserEntity(StudentUsersDto studentUsersDto) {
+    public static StudentUsers toStudentUserEntity(StudentUserDto studentUserDto) {
         StudentUsers studentUsers = new StudentUsers();
 
-        studentUsers.setStudentUserId(studentUsersDto.getStudentUserId());
+        studentUsers.setStudentUserId(studentUserDto.getStudentUserId());
 
         return studentUsers;
     }
 
     public static StudentUserDto toStudentUserDto(StudentUsers studentUsers) {
-        StudentUsersDto studentUsersDto = new StudentUsersDto();
+        StudentUserDto studentUserDto = new StudentUserDto();
 
-        studentUsersDto.setStudentUserId(studentUsers.getStudentUserId());
+        studentUserDto.setStudentUserId(studentUsers.getStudentUserId());
 
-        return studentUsersDto;
+        return studentUserDto;
     }
 }

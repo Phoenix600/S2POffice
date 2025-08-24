@@ -4,16 +4,20 @@ import com.s2p.dto.BatchDto;
 import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Batch;
 import com.s2p.repository.BatchRepository;
+import com.s2p.repository.specifications.BatchSpecification;
 import com.s2p.services.IBatchService;
 import com.s2p.util.BatchUtility;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class BatchService implements IBatchService
@@ -91,4 +95,16 @@ public class BatchService implements IBatchService
 
         return BatchUtility.toBatchDto(batch);
     }
+    @Override
+    public List<BatchDto> searchBatches(String batchName, LocalTime startTime, LocalTime endTime) {
+        Specification<Batch> spec = Specification.anyOf(BatchSpecification.hasBatchName(batchName))
+                .or(BatchSpecification.hasStartTime(startTime))
+                .or(BatchSpecification.hasEndTime(endTime));
+
+        return batchRepository.findAll(spec)
+                .stream()
+                .map(BatchUtility::toBatchDto)
+                .collect(Collectors.toList());
+    }
+
 }

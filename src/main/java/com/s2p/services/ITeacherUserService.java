@@ -15,5 +15,5 @@ public interface ITeacherUserService
 
     public abstract TeacherUserDto updateTeacherUserById(UUID teacherUserId);
 
-    public abstract TeacherUserDto deleteTeacherUserById(UUID teacherUserId)
+    public abstract TeacherUserDto deleteTeacherUserById(UUID teacherUserId);
 }

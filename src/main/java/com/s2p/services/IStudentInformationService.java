@@ -4,6 +4,7 @@ import com.s2p.dto.StudentInformationDto;
 import org.apache.coyote.BadRequestException;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,4 +23,12 @@ public interface IStudentInformationService
     public abstract StudentInformationDto updateStudentInformationById(UUID studentId, StudentInformationDto studentInformationDto);
 
     public abstract StudentInformationDto deleteStudentInformationById(UUID studentId);
+    public List<StudentInformationDto> searchStudents(String firstName,
+                                                      String lastName,
+                                                      String email,
+                                                      String collegeName,
+                                                      String degreeName,
+                                                      String semester,
+                                                      String passingYear,
+                                                      Boolean isGraduated);
 }

@@ -15,6 +15,10 @@ import java.util.UUID;
 @Embeddable
 public class CourseFeeStructure
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID courseFeeStructureId;
+
     @Column(name = "amount", nullable = false)
     private Double amount;
 

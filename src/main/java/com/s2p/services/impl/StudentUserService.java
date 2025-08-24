@@ -14,17 +14,22 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class StduentUserService implements IStudentUserService
+public class StudentUserService implements IStudentUserService
 {
     @Autowired
     StudentUserRepository studentUserRepository;
 
     @Override
-    public StudentUserDto createStudentUser(StudentUsersDto studentUsersDto) {
+    public StudentUserDto createStudentUser(StudentUserDto studentUsersDto) {
         StudentUsers entity = StudentUsersUtility.toStudentUserEntity(studentUsersDto);
         StudentUsers saved = studentUserRepository.save(entity);
         return StudentUsersUtility.toStudentUserDto(saved);
     }
+
+//    @Override
+//    public StudentUserDto createStudentUser(StudentUsersDto studentUsersDto) {
+//        return null;
+//    }
 
     @Override
     public StudentUserDto getStudentUserById(UUID studentUserId) {

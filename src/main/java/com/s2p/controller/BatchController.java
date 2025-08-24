@@ -8,9 +8,11 @@ import com.s2p.services.impl.BatchService;
 import jakarta.validation.Valid;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -85,6 +87,15 @@ public class BatchController
         response.setData("Batch deleted successfully");
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/search")
+    public List<BatchDto> searchBatches(
+            @RequestParam(required = false) String batchName,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime
+    ) {
+        return batchService.searchBatches(batchName, startTime, endTime);
     }
 }
 

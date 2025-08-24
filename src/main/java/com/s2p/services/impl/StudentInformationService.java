@@ -4,16 +4,20 @@ import com.s2p.dto.StudentInformationDto;
 import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.StudentInformationRepository;
+import com.s2p.repository.specifications.StudentSpecifications;
 import com.s2p.services.IStudentInformationService;
 import com.s2p.util.StudentInformationUtility;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.time.LocalDate;
 import java.util.*;
+
+import static com.s2p.repository.specifications.StudentSpecifications.*;
 
 
 @Service
@@ -122,6 +126,45 @@ public class StudentInformationService implements IStudentInformationService
         return StudentInformationUtility.toStudentInformationDto(student);
     }
 
+
+    public List<StudentInformationDto> searchStudents(
+            String firstName,
+            String lastName,
+            String email,
+            String collegeName,
+            String degreeName,
+            String semester,
+            String passingYear,
+            Boolean isGraduated) {
+
+        Specification<StudentInformation> spec = Specification.anyOf(
+                StudentSpecifications.hasFirstName(firstName),
+                StudentSpecifications.hasLastName(lastName),
+                StudentSpecifications.hasEmail(email),
+                StudentSpecifications.hasCollegeName(collegeName),
+                StudentSpecifications.hasDegreeName(degreeName),
+                StudentSpecifications.hasSemester(semester),
+                StudentSpecifications.hasPassingYear(passingYear),
+                StudentSpecifications.isGraduated(isGraduated)
+        );
+//                .where(hasFirstName(firstName))
+//                .and(hasLastName(lastName))
+//                .and(hasEmail(email))
+//                .and(hasCollegeName(collegeName))
+//                .and(hasDegreeName(degreeName))
+//                .and(hasSemester(semester))
+//                .and(hasPassingYear(passingYear))
+//                .and(isGraduated(isGraduated));
+
+        List<StudentInformation> students = studentInformationRepository.findAll(spec);
+
+        List<StudentInformationDto> result = new ArrayList<>();
+        for (StudentInformation student : students) {
+            result.add(StudentInformationUtility.toStudentInformationDto(student));
+        }
+
+        return result;
+    }
 
 
 }

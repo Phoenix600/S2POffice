@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface IStudentUserService
 {
-    public abstract StudentUserDto createStudentUser(StudentUsersDto studentUsersDto);
+    public abstract StudentUserDto createStudentUser(StudentUserDto studentUsersDto);
 
     public abstract StudentUserDto getStudentUserById(UUID studentUserId);
 
@@ -17,4 +17,5 @@ public interface IStudentUserService
     public abstract StudentUsersDto updateStudentUserById(UUID studentUserId);
 
     public abstract StudentUserDto deleteStudentUserById(UUID studentuserId);
+
 }

@@ -7,9 +7,11 @@ import com.s2p.repository.CourseFeeStructureRepository;
 import com.s2p.services.ICourseFeeStructureService;
 import com.s2p.util.CourseFeesStructureUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class CourseFeeStructureService implements ICourseFeeStructureService
 {
     @Autowired

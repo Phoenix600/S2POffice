@@ -4,15 +4,14 @@ import com.s2p.constants.EOperationStatus;
 import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.StudentInformationDto;
 import com.s2p.message.EApiResponseMessage;
-import com.s2p.services.IStudentInformationService;
 import com.s2p.services.impl.StudentInformationService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -95,6 +94,23 @@ public class StudentInformationController
         response.setData("Student deleted successfully");
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<StudentInformationDto>> searchStudents(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String collegeName,
+            @RequestParam(required = false) String degreeName,
+            @RequestParam(required = false) String semester,
+            @RequestParam(required = false) String passingYear,
+            @RequestParam(required = false) Boolean isGraduated
+    ) {
+        List<StudentInformationDto> results = studentInformationService.searchStudents(
+                firstName, lastName, email, collegeName, degreeName, semester, passingYear, isGraduated
+        );
+        return ResponseEntity.ok(results);
     }
 
 }
