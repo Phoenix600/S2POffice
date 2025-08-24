@@ -26,6 +26,14 @@ public class CourseFeeStructure
     private Byte nInstallments;
     private Byte remainingInstallments;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "course_id",referencedColumnName = "courseId")
+    private Course course;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "course_fees_id", referencedColumnName = "courseFeesID")
+    private CourseFees courseFees;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
     private StudentUsers studentUsers;

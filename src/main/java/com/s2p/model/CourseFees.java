@@ -27,7 +27,7 @@ public class CourseFees extends BaseEntity
 	private UUID courseFeesID;
 
 	@ManyToOne
-	@JoinColumn(name = "course_id", nullable = false)
+	@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false)
 	private Course course;
 
 	@ManyToOne

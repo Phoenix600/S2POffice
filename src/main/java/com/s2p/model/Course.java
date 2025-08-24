@@ -49,5 +49,5 @@ public class Course extends BaseEntity
     private Set<StudentInformation> students = new HashSet<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CourseFees> courseFees = new ArrayList<>();
+    private Set<CourseFees> courseFeesSet = new HashSet<>();
 }
