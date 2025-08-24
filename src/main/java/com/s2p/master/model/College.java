@@ -39,4 +39,16 @@ public class College extends BaseEntity
             inverseJoinColumns = { @JoinColumn(name = "department_id" )}
     )
     private Set<Department> departmentSet = new LinkedHashSet<>();
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "country_id", referencedColumnName = "countryId")
+    private Country country;
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "state_id", referencedColumnName = "stateId")
+    private State state;
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "city_id", referencedColumnName = "cityId")
+    private City city;
 }
