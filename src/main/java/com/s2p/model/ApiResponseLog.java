@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class ApiResponseLog {
+public class ApiResponseLog<A> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class ApiResponseLog {
 
     private String host;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST,targetEntity = APIRequestLog.class)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST,targetEntity = ApiRequestLog.class)
     @JoinColumn(name = "api_response_id", referencedColumnName = "apiResponseId")
-    private APIRequestLog requestLog;
+    private ApiRequestLog requestLog;
 }

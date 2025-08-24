@@ -1,0 +1,45 @@
+package com.s2p.dto;
+
+import com.s2p.model.Batch;
+import com.s2p.model.Course;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class StudentInformationDto {
+
+    private UUID studentId;
+
+    private String firstName;
+
+    private String lastName;
+
+    @Email(message = "Enter Valid Email")
+    private String email;
+
+    private String collegeName;
+
+    private String degreeName;
+
+    private String semester;
+
+    private String passingYear;
+
+    @Column(nullable = true)
+    private Boolean isGraduated;
+
+    private Set<Batch> batches = new HashSet<>();
+
+    private Set<Course> courses = new HashSet<>();
+}

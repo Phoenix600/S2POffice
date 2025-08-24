@@ -1,7 +1,10 @@
 package com.s2p.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * File Name: Users.java
@@ -12,6 +15,11 @@ import jakarta.persistence.Transient;
  * Description:
  */
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@MappedSuperclass
 public class Users extends BaseEntity
 {
 	@Column(unique = true)
@@ -27,4 +35,9 @@ public class Users extends BaseEntity
 	
 	@Transient
 	private String confirmPwd;
+
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "roles_id", referencedColumnName = "rolesId")
+	private Roles roles;
+
 }

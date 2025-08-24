@@ -2,7 +2,7 @@ package com.s2p.filters;
 
 import com.s2p.core.CachedBodyHttpServletRequest;
 import com.s2p.core.CachedBodyHttpServletResponse;
-import com.s2p.model.APIRequestLog;
+import com.s2p.model.ApiRequestLog;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 public class RequestLoggingFilter extends OncePerRequestFilter
 {
@@ -27,7 +26,7 @@ public class RequestLoggingFilter extends OncePerRequestFilter
         String requestBody = new String(cachedRequest.getCachedBody(), request.getCharacterEncoding());
 
         // Persist initial request log (without response yet)
-        APIRequestLog requestLog = new APIRequestLog();
+        ApiRequestLog requestLog = new ApiRequestLog();
 
         requestLog.setMethod(request.getMethod());
         requestLog.setUri(request.getRequestURI());

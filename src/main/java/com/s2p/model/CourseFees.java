@@ -1,10 +1,9 @@
 package com.s2p.model;
 
+import com.s2p.master.model.AcademicYear;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -16,26 +15,23 @@ import java.util.UUID;
  * Description:
  */
 
-@Embeddable
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class CourseFees extends BaseEntity implements Serializable
+public class CourseFees extends BaseEntity
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID courseFeesID;
-	private Long transactionId;
-	private Double courseFees;
 
-	@Override
-	public boolean equals(Object o) {
-		if (o == null || getClass() != o.getClass()) return false;
-		CourseFees that = (CourseFees) o;
-		return Objects.equals(courseFeesID, that.courseFeesID) && Objects.equals(transactionId, that.transactionId) && Objects.equals(courseFees, that.courseFees);
-	}
+	@ManyToOne
+	@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false)
+	private Course course;
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(courseFeesID, transactionId, courseFees);
-	}
+	@ManyToOne
+	@JoinColumn(name = "academic_year_id", nullable = false)
+	private AcademicYear academicYear;
+
 }

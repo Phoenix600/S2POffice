@@ -81,3 +81,5 @@ TEACHER
 STUDENT
 
 https://www.codejava.net/frameworks/spring/spring-data-jpa-composite-primary-key-examples
+
+PURUVAS: https://github.com/eazybytes/fullstack-react-springboot/blob/main/section_20/eazystore/src/main/java/com/eazybytes/eazystore/exception/GlobalExceptionHandler.java#L10
