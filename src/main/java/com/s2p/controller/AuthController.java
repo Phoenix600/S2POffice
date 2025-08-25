@@ -2,9 +2,11 @@ package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
+import com.s2p.dto.LoginResponseDto;
 import com.s2p.dto.RegisterResponseDto;
 import com.s2p.dto.StudentUserDto;
 import com.s2p.dto.SuperAdminUserDto;
+import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.*;
 import com.s2p.repository.*;
 import com.s2p.util.AdminUserUtility;
@@ -44,6 +46,10 @@ public class AuthController
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final SuperAdminUserUtility superAdminUserUtility;
+    private final RolesUtility rolesUtility;
+    private final AdminUserUtility adminUserUtility;
+    private final StudentUsersUtility studentUsersUtility;
 
     //POST:-  http://localhost:8080/api/v1/auth/admin/register
     @PostMapping("/superAdmin/register")
@@ -61,7 +67,7 @@ public class AuthController
         superAdminUsers.setRoles(roles);
 
         superAdminUsers = superAdminRepository.save(superAdminUsers);
-        SuperAdminUserDto superDtoResponse = SuperAdminUserUtility.toSuperAdminUserDto(superAdminUsers);
+        SuperAdminUserDto superDtoResponse = superAdminUserUtility.toSuperAdminUserDto(superAdminUsers);
 
 
         // =================================
@@ -88,7 +94,7 @@ public class AuthController
 		
 	    RegisterResponseDto registerResponseDto = new RegisterResponseDto();
 		registerResponseDto.setEmail(superAdminUsers.getEmail());
-		registerResponseDto.setRolesDto(RolesUtility.toRolesDto(superAdminUsers.getRoles()));
+		registerResponseDto.setRolesDto(rolesUtility.toRolesDto(superAdminUsers.getRoles()));
         registerResponseDto.setToken(jwt);
 
 		return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt).body(registerResponseDto);
@@ -115,14 +121,14 @@ public class AuthController
         adminUser.setRoles(roles);
 
         adminUser = adminUsersRepository.save(adminUser);
-        AdminUserDto adminUserDto = AdminUserUtility.toAdminUserDto(adminUser);
+        AdminUserDto adminUserDto = adminUserUtility.toAdminUserDto(adminUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(adminUserDto);
     }
 
     // POST   http://localhost:8080/api/v1/public/student/register
     @PostMapping("student/register")
-    public ResponseEntity<StudentUserDto> registerStudent(
+    public ResponseEntity<StudentUsersDto> registerStudent(
             @Parameter(description = "User registration data", required = true)
            @RequestBody Users users)
     {
@@ -135,8 +141,8 @@ public class AuthController
         studentUser.setPwd(passwordEncoder.encode(users.getPwd()));
         studentUser.setRoles(roles);
 
-        studentUser = studentUserRepository.save(studentUser);
-        StudentUserDto savedStudent = StudentUsersUtility.toStudentUserDto(studentUser);
+        studentUser = studentRepository.save(studentUser);
+        StudentUsersDto savedStudent = studentUsersUtility.toStudentUserDto(studentUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
     }

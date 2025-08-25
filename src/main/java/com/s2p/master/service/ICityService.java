@@ -1,19 +1,26 @@
 package com.s2p.master.service;
 
 import com.s2p.master.dto.CityDto;
+import com.s2p.master.model.City;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
-public interface ICityService
-{
-    public abstract CityDto createCity(CityDto cityDto);
+public interface ICityService {
 
-    public abstract CityDto getCityById(UUID cityId);
+    City createCity(City city);
 
-    public abstract Set<CityDto> getAllCities();
+    List<City> getAllCities();
 
-    public abstract CityDto updateCityById(UUID cityId);
+    City getCityById(UUID cityId);
 
-    public abstract CityDto deleteCityById(UUID cityId);
+    City updateCity(UUID cityId, City cityDetails);
+
+    void deleteCityById(UUID cityId);
+
+    City getCityByName(String cityName);
+
+    City updateCityByName(String cityName, City cityDetails);
+
+    void deleteCityByName(String cityName);
 }

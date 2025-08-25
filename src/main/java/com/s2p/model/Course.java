@@ -39,6 +39,9 @@ public class Course extends BaseEntity
     @Column(nullable = false)
     private Byte courseDurationInMonths;
 
+    @ManyToMany
+    private Set<Enquiry> enquirySet = new HashSet<>();
+
     @ManyToMany(mappedBy = "courseSet")
     private Set<Batch> batches = new HashSet<>();
 
@@ -46,5 +49,5 @@ public class Course extends BaseEntity
     private Set<StudentInformation> students = new HashSet<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CourseFees> courseFees = new ArrayList<>();
+    private Set<CourseFees> courseFeesSet = new HashSet<>();
 }

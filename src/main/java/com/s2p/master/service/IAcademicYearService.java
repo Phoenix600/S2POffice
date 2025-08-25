@@ -1,19 +1,24 @@
 package com.s2p.master.service;
 
 import com.s2p.master.dto.AcademicYearDto;
+import com.s2p.master.model.AcademicYear;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
-public interface IAcademicYearService
-{
-    public abstract AcademicYearDto createAcademicYear(AcademicYearDto academicYearDto);
+public interface IAcademicYearService {
 
-    public abstract AcademicYearDto getAcademicYearById(UUID academicYearId);
+    AcademicYear createAcademicYear(AcademicYearDto academicYearDto);
 
-    public abstract Set<AcademicYearDto> getAllAcademicYear();
+    List<AcademicYear> getAllAcademicYears();
 
-    public abstract AcademicYearDto updateAcademicYearById(UUID academicYearId);
+    AcademicYear getAcademicYearById(UUID academicYearId);
 
-    public abstract AcademicYearDto deleteAcademicYearById(UUID academicYearId);
+    AcademicYear getAcademicYearByValue(Integer academicYear);
+
+    AcademicYear updateAcademicYear(UUID academicYearId, AcademicYearDto academicYearDto);
+
+    void deleteAcademicYearById(UUID academicYearId);
+
+    void deleteAcademicYearByValue(Integer academicYear);
 }

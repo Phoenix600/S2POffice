@@ -1,9 +1,6 @@
 package com.s2p.master.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,15 +8,17 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class StudentUsersDto
-{
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class StudentUsersDto {
+
     private UUID studentUserId;
 
+    @NotBlank(message = "Student name is mandatory")
+    private String studentName;
+
+    @NotBlank(message = "Email is mandatory")
+    private String email;
 }

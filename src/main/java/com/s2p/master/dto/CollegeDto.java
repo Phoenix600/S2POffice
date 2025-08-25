@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import jakarta.validation.constraints.NotBlank;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -14,10 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CollegeDto
-{
+public class CollegeDto {
+
     private UUID collegeId;
 
+    @NotBlank(message = "College name is mandatory")
     private String collegeName;
 
     private Set<Department> departmentSet = new LinkedHashSet<>();

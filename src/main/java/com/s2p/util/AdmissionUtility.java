@@ -6,28 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
 
-
-public class AdmissionUtility
+@Mapper(componentModel = "spring")
+public interface AdmissionUtility
 {
-    public final static Admission toAdmissionEntity(AdmissionDto admissionDto)
-    {
-        Admission admission = new Admission();
+    public abstract Admission toAdmissionEntity(AdmissionDto admissionDto);
+    public abstract AdmissionDto toAdmissionDto(Admission admission);
 
-        admission.setAdmissionId(admissionDto.getAdmissionId());
-        admission.setAdmissionDate(admissionDto.getAdmissionDate());
-
-        return admission;
-    }
-
-    public final static AdmissionDto toAdmissionDto(Admission admission)
-    {
-        AdmissionDto admissionDto = new AdmissionDto();
-
-        admissionDto.setAdmissionId(admission.getAdmissionId());
-        admissionDto.setAdmissionDate(admission.getAdmissionDate());
-
-        return admissionDto;
-    }
 }

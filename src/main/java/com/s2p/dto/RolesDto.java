@@ -8,12 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class RolesDto
 {
-    private Long rolesId;
+    private UUID rolesId;
     private String rolesName;
 }

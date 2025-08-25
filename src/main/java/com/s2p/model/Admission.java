@@ -27,18 +27,9 @@ import java.util.UUID;
 public class Admission extends BaseEntity
 {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "admission_id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
 	private UUID admissionId;
-
     private LocalDate admissionDate;
-
-
-
 
 }

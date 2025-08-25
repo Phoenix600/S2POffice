@@ -22,12 +22,15 @@ public class AdmissionServiceImpl implements IAdmissionService
     @Autowired
     AdmissionRepository admissionRepository;
 
+    @Autowired
+    AdmissionUtility admissionUtility;
+
     @Override
     public AdmissionDto createAdmission(AdmissionDto admissionDto)
     {
-        Admission admission = AdmissionUtility.toAdmissionEntity(admissionDto);
+        Admission admission = admissionUtility.toAdmissionEntity(admissionDto);
         Admission savedAdmission = admissionRepository.save(admission);
-        AdmissionDto admissionDtoResponse = AdmissionUtility.toAdmissionDto(admission);
+        AdmissionDto admissionDtoResponse = admissionUtility.toAdmissionDto(admission);
         return admissionDtoResponse;
     }
 

@@ -26,19 +26,12 @@ public class CourseFees extends BaseEntity
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID courseFeesID;
 
-	private Long transactionId;
-
-	private Double courseFees;
-
-	@Embedded
-	private CourseFeeStructure feeStructure;
+	@ManyToOne
+	@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false)
+	private Course course;
 
 	@ManyToOne
 	@JoinColumn(name = "academic_year_id", nullable = false)
 	private AcademicYear academicYear;
-
-	@ManyToOne
-	@JoinColumn(name = "course_id", nullable = false)
-	private Course course;
 
 }

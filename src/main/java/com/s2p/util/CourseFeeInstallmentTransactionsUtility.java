@@ -6,24 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
-public class CourseFeeInstallmentTransactionsUtility
+@Mapper(componentModel = "spring")
+public interface CourseFeeInstallmentTransactionsUtility
 {
-    public final static CourseFeeInstallmentTransactions toCourseFeeInstallmentTransactionsEntity(CourseFeeInstallmentTransactionsDto courseFeeInstallmentTransactionsDto)
-    {
-        CourseFeeInstallmentTransactions courseFeeInstallmentTransactions = new CourseFeeInstallmentTransactions();
+    public abstract CourseFeeInstallmentTransactions toCourseFeeInstallmentTransactionsEntity(CourseFeeInstallmentTransactionsDto courseFeeInstallmentTransactionsDto);
+    public abstract CourseFeeInstallmentTransactionsDto toCourseFeeInstallmentTransactionsDto(CourseFeeInstallmentTransactions courseFeeInstallmentTransactions);
 
-        courseFeeInstallmentTransactions.setCourseFeeInstallmentTransactionsId(courseFeeInstallmentTransactionsDto.getCourseFeeInstallmentTransactionsId());
-
-        return courseFeeInstallmentTransactions;
-    }
-
-    public final static CourseFeeInstallmentTransactionsDto toCourseFeeInstallmentTransactionsDto(CourseFeeInstallmentTransactions courseFeeInstallmentTransactions)
-    {
-        CourseFeeInstallmentTransactionsDto courseFeeInstallmentTransactionsDto = new CourseFeeInstallmentTransactionsDto();
-
-        courseFeeInstallmentTransactionsDto.setCourseFeeInstallmentTransactionsId(courseFeeInstallmentTransactions.getCourseFeeInstallmentTransactionsId());
-
-        return courseFeeInstallmentTransactionsDto;
-    }
 }

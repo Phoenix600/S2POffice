@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
 import javax.management.relation.Role;
 
@@ -18,21 +19,11 @@ import javax.management.relation.Role;
  * Description:
  */
 
-
-public abstract class RolesUtility
+@Mapper(componentModel = "spring")
+public interface RolesUtility
 {
-	public final static Roles toRoles(RolesDto rolesDto)
-	{
-		Roles roles = new Roles();
-		roles.setRolesName(rolesDto.getRolesName());
-		return roles;
-	}
-	
-	public final static RolesDto toRolesDto(Roles roles)
-	{
-		RolesDto rolesDto = new RolesDto();
-		return rolesDto;
-	}
+	public abstract Roles toRoles(RolesDto rolesDto);
+	public abstract RolesDto toRolesDto(Roles roles);
 
 }
 

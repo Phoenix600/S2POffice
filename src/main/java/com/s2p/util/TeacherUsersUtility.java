@@ -6,24 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 
-public class TeacherUsersUtility
+@Mapper(componentModel = "spring")
+public interface TeacherUsersUtility
 {
-    public final static TeacherUsers toTeacherUsersEntity(TeacherUserDto teacherUserDto)
-    {
-        TeacherUsers teacherUsers = new TeacherUsers();
+    public abstract TeacherUsers toTeacherUsersEntity(TeacherUserDto teacherUserDto);
 
-        teacherUsers.setTeacherUserId(teacherUserDto.getTeacherUserId());
+    public abstract TeacherUserDto toTeacherUsersDto(TeacherUsers teacherUser);
 
-        return teacherUsers;
-    }
-
-    public final static TeacherUserDto toTeacherUsersDto(TeacherUsers teacherUser)
-    {
-        TeacherUserDto teacherUsersDto = new TeacherUserDto();
-
-        teacherUsersDto.setTeacherUserId(teacherUser.getTeacherUserId());
-
-        return teacherUsersDto;
-    }
 }
