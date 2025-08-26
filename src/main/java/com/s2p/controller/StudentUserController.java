@@ -3,10 +3,8 @@ package com.s2p.controller;
 import com.s2p.constants.EOperationStatus;
 import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.StudentUserDto;
-import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.StudentUserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,7 @@ public class StudentUserController
     @Autowired
     StudentUserService studentUserService;
 
-    // ✅ Create StudentUser
+    //  Create StudentUser
     @PostMapping
     public ResponseEntity<ApiResponseDto<StudentUserDto>> createStudentUser(@RequestBody StudentUserDto studentUserDto) {
         StudentUserDto created = studentUserService.createStudentUser(studentUserDto);
@@ -36,7 +34,7 @@ public class StudentUserController
         return ResponseEntity.ok(response);
     }
 
-    // ✅ Get StudentUser by ID
+    //  Get StudentUser by ID
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponseDto<StudentUserDto>> getStudentUserById(@PathVariable("id") UUID studentUserId) {
         StudentUserDto dto = studentUserService.getStudentUserById(studentUserId);
@@ -48,7 +46,7 @@ public class StudentUserController
         return ResponseEntity.ok(response);
     }
 
-    // ✅ Get All StudentUsers
+    // Get All StudentUsers
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<StudentUserDto>>> getAllStudentUsers() {
         List<StudentUserDto> users = studentUserService.getAllStudentUsers();
@@ -61,7 +59,7 @@ public class StudentUserController
         return ResponseEntity.ok(response);
     }
 
-    // ✅ Update StudentUser by ID
+    // Update StudentUser by ID
 //    @PutMapping("/{id}")
 //    public ResponseEntity<ApiResponseDto<StudentUserDto>> updateStudentUser(
 //            @PathVariable("id") UUID id,
@@ -77,7 +75,7 @@ public class StudentUserController
 //        return ResponseEntity.ok(response);
 //    }
 
-    // ✅ Delete StudentUser by ID
+    // Delete StudentUser by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponseDto<StudentUserDto>> deleteStudentUserById(@PathVariable("id") UUID id) {
         StudentUserDto deleted = studentUserService.deleteStudentUserById(id);

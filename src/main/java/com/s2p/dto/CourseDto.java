@@ -1,10 +1,10 @@
 package com.s2p.dto;
 
 import com.s2p.model.Batch;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.s2p.model.CourseFees;
+import com.s2p.model.Enquiry;
+import com.s2p.model.StudentInformation;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,5 +31,11 @@ public class CourseDto
     @Column(nullable = false)
     private Byte courseDurationInMonths;
 
+    private Set<Enquiry> enquirySet = new HashSet<>();
+
     private Set<Batch> batches = new HashSet<>();
+
+    private Set<StudentInformation> students = new HashSet<>();
+
+    private Set<CourseFees> courseFeesSet = new HashSet<>();
 }

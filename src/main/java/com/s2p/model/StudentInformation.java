@@ -30,7 +30,7 @@ public class StudentInformation extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-	private UUID studentInformationId;
+    private UUID studentInformationId;
 
     private String firstName;
 

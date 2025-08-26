@@ -21,6 +21,7 @@ public class AdmissionController
     @Autowired
     AdmissionServiceImpl admissionServiceImpl;
 
+    //Done
     //http://localhost:8080/api/v1/admission/create-admission
     @PostMapping("/create-admission")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> createAdmission(@RequestBody AdmissionDto admissionDto)

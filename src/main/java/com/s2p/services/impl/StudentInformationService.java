@@ -7,17 +7,12 @@ import com.s2p.repository.StudentInformationRepository;
 import com.s2p.repository.specifications.StudentSpecifications;
 import com.s2p.services.IStudentInformationService;
 import com.s2p.util.StudentInformationUtility;
-import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
-import java.time.LocalDate;
 import java.util.*;
-
-import static com.s2p.repository.specifications.StudentSpecifications.*;
 
 
 @Service
@@ -25,6 +20,9 @@ public class StudentInformationService implements IStudentInformationService
 {
     @Autowired
     StudentInformationRepository studentInformationRepository;
+
+    @Autowired
+    StudentInformationUtility studentInformationUtility;
 
 
     @Override
@@ -39,10 +37,10 @@ public class StudentInformationService implements IStudentInformationService
                 }
             }
 
-            StudentInformation student = StudentInformationUtility.toStudentInformationEntity(studentInformationDto);
+            StudentInformation student = studentInformationUtility.toStudentInformationEntity(studentInformationDto);
             StudentInformation savedStudent = studentInformationRepository.save(student);
 
-            return StudentInformationUtility.toStudentInformationDto(savedStudent);
+            return studentInformationUtility.toStudentInformationDto(savedStudent);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class StudentInformationService implements IStudentInformationService
             throw new ResourceNotFoundException("Student", "id", studentId.toString());
         }
 
-        return StudentInformationUtility.toStudentInformationDto(optionalStudent.get());
+        return studentInformationUtility.toStudentInformationDto(optionalStudent.get());
     }
 
     @Override
@@ -64,7 +62,7 @@ public class StudentInformationService implements IStudentInformationService
         Set<StudentInformationDto> result = new HashSet<>();
 
         for (StudentInformation student : allStudents) {
-            result.add(StudentInformationUtility.toStudentInformationDto(student));
+            result.add(studentInformationUtility.toStudentInformationDto(student));
         }
 
         return result;
@@ -99,17 +97,17 @@ public class StudentInformationService implements IStudentInformationService
 
         StudentInformation existingStudent = optionalStudent.get();
 
-        existingStudent.setFirstName(studentInformationDto.getFirstName());
-        existingStudent.setLastName(studentInformationDto.getLastName());
-        existingStudent.setEmail(studentInformationDto.getEmail());
-        existingStudent.setCollegeName(studentInformationDto.getCollegeName());
-        existingStudent.setDegreeName(studentInformationDto.getDegreeName());
-        existingStudent.setPassingYear(studentInformationDto.getPassingYear());
-        existingStudent.setIsGraduated(studentInformationDto.getIsGraduated());
-
+//        existingStudent.setFirstName(studentInformationDto.getFirstName());
+//        existingStudent.setLastName(studentInformationDto.getLastName());
+//        existingStudent.setEmail(studentInformationDto.getEmail());
+//        existingStudent.setCollegeName(studentInformationDto.getCollegeName());
+//        existingStudent.setDepartName(studentInformationDto.getDegreeName());
+//        existingStudent.setPassingYear(studentInformationDto.getPassingYear());
+//        existingStudent.setIsGraduated(studentInformationDto.getIsGraduated());
+          existingStudent = studentInformationUtility.toStudentInformationEntity(studentInformationDto);
 
         StudentInformation updatedStudent = studentInformationRepository.save(existingStudent);
-        return StudentInformationUtility.toStudentInformationDto(updatedStudent);
+        return studentInformationUtility.toStudentInformationDto(updatedStudent);
         }
 
     @Override
@@ -123,7 +121,7 @@ public class StudentInformationService implements IStudentInformationService
         StudentInformation student = optionalStudent.get();
         studentInformationRepository.delete(student);
 
-        return StudentInformationUtility.toStudentInformationDto(student);
+        return studentInformationUtility.toStudentInformationDto(student);
     }
 
 
@@ -160,7 +158,7 @@ public class StudentInformationService implements IStudentInformationService
 
         List<StudentInformationDto> result = new ArrayList<>();
         for (StudentInformation student : students) {
-            result.add(StudentInformationUtility.toStudentInformationDto(student));
+            result.add(studentInformationUtility.toStudentInformationDto(student));
         }
 
         return result;

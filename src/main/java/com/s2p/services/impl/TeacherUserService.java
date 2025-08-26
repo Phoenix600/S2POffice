@@ -20,11 +20,14 @@ public class TeacherUserService implements ITeacherUserService
     @Autowired
     TeacherUserRepository teacherUserRepository;
 
+    @Autowired
+    TeacherUsersUtility teacherUsersUtility;
+
     @Override
     public TeacherUserDto createTeacherUser(TeacherUserDto teacherUserDto) {
-        TeacherUsers teacher = TeacherUsersUtility.toTeacherUsersEntity(teacherUserDto);
+        TeacherUsers teacher = teacherUsersUtility.toTeacherUsersEntity(teacherUserDto);
         TeacherUsers saved = teacherUserRepository.save(teacher);
-        return TeacherUsersUtility.toTeacherUsersDto(saved);
+        return teacherUsersUtility.toTeacherUsersDto(saved);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class TeacherUserService implements ITeacherUserService
         if (optionalTeacher.isEmpty()) {
             throw new ResourceNotFoundException("TeacherUser", "id", teacherUserId.toString());
         }
-        return TeacherUsersUtility.toTeacherUsersDto(optionalTeacher.get());
+        return teacherUsersUtility.toTeacherUsersDto(optionalTeacher.get());
     }
 
     @Override
@@ -42,7 +45,7 @@ public class TeacherUserService implements ITeacherUserService
         Iterable<TeacherUsers> teachers = teacherUserRepository.findAll();
 
         for (TeacherUsers teacher : teachers) {
-            TeacherUserDto dto = TeacherUsersUtility.toTeacherUsersDto(teacher);
+            TeacherUserDto dto = teacherUsersUtility.toTeacherUsersDto(teacher);
             result.add(dto);
         }
 
@@ -63,6 +66,6 @@ public class TeacherUserService implements ITeacherUserService
 
         TeacherUsers teacher = optionalTeacher.get();
         teacherUserRepository.delete(teacher);
-        return TeacherUsersUtility.toTeacherUsersDto(teacher);
+        return teacherUsersUtility.toTeacherUsersDto(teacher);
     }
 }

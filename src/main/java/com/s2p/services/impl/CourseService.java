@@ -20,6 +20,9 @@ public class CourseService implements ICourseService {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    CourseUtility courseUtility;
+
     @Override
     public CourseDto createCourse(CourseDto courseDto) {
         return null;
@@ -53,7 +56,7 @@ public class CourseService implements ICourseService {
         List<CourseDto> courseDtos = new ArrayList<>();
 
         for (Course course : courses) {
-            CourseDto dto = CourseUtility.toCourseDto(course);
+            CourseDto dto = courseUtility.toCourseDto(course);
             courseDtos.add(dto);
         }
 

@@ -17,11 +17,14 @@ public class CourseFeeService implements ICourseFeeService
     @Autowired
     CourseFeeRepository courseFeeRepository;
 
+    @Autowired
+    CourseFeesUtility courseFeesUtility;
+
     @Override
     public CourseFeeDto createCourseFee(CourseFeeDto courseFeeDto) {
-        CourseFees courseFee = CourseFeesUtility.toCourseFeeEntity(courseFeeDto);
+        CourseFees courseFee = courseFeesUtility.toCourseFeeEntity(courseFeeDto);
         CourseFees saved = courseFeeRepository.save(courseFee);
-        return CourseFeesUtility.toCourseFeeDto(saved);
+        return courseFeesUtility.toCourseFeeDto(saved);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class CourseFeeService implements ICourseFeeService
             throw new ResourceNotFoundException("CourseFee", "id", courseFeeId.toString());
         }
 
-        return CourseFeesUtility.toCourseFeeDto(optionalCourseFee.get());
+        return courseFeesUtility.toCourseFeeDto(optionalCourseFee.get());
     }
 
     @Override
@@ -42,7 +45,7 @@ public class CourseFeeService implements ICourseFeeService
         Set<CourseFeeDto> result = new HashSet<>();
 
         for (CourseFees courseFees : allFees) {
-            result.add(CourseFeesUtility.toCourseFeeDto(courseFees));
+            result.add(courseFeesUtility.toCourseFeeDto(courseFees));
         }
         return result;
     }
@@ -63,11 +66,10 @@ public class CourseFeeService implements ICourseFeeService
         CourseFees existing = optionalCourseFee.get();
         existing.setCourse(courseFeeDto.getCourse());
         existing.setCourseFees(courseFeeDto.getCourseFees());
-        existing.setFeeStructure(courseFeeDto.getFeeStructure());
         existing.setAcademicYear(courseFeeDto.getAcademicYear());
 
         CourseFees updated = courseFeeRepository.save(existing);
-        return CourseFeesUtility.toCourseFeeDto(updated);
+        return courseFeesUtility.toCourseFeeDto(updated);
     }
 
     @Override
@@ -80,6 +82,6 @@ public class CourseFeeService implements ICourseFeeService
 
         CourseFees courseFee = optionalCourseFee.get();
         courseFeeRepository.delete(courseFee);
-        return CourseFeesUtility.toCourseFeeDto(courseFee);
+        return courseFeesUtility.toCourseFeeDto(courseFee);
     }
 }

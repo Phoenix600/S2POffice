@@ -17,6 +17,10 @@ public class CourseFeeInstallmentTransactionsService implements ICourseFeeInstal
     @Autowired
     CourseFeeInstallmentTransactionsRepository courseFeeInstallmentTransactionsRepository;
 
+    @Autowired
+    CourseFeeInstallmentTransactionsUtility courseFeeInstallmentTransactionsUtility;
+
+
     @Override
     public CourseFeeInstallmentTransactionsDto getCourseFeeInstallmentTransactionById(UUID courseFeeInstallmentTransactionsId) {
         Optional<CourseFeeInstallmentTransactions> optionalTransaction = courseFeeInstallmentTransactionsRepository.findById(courseFeeInstallmentTransactionsId);
@@ -25,7 +29,7 @@ public class CourseFeeInstallmentTransactionsService implements ICourseFeeInstal
             throw new ResourceNotFoundException("CourseFeeInstallmentTransaction", "id", courseFeeInstallmentTransactionsId.toString());
         }
 
-        return CourseFeeInstallmentTransactionsUtility.toCourseFeeInstallmentTransactionsDto(optionalTransaction.get());
+        return courseFeeInstallmentTransactionsUtility.toCourseFeeInstallmentTransactionsDto(optionalTransaction.get());
     }
 
     @Override
@@ -34,7 +38,7 @@ public class CourseFeeInstallmentTransactionsService implements ICourseFeeInstal
         Set<CourseFeeInstallmentTransactionsDto> result = new HashSet<>();
 
         for (CourseFeeInstallmentTransactions courseFeeInstallmentTransactions : transactions) {
-            result.add(CourseFeeInstallmentTransactionsUtility.toCourseFeeInstallmentTransactionsDto(courseFeeInstallmentTransactions));
+            result.add(courseFeeInstallmentTransactionsUtility.toCourseFeeInstallmentTransactionsDto(courseFeeInstallmentTransactions));
         }
 
         return result;
@@ -51,6 +55,6 @@ public class CourseFeeInstallmentTransactionsService implements ICourseFeeInstal
         CourseFeeInstallmentTransactions courseFeeInstallmentTransactions = optionalTransaction.get();
         courseFeeInstallmentTransactionsRepository.delete(courseFeeInstallmentTransactions);
 
-        return CourseFeeInstallmentTransactionsUtility.toCourseFeeInstallmentTransactionsDto(courseFeeInstallmentTransactions);
+        return courseFeeInstallmentTransactionsUtility.toCourseFeeInstallmentTransactionsDto(courseFeeInstallmentTransactions);
     }
 }

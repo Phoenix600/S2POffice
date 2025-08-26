@@ -25,6 +25,9 @@ public class BatchService implements IBatchService
     @Autowired
     BatchRepository batchRepository;
 
+    @Autowired
+    BatchUtility batchUtility;
+
     @Override
     public BatchDto createBatch(BatchDto batchDto) throws BadRequestException {
         List<Batch> allBatches = batchRepository.findAll();
@@ -35,9 +38,9 @@ public class BatchService implements IBatchService
             }
         }
 
-        Batch batch = BatchUtility.toBatchEntity(batchDto);
+        Batch batch = batchUtility.toBatchEntity(batchDto);
         Batch savedBatch = batchRepository.save(batch);
-        return BatchUtility.toBatchDto(savedBatch);
+        return batchUtility.toBatchDto(savedBatch);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class BatchService implements IBatchService
             throw new ResourceNotFoundException("Batch", "id", batchId.toString());
         }
 
-        return BatchUtility.toBatchDto(optionalBatch.get());
+        return batchUtility.toBatchDto(optionalBatch.get());
     }
 
     @Override
@@ -57,7 +60,7 @@ public class BatchService implements IBatchService
         List<BatchDto> result = new ArrayList<>();
 
         for (Batch batch : batches) {
-            result.add(BatchUtility.toBatchDto(batch));
+            result.add(batchUtility.toBatchDto(batch));
         }
 
         return result;
@@ -79,7 +82,7 @@ public class BatchService implements IBatchService
         existingBatch.setEndTime(batchDto.getEndTime());
 
         Batch updatedBatch = batchRepository.save(existingBatch);
-        return BatchUtility.toBatchDto(updatedBatch);
+        return batchUtility.toBatchDto(updatedBatch);
     }
 
     @Override
@@ -93,7 +96,7 @@ public class BatchService implements IBatchService
         Batch batch = optionalBatch.get();
         batchRepository.delete(batch);
 
-        return BatchUtility.toBatchDto(batch);
+        return batchUtility.toBatchDto(batch);
     }
     @Override
     public List<BatchDto> searchBatches(String batchName, LocalTime startTime, LocalTime endTime) {
@@ -103,7 +106,7 @@ public class BatchService implements IBatchService
 
         return batchRepository.findAll(spec)
                 .stream()
-                .map(BatchUtility::toBatchDto)
+                .map(batchUtility::toBatchDto)
                 .collect(Collectors.toList());
     }
 

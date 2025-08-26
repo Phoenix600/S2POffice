@@ -18,11 +18,14 @@ public class EnquiryService implements IEnquiryService
     @Autowired
     EnquiryRepository enquiryRepository;
 
+    @Autowired
+    EnquiryUtility enquiryUtility;
+
     @Override
     public EnquiryDto createEnquiry(EnquiryDto enquiryDto) {
-        Enquiry enquiry = EnquiryUtility.toEnquiryEntity(enquiryDto);
+        Enquiry enquiry = enquiryUtility.toEnquiryEntity(enquiryDto);
         Enquiry saved = enquiryRepository.save(enquiry);
-        return EnquiryUtility.toEnquiryDto(saved);
+        return enquiryUtility.toEnquiryDto(saved);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class EnquiryService implements IEnquiryService
             throw new ResourceNotFoundException("Enquiry", "id", enquiryId.toString());
         }
 
-        return EnquiryUtility.toEnquiryDto(optionalEnquiry.get());
+        return enquiryUtility.toEnquiryDto(optionalEnquiry.get());
     }
 
     @Override
@@ -42,7 +45,7 @@ public class EnquiryService implements IEnquiryService
         Set<EnquiryDto> result = new HashSet<>();
 
         for (Enquiry enquiry : enquiries) {
-            result.add(EnquiryUtility.toEnquiryDto(enquiry));
+            result.add(enquiryUtility.toEnquiryDto(enquiry));
         }
 
         return result;
@@ -65,7 +68,7 @@ public class EnquiryService implements IEnquiryService
         enquiry.setEnquiryDate(optionalEnquiry.get().getEnquiryDate());
 
         Enquiry updated = enquiryRepository.save(enquiry);
-        return EnquiryUtility.toEnquiryDto(updated);
+        return enquiryUtility.toEnquiryDto(updated);
     }
 
     @Override
@@ -80,6 +83,6 @@ public class EnquiryService implements IEnquiryService
         Enquiry enquiry = optionalEnquiry.get();
         enquiryRepository.delete(enquiry);
 
-        return EnquiryUtility.toEnquiryDto(enquiry);
+        return enquiryUtility.toEnquiryDto(enquiry);
     }
 }

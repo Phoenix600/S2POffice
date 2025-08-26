@@ -17,11 +17,14 @@ public class SuperAdminUserService implements ISuperAdminUserService
     @Autowired
     SuperAdminUserRepository superAdminUserRepository;
 
+    @Autowired
+    SuperAdminUserUtility superAdminUserUtility;
+
     @Override
     public SuperAdminUserDto createSuperAdminUser(SuperAdminUserDto superAdminUserDto) {
-        SuperAdminUsers entity = SuperAdminUserUtility.toSuperAdminUserEntity(superAdminUserDto);
+        SuperAdminUsers entity = superAdminUserUtility.toSuperAdminUserEntity(superAdminUserDto);
         SuperAdminUsers saved = superAdminUserRepository.save(entity);
-        return SuperAdminUserUtility.toSuperAdminUserDto(saved);
+        return superAdminUserUtility.toSuperAdminUserDto(saved);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class SuperAdminUserService implements ISuperAdminUserService
             throw new ResourceNotFoundException("SuperAdminUser", "id", superAdminUserId.toString());
         }
 
-        return SuperAdminUserUtility.toSuperAdminUserDto(optional.get());
+        return superAdminUserUtility.toSuperAdminUserDto(optional.get());
     }
 
     @Override
@@ -41,7 +44,7 @@ public class SuperAdminUserService implements ISuperAdminUserService
         List<SuperAdminUsers> superAdmins = superAdminUserRepository.findAll();
         Set<SuperAdminUserDto> result = new HashSet<>();
         for (SuperAdminUsers superAdmin : superAdmins) {
-            result.add(SuperAdminUserUtility.toSuperAdminUserDto(superAdmin));
+            result.add(superAdminUserUtility.toSuperAdminUserDto(superAdmin));
         }
         return result;
     }
@@ -61,6 +64,6 @@ public class SuperAdminUserService implements ISuperAdminUserService
 
         SuperAdminUsers entity = optional.get();
         superAdminUserRepository.delete(entity);
-        return SuperAdminUserUtility.toSuperAdminUserDto(entity);
+        return superAdminUserUtility.toSuperAdminUserDto(entity);
     }
 }

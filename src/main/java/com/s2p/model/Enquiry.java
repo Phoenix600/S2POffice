@@ -48,4 +48,3 @@ public class Enquiry
     private Set<Course> courseSet = new HashSet<>();
 
 }
-

@@ -43,7 +43,7 @@ public class AdmissionServiceImpl implements IAdmissionService
             throw new ResourceNotFoundException("Admission", "id", admissionId.toString());
         }
 
-        return AdmissionUtility.toAdmissionDto(optionalAdmission.get());
+        return admissionUtility.toAdmissionDto(optionalAdmission.get());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class AdmissionServiceImpl implements IAdmissionService
         List<AdmissionDto> result = new ArrayList<>();
 
         for (Admission admission : admissions) {
-            result.add(AdmissionUtility.toAdmissionDto(admission));
+            result.add(admissionUtility.toAdmissionDto(admission));
         }
 
         return result;
@@ -75,7 +75,7 @@ public class AdmissionServiceImpl implements IAdmissionService
         existingAdmission.setAdmissionDate(admissionDto.getAdmissionDate());
 
         Admission updatedAdmission = admissionRepository.save(existingAdmission);
-        return AdmissionUtility.toAdmissionDto(updatedAdmission);
+        return admissionUtility.toAdmissionDto(updatedAdmission);
     }
 
     @Override
@@ -89,6 +89,6 @@ public class AdmissionServiceImpl implements IAdmissionService
         Admission admission = optionalAdmission.get();
         admissionRepository.delete(admission);
 
-        return AdmissionUtility.toAdmissionDto(admission);
+        return admissionUtility.toAdmissionDto(admission);
     }
 }

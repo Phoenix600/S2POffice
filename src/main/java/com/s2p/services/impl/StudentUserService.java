@@ -2,28 +2,32 @@ package com.s2p.services.impl;
 
 import com.s2p.dto.StudentUserDto;
 import com.s2p.exceptions.ResourceNotFoundException;
-import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.StudentUsers;
 import com.s2p.repository.StudentUserRepository;
 import com.s2p.services.IStudentUserService;
 import com.s2p.util.StudentUsersUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class StudentUserService implements IStudentUserService
 {
     @Autowired
     StudentUserRepository studentUserRepository;
 
+    @Autowired
+    StudentUsersUtility studentUsersUtility;
+
     @Override
     public StudentUserDto createStudentUser(StudentUserDto studentUsersDto) {
-        StudentUsers entity = StudentUsersUtility.toStudentUserEntity(studentUsersDto);
+        StudentUsers entity = studentUsersUtility.toStudentUserEntity(studentUsersDto);
         StudentUsers saved = studentUserRepository.save(entity);
-        return StudentUsersUtility.toStudentUserDto(saved);
+        return studentUsersUtility.toStudentUserDto(saved);
     }
 
 //    @Override
@@ -39,7 +43,7 @@ public class StudentUserService implements IStudentUserService
             throw new ResourceNotFoundException("StudentUser", "id", studentUserId.toString());
         }
 
-        return StudentUsersUtility.toStudentUserDto(optional.get());
+        return studentUsersUtility.toStudentUserDto(optional.get());
     }
 
     @Override
@@ -48,13 +52,13 @@ public class StudentUserService implements IStudentUserService
         List<StudentUserDto> result = new ArrayList<>();
 
         for (StudentUsers studentUser : entities) {
-            result.add(StudentUsersUtility.toStudentUserDto(studentUser));
+            result.add(studentUsersUtility.toStudentUserDto(studentUser));
         }
         return result;
     }
 
     @Override
-    public StudentUsersDto updateStudentUserById(UUID studentUserId) {
+    public StudentUserDto updateStudentUserById(UUID studentUserId) {
         return null;
     }
 
@@ -69,7 +73,7 @@ public class StudentUserService implements IStudentUserService
         StudentUsers studentUser = optional.get();
         studentUserRepository.delete(studentUser);
 
-        return StudentUsersUtility.toStudentUserDto(studentUser);
+        return studentUsersUtility.toStudentUserDto(studentUser);
     }
 
 }

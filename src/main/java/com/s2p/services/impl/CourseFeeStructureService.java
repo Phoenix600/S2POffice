@@ -17,11 +17,14 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
     @Autowired
     CourseFeeStructureRepository courseFeeStructureRepository;
 
+    @Autowired
+    CourseFeesStructureUtility courseFeesStructureUtility;
+
     @Override
     public CourseFeeStructureDto createCourseFeeStructure(CourseFeeStructureDto courseFeeStructureDto) {
-        CourseFeeStructure entity = CourseFeesStructureUtility.toCourseFeeStructureEntity(courseFeeStructureDto);
+        CourseFeeStructure entity = courseFeesStructureUtility.toCourseFeeStructureEntity(courseFeeStructureDto);
         CourseFeeStructure saved = courseFeeStructureRepository.save(entity);
-        return CourseFeesStructureUtility.toCourseFeeStructureDto(saved);
+        return courseFeesStructureUtility.toCourseFeeStructureDto(saved);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
             throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
         }
 
-        return CourseFeesStructureUtility.toCourseFeeStructureDto(optional.get());
+        return courseFeesStructureUtility.toCourseFeeStructureDto(optional.get());
     }
 
     @Override
@@ -41,7 +44,7 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
         Set<CourseFeeStructureDto> result = new HashSet<>();
 
         for (CourseFeeStructure structure : structures) {
-            result.add(CourseFeesStructureUtility.toCourseFeeStructureDto(structure));
+            result.add(courseFeesStructureUtility.toCourseFeeStructureDto(structure));
         }
         return result;
     }
@@ -61,10 +64,10 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
         }
 
         CourseFeeStructure existing = optional.get();
-        existing.setAmount(courseFeeStructureDto.getAmount());
+//        existing.setAmount(courseFeeStructureDto.getAmount());
 
         CourseFeeStructure updated = courseFeeStructureRepository.save(existing);
-        return CourseFeesStructureUtility.toCourseFeeStructureDto(updated);
+        return courseFeesStructureUtility.toCourseFeeStructureDto(updated);
     }
 
     @Override
@@ -77,6 +80,6 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
 
         CourseFeeStructure entity = optional.get();
         courseFeeStructureRepository.delete(entity);
-        return CourseFeesStructureUtility.toCourseFeeStructureDto(entity);
+        return courseFeesStructureUtility.toCourseFeeStructureDto(entity);
     }
 }

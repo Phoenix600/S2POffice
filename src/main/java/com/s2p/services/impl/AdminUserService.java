@@ -17,12 +17,14 @@ public class AdminUserService implements IAdminUserService
     @Autowired
     AdminUsersRepository adminUsersRepository;
 
+    @Autowired
+    AdminUserUtility adminUserUtility;
 
     @Override
     public AdminUserDto createAdminUser(AdminUserDto adminUserDto) {
-        AdminUsers entity = AdminUserUtility.toAdminUserEntity(adminUserDto);
+        AdminUsers entity = adminUserUtility.toAdminUserEntity(adminUserDto);
         AdminUsers saved = adminUsersRepository.save(entity);
-        return AdminUserUtility.toAdminUserDto(saved);
+        return adminUserUtility.toAdminUserDto(saved);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class AdminUserService implements IAdminUserService
         if (optional.isEmpty()) {
             throw new ResourceNotFoundException("AdminUser", "id", adminUserId.toString());
         }
-        return AdminUserUtility.toAdminUserDto(optional.get());
+        return adminUserUtility.toAdminUserDto(optional.get());
     }
 
     @Override
@@ -41,7 +43,7 @@ public class AdminUserService implements IAdminUserService
         Set<AdminUserDto> result = new HashSet<>();
 
         for (AdminUsers user : adminUsers) {
-            result.add(AdminUserUtility.toAdminUserDto(user));
+            result.add(adminUserUtility.toAdminUserDto(user));
         }
 
         return result;
@@ -63,6 +65,6 @@ public class AdminUserService implements IAdminUserService
         AdminUsers entity = optional.get();
         adminUsersRepository.delete(entity);
 
-        return AdminUserUtility.toAdminUserDto(entity);
+        return adminUserUtility.toAdminUserDto(entity);
     }
 }
