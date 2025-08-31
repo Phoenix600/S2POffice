@@ -24,8 +24,9 @@ public class BatchController
     BatchService batchService;
 
     // Create Batch
-    @PostMapping
-    public ResponseEntity<ApiResponseDto<BatchDto>> createBatch(@Valid @RequestBody BatchDto batchDto) throws BadRequestException {
+    @PostMapping("/create-batch")
+    public ResponseEntity<ApiResponseDto<BatchDto>> createBatch(@Valid @RequestBody BatchDto batchDto) throws BadRequestException
+    {
         BatchDto createdBatch = batchService.createBatch(batchDto);
 
         ApiResponseDto<BatchDto> response = new ApiResponseDto<>();
@@ -37,21 +38,24 @@ public class BatchController
     }
 
     //  Get Batch by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<BatchDto>> getBatchById(@PathVariable("id") UUID id) {
-        BatchDto batch = batchService.getBatchById(id);
-
-        ApiResponseDto<BatchDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
-        response.setData(batch);
-
-        return ResponseEntity.ok(response);
+    @GetMapping("/{batchName}")
+    public ResponseEntity<ApiResponseDto<BatchDto>> getBatchByName(@PathVariable String batchName)
+    {
+        BatchDto batch = batchService.getBatchByName(batchName);
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_FOUND.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        batch
+                )
+        );
     }
 
+
     // Get All Batches
-    @GetMapping
-    public ResponseEntity<ApiResponseDto<List<BatchDto>>> getAllBatches() {
+    @GetMapping("/getAllBatches")
+    public ResponseEntity<ApiResponseDto<List<BatchDto>>> getAllBatches()
+    {
         List<BatchDto> batches = batchService.getAllBatches();
 
         ApiResponseDto<List<BatchDto>> response = new ApiResponseDto<>();
@@ -63,38 +67,43 @@ public class BatchController
     }
 
     // Full Update Batch
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<BatchDto>> updateBatch(@PathVariable("id") UUID id,
-                                                                @Valid @RequestBody BatchDto batchDto) {
-        BatchDto updatedBatch = batchService.updateBatchById(id, batchDto);
-
-        ApiResponseDto<BatchDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_UPDATED.getMessage());
-        response.setData(updatedBatch);
-
-        return ResponseEntity.ok(response);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponseDto<BatchDto>> updateBatch(
+            @PathVariable String batchName,
+            @RequestBody BatchDto dto)
+    {
+        BatchDto updated = batchService.updateBatchByName(batchName, dto);
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_UPDATED.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        updated
+                )
+        );
     }
 
     // Delete Batch
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<String>> deleteBatch(@PathVariable("id") UUID id) {
-        batchService.deleteBatchById(id);
-
-        ApiResponseDto<String> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_DELETED.getMessage());
-        response.setData("Batch deleted successfully");
-
-        return ResponseEntity.ok(response);
+    @DeleteMapping("/delete/{batchName}")
+    public ResponseEntity<ApiResponseDto<Void>> deleteBatch(@PathVariable String batchName)
+    {
+        batchService.deleteBatchByName(batchName);
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_DELETED.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        null
+                )
+        );
     }
+
 
     @GetMapping("/search")
     public List<BatchDto> searchBatches(
             @RequestParam(required = false) String batchName,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime
-    ) {
+    )
+    {
         return batchService.searchBatches(batchName, startTime, endTime);
     }
 }

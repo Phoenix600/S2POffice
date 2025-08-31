@@ -21,7 +21,7 @@ public class AdminUserController
     @Autowired
     AdminUserService adminUserService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<AdminUserDto>> create(@RequestBody AdminUserDto dto) {
         AdminUserDto created = adminUserService.createAdminUser(dto);
 
@@ -31,17 +31,19 @@ public class AdminUserController
         );
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<AdminUserDto>> getById(@PathVariable UUID id) {
-        AdminUserDto dto = adminUserService.getAdminUserById(id);
-
+    @GetMapping("/{username}")
+    public ResponseEntity<ApiResponseDto<AdminUserDto>> getByUsername(@PathVariable String username) {
+        AdminUserDto adminUser = adminUserService.getAdminUserByUsername(username);
         return ResponseEntity.ok(
-                new ApiResponseDto<>(EApiResponseMessage.DATA_FOUND.getMessage(),
-                        EOperationStatus.RESULT_SUCCESS, dto)
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_FOUND.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        adminUser
+                )
         );
     }
 
-    @GetMapping
+    @GetMapping("all-adminUsers")
     public ResponseEntity<ApiResponseDto<Set<AdminUserDto>>> getAll() {
         Set<AdminUserDto> all = adminUserService.getAllAdminUsers();
 
@@ -51,24 +53,30 @@ public class AdminUserController
         );
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<ApiResponseDto<AdminUserDto>> update(
-//            @PathVariable UUID id, @RequestBody AdminUserDto dto) {
-//        AdminUserDto updated = adminUserService.updateAdminUserById(id, dto);
-//
-//        return ResponseEntity.ok(
-//                new ApiResponseDto<>(EApiResponseMessage.DATA_UPDATED.getMessage(),
-//                        EOperationStatus.RESULT_SUCCESS, updated)
-//        );
-//    }
+    @PutMapping("/update/{username}")
+    public ResponseEntity<ApiResponseDto<AdminUserDto>> updateByUsername(
+            @PathVariable String username,
+            @RequestBody AdminUserDto dto) {
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<AdminUserDto>> delete(@PathVariable UUID id) {
-        AdminUserDto deleted = adminUserService.deleteAdminUserById(id);
-
+        AdminUserDto updated = adminUserService.updateAdminUserByUsername(username, dto);
         return ResponseEntity.ok(
-                new ApiResponseDto<>(EApiResponseMessage.DATA_DELETED.getMessage(),
-                        EOperationStatus.RESULT_SUCCESS, deleted)
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_UPDATED.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        updated
+                )
+        );
+    }
+
+    @DeleteMapping("/delete/{username}")
+    public ResponseEntity<ApiResponseDto<Void>> deleteByUsername(@PathVariable String username) {
+        adminUserService.deleteAdminUserByUsername(username);
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_DELETED.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        null
+                )
         );
     }
 }
