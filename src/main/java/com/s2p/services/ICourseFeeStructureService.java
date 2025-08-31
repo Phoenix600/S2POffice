@@ -13,9 +13,9 @@ public interface ICourseFeeStructureService
 
     public abstract Set<CourseFeeStructureDto> getAllCourseFeeStructures();
 
-    public abstract CourseFeeStructureDto partialUpdateCourseFeeStructureById(UUID courseFeeStructureId);
+    public abstract CourseFeeStructureDto partialUpdateCourseFeeStructureById(UUID courseFeeStructureI, CourseFeeStructureDto courseFeeStructureDto);
 
-    public abstract CourseFeeStructureDto updateCourseFeeStructureById(UUID courseFeeStructureId);
+    CourseFeeStructureDto updateCourseFeeStructureById(UUID courseFeeStructureId, CourseFeeStructureDto courseFeeStructureDto);
 
     public abstract CourseFeeStructureDto deleteCourseFeeStructureById(UUID courseFeeStructureId);
 }

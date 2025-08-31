@@ -22,4 +22,10 @@ public class TeacherUsers extends Users
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID teacherUserId;
 
+    private String email;
+
+    private String username;
+
+    private Roles roles;
+
 }

@@ -1,5 +1,6 @@
 package com.s2p.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,11 +28,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Schema(description = "Entity representing the Assigned Batch of Students")
 public class Batch extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-	private UUID batchId;
+    @Schema(description = "Unique Identifier for Batch")
+    private UUID batchId;
 
     @Column(nullable = true)
     private String batchName;

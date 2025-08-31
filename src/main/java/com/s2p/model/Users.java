@@ -24,15 +24,15 @@ public class Users extends BaseEntity
 {
 	@Column(unique = true)
 	private String username;
-	
+
 	@Column(unique = true)
 	private String email;
-	
+
 	@Transient
 	private String confirmEmail;
-	
+
 	private String pwd;
-	
+
 	@Transient
 	private String confirmPwd;
 

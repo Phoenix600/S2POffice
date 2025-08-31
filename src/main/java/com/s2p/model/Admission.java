@@ -1,5 +1,6 @@
 package com.s2p.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,12 +25,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Schema(description = "Entity representing the Admissions Of Students")
 public class Admission extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "admission_id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
+    @Schema(description = "Unique identifier of Admission", accessMode = Schema.AccessMode.READ_ONLY)
 	private UUID admissionId;
+
+    @Schema(description = "Admission date of the Student", example = "2025/01/01")
     private LocalDate admissionDate;
 
 }

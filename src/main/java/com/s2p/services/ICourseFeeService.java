@@ -15,7 +15,7 @@ public interface ICourseFeeService
 
     public abstract CourseFeeDto partialUpdateCourseFeeById(UUID courseFeeId);
 
-    public abstract CourseFeeDto updateCourseFeeById(UUID courseFeeId);
+    public abstract CourseFeeDto updateCourseFeeById(UUID courseFeeId, CourseFeeDto courseFeeDto);
 
     public abstract CourseFeeDto deleteCourseFeeById(UUID courseFeeId);
 }

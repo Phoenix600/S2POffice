@@ -30,6 +30,9 @@ public class CourseFees extends BaseEntity
 	@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false)
 	private Course course;
 
+	@Column(nullable = false)
+	private Double courseFees;
+
 	@ManyToOne
 	@JoinColumn(name = "academic_year_id", nullable = false)
 	private AcademicYear academicYear;

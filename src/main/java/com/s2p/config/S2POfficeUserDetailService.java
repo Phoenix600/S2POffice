@@ -1,14 +1,12 @@
 package com.s2p.config;
 
-import com.s2p.model.SuperAdminUsers;
 import com.s2p.model.Users;
 import com.s2p.repository.AdminUsersRepository;
-import com.s2p.repository.StudentRepository;
+import com.s2p.repository.StudentUserRepository;
 import com.s2p.repository.SuperAdminRepository;
-import com.s2p.repository.TeacherRepository;
+import com.s2p.repository.TeacherUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -31,10 +29,10 @@ public class S2POfficeUserDetailService implements UserDetailsService {
         private final AdminUsersRepository adminUsersRepository;
 
         @Autowired
-        private final TeacherRepository teacherRepository;
+        private final TeacherUserRepository teacherUserRepository;
 
         @Autowired
-        private final StudentRepository studentRepository;
+        private final StudentUserRepository studentUserRepository;
 
 
 
@@ -73,13 +71,13 @@ public class S2POfficeUserDetailService implements UserDetailsService {
 
             // Business Logic To Fetch Teacher
             if(null == applicationUser) {
-                applicationUser = teacherRepository.findByEmail(email).orElse(null);
+                applicationUser = teacherUserRepository.findByEmail(email).orElse(null);
             }
 
             // Business Logic To Fetch Student
             if(null == applicationUser)
             {
-                applicationUser = studentRepository.findByEmail(email).orElse(null);
+                applicationUser = studentUserRepository.findByEmail(email).orElse(null);
             }
 
             return applicationUser;

@@ -15,4 +15,10 @@ public class StudentUserDto
 {
     private UUID studentUserId;
 
+    private String email;
+
+    private String username;
+
+    private RolesDto roles;
+
 }

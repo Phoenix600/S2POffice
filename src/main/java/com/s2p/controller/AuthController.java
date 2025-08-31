@@ -2,10 +2,9 @@ package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
 import com.s2p.dto.AdminUserDto;
-import com.s2p.dto.LoginResponseDto;
 import com.s2p.dto.RegisterResponseDto;
+import com.s2p.dto.StudentUserDto;
 import com.s2p.dto.SuperAdminUserDto;
-import com.s2p.master.dto.StudentUsersDto;
 import com.s2p.model.*;
 import com.s2p.repository.*;
 import com.s2p.util.AdminUserUtility;
@@ -40,8 +39,8 @@ public class AuthController
 {
     private final SuperAdminRepository superAdminRepository;
     private final AdminUsersRepository adminUsersRepository;
-    private final TeacherRepository teacherRepository;
-    private final StudentRepository studentRepository;
+    private final TeacherUserRepository teacherUserRepository;
+    private final StudentUserRepository studentUserRepository;
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -127,7 +126,7 @@ public class AuthController
 
     // POST   http://localhost:8080/api/v1/public/student/register
     @PostMapping("student/register")
-    public ResponseEntity<StudentUsersDto> registerStudent(
+    public ResponseEntity<StudentUserDto> registerStudent(
             @Parameter(description = "User registration data", required = true)
            @RequestBody Users users)
     {
@@ -140,8 +139,8 @@ public class AuthController
         studentUser.setPwd(passwordEncoder.encode(users.getPwd()));
         studentUser.setRoles(roles);
 
-        studentUser = studentRepository.save(studentUser);
-        StudentUsersDto savedStudent = studentUsersUtility.toStudentUserDto(studentUser);
+        studentUser = studentUserRepository.save(studentUser);
+        StudentUserDto savedStudent = studentUsersUtility.toStudentUserDto(studentUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
     }

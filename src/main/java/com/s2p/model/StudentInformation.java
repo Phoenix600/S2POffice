@@ -30,7 +30,7 @@ public class StudentInformation extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-	private UUID studentInformationId;
+    private UUID studentInformationId;
 
     private String firstName;
 
@@ -72,6 +72,14 @@ public class StudentInformation extends BaseEntity
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private Set<Course> courses = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_information_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<CourseFees> courseFeesSet = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "course_fee_structure_id", referencedColumnName = "courseFeeStructureId")

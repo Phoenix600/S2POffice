@@ -17,4 +17,6 @@ public interface ICourseService
     public abstract CourseDto partialUpdateCourseById(UUID courseId);
 
     public abstract CourseDto updateCourseById(UUID courseId);
+
+    public abstract List<CourseDto> searchCourses(String courseName, String description, Byte duration);
 }
