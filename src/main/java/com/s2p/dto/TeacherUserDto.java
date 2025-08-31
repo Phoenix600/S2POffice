@@ -15,4 +15,10 @@ import java.util.UUID;
 public class TeacherUserDto
 {
     private UUID teacherUserId;
+
+    private String email;
+
+    private String username;
+
+    private RolesDto roles;
 }

@@ -16,5 +16,4 @@ public interface IStudentUserService
     public abstract StudentUserDto updateStudentUserById(UUID studentUserId);
 
     public abstract StudentUserDto deleteStudentUserById(UUID studentuserId);
-
 }

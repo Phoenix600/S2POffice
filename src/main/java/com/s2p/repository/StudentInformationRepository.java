@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface StudentInformationRepository extends JpaRepository<StudentInformation,UUID>, JpaSpecificationExecutor<StudentInformation>
 {
-//    List<StudentInformation> findByAdmissionDate(LocalDate admissionDate);
     List<StudentInformation> findByFirstNameContainingIgnoreCase(String firstName);
+
+    Optional<StudentInformation> findById(UUID studentId);
 }

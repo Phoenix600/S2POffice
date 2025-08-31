@@ -73,6 +73,14 @@ public class StudentInformation extends BaseEntity
     )
     private Set<Course> courses = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_information_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<CourseFees> courseFeesSet = new HashSet<>();
+
     @OneToOne
     @JoinColumn(name = "course_fee_structure_id", referencedColumnName = "courseFeeStructureId")
     private CourseFeeStructure courseFeeStructure;

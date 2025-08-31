@@ -1,5 +1,6 @@
 package com.s2p.model;
 
+import com.s2p.dto.RolesDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,11 @@ public class StudentUsers extends Users
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID studentUserId;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<StudentInformation> studentInformation = new HashSet<>();
+    private String email;
+
+    private String username;
+
+    private Roles roles;
+
 
 }

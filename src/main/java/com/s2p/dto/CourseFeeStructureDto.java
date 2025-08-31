@@ -1,7 +1,9 @@
 package com.s2p.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import com.s2p.model.Course;
+import com.s2p.model.CourseFees;
+import com.s2p.model.StudentUsers;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +17,24 @@ import java.util.UUID;
 @Setter
 public class CourseFeeStructureDto
 {
-    private Double amount;
+    private UUID courseFeeStructureId;
+
+    private Double downPayment;
+
+    private Double remainingAmount;
+
+    private Boolean isDiscountGiven;
+
+    private Float isDiscountFactor;
+
+    private Byte nInstallments;
+
+    private Byte remainingInstallments;
+
+    private Course course;
+
+    private CourseFees courseFees;
+    
+    private StudentUsers studentUsers;
+
 }

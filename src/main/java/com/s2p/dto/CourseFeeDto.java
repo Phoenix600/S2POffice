@@ -18,8 +18,6 @@ public class CourseFeeDto
 {
     private UUID courseFeesID;
 
-    private Long transactionId;
-
     private Double courseFees;
 
     private CourseFeeStructure feeStructure;

@@ -1,7 +1,6 @@
 package com.s2p.dto;
 
-import com.s2p.model.Batch;
-import com.s2p.model.Course;
+import com.s2p.model.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -13,33 +12,47 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class StudentInformationDto {
+    /**
+     * File Name: StudentInformation.java
+     * Entity: StudentInformation
+     * Package: com.s2p.model
+     * Author: pranayramteke
+     * Date: 19/08/25
+     * Description:
+     */
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    public class StudentInformationDto
+    {
+        private UUID studentInformationId;
 
-    private UUID studentId;
+        private String firstName;
 
-    private String firstName;
+        private String lastName;
 
-    private String lastName;
+        @Email(message = "Enter Valid Email")
+        private String email;
 
-    @Email(message = "Enter Valid Email")
-    private String email;
+        private String collegeName;
 
-    private String collegeName;
+        private String departName;
 
-    private String degreeName;
+        private String semester;
 
-    private String semester;
+        private String passingYear;
 
-    private String passingYear;
+        @Column(nullable = true)
+        private Boolean isGraduated;
 
-    @Column(nullable = true)
-    private Boolean isGraduated;
+        private Boolean isAdmitted;
 
-    private Set<Batch> batches = new HashSet<>();
+        private Enquiry enquiry;
 
-    private Set<Course> courses = new HashSet<>();
-}
+        private Set<Batch> batches = new HashSet<>();
+
+        private Set<Course> courses = new HashSet<>();
+
+        private CourseFeeStructure courseFeeStructure;
+    }

@@ -2,7 +2,10 @@ package com.s2p.services.impl;
 
 import com.s2p.dto.StudentUserDto;
 import com.s2p.exceptions.ResourceNotFoundException;
+import com.s2p.model.CourseFees;
+import com.s2p.model.StudentInformation;
 import com.s2p.model.StudentUsers;
+import com.s2p.repository.StudentInformationRepository;
 import com.s2p.repository.StudentUserRepository;
 import com.s2p.services.IStudentUserService;
 import com.s2p.util.StudentUsersUtility;
@@ -22,6 +25,9 @@ public class StudentUserService implements IStudentUserService
 
     @Autowired
     StudentUsersUtility studentUsersUtility;
+
+    @Autowired
+    StudentInformationRepository studentInformationRepository;
 
     @Override
     public StudentUserDto createStudentUser(StudentUserDto studentUsersDto) {

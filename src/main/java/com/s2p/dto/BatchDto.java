@@ -1,6 +1,7 @@
 package com.s2p.dto;
 
 import com.s2p.model.Course;
+import com.s2p.model.StudentInformation;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,4 +34,6 @@ public class BatchDto
     private LocalTime endTime;
 
     private Set<Course> courseSet = new HashSet<>();
+
+    private Set<StudentInformation> students = new HashSet<>();
 }

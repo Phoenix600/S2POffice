@@ -1,5 +1,6 @@
 package com.s2p.model;
 
+import com.s2p.dto.RolesDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,5 +25,11 @@ public class AdminUsers extends Users
     @GeneratedValue(strategy = GenerationType.UUID)
     @Schema(description = "Unique identifier for the admin user.", accessMode = Schema.AccessMode.READ_ONLY)
     private UUID AdminUserId;
+
+    private String email;
+
+    private String username;
+
+    private Roles roles;
 
 }

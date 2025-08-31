@@ -28,17 +28,15 @@ public class AdminUserService implements IAdminUserService
     }
 
     @Override
-    public AdminUserDto getAdminUserById(UUID adminUserId) {
-        Optional<AdminUsers> optional = adminUsersRepository.findById(adminUserId);
-
-        if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("AdminUser", "id", adminUserId.toString());
-        }
-        return adminUserUtility.toAdminUserDto(optional.get());
+    public AdminUserDto getAdminUserByUsername(String username) {
+        AdminUsers entity = adminUsersRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("AdminUser not found with username: " + username));
+        return adminUserUtility.toAdminUserDto(entity);
     }
 
+
     @Override
-    public Set<AdminUserDto> getAllAdinUsers() {
+    public Set<AdminUserDto> getAllAdminUsers() {
         List<AdminUsers> adminUsers = adminUsersRepository.findAll();
         Set<AdminUserDto> result = new HashSet<>();
 
@@ -50,21 +48,26 @@ public class AdminUserService implements IAdminUserService
     }
 
     @Override
-    public AdminUserDto updateAdminUserById(UUID adminUserId, AdminUserDto adminUserDto) {
-        return null;
+    public AdminUserDto updateAdminUserByUsername(String username, AdminUserDto adminUserDto) {
+        AdminUsers existing = adminUsersRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("AdminUser not found with username: " + username));
+
+        existing.setEmail(adminUserDto.getEmail());
+        existing.setUsername(adminUserDto.getUsername());
+        existing.setRoles(adminUserDto.getRoles());
+
+        AdminUsers updated = adminUsersRepository.save(existing);
+        return adminUserUtility.toAdminUserDto(updated);
     }
 
     @Override
-    public AdminUserDto deleteAdminUserById(UUID adminUserId) {
-        Optional<AdminUsers> optional = adminUsersRepository.findById(adminUserId);
+    public AdminUserDto deleteAdminUserByUsername(String username) {
+        AdminUsers entity = adminUsersRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("AdminUser not found with username: " + username));
 
-        if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("AdminUser", "id", adminUserId.toString());
-        }
-
-        AdminUsers entity = optional.get();
+        AdminUserDto dto = adminUserUtility.toAdminUserDto(entity);
         adminUsersRepository.delete(entity);
 
-        return adminUserUtility.toAdminUserDto(entity);
+        return dto;
     }
 }

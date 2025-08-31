@@ -12,4 +12,11 @@ import java.util.UUID;
 public interface AdminUsersRepository extends JpaRepository<AdminUsers, UUID>
 {
    public abstract Optional<AdminUsers> findByEmail(String email);
+
+    public abstract Optional<AdminUsers> findByUsername(String username);
+
+    public abstract boolean existsByUsername(String username);
+
+    public abstract void deleteByUsername(String username);
 }
+

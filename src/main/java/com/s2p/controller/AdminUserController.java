@@ -43,7 +43,7 @@ public class AdminUserController
 
     @GetMapping
     public ResponseEntity<ApiResponseDto<Set<AdminUserDto>>> getAll() {
-        Set<AdminUserDto> all = adminUserService.getAllAdinUsers();
+        Set<AdminUserDto> all = adminUserService.getAllAdminUsers();
 
         return ResponseEntity.ok(
                 new ApiResponseDto<>(EApiResponseMessage.DATA_FOUND.getMessage(),

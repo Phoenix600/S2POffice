@@ -1,5 +1,6 @@
 package com.s2p.dto;
 
+import com.s2p.model.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,11 @@ import java.util.UUID;
 public class AdminUserDto
 {
     private UUID AdminUserId;
+
+    private String email;
+
+    private String username;
+
+    private Roles roles;
 
 }
