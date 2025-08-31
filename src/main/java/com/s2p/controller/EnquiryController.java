@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -35,10 +37,26 @@ public class EnquiryController
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/date/{date}")
+    public ResponseEntity<ApiResponseDto<List<EnquiryDto>>> getEnquiriesByDate(@PathVariable("date") String date) {
+        LocalDate enquiryDate = LocalDate.parse(date);
+        List<EnquiryDto> enquiries = enquiryService.getEnquiriesByDate(enquiryDate);
+        return ResponseEntity.ok(new ApiResponseDto<>("Enquiries fetched successfully", EOperationStatus.RESULT_SUCCESS, enquiries));
+    }
 
+
+    @GetMapping("/student/{email}")
+    public ResponseEntity<ApiResponseDto<EnquiryDto>> getEnquiryByStudentEmail(@PathVariable("email") String email) {
+        Optional<EnquiryDto> enquiryOpt = enquiryService.getEnquiryByStudentEmail(email);
+        if (enquiryOpt.isPresent()) {
+            return ResponseEntity.ok(new ApiResponseDto<>("Enquiry fetched successfully", EOperationStatus.RESULT_SUCCESS, enquiryOpt.get()));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponseDto<>("Enquiry not found", EOperationStatus.RESULT_FAILURE, null));
+        }
+    }
 
     // Get all Enquiries
-    @GetMapping
+    @GetMapping("/getAllEnquiries")
     public ResponseEntity<ApiResponseDto<Set<EnquiryDto>>> getAllEnquiries() {
         Set<EnquiryDto> enquiries = enquiryService.getAllEnquiries();
 
