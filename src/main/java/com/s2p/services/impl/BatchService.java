@@ -44,15 +44,16 @@ public class BatchService implements IBatchService
     }
 
     @Override
-    public BatchDto getBatchById(UUID batchId) {
-        Optional<Batch> optionalBatch = batchRepository.findById(batchId);
+    public BatchDto getBatchByName(String batchName) {
+        Optional<Batch> optionalBatch = batchRepository.findByBatchName(batchName);
 
         if (optionalBatch.isEmpty()) {
-            throw new ResourceNotFoundException("Batch", "id", batchId.toString());
+            throw new ResourceNotFoundException("Batch not found with name: " + batchName);
         }
 
         return batchUtility.toBatchDto(optionalBatch.get());
     }
+
 
     @Override
     public List<BatchDto> getAllBatches() {
@@ -66,38 +67,35 @@ public class BatchService implements IBatchService
         return result;
     }
 
-
-
     @Override
-    public BatchDto updateBatchById(UUID batchId, BatchDto batchDto) {
-        Optional<Batch> optionalBatch = batchRepository.findById(batchId);
+    public BatchDto updateBatchByName(String batchName, BatchDto batchDto) {
+        Optional<Batch> optionalBatch = batchRepository.findByBatchName(batchName);
 
         if (optionalBatch.isEmpty()) {
-            throw new ResourceNotFoundException("Batch", "id", batchId.toString());
-        }
-
-        Batch existingBatch = optionalBatch.get();
-        existingBatch.setBatchName(batchDto.getBatchName());
-        existingBatch.setStartTime(batchDto.getStartTime());
-        existingBatch.setEndTime(batchDto.getEndTime());
-
-        Batch updatedBatch = batchRepository.save(existingBatch);
-        return batchUtility.toBatchDto(updatedBatch);
-    }
-
-    @Override
-    public BatchDto deleteBatchById(UUID batchId) {
-        Optional<Batch> optionalBatch = batchRepository.findById(batchId);
-
-        if (optionalBatch.isEmpty()) {
-            throw new ResourceNotFoundException("Batch", "id", batchId.toString());
+            throw new ResourceNotFoundException("Batch not found with name: " + batchName);
         }
 
         Batch batch = optionalBatch.get();
-        batchRepository.delete(batch);
+        batch.setBatchName(batchDto.getBatchName());
+        batch.setStartTime(batchDto.getStartTime());
+        batch.setEndTime(batchDto.getEndTime());
 
-        return batchUtility.toBatchDto(batch);
+        Batch updated = batchRepository.save(batch);
+        return batchUtility.toBatchDto(updated);
     }
+
+    @Override
+    public void deleteBatchByName(String batchName) {
+        Optional<Batch> optionalBatch = batchRepository.findByBatchName(batchName);
+
+        if (optionalBatch.isEmpty()) {
+            throw new ResourceNotFoundException("Batch not found with name: " + batchName);
+        }
+
+        batchRepository.delete(optionalBatch.get());
+
+    }
+
     @Override
     public List<BatchDto> searchBatches(String batchName, LocalTime startTime, LocalTime endTime) {
         Specification<Batch> spec = Specification.anyOf(BatchSpecification.hasBatchName(batchName))

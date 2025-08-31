@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,20 +35,20 @@ public class AdmissionController
     }
 
     // Get Admission by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<AdmissionDto>> getAdmissionById(@PathVariable("id") UUID id) {
-        AdmissionDto admission = admissionServiceImpl.getAdmissionById(id);
-
-        ApiResponseDto<AdmissionDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
-        response.setData(admission);
-
-        return ResponseEntity.ok(response);
+    @GetMapping("/{admissionDate}")
+    public ResponseEntity<ApiResponseDto<AdmissionDto>> getByDate(@PathVariable String admissionDate) {
+        AdmissionDto admission = admissionServiceImpl.getAdmissionByDate(LocalDate.parse(admissionDate));
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_FOUND.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        admission
+                )
+        );
     }
 
     // Get All Admissions
-    @GetMapping
+    @GetMapping("/getAllAdmissions")
     public ResponseEntity<ApiResponseDto<List<AdmissionDto>>> getAllAdmissions() {
         List<AdmissionDto> admissions = admissionServiceImpl.getAllAdmissions();
 
@@ -60,32 +61,33 @@ public class AdmissionController
     }
 
     //  Full Update Admission
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<AdmissionDto>> updateAdmission(
-            @PathVariable("id") UUID id,
-            @Valid @RequestBody AdmissionDto admissionDto) {
+    @PutMapping("/update/{admissionDate}")
+    public ResponseEntity<ApiResponseDto<AdmissionDto>> updateByDate(
+            @PathVariable String admissionDate,
+            @RequestBody AdmissionDto dto) {
 
-        AdmissionDto updatedAdmission = admissionServiceImpl.updateAdmissionById(id, admissionDto);
-
-        ApiResponseDto<AdmissionDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_UPDATED.getMessage());
-        response.setData(updatedAdmission);
-
-        return ResponseEntity.ok(response);
-
+        AdmissionDto updated = admissionServiceImpl.updateAdmissionByDate(LocalDate.parse(admissionDate), dto);
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_UPDATED.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        updated
+                )
+        );
     }
 
+
     //  Delete Admission
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<String>> deleteAdmission(@PathVariable("id") UUID id) {
-        admissionServiceImpl.deleteAdmissionById(id);
-
-        ApiResponseDto<String> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_DELETED.getMessage());
-        response.setData("Admission deleted successfully");
-
-        return ResponseEntity.ok(response);
+    @DeleteMapping("/delete/{admissionDate}")
+    public ResponseEntity<ApiResponseDto<Void>> deleteByDate(@PathVariable String admissionDate)
+    {
+        admissionServiceImpl.deleteAdmissionByDate(LocalDate.parse(admissionDate));
+        return ResponseEntity.ok(
+                new ApiResponseDto<>(
+                        EApiResponseMessage.DATA_DELETED.getMessage(),
+                        EOperationStatus.RESULT_SUCCESS,
+                        null
+                )
+        );
     }
 }

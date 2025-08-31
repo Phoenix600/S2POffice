@@ -11,15 +11,13 @@ public interface IBatchService
 {
     public abstract BatchDto createBatch(BatchDto batchDto) throws BadRequestException;
 
-    public abstract BatchDto getBatchById(UUID batchId);
+    public abstract BatchDto getBatchByName(String batchName);
 
     public abstract List<BatchDto> getAllBatches();
 
-//    public abstract BatchDto partialUpdateBatchById(UUID batchId);
+    public abstract BatchDto updateBatchByName(String batchName, BatchDto batchDto);
 
-    public abstract BatchDto updateBatchById(UUID batchId, BatchDto batchDto);
-
-    public abstract BatchDto deleteBatchById(UUID batchId);
+    public abstract void deleteBatchByName(String batchName);
 
     List<BatchDto> searchBatches(String batchName, LocalTime startTime, LocalTime endTime);
 }

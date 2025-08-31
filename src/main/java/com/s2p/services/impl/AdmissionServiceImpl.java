@@ -11,6 +11,7 @@ import com.s2p.util.CourseUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,16 +36,12 @@ public class AdmissionServiceImpl implements IAdmissionService
     }
 
     @Override
-    public AdmissionDto getAdmissionById(UUID admissionId)
-    {
-        Optional<Admission> optionalAdmission = admissionRepository.findById(admissionId);
-
-        if (optionalAdmission.isEmpty()) {
-            throw new ResourceNotFoundException("Admission", "id", admissionId.toString());
-        }
-
-        return admissionUtility.toAdmissionDto(optionalAdmission.get());
+    public AdmissionDto getAdmissionByDate(LocalDate admissionDate) {
+        Admission admission = admissionRepository.findByAdmissionDate(admissionDate)
+                .orElseThrow(() -> new ResourceNotFoundException("Admission not found for date: " + admissionDate));
+        return admissionUtility.toAdmissionDto(admission);
     }
+
 
     @Override
     public List<AdmissionDto> getAllAdmissions() {
@@ -59,36 +56,20 @@ public class AdmissionServiceImpl implements IAdmissionService
     }
 
     @Override
-    public AdmissionDto partialUpdateAdmissionById(UUID admissionId) {
-        return null;
+    public AdmissionDto updateAdmissionByDate(LocalDate admissionDate, AdmissionDto admissionDto) {
+        Admission admission = admissionRepository.findByAdmissionDate(admissionDate)
+                .orElseThrow(() -> new ResourceNotFoundException("Admission not found for date: " + admissionDate));
+
+        admission.setAdmissionDate(admissionDto.getAdmissionDate());
+        Admission updated = admissionRepository.save(admission);
+
+        return admissionUtility.toAdmissionDto(updated);
     }
 
     @Override
-    public AdmissionDto updateAdmissionById(UUID admissionId, AdmissionDto admissionDto) {
-        Optional<Admission> optionalAdmission = admissionRepository.findById(admissionId);
-
-        if (optionalAdmission.isEmpty()) {
-            throw new ResourceNotFoundException("Admission", "id", admissionId.toString());
-        }
-
-        Admission existingAdmission = optionalAdmission.get();
-        existingAdmission.setAdmissionDate(admissionDto.getAdmissionDate());
-
-        Admission updatedAdmission = admissionRepository.save(existingAdmission);
-        return admissionUtility.toAdmissionDto(updatedAdmission);
-    }
-
-    @Override
-    public AdmissionDto deleteAdmissionById(UUID admissionId) {
-        Optional<Admission> optionalAdmission = admissionRepository.findById(admissionId);
-
-        if (optionalAdmission.isEmpty()) {
-            throw new ResourceNotFoundException("Admission", "id", admissionId.toString());
-        }
-
-        Admission admission = optionalAdmission.get();
+    public void deleteAdmissionByDate(LocalDate admissionDate) {
+        Admission admission = admissionRepository.findByAdmissionDate(admissionDate)
+                .orElseThrow(() -> new ResourceNotFoundException("Admission not found for date: " + admissionDate));
         admissionRepository.delete(admission);
-
-        return admissionUtility.toAdmissionDto(admission);
     }
 }
