@@ -95,3 +95,8 @@
 2025-08-31 13:29:54,162 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
 2025-08-31 13:29:54,191 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
 2025-08-31 13:29:54,210 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 12.386 seconds (process running for 14.142)
+2025-08-31 13:32:22,352 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-31 13:32:22,358 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-08-31 13:32:22,367 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-31 13:32:22,370 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-08-31 13:32:22,379 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

@@ -1,6 +1,8 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.CourseDto;
+import com.s2p.exceptions.AlreadyExistsException;
+import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Course;
 import com.s2p.repository.CourseRepository;
 import com.s2p.repository.specifications.CourseSpecification;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,41 +28,74 @@ public class CourseService implements ICourseService {
 
     @Override
     public CourseDto createCourse(CourseDto courseDto) {
-        return null;
+        if (courseRepository.existsByCourseName(courseDto.getCourseName())) {
+            throw new AlreadyExistsException("Course already exists with name: " + courseDto.getCourseName());
+        }
+
+        Course course = courseUtility.toCourseEntity(courseDto);
+        Course saved = courseRepository.save(course);
+        return courseUtility.toCourseDto(saved);
     }
 
     @Override
-    public CourseDto getCourseById(UUID courseId) {
-        return null;
+    public CourseDto getCourseByName(String courseName) {
+        Optional<Course> optional = courseRepository.findByCourseName(courseName);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("Course not found with name: " + courseName);
+        }
+
+        return courseUtility.toCourseDto(optional.get());
     }
+
 
     @Override
     public List<CourseDto> getAllCourses() {
-        return List.of();
-    }
+        List<Course> courses = courseRepository.findAll();
 
-    @Override
-    public CourseDto partialUpdateCourseById(UUID courseId) {
-        return null;
-    }
-
-    @Override
-    public CourseDto updateCourseById(UUID courseId) {
-        return null;
-    }
-    public List<CourseDto> searchCourses(String courseName, String description, Byte duration) {
-        Specification<Course> spec = Specification.anyOf(CourseSpecification.hasCourseName(courseName))
-                .or(CourseSpecification.hasDescription(description))
-                .or(CourseSpecification.hasDuration(duration));
-
-        List<Course> courses = courseRepository.findAll(spec);
-        List<CourseDto> courseDtos = new ArrayList<>();
-
-        for (Course course : courses) {
-            CourseDto dto = courseUtility.toCourseDto(course);
-            courseDtos.add(dto);
+        if (courses.isEmpty()) {
+            throw new ResourceNotFoundException("No courses found in the system.");
         }
 
-        return courseDtos;
+        List<CourseDto> dtos = new ArrayList<>();
+        for (Course course : courses) {
+            dtos.add(courseUtility.toCourseDto(course));
+        }
+
+        return dtos;
+    }
+
+    @Override
+    public CourseDto updateCourseByName(String courseName, CourseDto dto) {
+        Optional<Course> optional = courseRepository.findByCourseName(courseName);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("Course not found with name: " + courseName);
+        }
+
+        Course course = optional.get();
+        course.setCourseName(dto.getCourseName());
+        course.setDescription(dto.getDescription());
+        course.setCourseDurationInMonths(dto.getCourseDurationInMonths());
+
+        Course updated = courseRepository.save(course);
+        return courseUtility.toCourseDto(updated);
+    }
+
+    @Override
+    public void deleteCourseByName(String courseName)
+    {
+        Optional<Course> optional = courseRepository.findByCourseName(courseName);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("Course not found with name: " + courseName);
+        }
+
+        courseRepository.delete(optional.get());
+    }
+
+    @Override
+    public List<CourseDto> searchCourses(String courseName, String description, Byte duration) {
+        return List.of();
     }
 }

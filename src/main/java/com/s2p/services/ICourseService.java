@@ -10,13 +10,13 @@ public interface ICourseService
 {
     public abstract CourseDto createCourse(CourseDto courseDto);
 
-    public abstract CourseDto getCourseById(UUID courseId);
+    public abstract CourseDto getCourseByName(String courseName);
 
     public abstract List<CourseDto> getAllCourses();
 
-    public abstract CourseDto partialUpdateCourseById(UUID courseId);
+    public abstract CourseDto updateCourseByName(String courseName, CourseDto dto);
 
-    public abstract CourseDto updateCourseById(UUID courseId);
+    public abstract void deleteCourseByName(String courseName)
 
     public abstract List<CourseDto> searchCourses(String courseName, String description, Byte duration);
 }
