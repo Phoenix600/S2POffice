@@ -4,13 +4,13 @@ import com.s2p.constants.EOperationStatus;
 import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.CourseFeeInstallmentTransactionsDto;
 import com.s2p.message.EApiResponseMessage;
-import com.s2p.services.impl.CourseFeeInstallmentTransactionsService;
+import com.s2p.services.impl.CourseFeeInstallmentTransactionsServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -19,48 +19,47 @@ import java.util.UUID;
 public class CourseFeeInstallmentTransactionController
 {
     @Autowired
-    CourseFeeInstallmentTransactionsService courseFeeInstallmentTransactionsService;
+    CourseFeeInstallmentTransactionsServiceimpl courseFeeInstallmentTransactionsService;
 
-    //  Get transaction by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeInstallmentTransactionsDto>> getTransactionById(
-            @PathVariable("id") UUID id) {
+    // Create Transaction
+    @PostMapping("/create-transaction")
+    public ApiResponseDto<CourseFeeInstallmentTransactionsDto> createTransaction(
+            @RequestBody CourseFeeInstallmentTransactionsDto dto) {
 
-        CourseFeeInstallmentTransactionsDto transaction = courseFeeInstallmentTransactionsService.getCourseFeeInstallmentTransactionById(id);
+        CourseFeeInstallmentTransactionsDto saved = courseFeeInstallmentTransactionsService.createTransaction(dto);
 
-        ApiResponseDto<CourseFeeInstallmentTransactionsDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
-        response.setData(transaction);
-
-        return ResponseEntity.ok(response);
+        return new ApiResponseDto<>(
+                EApiResponseMessage.DATA_SAVED.getMessage(),
+                EOperationStatus.RESULT_SUCCESS,
+                saved
+        );
     }
 
-    // Get all transactions
-    @GetMapping
-    public ResponseEntity<ApiResponseDto<Set<CourseFeeInstallmentTransactionsDto>>> getAllTransactions() {
+
+    // Get All Transactions
+    @GetMapping("/getAllTransactions")
+    public ApiResponseDto<Set<CourseFeeInstallmentTransactionsDto>> getAllTransactions() {
         Set<CourseFeeInstallmentTransactionsDto> transactions = courseFeeInstallmentTransactionsService.getAllCourseFeeInstallmentTransactions();
 
-        ApiResponseDto<Set<CourseFeeInstallmentTransactionsDto>> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
-        response.setData(transactions);
-
-        return ResponseEntity.ok(response);
+        return new ApiResponseDto<>(
+                EApiResponseMessage.DATA_FOUND.getMessage(),
+                EOperationStatus.RESULT_SUCCESS,
+                transactions
+        );
     }
 
-    // Delete transaction by ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<String>> deleteTransactionById(@PathVariable("id") UUID id) {
-        courseFeeInstallmentTransactionsService.deleteCourseFeeInstallmentTransactionById(id);
+    // Get Transactions by Course Name
+    @GetMapping("/course/{courseName}")
+    public ApiResponseDto<List<CourseFeeInstallmentTransactionsDto>> getTransactionsByCourseName(
+            @PathVariable String courseName) {
 
-        ApiResponseDto<String> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_DELETED.getMessage());
-        response.setData("Course Fee Installment Transaction deleted successfully");
+        List<CourseFeeInstallmentTransactionsDto> transactions = courseFeeInstallmentTransactionsService.getTransactionsByCourseName(courseName);
 
-        return ResponseEntity.ok(response);
+        return new ApiResponseDto<>(
+                EApiResponseMessage.DATA_FOUND.getMessage(),
+                EOperationStatus.RESULT_SUCCESS,
+                transactions
+        );
     }
-
 
 }

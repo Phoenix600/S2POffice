@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface CourseRepository extends JpaRepository<Course,UUID>, JpaSpecificationExecutor<Course>
+public interface CourseRepository extends JpaRepository<Course, UUID>, JpaSpecificationExecutor<Course>
 {
     Optional<Course> findByCourseName(String courseName);
 

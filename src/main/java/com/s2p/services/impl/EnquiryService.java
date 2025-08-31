@@ -9,6 +9,7 @@ import com.s2p.util.EnquiryUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -29,15 +30,15 @@ public class EnquiryService implements IEnquiryService
     }
 
     @Override
-    public EnquiryDto getEnquiryById(UUID enquiryId) {
-        Optional<Enquiry> optionalEnquiry = enquiryRepository.findById(enquiryId);
-
-        if (optionalEnquiry.isEmpty()) {
-            throw new ResourceNotFoundException("Enquiry", "id", enquiryId.toString());
+    public List<EnquiryDto> getEnquiriesByDate(LocalDate date) {
+        List<Enquiry> enquiries = enquiryRepository.findByEnquiryDate(date);
+        List<EnquiryDto> enquiryDtos = new ArrayList<>();
+        for (Enquiry e : enquiries) {
+            enquiryDtos.add(enquiryUtility.toEnquiryDto(e));
         }
-
-        return enquiryUtility.toEnquiryDto(optionalEnquiry.get());
+        return enquiryDtos;
     }
+
 
     @Override
     public Set<EnquiryDto> getAllEnquiries() {
@@ -52,37 +53,35 @@ public class EnquiryService implements IEnquiryService
     }
 
     @Override
-    public EnquiryDto partialUpdateEnquiryById(UUID enquiryId) {
-        return  null;
+    public Optional<EnquiryDto> updateEnquiryByStudentEmail(String email, EnquiryDto enquiryDto) {
+        Optional<Enquiry> optionalEnquiry = enquiryRepository.findByStudentInformation_Email(email);
+        if (optionalEnquiry.isPresent()) {
+            Enquiry existing = optionalEnquiry.get();
+            existing.setEnquiryDate(enquiryDto.getEnquiryDate());
+            existing.setStudentInformation(enquiryDto.getStudentInformation());
+            existing.setCourseSet(enquiryDto.getCourseSet());
+            Enquiry updated = enquiryRepository.save(existing);
+            return Optional.of(enquiryUtility.toEnquiryDto(updated));
+        }
+        return Optional.empty();
     }
 
     @Override
-    public EnquiryDto updateEnquiryById(UUID enquiryId) {
-        Optional<Enquiry> optionalEnquiry = enquiryRepository.findById(enquiryId);
-
-        if (optionalEnquiry.isEmpty()) {
-            throw new ResourceNotFoundException("Enquiry", "id", enquiryId.toString());
+    public Optional<EnquiryDto> getEnquiryByStudentEmail(String email) {
+        Optional<Enquiry> optionalEnquiry = enquiryRepository.findByStudentInformation_Email(email);
+        if (optionalEnquiry.isPresent()) {
+            return Optional.of(enquiryUtility.toEnquiryDto(optionalEnquiry.get()));
         }
-
-        Enquiry enquiry = optionalEnquiry.get();
-        enquiry.setEnquiryDate(optionalEnquiry.get().getEnquiryDate());
-
-        Enquiry updated = enquiryRepository.save(enquiry);
-        return enquiryUtility.toEnquiryDto(updated);
+        return Optional.empty();
     }
 
     @Override
-    public EnquiryDto deleteEnquiryById(UUID enquiryId)
-    {
-        Optional<Enquiry> optionalEnquiry = enquiryRepository.findById(enquiryId);
-
-        if (optionalEnquiry.isEmpty()) {
-            throw new ResourceNotFoundException("Enquiry", "id", enquiryId.toString());
+    public boolean deleteEnquiryByStudentEmail(String email) {
+        boolean exists = enquiryRepository.existsByStudentInformation_Email(email);
+        if (exists) {
+            enquiryRepository.deleteByStudentInformation_Email(email);
+            return true;
         }
-
-        Enquiry enquiry = optionalEnquiry.get();
-        enquiryRepository.delete(enquiry);
-
-        return enquiryUtility.toEnquiryDto(enquiry);
+        return false;
     }
 }

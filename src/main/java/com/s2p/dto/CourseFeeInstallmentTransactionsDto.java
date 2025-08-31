@@ -1,8 +1,9 @@
 package com.s2p.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.s2p.model.Course;
+import com.s2p.model.CourseFeeStructure;
+import com.s2p.model.StudentUsers;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,12 +17,14 @@ import java.util.UUID;
 @Setter
 public class CourseFeeInstallmentTransactionsDto
 {
-    private UUID CourseFeeInstallmentTransactionsId;
+    private UUID courseFeeInstallmentTransactionsId;
 
-    private UUID courseFeesID;
+    private Double paidAmount;
 
-    private Long transactionId;
+    private Course course;
 
-    private Double courseFees;
+    private CourseFeeStructure courseFeeStructure;
+
+    private StudentUsers studentUsers;
 
 }
