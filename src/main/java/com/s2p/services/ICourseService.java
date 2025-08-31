@@ -16,7 +16,7 @@ public interface ICourseService
 
     public abstract CourseDto updateCourseByName(String courseName, CourseDto dto);
 
-    public abstract void deleteCourseByName(String courseName)
+    public abstract void deleteCourseByName(String courseName);
 
     public abstract List<CourseDto> searchCourses(String courseName, String description, Byte duration);
 }
