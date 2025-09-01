@@ -83,7 +83,9 @@ class ProjectSecurityConfig
                         .requestMatchers("api/v1/auth/admin/register").permitAll()
                         .requestMatchers("api/v1/auth/superAdmin/register").permitAll()
                         // Allow login endpoint also
-                        .requestMatchers("/api/v1/authController/login").permitAll()
+						.requestMatchers("/api/v1/authController/login").permitAll()
+						.requestMatchers("/api/v1/authController/login").permitAll()
+						.requestMatchers("/api/v1/academic-years/**").permitAll()
 
                         // Everything else requires authentication
                         .anyRequest().authenticated()
