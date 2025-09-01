@@ -14,7 +14,6 @@ import java.util.UUID;
 @Repository
 public interface StudentInformationRepository extends JpaRepository<StudentInformation,UUID>, JpaSpecificationExecutor<StudentInformation>
 {
-    List<StudentInformation> findByFirstNameContainingIgnoreCase(String firstName);
+    Optional<StudentInformation> findByEmail(String email);
 
-    Optional<StudentInformation> findById(UUID studentId);
 }

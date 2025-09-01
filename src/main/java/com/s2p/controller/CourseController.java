@@ -1,12 +1,17 @@
 package com.s2p.controller;
 
+import com.s2p.constants.EOperationStatus;
+import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.CourseDto;
+import com.s2p.exceptions.AlreadyExistsException;
+import com.s2p.exceptions.ResourceNotFoundException;
+import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.CourseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +21,64 @@ public class CourseController
 {
     @Autowired
     CourseService courseService;
+
+    @PostMapping
+    public ResponseEntity<ApiResponseDto<CourseDto>> createCourse(@Valid @RequestBody CourseDto courseDto) {
+        try {
+            CourseDto created = courseService.createCourse(courseDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(
+                    new ApiResponseDto<>(EApiResponseMessage.DATA_SAVED.getMessage(), EOperationStatus.RESULT_SUCCESS, created)
+            );
+        } catch (AlreadyExistsException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                    new ApiResponseDto<>(ex.getMessage(), EOperationStatus.RESULT_FAILURE, null)
+            );
+        }
+    }
+
+    @GetMapping("/{courseName}")
+    public ResponseEntity<ApiResponseDto<CourseDto>> getCourseByName(@PathVariable String courseName) {
+        try {
+            CourseDto found = courseService.getCourseByName(courseName);
+            return ResponseEntity.ok(
+                    new ApiResponseDto<>(EApiResponseMessage.DATA_FOUND.getMessage(), EOperationStatus.RESULT_SUCCESS, found)
+            );
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ApiResponseDto<>(ex.getMessage(), EOperationStatus.RESULT_FAILURE, null)
+            );
+        }
+    }
+
+    @PutMapping("/{courseName}")
+    public ResponseEntity<ApiResponseDto<CourseDto>> updateCourseByName(
+            @PathVariable String courseName,
+            @Valid @RequestBody CourseDto courseDto) {
+        try {
+            CourseDto updated = courseService.updateCourseByName(courseName, courseDto);
+            return ResponseEntity.ok(
+                    new ApiResponseDto<>(EApiResponseMessage.DATA_UPDATED.getMessage(), EOperationStatus.RESULT_SUCCESS, updated)
+            );
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ApiResponseDto<>(ex.getMessage(), EOperationStatus.RESULT_FAILURE, null)
+            );
+        }
+    }
+
+    @DeleteMapping("/{courseName}")
+    public ResponseEntity<ApiResponseDto<String>> deleteCourseByName(@PathVariable String courseName) {
+        try {
+            courseService.deleteCourseByName(courseName);
+            return ResponseEntity.ok(
+                    new ApiResponseDto<>(EApiResponseMessage.DATA_DELETED.getMessage(), EOperationStatus.RESULT_SUCCESS, "Course deleted successfully")
+            );
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ApiResponseDto<>(ex.getMessage(), EOperationStatus.RESULT_FAILURE, null)
+            );
+        }
+    }
 
     @GetMapping("/search")
     public List<CourseDto> searchCourses(

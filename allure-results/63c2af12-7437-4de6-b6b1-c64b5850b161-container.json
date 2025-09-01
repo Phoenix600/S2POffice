@@ -1,1 +1,0 @@
-{"uuid":"63c2af12-7437-4de6-b6b1-c64b5850b161","name":"testCreateCountry_Success()","children":["e6e8bf3e-182e-443c-b0b4-fa81c9724bb0"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1756020989199,"stop":1756020989201}],"afters":[],"start":1756020989195,"stop":1756020989212}

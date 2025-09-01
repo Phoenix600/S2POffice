@@ -9,13 +9,13 @@ public interface ICourseFeeStructureService
 {
     public abstract CourseFeeStructureDto createCourseFeeStructure(CourseFeeStructureDto courseFeeStructureDto);
 
-    public abstract CourseFeeStructureDto getCourseFeeStructureById(UUID courseFeeStructureId);
+    public abstract CourseFeeStructureDto getFeeStructureByCourseName(String courseName);
+
+    public abstract CourseFeeStructureDto getFeeStructureByStudentEmail(String email);
 
     public abstract Set<CourseFeeStructureDto> getAllCourseFeeStructures();
 
-    public abstract CourseFeeStructureDto partialUpdateCourseFeeStructureById(UUID courseFeeStructureI, CourseFeeStructureDto courseFeeStructureDto);
+    public abstract CourseFeeStructureDto updateFeeStructureByStudentEmail(String email, CourseFeeStructureDto dto);
 
-    CourseFeeStructureDto updateCourseFeeStructureById(UUID courseFeeStructureId, CourseFeeStructureDto courseFeeStructureDto);
-
-    public abstract CourseFeeStructureDto deleteCourseFeeStructureById(UUID courseFeeStructureId);
+    public abstract  void deleteFeeStructureByStudentEmail(String email);
 }

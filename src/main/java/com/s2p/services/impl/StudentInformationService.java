@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static com.s2p.repository.specifications.StudentSpecifications.*;
+import static java.lang.ScopedValue.where;
+
 
 @Service
 public class StudentInformationService implements IStudentInformationService
@@ -44,16 +47,17 @@ public class StudentInformationService implements IStudentInformationService
     }
 
     @Override
-    public StudentInformationDto getStudentInformationById(UUID studentId)
-    {
-        Optional<StudentInformation> optionalStudent = studentInformationRepository.findById(studentId);
+    public Optional<StudentInformationDto> getStudentByEmail(String email) {
+        Optional<StudentInformation> studentOpt = studentInformationRepository.findByEmail(email);
 
-        if (optionalStudent.isEmpty()) {
-            throw new ResourceNotFoundException("Student", "id", studentId.toString());
+        if (studentOpt.isPresent()) {
+            StudentInformationDto dto = studentInformationUtility.toStudentInformationDto(studentOpt.get());
+            return Optional.of(dto);
         }
 
-        return studentInformationUtility.toStudentInformationDto(optionalStudent.get());
+        return Optional.empty();
     }
+
 
     @Override
     public Set<StudentInformationDto> getAllStudents()
@@ -68,63 +72,48 @@ public class StudentInformationService implements IStudentInformationService
         return result;
     }
 
-//    @Override
-//    public Set<StudentInformationDto> getAllStudentsByAdmissionDate(LocalDate admissionDate)
-//    {
-//        List<StudentInformation> students = studentInformationRepository.findByAdmissionDate(admissionDate);
-//        Set<StudentInformationDto> result = new HashSet<>();
-//
-//        for (StudentInformation student : students) {
-//            result.add(StudentInformationUtility.toStudentInformationDto(student));
-//        }
-//
-//        return result;
-//    }
-
     @Override
-    public StudentInformationDto partialUpdateStudentInformationById(UUID studentId) {
-        return null;
+    public StudentInformationDto updateStudentByEmail(String email, StudentInformationDto studentInformationDto)
+    {
+        Optional<StudentInformation> existingStudentOpt = studentInformationRepository.findByEmail(email);
+
+        if (existingStudentOpt.isEmpty()) {
+            throw new RuntimeException("Student not found with email: " + email);
+        }
+
+        StudentInformation existingStudent = existingStudentOpt.get();
+
+        existingStudent.setFirstName(studentInformationDto.getFirstName());
+        existingStudent.setLastName(studentInformationDto.getLastName());
+        existingStudent.setCollegeName(studentInformationDto.getCollegeName());
+        existingStudent.setDepartName(studentInformationDto.getDepartName());
+        existingStudent.setSemester(studentInformationDto.getSemester());
+        existingStudent.setPassingYear(studentInformationDto.getPassingYear());
+        existingStudent.setIsGraduated(studentInformationDto.getIsGraduated());
+        existingStudent.setIsAdmitted(studentInformationDto.getIsAdmitted());
+        existingStudent.setIsDiscontinued(studentInformationDto.getIsDiscontinued());
+        existingStudent.setReasonOfDiscontinue(studentInformationDto.getReasonOfDiscontinue());
+        existingStudent.setEnquiry(studentInformationDto.getEnquiry());
+        existingStudent.setBatches(studentInformationDto.getBatches());
+        existingStudent.setCourses(studentInformationDto.getCourses());
+        existingStudent.setCourseFeeStructure(studentInformationDto.getCourseFeeStructure());
+
+        StudentInformation updatedEntity = studentInformationRepository.save(existingStudent);
+        return studentInformationUtility.toStudentInformationDto(updatedEntity);
     }
 
-
     @Override
-    public StudentInformationDto updateStudentInformationById(UUID studentId, StudentInformationDto studentInformationDto) {
-        Optional<StudentInformation> optionalStudent = studentInformationRepository.findById(studentId);
+    public void deleteStudentByEmail(String email) {
+        Optional<StudentInformation> existingStudentOpt = studentInformationRepository.findByEmail(email);
 
-        if (optionalStudent.isEmpty()) {
-            throw new ResourceNotFoundException("Student", "id", studentId.toString());
+        if (!existingStudentOpt.isPresent()) {
+            throw new RuntimeException("Student not found with email: " + email);
         }
 
-        StudentInformation existingStudent = optionalStudent.get();
-
-//        existingStudent.setFirstName(studentInformationDto.getFirstName());
-//        existingStudent.setLastName(studentInformationDto.getLastName());
-//        existingStudent.setEmail(studentInformationDto.getEmail());
-//        existingStudent.setCollegeName(studentInformationDto.getCollegeName());
-//        existingStudent.setDepartName(studentInformationDto.getDegreeName());
-//        existingStudent.setPassingYear(studentInformationDto.getPassingYear());
-//        existingStudent.setIsGraduated(studentInformationDto.getIsGraduated());
-          existingStudent = studentInformationUtility.toStudentInformationEntity(studentInformationDto);
-
-        StudentInformation updatedStudent = studentInformationRepository.save(existingStudent);
-        return studentInformationUtility.toStudentInformationDto(updatedStudent);
-        }
-
-    @Override
-    public StudentInformationDto deleteStudentInformationById(UUID studentId) {
-         Optional<StudentInformation> optionalStudent = studentInformationRepository.findById(studentId);
-
-        if (optionalStudent.isEmpty()) {
-            throw new ResourceNotFoundException("Student", "id", studentId.toString());
-        }
-
-        StudentInformation student = optionalStudent.get();
-        studentInformationRepository.delete(student);
-
-        return studentInformationUtility.toStudentInformationDto(student);
+        studentInformationRepository.delete(existingStudentOpt.get());
     }
 
-
+    @Override
     public List<StudentInformationDto> searchStudents(
             String firstName,
             String lastName,
@@ -136,9 +125,9 @@ public class StudentInformationService implements IStudentInformationService
             Boolean isGraduated) {
 
         Specification<StudentInformation> spec = Specification.anyOf(
-                StudentSpecifications.hasFirstName(firstName),
-                StudentSpecifications.hasLastName(lastName),
-                StudentSpecifications.hasEmail(email),
+                hasFirstName(firstName),
+                hasLastName(lastName),
+                hasEmail(email),
                 StudentSpecifications.hasCollegeName(collegeName),
                 StudentSpecifications.hasDegreeName(degreeName),
                 StudentSpecifications.hasSemester(semester),

@@ -48,6 +48,10 @@ import java.util.UUID;
 
         private Boolean isAdmitted;
 
+        private Boolean isDiscontinued;
+
+        private String reasonOfDiscontinue;
+
         private Enquiry enquiry;
 
         private Set<Batch> batches = new HashSet<>();

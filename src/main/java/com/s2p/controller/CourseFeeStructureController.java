@@ -5,6 +5,8 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.CourseFeeStructureDto;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.CourseFeeStructureService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,16 +35,19 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Get by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> getCourseFeeStructureById(@PathVariable("id") UUID courseFeeStructureId) {
-        CourseFeeStructureDto dto = courseFeeStructureService.getCourseFeeStructureById(courseFeeStructureId);
+    // Get fee structure by course name
+    @GetMapping("/course/{courseName}")
+    public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> getFeeByCourseName(
+            @PathVariable String courseName) {
+
+        CourseFeeStructureDto dto = courseFeeStructureService.getFeeStructureByCourseName(courseName);
 
         ApiResponseDto<CourseFeeStructureDto> response = new ApiResponseDto<>(
                 EApiResponseMessage.DATA_FOUND.getMessage(),
                 EOperationStatus.RESULT_SUCCESS,
                 dto
         );
+
         return ResponseEntity.ok(response);
     }
 
@@ -59,31 +64,52 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Update
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> updateCourseFeeStructure(
-            @PathVariable("id") UUID courseFeeStructureId,
-            @RequestBody CourseFeeStructureDto dto) {
-        CourseFeeStructureDto updated = courseFeeStructureService.updateCourseFeeStructureById(courseFeeStructureId, dto);
+    // Get fee structure by student email
+    @GetMapping("/student")
+    public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> getFeeByStudentEmail(
+            @RequestParam @Email(message = "Invalid email format") String email) {
+
+        CourseFeeStructureDto dto = courseFeeStructureService.getFeeStructureByStudentEmail(email);
+
+        ApiResponseDto<CourseFeeStructureDto> response = new ApiResponseDto<>(
+                EApiResponseMessage.DATA_FOUND.getMessage(),
+                EOperationStatus.RESULT_SUCCESS,
+                dto
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    // Update fee structure by student email
+    @PutMapping("/student")
+    public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> updateFeeByStudentEmail(
+            @RequestParam @Email(message = "Invalid email format") String email,
+            @Valid @RequestBody CourseFeeStructureDto dto) {
+
+        CourseFeeStructureDto updated = courseFeeStructureService.updateFeeStructureByStudentEmail(email, dto);
 
         ApiResponseDto<CourseFeeStructureDto> response = new ApiResponseDto<>(
                 EApiResponseMessage.DATA_UPDATED.getMessage(),
                 EOperationStatus.RESULT_SUCCESS,
                 updated
         );
+
         return ResponseEntity.ok(response);
     }
 
-    // Delete
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> deleteCourseFeeStructure(@PathVariable("id") UUID courseFeeStructureId) {
-        CourseFeeStructureDto deleted = courseFeeStructureService.deleteCourseFeeStructureById(courseFeeStructureId);
+    // Delete fee structure by student email
+    @DeleteMapping("/student")
+    public ResponseEntity<ApiResponseDto<String>> deleteFeeByStudentEmail(
+            @RequestParam @Email(message = "Invalid email format") String email) {
 
-        ApiResponseDto<CourseFeeStructureDto> response = new ApiResponseDto<>(
+        courseFeeStructureService.deleteFeeStructureByStudentEmail(email);
+
+        ApiResponseDto<String> response = new ApiResponseDto<>(
                 EApiResponseMessage.DATA_DELETED.getMessage(),
                 EOperationStatus.RESULT_SUCCESS,
-                deleted
+                null
         );
+
         return ResponseEntity.ok(response);
     }
 }

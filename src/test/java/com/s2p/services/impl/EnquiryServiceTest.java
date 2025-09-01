@@ -5,7 +5,6 @@ import com.s2p.model.Enquiry;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.EnquiryRepository;
 import com.s2p.util.EnquiryUtility;
-import com.s2p.util.EnquiryUtilityImpl;
 import io.qameta.allure.*;
 import io.qameta.allure.junit5.AllureJunit5;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +17,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.util.UUID;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(AllureJunit5.class)
 @Epic("Enquiry Module")   // High-level grouping
@@ -89,7 +87,7 @@ class EnquiryServiceTest {
     @Story("Enquiry Management")
     @DisplayName("createEnquiry() — empty test")
     @Description("Placeholder test for EnquiryService.createEnquiry(EnquiryDto)")
-    void createEnquiry_success() {
+    void testCreateEnquiry_success() {
         // Mocking The Behaviour
         when(enquiryRepository.save(any(Enquiry.class))).thenReturn(enquiry2);
 
@@ -106,23 +104,59 @@ class EnquiryServiceTest {
     @Story("Enquiry Management")
     @DisplayName("getEnquiryByEmail() — empty test")
     @Description("Placeholder test for EnquiryService.getEnquiryByEmail(String)")
-    void getEnquiryByEmail_empty() { }
+    void testGetEnquiryByEmail_success()
+    {
+    }
 
     @Test
     @Story("Enquiry Management")
     @DisplayName("getAllEnquiries() — empty test")
     @Description("Placeholder test for EnquiryService.getAllEnquiries()")
-    void getAllEnquiries_empty() { }
+    void testGetAllEnquiries_success()
+    {
+        when(enquiryRepository.findAll()).thenReturn(Arrays.asList(enquiry1,enquiry2));
+
+        Set<EnquiryDto> enquiries = enquiryService.getAllEnquiries();
+
+        assertEquals(2,enquiries.size());
+        verify(enquiryRepository, times(1)).findAll();
+    }
 
     @Test
     @Story("Enquiry Management")
     @DisplayName("updateEnquiryByEmail() — empty test")
     @Description("Placeholder test for EnquiryService.updateEnquiryByEmail(String, EnquiryDto)")
-    void updateEnquiryByEmail_empty() { }
+    void testUpdateEnquiryByEmail_success()
+    {
+//        when(enquiryRepository.findAll()).thenReturn(Arrays.asList(enquiry1, enquiry2));
+//        when(enquiryRepository.save(any(Enquiry.class)))
+//                .thenAnswer(invocation -> invocation.getArgument(0));
+//
+//        EnquiryDto updatedEnquiryDto = new EnquiryDto();
+//        updatedEnquiryDto.setEnquiryDate(LocalDate.of(2024, 12, 12));
+//
+//        Optional<EnquiryDto> result = enquiryService.updateEnquiryByStudentEmail(
+//                "john.doe@example.com", updatedEnquiryDto);
+//
+//        assertTrue(result.isPresent(), "Expected enquiry to be updated but got empty result");
+//        assertEquals(LocalDate.of(2024, 12, 12), result.get().getEnquiryDate());
+    }
 
     @Test
     @Story("Enquiry Management")
     @DisplayName("deleteEnquiryByEmail() — empty test")
     @Description("Placeholder test for EnquiryService.deleteEnquiryByEmail(String)")
-    void deleteEnquiryByEmail_empty() { }
+    void testDeleteEnquiryByEmail_success() {
+
+        String email = "jane.smith@example.com";
+        when(enquiryRepository.existsByStudentInformation_Email(email)).thenReturn(true);
+
+        // Act
+        boolean deleted = enquiryService.deleteEnquiryByStudentEmail(email);
+
+        // Assert
+        assertTrue(deleted, "Expected enquiry to be deleted");
+        verify(enquiryRepository, times(1)).deleteByStudentInformation_Email(email);
+
+    }
 }
