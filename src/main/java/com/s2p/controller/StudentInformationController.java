@@ -6,6 +6,8 @@ import com.s2p.dto.StudentInformationDto;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.StudentInformationService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -68,12 +70,36 @@ public class StudentInformationController
         return ResponseEntity.ok(response);
     }
 
-    // GET  http://localhost:8080/api/v1/studentInformation/get/{email}
-    @GetMapping("/get/{email}")
-    public ResponseEntity<Optional<StudentInformationDto>> getStudentByEmail(
-            @PathVariable("email") String email) {
+    @GetMapping("/{email}")
+    public ResponseEntity<ApiResponseDto<StudentInformationDto>> getStudentByEmail(
+            @PathVariable @NotBlank @Email String email) {
 
-        Optional<StudentInformationDto> response = studentInformationService.getStudentByEmail(email);
+        Optional<StudentInformationDto> studentOpt = studentInformationService.getStudentByEmail(email);
+
+        if (studentOpt.isEmpty()) {
+            throw new RuntimeException("Student not found with email: " + email);
+        }
+
+        ApiResponseDto<StudentInformationDto> response = new ApiResponseDto<>();
+        response.setStatus(EOperationStatus.RESULT_SUCCESS);
+        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
+        response.setData(studentOpt.get());
+
+        return ResponseEntity.ok(response);
+    }
+
+    // --- DELETE STUDENT BY EMAIL ---
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<ApiResponseDto<Void>> deleteStudent(
+            @PathVariable @NotBlank @Email String email) {
+
+        studentInformationService.deleteStudentByEmail(email);
+
+        ApiResponseDto<Void> response = new ApiResponseDto<>();
+        response.setStatus(EOperationStatus.RESULT_SUCCESS);
+        response.setMessage(EApiResponseMessage.DATA_DELETED.getMessage());
+        response.setData(null);
+
         return ResponseEntity.ok(response);
     }
 
