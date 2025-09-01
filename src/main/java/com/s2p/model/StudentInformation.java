@@ -52,6 +52,9 @@ public class StudentInformation extends BaseEntity
 
     private Boolean isAdmitted;
 
+    private Boolean isDiscontinued;
+
+    private String reasonOfDiscontinue;
 
     @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.PERSIST,optional = true)
     @JoinColumn(name = "enquiry_id",referencedColumnName = "enquiryId")

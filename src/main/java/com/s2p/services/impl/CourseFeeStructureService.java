@@ -28,15 +28,27 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
     }
 
     @Override
-    public CourseFeeStructureDto getCourseFeeStructureById(UUID courseFeeStructureId) {
-        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findById(courseFeeStructureId);
+    public CourseFeeStructureDto getFeeStructureByCourseName(String courseName) {
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findByCourse_CourseName(courseName);
 
         if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
+            throw new ResourceNotFoundException("Fee structure not found for course: " + courseName);
         }
 
         return courseFeesStructureUtility.toCourseFeeStructureDto(optional.get());
     }
+
+    @Override
+    public CourseFeeStructureDto getFeeStructureByStudentEmail(String email) {
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findByCourse_CourseName(email);
+
+        if (optional.isEmpty()) {
+            throw new ResourceNotFoundException("Fee structure not found for course: " + email);
+        }
+
+        return courseFeesStructureUtility.toCourseFeeStructureDto(optional.get());
+    }
+
 
     @Override
     public Set<CourseFeeStructureDto> getAllCourseFeeStructures() {
@@ -50,36 +62,34 @@ public class CourseFeeStructureService implements ICourseFeeStructureService
     }
 
     @Override
-    public CourseFeeStructureDto partialUpdateCourseFeeStructureById(UUID courseFeeStructureI, CourseFeeStructureDto courseFeeStructureDto) {
-        return null;
-    }
-
-    @Override
-    public CourseFeeStructureDto updateCourseFeeStructureById(UUID courseFeeStructureId, CourseFeeStructureDto courseFeeStructureDto)
-    {
-        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findById(courseFeeStructureId);
+    public CourseFeeStructureDto updateFeeStructureByStudentEmail(String email, CourseFeeStructureDto dto) {
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findByStudentUsers_Email(email);
 
         if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
+            throw new ResourceNotFoundException("Fee structure not found for student email: " + email);
         }
 
         CourseFeeStructure existing = optional.get();
-//        existing.setAmount(courseFeeStructureDto.getAmount());
+        existing.setDownPayment(dto.getDownPayment());
+        existing.setRemainingAmount(dto.getRemainingAmount());
+        existing.setIsDiscountGiven(dto.getIsDiscountGiven());
+        existing.setIsDiscountFactor(dto.getIsDiscountFactor());
+        existing.setNInstallments(dto.getNInstallments());
+        existing.setRemainingInstallments(dto.getRemainingInstallments());
 
         CourseFeeStructure updated = courseFeeStructureRepository.save(existing);
         return courseFeesStructureUtility.toCourseFeeStructureDto(updated);
     }
 
+
     @Override
-    public CourseFeeStructureDto deleteCourseFeeStructureById(UUID courseFeeStructureId) {
-        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findById(courseFeeStructureId);
+    public void deleteFeeStructureByStudentEmail(String email) {
+        Optional<CourseFeeStructure> optional = courseFeeStructureRepository.findByStudentUsers_Email(email);
 
         if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("CourseFeeStructure", "id", courseFeeStructureId.toString());
+            throw new ResourceNotFoundException("Fee structure not found for student email: " + email);
         }
 
-        CourseFeeStructure entity = optional.get();
-        courseFeeStructureRepository.delete(entity);
-        return courseFeesStructureUtility.toCourseFeeStructureDto(entity);
+        courseFeeStructureRepository.delete(optional.get());
     }
 }

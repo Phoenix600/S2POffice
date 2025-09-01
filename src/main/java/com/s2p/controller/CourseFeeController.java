@@ -2,8 +2,8 @@ package com.s2p.controller;
 
 import com.s2p.constants.EOperationStatus;
 import com.s2p.dto.ApiResponseDto;
-import com.s2p.dto.CourseDto;
 import com.s2p.dto.CourseFeeDto;
+import com.s2p.master.model.AcademicYear;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.CourseFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/courseFee")
@@ -22,7 +21,7 @@ public class CourseFeeController
     CourseFeeService courseFeeService;
 
     // Create Course Fee
-    @PostMapping
+    @PostMapping("create-courseFees")
     public ResponseEntity<ApiResponseDto<CourseFeeDto>> createCourseFee(@RequestBody CourseFeeDto courseFeeDto) {
         CourseFeeDto created = courseFeeService.createCourseFee(courseFeeDto);
 
@@ -34,22 +33,29 @@ public class CourseFeeController
         return ResponseEntity.ok(response);
     }
 
-    // Get by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeDto>> getCourseFeeById(@PathVariable("id") UUID id) {
-        CourseFeeDto dto = courseFeeService.getCourseFeeById(id);
-
-        ApiResponseDto<CourseFeeDto> response = new ApiResponseDto<>(
+    @GetMapping("/course/{courseName}")
+    public ApiResponseDto<List<CourseFeeDto>> getFeesByCourseName(@PathVariable String courseName) {
+        List<CourseFeeDto> fees = courseFeeService.getFeesByCourseName(courseName);
+        return new ApiResponseDto<>(
                 EApiResponseMessage.DATA_FOUND.getMessage(),
                 EOperationStatus.RESULT_SUCCESS,
-                dto
+                fees
         );
-        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/year/{academicYearName}")
+    public ApiResponseDto<List<CourseFeeDto>> getFeesByAcademicYear(@PathVariable AcademicYear academicYear) {
+        List<CourseFeeDto> fees = courseFeeService.getFeesByAcademicYear(academicYear);
+        return new ApiResponseDto<>(
+                EApiResponseMessage.DATA_FOUND.getMessage(),
+                EOperationStatus.RESULT_SUCCESS,
+                fees
+        );
     }
 
     // Get all
-    @GetMapping
-    public ResponseEntity<ApiResponseDto<Set<CourseFeeDto>>> getAllCourses() {
+    @GetMapping("/getAllCourseFees")
+    public ResponseEntity<ApiResponseDto<Set<CourseFeeDto>>> getAllCourseFees() {
         Set<CourseFeeDto> all = courseFeeService.getAllCourses();
 
         ApiResponseDto<Set<CourseFeeDto>> response = new ApiResponseDto<>(
@@ -60,33 +66,28 @@ public class CourseFeeController
         return ResponseEntity.ok(response);
     }
 
-    // Update
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeDto>> updateCourseFee(
-            @PathVariable("id") UUID id,
-            @RequestBody CourseFeeDto courseFeeDto
-    ) {
-        CourseFeeDto updated = courseFeeService.updateCourseFeeById(id, courseFeeDto);
-
-        ApiResponseDto<CourseFeeDto> response = new ApiResponseDto<>(
+    //Update
+    @PutMapping("/update/course/{courseName}")
+    public ApiResponseDto<CourseFeeDto> updateCourseFeeByCourseName(@PathVariable String courseName,
+                                                                    @RequestBody CourseFeeDto dto)
+    {
+        CourseFeeDto updated = courseFeeService.updateCourseFeeByCourseName(courseName, dto);
+        return new ApiResponseDto<>(
                 EApiResponseMessage.DATA_UPDATED.getMessage(),
                 EOperationStatus.RESULT_SUCCESS,
                 updated
         );
-        return ResponseEntity.ok(response);
     }
 
     // Delete
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CourseFeeDto>> deleteCourseFee(@PathVariable("id") UUID id) {
-        CourseFeeDto deleted = courseFeeService.deleteCourseFeeById(id);
-
-        ApiResponseDto<CourseFeeDto> response = new ApiResponseDto<>(
+    @DeleteMapping("/delete/course/{courseName}")
+    public ApiResponseDto<String> deleteCourseFeesByCourseName(@PathVariable String courseName) {
+        String message = courseFeeService.deleteCourseFeesByCourseName(courseName);
+        return new ApiResponseDto<>(
                 EApiResponseMessage.DATA_DELETED.getMessage(),
                 EOperationStatus.RESULT_SUCCESS,
-                deleted
+                message
         );
-        return ResponseEntity.ok(response);
     }
 
 

@@ -12,8 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/studentInformation")
@@ -38,18 +38,6 @@ public class StudentInformationController
         return ResponseEntity.ok(response);
     }
 
-    // Get Student by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<StudentInformationDto>> getStudentById(@PathVariable("id") UUID studentId) {
-        StudentInformationDto student = studentInformationService.getStudentInformationById(studentId);
-
-        ApiResponseDto<StudentInformationDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
-        response.setData(student);
-
-        return ResponseEntity.ok(response);
-    }
 
     //  Get All Students
     @GetMapping
@@ -64,15 +52,13 @@ public class StudentInformationController
         return ResponseEntity.ok(response);
     }
 
-
-    //  Update Student by ID
-    @PutMapping("/{id}")
+    // PUT  http://localhost:8080/api/v1/studentInformation/update/{email}
+    @PutMapping("/update/{email}")
     public ResponseEntity<ApiResponseDto<StudentInformationDto>> updateStudent(
-            @PathVariable("id") UUID id,
+            @PathVariable("email") String email,
             @Valid @RequestBody StudentInformationDto studentInformationDto) {
 
-        StudentInformationDto updatedStudent =
-                studentInformationService.updateStudentInformationById(id, studentInformationDto);
+        StudentInformationDto updatedStudent = studentInformationService.updateStudentByEmail(email, studentInformationDto);
 
         ApiResponseDto<StudentInformationDto> response = new ApiResponseDto<>();
         response.setStatus(EOperationStatus.RESULT_SUCCESS);
@@ -82,19 +68,16 @@ public class StudentInformationController
         return ResponseEntity.ok(response);
     }
 
+    // GET  http://localhost:8080/api/v1/studentInformation/get/{email}
+    @GetMapping("/get/{email}")
+    public ResponseEntity<Optional<StudentInformationDto>> getStudentByEmail(
+            @PathVariable("email") String email) {
 
-    // Delete Student by ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<String>> deleteStudent(@PathVariable("id") UUID id) {
-        studentInformationService.deleteStudentInformationById(id);
-
-        ApiResponseDto<String> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_DELETED.getMessage());
-        response.setData("Student deleted successfully");
-
+        Optional<StudentInformationDto> response = studentInformationService.getStudentByEmail(email);
         return ResponseEntity.ok(response);
     }
+
+
 
     @GetMapping("/search")
     public ResponseEntity<List<StudentInformationDto>> searchStudents(

@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,21 +37,26 @@ public class EnquiryController
         return ResponseEntity.ok(response);
     }
 
-    // Get Enquiry by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<EnquiryDto>> getEnquiryById(@PathVariable("id") UUID id) {
-        EnquiryDto enquiry = enquiryService.getEnquiryById(id);
+    @GetMapping("/date/{date}")
+    public ResponseEntity<ApiResponseDto<List<EnquiryDto>>> getEnquiriesByDate(@PathVariable("date") String date) {
+        LocalDate enquiryDate = LocalDate.parse(date);
+        List<EnquiryDto> enquiries = enquiryService.getEnquiriesByDate(enquiryDate);
+        return ResponseEntity.ok(new ApiResponseDto<>("Enquiries fetched successfully", EOperationStatus.RESULT_SUCCESS, enquiries));
+    }
 
-        ApiResponseDto<EnquiryDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_FOUND.getMessage());
-        response.setData(enquiry);
 
-        return ResponseEntity.ok(response);
+    @GetMapping("/student/{email}")
+    public ResponseEntity<ApiResponseDto<EnquiryDto>> getEnquiryByStudentEmail(@PathVariable("email") String email) {
+        Optional<EnquiryDto> enquiryOpt = enquiryService.getEnquiryByStudentEmail(email);
+        if (enquiryOpt.isPresent()) {
+            return ResponseEntity.ok(new ApiResponseDto<>("Enquiry fetched successfully", EOperationStatus.RESULT_SUCCESS, enquiryOpt.get()));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponseDto<>("Enquiry not found", EOperationStatus.RESULT_FAILURE, null));
+        }
     }
 
     // Get all Enquiries
-    @GetMapping
+    @GetMapping("/getAllEnquiries")
     public ResponseEntity<ApiResponseDto<Set<EnquiryDto>>> getAllEnquiries() {
         Set<EnquiryDto> enquiries = enquiryService.getAllEnquiries();
 
@@ -60,30 +68,23 @@ public class EnquiryController
         return ResponseEntity.ok(response);
     }
 
-    // Update Enquiry (Full Update)
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<EnquiryDto>> updateEnquiry(@PathVariable("id") UUID enquiryId) {
-        EnquiryDto updated = enquiryService.updateEnquiryById(enquiryId);
-
-        ApiResponseDto<EnquiryDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_UPDATED.getMessage());
-        response.setData(updated);
-
-        return ResponseEntity.ok(response);
+    @PutMapping("/update/{email}")
+    public ResponseEntity<ApiResponseDto<EnquiryDto>> updateEnquiry(@PathVariable("email") String email, @RequestBody EnquiryDto enquiryDto) {
+        Optional<EnquiryDto> updatedOpt = enquiryService.updateEnquiryByStudentEmail(email, enquiryDto);
+        if (updatedOpt.isPresent()) {
+            return ResponseEntity.ok(new ApiResponseDto<>("Enquiry updated successfully", EOperationStatus.RESULT_SUCCESS, updatedOpt.get()));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponseDto<>("Enquiry not found", EOperationStatus.RESULT_FAILURE, null));
+        }
     }
 
-
-    // Delete Enquiry
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<String>> deleteEnquiry(@PathVariable("id") UUID id) {
-        enquiryService.deleteEnquiryById(id);
-
-        ApiResponseDto<String> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_DELETED.getMessage());
-        response.setData("Enquiry deleted successfully");
-
-        return ResponseEntity.ok(response);
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<ApiResponseDto<Void>> deleteEnquiry(@PathVariable("email") String email) {
+        boolean deleted = enquiryService.deleteEnquiryByStudentEmail(email);
+        if (deleted) {
+            return ResponseEntity.ok(new ApiResponseDto<>("Enquiry deleted successfully", EOperationStatus.RESULT_SUCCESS, null));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponseDto<>("Enquiry not found", EOperationStatus.RESULT_FAILURE, null));
+        }
     }
 }

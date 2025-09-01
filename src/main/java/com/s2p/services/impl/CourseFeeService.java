@@ -2,6 +2,7 @@ package com.s2p.services.impl;
 
 import com.s2p.dto.CourseFeeDto;
 import com.s2p.exceptions.ResourceNotFoundException;
+import com.s2p.master.model.AcademicYear;
 import com.s2p.model.CourseFees;
 import com.s2p.repository.CourseFeeRepository;
 import com.s2p.services.ICourseFeeService;
@@ -21,26 +22,45 @@ public class CourseFeeService implements ICourseFeeService
     CourseFeesUtility courseFeesUtility;
 
     @Override
-    public CourseFeeDto createCourseFee(CourseFeeDto courseFeeDto) {
+    public CourseFeeDto createCourseFee(CourseFeeDto courseFeeDto)
+    {
         CourseFees courseFee = courseFeesUtility.toCourseFeeEntity(courseFeeDto);
         CourseFees saved = courseFeeRepository.save(courseFee);
         return courseFeesUtility.toCourseFeeDto(saved);
     }
 
     @Override
-    public CourseFeeDto getCourseFeeById(UUID courseFeeId)
+    public List<CourseFeeDto> getFeesByCourseName(String courseName)
     {
-        Optional<CourseFees> optionalCourseFee = courseFeeRepository.findById(courseFeeId);
-
-        if (optionalCourseFee.isEmpty()) {
-            throw new ResourceNotFoundException("CourseFee", "id", courseFeeId.toString());
+        List<CourseFees> fees = courseFeeRepository.findByCourse_CourseName(courseName);
+        if (fees.isEmpty()) {
+            throw new ResourceNotFoundException("No fees found for course: " + courseName);
         }
-
-        return courseFeesUtility.toCourseFeeDto(optionalCourseFee.get());
+        List<CourseFeeDto> dtos = new ArrayList<>();
+        for (CourseFees f : fees) {
+            dtos.add(courseFeesUtility.toCourseFeeDto(f));
+        }
+        return dtos;
     }
 
     @Override
-    public Set<CourseFeeDto> getAllCourses() {
+    public List<CourseFeeDto> getFeesByAcademicYear(AcademicYear academicYear)
+    {
+        List<CourseFees> fees = courseFeeRepository.findByAcademicYear(academicYear);
+        if (fees.isEmpty()) {
+            throw new ResourceNotFoundException("No fees found for academic year: " + academicYear);
+        }
+        List<CourseFeeDto> dtos = new ArrayList<>();
+        for (CourseFees f : fees) {
+            dtos.add(courseFeesUtility.toCourseFeeDto(f));
+        }
+        return dtos;
+    }
+
+
+    @Override
+    public Set<CourseFeeDto> getAllCourses()
+    {
         List<CourseFees> allFees = courseFeeRepository.findAll();
         Set<CourseFeeDto> result = new HashSet<>();
 
@@ -51,37 +71,30 @@ public class CourseFeeService implements ICourseFeeService
     }
 
     @Override
-    public CourseFeeDto partialUpdateCourseFeeById(UUID courseFeeId) {
-        return null;
-    }
-
-    @Override
-    public CourseFeeDto updateCourseFeeById(UUID courseFeeId, CourseFeeDto courseFeeDto) {
-        Optional<CourseFees> optionalCourseFee = courseFeeRepository.findById(courseFeeId);
-
-        if (optionalCourseFee.isEmpty()) {
-            throw new ResourceNotFoundException("CourseFee", "id", courseFeeId.toString());
+    public CourseFeeDto updateCourseFeeByCourseName(String courseName, CourseFeeDto dto)
+    {
+        List<CourseFees> fees = courseFeeRepository.findByCourse_CourseName(courseName);
+        if (fees.isEmpty()) {
+            throw new ResourceNotFoundException("Cannot update. Course fees not found for course: " + courseName);
         }
 
-        CourseFees existing = optionalCourseFee.get();
-        existing.setCourse(courseFeeDto.getCourse());
-        existing.setCourseFees(courseFeeDto.getCourseFees());
-        existing.setAcademicYear(courseFeeDto.getAcademicYear());
+        CourseFees fee = fees.get(0);
+        fee.setCourseFees(dto.getCourseFees());
+        fee.setAcademicYear(dto.getAcademicYear());
+        fee.setCourse(dto.getCourse());
 
-        CourseFees updated = courseFeeRepository.save(existing);
+        CourseFees updated = courseFeeRepository.save(fee);
         return courseFeesUtility.toCourseFeeDto(updated);
     }
 
     @Override
-    public CourseFeeDto deleteCourseFeeById(UUID courseFeeId) {
-        Optional<CourseFees> optionalCourseFee = courseFeeRepository.findById(courseFeeId);
-
-        if (optionalCourseFee.isEmpty()) {
-            throw new ResourceNotFoundException("CourseFee", "id", courseFeeId.toString());
+    public String deleteCourseFeesByCourseName(String courseName)
+    {
+        List<CourseFees> fees = courseFeeRepository.findByCourse_CourseName(courseName);
+        if (fees.isEmpty()) {
+            throw new ResourceNotFoundException("Cannot delete. No fees found for course: " + courseName);
         }
-
-        CourseFees courseFee = optionalCourseFee.get();
-        courseFeeRepository.delete(courseFee);
-        return courseFeesUtility.toCourseFeeDto(courseFee);
+        courseFeeRepository.deleteAll(fees);
+        return "Course fees deleted successfully for course: " + courseName;
     }
 }
