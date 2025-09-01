@@ -1,6 +1,7 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.EnquiryDto;
+import com.s2p.model.Course;
 import com.s2p.model.Enquiry;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.EnquiryRepository;
@@ -106,6 +107,21 @@ class EnquiryServiceTest {
     @Description("Placeholder test for EnquiryService.getEnquiryByEmail(String)")
     void testGetEnquiryByEmail_success()
     {
+        String email = student1.getEmail();
+        Optional<Enquiry> optionalEnquiry = Optional.of(enquiry1);
+
+        when(enquiryRepository.findByStudentInformation_Email(email)).thenReturn(optionalEnquiry);
+
+        // Act
+        Optional<EnquiryDto> result = enquiryService.getEnquiryByStudentEmail(email);
+
+        // Assert
+        assertTrue(result.isPresent(), "Expected enquiry to be found");
+
+        EnquiryDto dto = result.get();
+        assertEquals(student1.getEmail(), dto.getStudentInformation().getEmail(), "Student email should match");
+
+        verify(enquiryRepository, times(1)).findByStudentInformation_Email(email);
     }
 
     @Test
@@ -128,18 +144,31 @@ class EnquiryServiceTest {
     @Description("Placeholder test for EnquiryService.updateEnquiryByEmail(String, EnquiryDto)")
     void testUpdateEnquiryByEmail_success()
     {
-//        when(enquiryRepository.findAll()).thenReturn(Arrays.asList(enquiry1, enquiry2));
-//        when(enquiryRepository.save(any(Enquiry.class)))
-//                .thenAnswer(invocation -> invocation.getArgument(0));
-//
-//        EnquiryDto updatedEnquiryDto = new EnquiryDto();
-//        updatedEnquiryDto.setEnquiryDate(LocalDate.of(2024, 12, 12));
-//
-//        Optional<EnquiryDto> result = enquiryService.updateEnquiryByStudentEmail(
-//                "john.doe@example.com", updatedEnquiryDto);
-//
-//        assertTrue(result.isPresent(), "Expected enquiry to be updated but got empty result");
-//        assertEquals(LocalDate.of(2024, 12, 12), result.get().getEnquiryDate());
+        String email = student1.getEmail();
+        Optional<Enquiry> optionalEnquiry = Optional.of(enquiry1);
+
+        when(enquiryRepository.findByStudentInformation_Email(email)).thenReturn(optionalEnquiry);
+
+        EnquiryDto updateDto = new EnquiryDto();
+        updateDto.setEnquiryDate(LocalDate.of(2025, 9, 1));
+        updateDto.setStudentInformation(student2);
+        updateDto.setCourseSet(new HashSet<Course>());
+
+        when(enquiryRepository.save(any(Enquiry.class))).thenReturn(enquiry1);
+
+        // Act
+        Optional<EnquiryDto> result = enquiryService.updateEnquiryByStudentEmail(email, updateDto);
+
+        // Assert
+        assertTrue(result.isPresent(), "Expected enquiry to be updated");
+
+        EnquiryDto updatedDto = result.get();
+        assertEquals(updateDto.getEnquiryDate(), updatedDto.getEnquiryDate(), "Enquiry date should be updated");
+        assertEquals(student2.getEmail(), updatedDto.getStudentInformation().getEmail(), "Student email should be updated");
+
+        verify(enquiryRepository, times(1)).findByStudentInformation_Email(email);
+        verify(enquiryRepository, times(1)).save(any(Enquiry.class));
+
     }
 
     @Test
