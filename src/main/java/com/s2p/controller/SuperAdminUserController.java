@@ -17,6 +17,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+@RestController
+@RequestMapping("/api/v1/superAdminUser")
 public class SuperAdminUserController {
     @Autowired
     SuperAdminUserService superAdminUserService;

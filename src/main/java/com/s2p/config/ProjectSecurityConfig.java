@@ -60,15 +60,27 @@ class ProjectSecurityConfig
 
 
                 http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/v1/admin/**").authenticated()
-                .requestMatchers("/api/v1/attendance/**").authenticated()
+                .requestMatchers("/api/v1/adminUser/**").authenticated()
+                .requestMatchers("/api/v1/admission/**").authenticated()
                 .requestMatchers("/api/v1/batch/**").authenticated()
                 .requestMatchers("/api/v1/course/**").authenticated()
                 .requestMatchers("/api/v1/topic/**").authenticated()
-                .requestMatchers("/api/v1/student/**").authenticated()
-                .requestMatchers("/api/v1/teacher/**").authenticated()
-                .requestMatchers("/api/v1/assessment/**").authenticated()
-                .requestMatchers("/api/v1/public/**").permitAll()
+                .requestMatchers("/api/v1/courseFee/**").authenticated()
+                .requestMatchers("/api/v1/courseFeeInstallmentTransaction/**").authenticated()
+                .requestMatchers("/api/v1/courseFeeStructure/**").authenticated()
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers("/api/v1/enquiry/**").permitAll()
+                .requestMatchers("/api/v1/studentInformation/**").permitAll()
+                .requestMatchers("/api/v1/studentUsers/**").permitAll()
+                .requestMatchers("/api/v1/superAdminUser/**").permitAll()
+                .requestMatchers("/api/v1/teacherUser/**").permitAll()
+                        //MASTER
+                .requestMatchers("/api/v1/academic-years/**").permitAll()
+                .requestMatchers("/api/v1/branches/**").permitAll()
+                .requestMatchers("/api/v1/city/**").permitAll()
+                .requestMatchers("/api/v1/college/**").permitAll()
+                .requestMatchers("/api/v1/country/**").permitAll()
+
                 .requestMatchers("/swagger-ui/index.html#").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                 .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession", "/apiLogin").permitAll());

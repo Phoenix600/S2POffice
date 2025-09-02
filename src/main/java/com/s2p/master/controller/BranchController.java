@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/branches")
+@RequestMapping("/api/v1/branches")
 @RequiredArgsConstructor
 public class BranchController {
 
