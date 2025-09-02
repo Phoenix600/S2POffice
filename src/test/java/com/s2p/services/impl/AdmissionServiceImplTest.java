@@ -6,8 +6,13 @@ import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Admission;
 import com.s2p.repository.AdmissionRepository;
 import com.s2p.util.AdmissionUtility;
+import io.qameta.allure.*;
+import io.qameta.allure.junit5.AllureJunit5;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -21,6 +26,10 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(AllureJunit5.class)
+@Epic("Admission Module")   // High-level grouping
+@Feature("Admission Service")   // Feature under testing
+@Slf4j
 class AdmissionServiceImplTest {
 
     @Mock
@@ -52,7 +61,11 @@ class AdmissionServiceImplTest {
     }
 
     @Test
-    void testCreateAdmission() {
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
+    void testCreateAdmission_success() {
         when(admissionUtility.toAdmissionEntity(admissionDto)).thenReturn(admission);
         when(admissionRepository.save(admission)).thenReturn(admission);
         when(admissionUtility.toAdmissionDto(admission)).thenReturn(admissionDto);
@@ -65,6 +78,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testGetAdmissionByDate_Found() {
         when(admissionRepository.findByAdmissionDate(admissionDate)).thenReturn(Optional.of(admission));
         when(admissionUtility.toAdmissionDto(admission)).thenReturn(admissionDto);
@@ -77,6 +94,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testGetAdmissionByDate_NotFound() {
         when(admissionRepository.findByAdmissionDate(admissionDate)).thenReturn(Optional.empty());
 
@@ -85,6 +106,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testGetAllAdmissions() {
         Admission admission2 = new Admission(UUID.randomUUID(), LocalDate.of(2025, 2, 2));
         AdmissionDto admissionDto2 = new AdmissionDto(admission2.getAdmissionId(), admission2.getAdmissionDate());
@@ -100,6 +125,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testUpdateAdmissionByDate_Found() {
         LocalDate newDate = LocalDate.of(2025, 3, 3);
         AdmissionDto updatedDto = new AdmissionDto(admissionId, newDate);
@@ -116,6 +145,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testUpdateAdmissionByDate_NotFound() {
         when(admissionRepository.findByAdmissionDate(admissionDate)).thenReturn(Optional.empty());
 
@@ -124,6 +157,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testDeleteAdmissionByDate_Found() {
         when(admissionRepository.findByAdmissionDate(admissionDate)).thenReturn(Optional.of(admission));
 
@@ -133,6 +170,10 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    @Story(value = "Create Country")// Describes the user story
+    @DisplayName("testCreateAdmission -success test")
+    @Description("Placeholder test for AdmissionService.testCreateAdimmison ")
+
     void testDeleteAdmissionByDate_NotFound() {
         when(admissionRepository.findByAdmissionDate(admissionDate)).thenReturn(Optional.empty());
 

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 import static com.s2p.repository.specifications.StudentSpecifications.*;
-import static java.lang.ScopedValue.where;
+
 
 
 @Service
