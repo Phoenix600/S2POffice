@@ -81,7 +81,7 @@ class ProjectSecurityConfig
                 .authorizeHttpRequests(auth -> auth
                         // Allow registration without authentication
                         .requestMatchers("api/v1/auth/admin/register").permitAll()
-                        .requestMatchers("api/v1/auth/superAdmin/register").permitAll()
+                        .requestMatchers("api/v1/auth/superAdmin").authenticated()
                         // Allow login endpoint also
 						.requestMatchers("/api/v1/authController/login").permitAll()
 						.requestMatchers("/api/v1/authController/login").permitAll()
