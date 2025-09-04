@@ -7,7 +7,6 @@ import com.s2p.repository.StudentInformationRepository;
 import com.s2p.util.StudentInformationUtility;
 import io.qameta.allure.*;
 import io.qameta.allure.junit5.AllureJunit5;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(AllureJunit5.class)
 @Epic("Student Module")
 @Feature("Student Information Service")
-@Slf4j
 class StudentInformationServiceTest {
 
     @Mock
