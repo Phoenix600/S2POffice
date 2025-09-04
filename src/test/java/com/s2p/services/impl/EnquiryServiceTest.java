@@ -86,7 +86,7 @@ class EnquiryServiceTest {
 
     @Test
     @Story("Enquiry Management")
-    @DisplayName("createEnquiry() — empty test")
+    @DisplayName("createEnquiry() — success test")
     @Description("Placeholder test for EnquiryService.createEnquiry(EnquiryDto)")
     void testCreateEnquiry_success() {
         // Mocking The Behaviour
@@ -103,7 +103,7 @@ class EnquiryServiceTest {
 
     @Test
     @Story("Enquiry Management")
-    @DisplayName("getEnquiryByEmail() — empty test")
+    @DisplayName("getEnquiryByEmail() — success test")
     @Description("Placeholder test for EnquiryService.getEnquiryByEmail(String)")
     void testGetEnquiryByEmail_success()
     {
@@ -126,7 +126,7 @@ class EnquiryServiceTest {
 
     @Test
     @Story("Enquiry Management")
-    @DisplayName("getAllEnquiries() — empty test")
+    @DisplayName("getAllEnquiries() — success test")
     @Description("Placeholder test for EnquiryService.getAllEnquiries()")
     void testGetAllEnquiries_success()
     {
@@ -140,7 +140,7 @@ class EnquiryServiceTest {
 
     @Test
     @Story("Enquiry Management")
-    @DisplayName("updateEnquiryByEmail() — empty test")
+    @DisplayName("updateEnquiryByEmail() — success test")
     @Description("Placeholder test for EnquiryService.updateEnquiryByEmail(String, EnquiryDto)")
     void testUpdateEnquiryByEmail_success()
     {
@@ -173,7 +173,7 @@ class EnquiryServiceTest {
 
     @Test
     @Story("Enquiry Management")
-    @DisplayName("deleteEnquiryByEmail() — empty test")
+    @DisplayName("deleteEnquiryByEmail() — success test")
     @Description("Placeholder test for EnquiryService.deleteEnquiryByEmail(String)")
     void testDeleteEnquiryByEmail_success() {
 

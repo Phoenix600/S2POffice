@@ -22,8 +22,7 @@ public class AdmissionController
     @Autowired
     AdmissionServiceImpl admissionServiceImpl;
 
-    //Done
-    //http://localhost:8080/api/v1/admission/create-admission
+//    POST  http://localhost:8080/api/v1/admission/create-admission
     @PostMapping("/create-admission")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> createAdmission(@RequestBody AdmissionDto admissionDto)
     {
@@ -35,6 +34,7 @@ public class AdmissionController
     }
 
     // Get Admission by ID
+//     GET    http://localhost:8080/api/v1/admission/{admissionDate}
     @GetMapping("/{admissionDate}")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> getByDate(@PathVariable String admissionDate) {
         AdmissionDto admission = admissionServiceImpl.getAdmissionByDate(LocalDate.parse(admissionDate));
@@ -48,6 +48,7 @@ public class AdmissionController
     }
 
     // Get All Admissions
+//     GET  http://localhost:8080/api/v1/admission/getAllAdmissions
     @GetMapping("/getAllAdmissions")
     public ResponseEntity<ApiResponseDto<List<AdmissionDto>>> getAllAdmissions() {
         List<AdmissionDto> admissions = admissionServiceImpl.getAllAdmissions();
@@ -60,7 +61,9 @@ public class AdmissionController
         return ResponseEntity.ok(response);
     }
 
+
     //  Full Update Admission
+//      PUT  http://localhost:8080/api/v1/admission/update/{admissionDate}
     @PutMapping("/update/{admissionDate}")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> updateByDate(
             @PathVariable String admissionDate,
@@ -77,7 +80,9 @@ public class AdmissionController
     }
 
 
+
     //  Delete Admission
+//      DELETE     http://localhost:8080/api/v1/admission/delete/{admissionDate}
     @DeleteMapping("/delete/{admissionDate}")
     public ResponseEntity<ApiResponseDto<Void>> deleteByDate(@PathVariable String admissionDate)
     {

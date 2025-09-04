@@ -67,7 +67,7 @@ public class BatchController
     }
 
     // Full Update Batch
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{batchName}")
     public ResponseEntity<ApiResponseDto<BatchDto>> updateBatch(
             @PathVariable String batchName,
             @RequestBody BatchDto dto)

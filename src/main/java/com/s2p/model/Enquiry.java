@@ -35,16 +35,17 @@ public class Enquiry
     @CreatedDate
     private LocalDate enquiryDate;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST, optional = false)
     private StudentInformation studentInformation;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(
             name = "enquiry_course",
             joinColumns = {@JoinColumn(name = " enquiry_id", referencedColumnName = "enquiryId")},
             inverseJoinColumns = { @JoinColumn(name = "course_id", referencedColumnName = "courseId")}
 
     )
+    @Column(nullable = false)
     private Set<Course> courseSet = new HashSet<>();
 
 }
