@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(AllureJunit5.class)
-@Epic("Master Data Module")   // High-level grouping
+@Epic("Master Data Module")
 @Feature("Country Service")
 @Slf4j
 @SpringBootTest
