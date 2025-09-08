@@ -1,0 +1,1 @@
+{"uuid":"41deaacf-dc6b-4426-b3e1-139f07b72c74","name":"testCreateAdmission -success test","children":["89b23941-5e8a-42b5-87e8-0a367dfaa2f1"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1757315361768,"stop":1757315362568}],"afters":[],"start":1757315361718,"stop":1757315362654}

@@ -1,0 +1,428 @@
+[33mcommit 0d8cba4e382d1f2a549ef4c017bc9b6a6f381226[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mkanika-dev[m[33m)[m
+Author: Kanika Agrawal <kn2269@srmist.edu.in>
+Date:   Mon Sep 8 12:41:48 2025 +0530
+
+    updated Aop
+
+[33mcommit 911324a217a5ad2467aedc327e9950ec3a4e4cc2[m
+Author: Kanika Agrawal <kn2269@srmist.edu.in>
+Date:   Tue Sep 2 15:59:05 2025 +0530
+
+    updated Aop
+
+[33mcommit 6a357ff12f5bd612ac68f89cb79710318b367dc4[m
+Author: Kanika Agrawal <kn2269@srmist.edu.in>
+Date:   Tue Sep 2 12:53:52 2025 +0530
+
+    updated StudentInformationServiceTest
+
+[33mcommit a29745542de3a10466745d59a440d69dd2706c86[m[33m ([m[1;31morigin/kanika-dev[m[33m)[m
+Author: Kanika Agrawal <kn2269@srmist.edu.in>
+Date:   Mon Sep 1 16:37:53 2025 +0530
+
+    updated StudentInformationServiceTest
+
+[33mcommit f6b70ab326b5039d69ca92a54d567f273aa813ce[m[33m ([m[1;31morigin/harsh-dev[m[33m, [m[1;32mharsh-dev[m[33m)[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Mon Sep 1 15:19:07 2025 +0530
+
+    Updated service Code and unit testing enquiry test
+
+[33mcommit fcb4df9361a69d5c673683accc610f694bbc7a93[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 31 17:14:14 2025 +0530
+
+    Updated service Code and unit testing
+
+[33mcommit 10807d324ce35210e43b7da897f7eacdd3605f02[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 31 15:32:49 2025 +0530
+
+    Updated service Code
+
+[33mcommit e4932301365400cc7d95eb1b987b04f5006890d3[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 31 13:44:24 2025 +0530
+
+    Updated service Code
+
+[33mcommit b8f0e15806bea7e875007cb82c273c8b8cfa4950[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 31 13:43:35 2025 +0530
+
+    Updated service Code
+
+[33mcommit 19fae266a1363b6713541876a6a4c15646b465c7[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 31 13:30:47 2025 +0530
+
+    Updated service Code in running condition
+
+[33mcommit b157d24c044dfc5356e2e2d488d176b507c7ba2f[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 31 13:00:33 2025 +0530
+
+    Updated service Code
+
+[33mcommit b4c8dc10d20ac0c182c5b3698b7b6648eec69bfa[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Tue Aug 26 13:41:48 2025 +0530
+
+    Resolved all the errors
+
+[33mcommit 650be3d6f8d72af37fa578a138dc5e35a661ba9c[m
+Merge: 938646c 3b226dd
+Author: puruv <puruvas0954@gmail.com>
+Date:   Mon Aug 25 14:09:55 2025 +0530
+
+    Merge branch 'puruvas-dev' into harsh-dev
+    
+    # Conflicts:
+    #       logs/spring-boot-logger.log
+    #       src/main/java/com/s2p/controller/AuthController.java
+    #       src/main/java/com/s2p/master/controller/AcademicYearController.java
+    #       src/main/java/com/s2p/model/CourseFeeStructure.java
+    #       src/main/java/com/s2p/util/EnquiryUtility.java
+    #       src/main/java/com/s2p/util/StudentInformationUtility.java
+    #       src/main/java/com/s2p/util/StudentUsersUtility.java
+
+[33mcommit 3b226ddc4d200bbec3ed53dbe8aaa1bfc44f20f3[m
+Merge: 6e8c1d5 0f5d9d0
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 17:14:12 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit 6e8c1d56d9fdfcb2169b2ea39f57b30003ba5c77[m
+Merge: efc0008 aa67117
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 17:04:09 2025 +0530
+
+    Added New Relations For CourseFeeStructure
+
+[33mcommit 0f5d9d0112c981b752b742cee9a077a56365da4f[m
+Merge: efc0008 aa67117
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 17:04:09 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit efc0008e5870e5647a1fe81240bbe56de3616fa8[m
+Merge: 22bb319 a25ba02
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 17:02:48 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit aa6711716c94bfae64eee1178fcb11914f5afb25[m
+Merge: 22bb319 a25ba02
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 17:02:48 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit 22bb319d110e3f8b13561c8723e53fe39c64c9db[m
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 17:02:23 2025 +0530
+
+    Correct All JPA Relations
+
+[33mcommit 938646c3528daea050d765e8a64a3900a59b029c[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 24 16:09:06 2025 +0530
+
+    Getting Started With Controller APis
+
+[33mcommit a97077e21462e1056eb07c781e3df1f081c21985[m
+Merge: bfaaddc 473cd33
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 13:46:24 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit a25ba0263f2b07ed8c5218deb35a3f748f042aa2[m
+Merge: bfaaddc 473cd33
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 13:46:24 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit bfaaddc7a94a628da1e6c42dc76e41d1dc2254ce[m
+Merge: c783d4b a657423
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 13:45:59 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit 473cd33686006a4b31835ed4d7d6d844c3f58faa[m
+Merge: c783d4b a657423
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 13:45:59 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit c783d4b3d465c5d855146b574929fbca5636b719[m
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 13:45:23 2025 +0530
+
+    Started Working Unit Testing
+
+[33mcommit a65742345a4833a622564ff704667765b3d8f4ad[m
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 13:45:23 2025 +0530
+
+    Started Working Unit Testing
+
+[33mcommit cf30672f27c8f423acaeca41715fd8a7a68899c0[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sun Aug 24 13:45:25 2025 +0530
+
+    Getting Started With Controller APis
+
+[33mcommit 3716f85587fe1ffe0445fd1015bc8982c9fa2e60[m
+Merge: 3d72d98 3cd6f50
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sun Aug 24 01:59:48 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit 3d72d988ca7f0905fa0c8b7f2cfc4bbd8f7d2441[m
+Merge: aa5ae37 4e7bc02
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 18:01:35 2025 +0530
+
+    completed controller , service, repository in master
+
+[33mcommit 17c2b05990a9f474637980d146e803a13659c22e[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 23:24:03 2025 +0530
+
+    Getting Started With Controller
+
+[33mcommit 85001dd954d37aa4ba7fec847667c10817b3643a[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 21:54:56 2025 +0530
+
+    Getting Started With Code Base
+
+[33mcommit 3cd6f50e80ba01905379cc557a2a57f61337aac8[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 21:49:11 2025 +0530
+
+    Getting Started With Code Base
+
+[33mcommit 0158c56984dda96f9abd2e24aa4f522821334ee4[m
+Merge: aa5ae37 4e7bc02
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 18:01:35 2025 +0530
+
+    Merge remote-tracking branch 'origin/main' into puruvas-dev
+    
+    # Conflicts:
+    #       src/main/java/com/s2p/model/CourseFeeStructure.java
+
+[33mcommit aa5ae37c130c3783160b460389843d298deaa997[m
+Merge: 21bdfe9 4cdf190
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 17:59:59 2025 +0530
+
+    started working on master controller
+
+[33mcommit 21bdfe9502a19cecba7a4e9982767d4e923ef463[m
+Merge: f3d4470 eeef8a8
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 16:54:45 2025 +0530
+
+    started working on master controller
+
+[33mcommit 4cdf1905d1eb012b12ad66eefbefa3ca418ab28b[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 17:05:29 2025 +0530
+
+    Getting Started With Code Base
+
+[33mcommit f3d447062ae2110a5d10b035c8a1d92ab5767eba[m
+Merge: 54e80ac b3198b5
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 16:53:32 2025 +0530
+
+    Merge remote-tracking branch 'origin/puruvas-dev' into puruvas-dev
+
+[33mcommit 54e80ac220d01a67fa1647d1b9a6b8e284477fa6[m
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 16:07:01 2025 +0530
+
+    implemented exception handler code
+
+[33mcommit eeef8a8a735881a43749042e62fd740bb0f0fc2b[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 16:44:05 2025 +0530
+
+    Getting Started With Code Base
+
+[33mcommit b3198b535fe6ba5298806c485edf733bd43fa06f[m
+Author: puruv <puruvas0954@gmail.com>
+Date:   Sat Aug 23 16:07:01 2025 +0530
+
+    Started Working On Master Features
+
+[33mcommit f3022ea35f6c566e46a36a17ff4c9d57a1b2ef74[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 15:49:31 2025 +0530
+
+    Getting Started With Code Base
+
+[33mcommit 1787aaaae10dd4a06c092c09309657dc7a9fc679[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Sat Aug 23 13:45:57 2025 +0530
+
+    updates Utility
+
+[33mcommit c185d8f6829ebaf0b599c32f441089547f78c260[m
+Author: Pranay Ramteke <thisispranayramteke@gmail.com>
+Date:   Sat Aug 23 10:21:56 2025 +0530
+
+    Added Code For S2p Office
+
+[33mcommit e5eda632e1349e7a3818bed7ec47d4d20b7611cf[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Fri Aug 22 20:43:48 2025 +0530
+
+    updates Spring Security
+
+[33mcommit e180195e71b0702b53090f72498f24bd897ad681[m
+Merge: cee571a c07ed5a
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Fri Aug 22 17:19:03 2025 +0530
+
+    Merge remote-tracking branch 'origin/harsh-dev' into harsh-dev
+    
+    # Conflicts:
+    #       src/main/java/com/s2p/model/CourseFees.java
+
+[33mcommit cee571a255a206f270640a79ce6e70761fc5c9b9[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Fri Aug 22 01:03:53 2025 +0530
+
+    Working On Base Updated Project Structure and updated security code
+
+[33mcommit c07ed5a6196e1cf5f4c05cf4b9d17a5181d6bce2[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Fri Aug 22 01:03:53 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit 4e7bc02eb4bcb627b97fed708f99395dadce7577[m
+Merge: 40cc4bb 4b293f1
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Fri Aug 22 00:37:57 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit ed98335253bef6ad9f4f4d77bd69976debabebbb[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Fri Aug 22 00:21:32 2025 +0530
+
+    Working On Base Updated Project Structure MAsters
+
+[33mcommit bf636a2af3f868fba18b7089de3e950fc7f88cf7[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 23:55:23 2025 +0530
+
+    Working On Base Updated Project Structure Errors Resolved
+
+[33mcommit c15af738738fc8ae2f74f42f80d65eefeb04384d[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 22:50:44 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit c32aa1d02abef006788b9f193304dd71e117a280[m
+Merge: 6e2166e d1c3f85
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 22:34:48 2025 +0530
+
+    Merge remote-tracking branch 'origin/harsh-dev' into harsh-dev
+
+[33mcommit 6e2166e53dbed92b14a29a8cbe429096aea72461[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 22:33:35 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit 909673a4eb6e6229e884da9e7e42a0027efe6654[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 13:43:34 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit 40cc4bb02453daaf4d87441fbe400cdefcd4f276[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 16:01:59 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit 4b293f1508cda6607fc8315fe93a26f6c21e0bf0[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 16:01:59 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit d1c3f855dd70ca6d769767db67023ee846b052ab[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Thu Aug 21 13:43:34 2025 +0530
+
+    Working On Base Updated Project Structure
+
+[33mcommit d890690420b53180470ea174fe5973c526be7bdc[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Wed Aug 20 22:14:59 2025 +0530
+
+    Working On Base Project Structure
+
+[33mcommit f033426e448cad63d256dd0a7c54b37d029da1b3[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Wed Aug 20 17:31:36 2025 +0530
+
+    Working On Base Project Structure
+
+[33mcommit ae631d2dd21420fad266934f75faeb5e2eb48aec[m
+Merge: 542a0c4 5f8cb8e
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Wed Aug 20 12:05:10 2025 +0530
+
+    Merge branch 'main' into harsh-dev
+    
+    # Conflicts:
+    #       src/main/java/com/s2p/filters/RequestLoggingFilter.java
+    #       src/main/java/com/s2p/model/APIRequestLog.java
+
+[33mcommit 542a0c4fb04c4d182e6663e2b36f4f811b7e5d57[m
+Author: Harsh <harshdiwathe@gmail.com>
+Date:   Wed Aug 20 11:37:43 2025 +0530
+
+    Started Working On Base Project Structure
+
+[33mcommit 5f8cb8ecf26a0998c39a879f75ce065513977a25[m
+Author: root <pranayramteke613@gmail.com>
+Date:   Tue Aug 19 20:16:26 2025 +0530
+
+    Making Changes To Core Code Base
+
+[33mcommit bba8543b661ef3960f7646f1f957a5ff3dd21aae[m
+Author: root <pranayramteke613@gmail.com>
+Date:   Tue Aug 19 15:25:20 2025 +0530
+
+    Started Working On Base Project Structure
+
+[33mcommit 8209e314a1637631d23f6adec0410e94e4dae02c[m
+Author: root <pranayramteke613@gmail.com>
+Date:   Tue Aug 19 15:25:20 2025 +0530
+
+    Started Working On Base Project Structure
+
+[33mcommit f4971d3329615ff75370e03fa07a5316705fd25c[m
+Author: Pranay Ramteke <thisispranayramteke@gmail.com>
+Date:   Tue Aug 19 14:18:06 2025 +0530
+
+    Getting Started With S2P Office
