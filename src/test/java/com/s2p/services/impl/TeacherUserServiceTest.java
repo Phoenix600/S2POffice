@@ -1,10 +1,14 @@
 package com.s2p.services.impl;
 
-import com.s2p.dto.RolesDto;
 import com.s2p.dto.TeacherUserDto;
+import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.exceptions.UserNotFoundException;
+import com.s2p.model.Batch;
+import com.s2p.model.Course;
 import com.s2p.model.Roles;
 import com.s2p.model.TeacherUsers;
+import com.s2p.repository.BatchRepository;
+import com.s2p.repository.CourseRepository;
 import com.s2p.repository.TeacherUserRepository;
 import com.s2p.util.RolesUtility;
 import com.s2p.util.TeacherUsersUtility;
@@ -31,13 +35,22 @@ class TeacherUserServiceTest {
     @Mock
     private RolesUtility rolesUtility;
 
+    @Mock
+    private BatchRepository batchRepository;
+
+    @Mock
+    private CourseRepository courseRepository;
+
     @InjectMocks
     private TeacherUserService teacherUserService;
 
     private TeacherUsers teacherUser;
     private TeacherUserDto teacherUserDto;
     private Roles roles;
-    private RolesDto rolesDto;
+    private UUID batchId;
+    private Batch batch;
+    private UUID courseId;
+    private Course course;
 
     @BeforeEach
     void setUp() {
@@ -47,110 +60,120 @@ class TeacherUserServiceTest {
         roles.setRolesId(UUID.randomUUID());
         roles.setRolesName("ROLE_TEACHER");
 
-        rolesDto = new RolesDto(roles.getRolesId(), roles.getRolesName());
-
         teacherUser = new TeacherUsers();
         teacherUser.setTeacherUserId(UUID.randomUUID());
         teacherUser.setEmail("teacher@example.com");
         teacherUser.setUsername("teacherUser");
         teacherUser.setRoles(roles);
 
-        teacherUserDto = new TeacherUserDto(
-                teacherUser.getTeacherUserId(),
-                teacherUser.getEmail(),
-                teacherUser.getUsername(),
-                rolesDto
-        );
+        teacherUserDto = new TeacherUserDto();
+        teacherUserDto.setTeacherUserId(teacherUser.getTeacherUserId());
+        teacherUserDto.setEmail(teacherUser.getEmail());
+        teacherUserDto.setUsername(teacherUser.getUsername());
+        teacherUserDto.setRoles(null);
+
+        batchId = UUID.randomUUID();
+        batch = new Batch();
+        batch.setBatchId(batchId);
+        batch.setBatchName("Batch A");
+
+        courseId = UUID.randomUUID();
+        course = new Course();
+        course.setCourseId(courseId);
+        course.setCourseName("Course 101");
     }
 
     @Test
-    void test_createTeacherUser_success() {
-        when(teacherUsersUtility.toTeacherUsersEntity(any(TeacherUserDto.class))).thenReturn(teacherUser);
-        when(rolesUtility.toRoles(any(RolesDto.class))).thenReturn(roles);
-        when(teacherUserRepository.save(any(TeacherUsers.class))).thenReturn(teacherUser);
-        when(teacherUsersUtility.toTeacherUsersDto(any(TeacherUsers.class))).thenReturn(teacherUserDto);
+    void test_getTeachersByBatch_success() {
+        when(teacherUserRepository.findByBatch_BatchId(batchId)).thenReturn(Collections.singletonList(teacherUser));
+        when(teacherUsersUtility.toTeacherUsersDto(any())).thenReturn(teacherUserDto);
 
-        TeacherUserDto result = teacherUserService.createTeacherUser(teacherUserDto);
-
-        assertNotNull(result);
-        assertEquals("teacherUser", result.getUsername());
-        verify(teacherUserRepository, times(1)).save(any(TeacherUsers.class));
-    }
-
-    @Test
-    void test_getAllTeachers_success() {
-        List<TeacherUsers> teacherList = Collections.singletonList(teacherUser);
-        when(teacherUserRepository.findAll()).thenReturn(teacherList);
-        when(teacherUsersUtility.toTeacherUsersDto(any(TeacherUsers.class))).thenReturn(teacherUserDto);
-
-        Set<TeacherUserDto> result = teacherUserService.getAllTeachers();
+        Set<TeacherUserDto> result = teacherUserService.getTeachersByBatch(batchId);
 
         assertEquals(1, result.size());
         assertTrue(result.stream().anyMatch(dto -> "teacherUser".equals(dto.getUsername())));
     }
 
     @Test
-    void test_getTeacherUserByUsername_found() {
-        when(teacherUserRepository.findByUsername("teacherUser")).thenReturn(Optional.of(teacherUser));
-        when(teacherUsersUtility.toTeacherUsersDto(any(TeacherUsers.class))).thenReturn(teacherUserDto);
+    void test_getTeachersByBatch_notFound() {
+        when(teacherUserRepository.findByBatch_BatchId(batchId)).thenReturn(Collections.emptyList());
 
-        Optional<TeacherUserDto> result = teacherUserService.getTeacherUserByUsername("teacherUser");
-
-        assertTrue(result.isPresent());
-        assertEquals("teacherUser", result.get().getUsername());
+        assertThrows(ResourceNotFoundException.class,
+                () -> teacherUserService.getTeachersByBatch(batchId));
     }
 
     @Test
-    void test_getTeacherUserByUsername_notFound() {
-        when(teacherUserRepository.findByUsername("unknown")).thenReturn(Optional.empty());
+    void test_updateTeacherByBatch_success() {
+        when(teacherUserRepository.findById(teacherUser.getTeacherUserId())).thenReturn(Optional.of(teacherUser));
+        when(batchRepository.findById(batchId)).thenReturn(Optional.of(batch));
+        when(rolesUtility.toRoles(any())).thenReturn(roles);
+        when(teacherUserRepository.save(any())).thenReturn(teacherUser);
+        when(teacherUsersUtility.toTeacherUsersDto(any())).thenReturn(teacherUserDto);
 
-        Optional<TeacherUserDto> result = teacherUserService.getTeacherUserByUsername("unknown");
-
-        assertFalse(result.isPresent());
-    }
-
-    @Test
-    void test_updateTeacherUserByUsername_success() {
-        when(teacherUserRepository.findByUsername("teacherUser")).thenReturn(Optional.of(teacherUser));
-        when(rolesUtility.toRoles(any(RolesDto.class))).thenReturn(roles);
-        when(teacherUserRepository.save(any(TeacherUsers.class))).thenReturn(teacherUser);
-        when(teacherUsersUtility.toTeacherUsersDto(any(TeacherUsers.class))).thenReturn(teacherUserDto);
-
-        TeacherUserDto updateDto = new TeacherUserDto(
-                teacherUser.getTeacherUserId(),
-                "newteacher@example.com",
-                "newTeacherUser",
-                rolesDto
-        );
-
-        TeacherUserDto result = teacherUserService.updateTeacherUserByUsername("teacherUser", updateDto);
+        TeacherUserDto result = teacherUserService.updateTeacherByBatch(batchId, teacherUser.getTeacherUserId(), teacherUserDto);
 
         assertNotNull(result);
-        verify(teacherUserRepository, times(1)).save(any(TeacherUsers.class));
+        verify(teacherUserRepository, times(1)).save(any());
     }
 
     @Test
-    void test_updateTeacherUserByUsername_notFound() {
-        when(teacherUserRepository.findByUsername("unknown")).thenReturn(Optional.empty());
+    void test_removeTeacherFromBatch_success() {
+        when(teacherUserRepository.findById(teacherUser.getTeacherUserId())).thenReturn(Optional.of(teacherUser));
+        when(batchRepository.findById(batchId)).thenReturn(Optional.of(batch));
 
-        assertThrows(UserNotFoundException.class,
-                () -> teacherUserService.updateTeacherUserByUsername("unknown", teacherUserDto));
+        teacherUserService.removeTeacherFromBatch(batchId, teacherUser.getTeacherUserId());
+
+        verify(teacherUserRepository, times(1)).save(any());
     }
 
     @Test
-    void test_deleteTeacherUserByUsername_success() {
-        when(teacherUserRepository.findByUsername("teacherUser")).thenReturn(Optional.of(teacherUser));
+    void test_getTeachersByCourse_success() {
+        when(teacherUserRepository.findByCourses_CourseId(courseId)).thenReturn(Collections.singletonList(teacherUser));
+        when(teacherUsersUtility.toTeacherUsersDto(any())).thenReturn(teacherUserDto);
 
-        teacherUserService.deleteTeacherUserByUsername("teacherUser");
+        Set<TeacherUserDto> result = teacherUserService.getTeachersByCourse(courseId);
 
-        verify(teacherUserRepository, times(1)).delete(teacherUser);
+        assertEquals(1, result.size());
     }
 
     @Test
-    void test_deleteTeacherUserByUsername_notFound() {
-        when(teacherUserRepository.findByUsername("unknown")).thenReturn(Optional.empty());
+    void test_updateTeacherByCourse_success() {
+        when(teacherUserRepository.findById(teacherUser.getTeacherUserId())).thenReturn(Optional.of(teacherUser));
+        when(courseRepository.findById(courseId)).thenReturn(Optional.of(course));
+        when(rolesUtility.toRoles(any())).thenReturn(roles);
+        when(teacherUserRepository.save(any())).thenReturn(teacherUser);
+        when(teacherUsersUtility.toTeacherUsersDto(any())).thenReturn(teacherUserDto);
 
-        assertThrows(UserNotFoundException.class,
-                () -> teacherUserService.deleteTeacherUserByUsername("unknown"));
+        TeacherUserDto result = teacherUserService.updateTeacherByCourse(courseId, teacherUser.getTeacherUserId(), teacherUserDto);
+
+        assertNotNull(result);
+        verify(teacherUserRepository, times(1)).save(any());
+    }
+
+    @Test
+    void test_removeTeacherFromCourse_success() {
+        when(teacherUserRepository.findById(teacherUser.getTeacherUserId())).thenReturn(Optional.of(teacherUser));
+        when(courseRepository.findById(courseId)).thenReturn(Optional.of(course));
+
+        teacherUserService.removeTeacherFromCourse(courseId, teacherUser.getTeacherUserId());
+
+        verify(teacherUserRepository, times(1)).save(any());
+    }
+
+    @Test
+    void test_deleteTeacherById_success() {
+        when(teacherUserRepository.existsById(teacherUser.getTeacherUserId())).thenReturn(true);
+
+        teacherUserService.deleteTeacherById(teacherUser.getTeacherUserId());
+
+        verify(teacherUserRepository, times(1)).deleteById(teacherUser.getTeacherUserId());
+    }
+
+    @Test
+    void test_deleteTeacherById_notFound() {
+        when(teacherUserRepository.existsById(teacherUser.getTeacherUserId())).thenReturn(false);
+
+        assertThrows(ResourceNotFoundException.class,
+                () -> teacherUserService.deleteTeacherById(teacherUser.getTeacherUserId()));
     }
 }

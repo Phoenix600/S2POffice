@@ -55,4 +55,14 @@ public class Batch extends BaseEntity
 
     @ManyToMany(mappedBy = "batches")
     private Set<StudentInformation> students = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "batch_teacher",
+            joinColumns = @JoinColumn(name = "batch_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private Set<TeacherUsers> teacher = new HashSet<>();
+
+
 }

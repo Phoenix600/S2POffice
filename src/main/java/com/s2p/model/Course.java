@@ -50,4 +50,12 @@ public class Course extends BaseEntity
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CourseFees> courseFeesSet = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "course_teachers",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private Set<TeacherUsers> teachers = new HashSet<>();
 }
