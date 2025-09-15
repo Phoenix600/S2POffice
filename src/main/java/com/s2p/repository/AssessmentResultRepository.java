@@ -1,5 +1,6 @@
 package com.s2p.repository;
 
+import com.s2p.model.Assessment;
 import com.s2p.model.AssessmentResult;
 import com.s2p.model.StudentInformation;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,9 +13,7 @@ import java.util.UUID;
 @Repository
 public interface AssessmentResultRepository extends JpaRepository<AssessmentResult, UUID> {
 
-    List<AssessmentResult> findByStudent_FullName(String fullName);
+    List<AssessmentResult> findByStudent(StudentInformation student);
 
-    List<AssessmentResult> findByAssessment_Title(String assessmentTitle);
-
-    Optional<AssessmentResult> findByStudent(StudentInformation student);
+    Optional<AssessmentResult> findByStudentAndAssessment(StudentInformation student, Assessment assessment);
 }
