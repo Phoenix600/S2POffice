@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -15,5 +16,5 @@ public interface AssessmentResultRepository extends JpaRepository<AssessmentResu
 
     List<AssessmentResult> findByAssessment_Title(String assessmentTitle);
 
-    List<AssessmentResult> findByStudent(StudentInformation student);
+    Optional<AssessmentResult> findByStudent(StudentInformation student);
 }

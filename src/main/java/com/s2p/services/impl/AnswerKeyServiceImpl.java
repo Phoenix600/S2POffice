@@ -7,33 +7,35 @@ import com.s2p.repository.AnswerKeyRepository;
 import com.s2p.repository.QuestionPaperRepository;
 import com.s2p.services.AnswerKeyService;
 import com.s2p.util.AnswerKeyUtility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 @Service
+@Transactional
 public class AnswerKeyServiceImpl implements AnswerKeyService {
 
-    @Autowired
-    private AnswerKeyRepository answerKeyRepository;
+    private final AnswerKeyRepository answerKeyRepository;
+    private final QuestionPaperRepository questionPaperRepository;
+    private final AnswerKeyUtility answerKeyUtility;
 
-    @Autowired
-    private QuestionPaperRepository questionPaperRepository;
-
-    @Autowired
-    private AnswerKeyUtility answerKeyUtility;
+    public AnswerKeyServiceImpl(AnswerKeyRepository answerKeyRepository,
+                                QuestionPaperRepository questionPaperRepository,
+                                AnswerKeyUtility answerKeyUtility) {
+        this.answerKeyRepository = answerKeyRepository;
+        this.questionPaperRepository = questionPaperRepository;
+        this.answerKeyUtility = answerKeyUtility;
+    }
 
     @Override
-    public AnswerKeyDTO createAnswerKey(AnswerKeyDTO dto) {
-        AnswerKey answerKey = answerKeyUtility.toAnswerKeyEntity(dto);
+    public AnswerKeyDTO createAnswerKey(AnswerKeyDTO answerKeyDTO) {
+        QuestionPaper questionPaper = questionPaperRepository.findById(answerKeyDTO.getQuestionPaperId())
+                .orElseThrow(() -> new RuntimeException("QuestionPaper not found with id: " + answerKeyDTO.getQuestionPaperId()));
 
-        if (dto.getQuestionPaperId() != null) {
-            QuestionPaper qp = questionPaperRepository.findById(dto.getQuestionPaperId()).orElse(null);
-            if (qp != null) answerKey.setQuestionPaper(qp);
-        }
+        AnswerKey answerKey = answerKeyUtility.toAnswerKeyEntity(answerKeyDTO);
+        answerKey.setQuestionPaper(questionPaper);
 
         AnswerKey saved = answerKeyRepository.save(answerKey);
         return answerKeyUtility.toAnswerKeyDto(saved);
@@ -41,39 +43,51 @@ public class AnswerKeyServiceImpl implements AnswerKeyService {
 
     @Override
     public AnswerKeyDTO getAnswerKeyByQuestionPaperTitle(String questionPaperTitle) {
-        Optional<QuestionPaper> qp = questionPaperRepository.findByTitle(questionPaperTitle);
-        if (qp != null && qp.get() != null) {
-            return answerKeyUtility.toAnswerKeyDto(qp.get().getAnswerKey());
-        }
-        return null;
+        QuestionPaper questionPaper = questionPaperRepository.findByTitle(questionPaperTitle)
+                .orElseThrow(() -> new RuntimeException("QuestionPaper not found with title: " + questionPaperTitle));
+
+        AnswerKey answerKey = (AnswerKey) answerKeyRepository.findByQuestionPaper(questionPaper)
+                .orElseThrow(() -> new RuntimeException("AnswerKey not found for QuestionPaper: " + questionPaperTitle));
+
+        return answerKeyUtility.toAnswerKeyDto(answerKey);
     }
 
     @Override
     public List<AnswerKeyDTO> getAllAnswerKeys() {
-        List<AnswerKey> list = answerKeyRepository.findAll();
-        List<AnswerKeyDTO> dtos = new ArrayList<>();
-        for (AnswerKey ak : list) dtos.add(answerKeyUtility.toAnswerKeyDto(ak));
-        return dtos;
+        List<AnswerKey> allAnswerKeys = answerKeyRepository.findAll();
+        List<AnswerKeyDTO> result = new ArrayList<>();
+
+        for (AnswerKey ak : allAnswerKeys) {
+            result.add(answerKeyUtility.toAnswerKeyDto(ak));
+        }
+
+        return result;
     }
 
     @Override
-    public AnswerKeyDTO updateAnswerKey(String questionPaperTitle, AnswerKeyDTO dto) {
-        Optional<QuestionPaper> qp = questionPaperRepository.findByTitle(questionPaperTitle);
-        if (qp != null && qp.get() != null) {
-            AnswerKey answerKey = qp.get().getAnswerKey();
-            answerKey.setAnswers(dto.getAnswers());
+    public AnswerKeyDTO updateAnswerKey(String questionPaperTitle, AnswerKeyDTO answerKeyDTO) {
+        QuestionPaper questionPaper = questionPaperRepository.findByTitle(questionPaperTitle)
+                .orElseThrow(() -> new RuntimeException("QuestionPaper not found with title: " + questionPaperTitle));
 
-            AnswerKey updated = answerKeyRepository.save(answerKey);
-            return answerKeyUtility.toAnswerKeyDto(updated);
+        AnswerKey existing = (AnswerKey) answerKeyRepository.findByQuestionPaper(questionPaper)
+                .orElseThrow(() -> new RuntimeException("AnswerKey not found for QuestionPaper: " + questionPaperTitle));
+
+        if (answerKeyDTO.getAnswers() != null) {
+            existing.setAnswers(answerKeyDTO.getAnswers());
         }
-        return null;
+
+        AnswerKey updated = answerKeyRepository.save(existing);
+        return answerKeyUtility.toAnswerKeyDto(updated);
     }
 
     @Override
     public void deleteAnswerKey(String questionPaperTitle) {
-        Optional<QuestionPaper> qp = questionPaperRepository.findByTitle(questionPaperTitle);
-        if (qp != null && qp.get() != null) {
-            answerKeyRepository.delete(qp.get().getAnswerKey());
-        }
+        QuestionPaper questionPaper = questionPaperRepository.findByTitle(questionPaperTitle)
+                .orElseThrow(() -> new RuntimeException("QuestionPaper not found with title: " + questionPaperTitle));
+
+        AnswerKey existing = (AnswerKey) answerKeyRepository.findByQuestionPaper(questionPaper)
+                .orElseThrow(() -> new RuntimeException("AnswerKey not found for QuestionPaper: " + questionPaperTitle));
+
+        answerKeyRepository.delete(existing);
     }
 }
