@@ -3,30 +3,19 @@ package com.s2p.services;
 import com.s2p.dto.StudentInformationDto;
 import org.apache.coyote.BadRequestException;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
 
-public interface IStudentInformationService
-{
-    public abstract StudentInformationDto createStudentInformation(StudentInformationDto studentInformationDto) throws BadRequestException;
+public interface IStudentInformationService {
 
-    public abstract Optional<StudentInformationDto> getStudentByEmail(String email);
+    StudentInformationDto createStudent(StudentInformationDto dto);
 
-    public abstract Set<StudentInformationDto> getAllStudents();
+    StudentInformationDto updateStudent(String email, StudentInformationDto dto);
 
-    public abstract StudentInformationDto updateStudentByEmail(String email, StudentInformationDto studentInformationDto);
+    StudentInformationDto createStudentInformation(StudentInformationDto studentInformationDto) throws BadRequestException;
 
-    public abstract void deleteStudentByEmail(String email);
+    String deleteStudent(String email);
 
-    public List<StudentInformationDto> searchStudents(String firstName,
-                                                      String lastName,
-                                                      String email,
-                                                      String collegeName,
-                                                      String degreeName,
-                                                      String semester,
-                                                      String passingYear,
-                                                      Boolean isGraduated);
+    StudentInformationDto getStudentByEmail(String email);
+
+    List<StudentInformationDto> getAllStudents();
 }

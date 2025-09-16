@@ -61,6 +61,19 @@ class AdmissionServiceImplTest {
     }
 
     @Test
+    void testCreateAdmission() {
+        when(admissionUtility.toAdmissionEntity(admissionDto)).thenReturn(admission);
+        when(admissionRepository.save(admission)).thenReturn(admission);
+        when(admissionUtility.toAdmissionDto(admission)).thenReturn(admissionDto);
+
+        AdmissionDto result = admissionService.createAdmission(admissionDto);
+
+        assertNotNull(result);
+        assertEquals(admissionId, result.getAdmissionId());
+        verify(admissionRepository, times(1)).save(admission);
+    }
+
+    @Test
     @Story(value = "Create Country")// Describes the user story
     @DisplayName("testCreateAdmission -success test")
     @Description("Placeholder test for AdmissionService.testCreateAdimmison ")

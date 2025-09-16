@@ -1,10 +1,7 @@
 package com.s2p.controller;
 
 import com.s2p.constants.ApplicationConstants;
-import com.s2p.dto.AdminUserDto;
-import com.s2p.dto.RegisterResponseDto;
-import com.s2p.dto.StudentUserDto;
-import com.s2p.dto.SuperAdminUserDto;
+import com.s2p.dto.*;
 import com.s2p.model.*;
 import com.s2p.repository.*;
 import com.s2p.util.AdminUserUtility;
@@ -21,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +31,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/v1/auth")
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController
 {
@@ -49,13 +47,13 @@ public class AuthController
     private final AdminUserUtility adminUserUtility;
     private final StudentUsersUtility studentUsersUtility;
 
-    //POST:-  http://localhost:8080/api/v1/auth/admin/register
+    //POST:-  http://localhost:8080/api/v1/auth/superAdmin/register
     @PostMapping("/superAdmin/register")
     public ResponseEntity<RegisterResponseDto> registerSuperAdmin(
             @Parameter(description = "User registration data", required = true)
             @RequestBody Users users)
     {
-        Roles roles = rolesRepository.findByRolesName("ROLE_SUPER_ADMIN");
+        Roles roles = rolesRepository.findByRolesName("ROLES_SUPER_ADMIN");
         SuperAdminUsers superAdminUsers = new SuperAdminUsers();
 
         // Populating Admin User Details
@@ -145,29 +143,29 @@ public class AuthController
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
     }
 
-//    //    http://localhost/8080/api/v1/public/apiLogin
-//    @PostMapping("/apiLogin")
-//    public ResponseEntity<LoginResponseDto> apiLogin (@RequestBody LoginRequestDto loginRequest)
-//    {
-//        String jwt = "";
-//        Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUsername(),
-//                loginRequest.getPassword());
-//        Authentication authenticationResponse = authenticationManager.authenticate(authentication);
-//        if(null != authenticationResponse && authenticationResponse.isAuthenticated())
-//        {
-//
-//            String secret = ApplicationConstants.JWT_SECRET_DEFAULT_VALUE;
-//            SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-//            jwt = Jwts.builder().issuer("S2P-Dev-Team").subject("JWT TOKEN")
-//                    .claim("username", authenticationResponse.getName())
-//                    .claim("authorities", authenticationResponse.getAuthorities().stream().map(
-//                            GrantedAuthority::getAuthority).collect(Collectors.joining(",")))
-//                    .issuedAt(new java.util.Date())
-//                    .expiration(new java.util.Date((new java.util.Date()).getTime() + 30000000))
-//                    .signWith(secretKey).compact();
-//        }
-//
-//        return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt)
-//                .body(new LoginResponseDto(SecurityContextHolder.getContext().getAuthentication().getName(), jwt));
-//    }
+//       http://localhost/8080/api/v1/public/apiLogin
+    @PostMapping("/apiLogin")
+    public ResponseEntity<LoginResponseDto> apiLogin (@RequestBody LoginRequestDto loginRequest)
+    {
+        String jwt = "";
+        Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUsername(),
+                loginRequest.getPassword());
+        Authentication authenticationResponse = authenticationManager.authenticate(authentication);
+        if(null != authenticationResponse && authenticationResponse.isAuthenticated())
+        {
+
+            String secret = ApplicationConstants.JWT_SECRET_DEFAULT_VALUE;
+            SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+            jwt = Jwts.builder().issuer("S2P-Dev-Team").subject("JWT TOKEN")
+                    .claim("username", authenticationResponse.getName())
+                    .claim("authorities", authenticationResponse.getAuthorities().stream().map(
+                            GrantedAuthority::getAuthority).collect(Collectors.joining(",")))
+                    .issuedAt(new java.util.Date())
+                    .expiration(new java.util.Date((new java.util.Date()).getTime() + 30000000))
+                    .signWith(secretKey).compact();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER,jwt)
+                .body(new LoginResponseDto(SecurityContextHolder.getContext().getAuthentication().getName(), jwt));
+    }
 }

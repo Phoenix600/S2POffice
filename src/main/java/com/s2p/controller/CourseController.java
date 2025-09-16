@@ -22,7 +22,7 @@ public class CourseController
     @Autowired
     CourseService courseService;
 
-    @PostMapping
+    @PostMapping("/create-course")
     public ResponseEntity<ApiResponseDto<CourseDto>> createCourse(@Valid @RequestBody CourseDto courseDto) {
         try {
             CourseDto created = courseService.createCourse(courseDto);
@@ -50,7 +50,7 @@ public class CourseController
         }
     }
 
-    @PutMapping("/{courseName}")
+    @PutMapping("/update/{courseName}")
     public ResponseEntity<ApiResponseDto<CourseDto>> updateCourseByName(
             @PathVariable String courseName,
             @Valid @RequestBody CourseDto courseDto) {
@@ -66,7 +66,7 @@ public class CourseController
         }
     }
 
-    @DeleteMapping("/{courseName}")
+    @DeleteMapping("/delete/{courseName}")
     public ResponseEntity<ApiResponseDto<String>> deleteCourseByName(@PathVariable String courseName) {
         try {
             courseService.deleteCourseByName(courseName);

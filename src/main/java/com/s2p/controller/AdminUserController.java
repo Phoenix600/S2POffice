@@ -21,6 +21,7 @@ public class AdminUserController
     @Autowired
     AdminUserService adminUserService;
 
+//    POST  http://localhost:8080/api/v1/adminUser/create
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<AdminUserDto>> create(@RequestBody AdminUserDto dto) {
         AdminUserDto created = adminUserService.createAdminUser(dto);
@@ -31,6 +32,8 @@ public class AdminUserController
         );
     }
 
+
+    //GET  http://localhost:8080/api/v1/adminUser/{username}
     @GetMapping("/{username}")
     public ResponseEntity<ApiResponseDto<AdminUserDto>> getByUsername(@PathVariable String username) {
         AdminUserDto adminUser = adminUserService.getAdminUserByUsername(username);
@@ -43,6 +46,7 @@ public class AdminUserController
         );
     }
 
+//    GET  http://localhost:8080/api/v1/adminUser/all-adminUsers
     @GetMapping("all-adminUsers")
     public ResponseEntity<ApiResponseDto<Set<AdminUserDto>>> getAll() {
         Set<AdminUserDto> all = adminUserService.getAllAdminUsers();
@@ -53,6 +57,7 @@ public class AdminUserController
         );
     }
 
+//    PUT  http://localhost:8080/api/v1/adminUser/update/{username}
     @PutMapping("/update/{username}")
     public ResponseEntity<ApiResponseDto<AdminUserDto>> updateByUsername(
             @PathVariable String username,
@@ -68,6 +73,7 @@ public class AdminUserController
         );
     }
 
+//    DELETE  http://localhost:8080/api/v1/adminUser/delete/{username}
     @DeleteMapping("/delete/{username}")
     public ResponseEntity<ApiResponseDto<Void>> deleteByUsername(@PathVariable String username) {
         adminUserService.deleteAdminUserByUsername(username);

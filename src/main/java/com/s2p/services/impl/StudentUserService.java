@@ -1,13 +1,12 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.StudentUserDto;
-import com.s2p.exceptions.ResourceNotFoundException;
-import com.s2p.model.CourseFees;
-import com.s2p.model.StudentInformation;
+import com.s2p.exceptions.UserNotFoundException;
 import com.s2p.model.StudentUsers;
 import com.s2p.repository.StudentInformationRepository;
 import com.s2p.repository.StudentUserRepository;
 import com.s2p.services.IStudentUserService;
+import com.s2p.util.RolesUtility;
 import com.s2p.util.StudentUsersUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +14,18 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class StudentUserService implements IStudentUserService
 {
     @Autowired
-    StudentUserRepository studentUserRepository;
+    StudentUserRepository studentUsersRepository;
 
     @Autowired
     StudentUsersUtility studentUsersUtility;
+
+    @Autowired
+    private RolesUtility rolesUtility;
 
     @Autowired
     StudentInformationRepository studentInformationRepository;
@@ -32,29 +33,27 @@ public class StudentUserService implements IStudentUserService
     @Override
     public StudentUserDto createStudentUser(StudentUserDto studentUsersDto) {
         StudentUsers entity = studentUsersUtility.toStudentUserEntity(studentUsersDto);
-        StudentUsers saved = studentUserRepository.save(entity);
+        StudentUsers saved = studentUsersRepository.save(entity);
         return studentUsersUtility.toStudentUserDto(saved);
     }
 
-//    @Override
-//    public StudentUserDto createStudentUser(StudentUsersDto studentUsersDto) {
-//        return null;
-//    }
-
     @Override
-    public StudentUserDto getStudentUserById(UUID studentUserId) {
-        Optional<StudentUsers> optional = studentUserRepository.findById(studentUserId);
+    public Optional<StudentUserDto> getStudentUserByUsername(String username) {
+        Optional<StudentUsers> studentUsersOptional = studentUsersRepository.findByUsername(username);
 
-        if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("StudentUser", "id", studentUserId.toString());
+        if (studentUsersOptional.isPresent()) {
+            StudentUserDto dto = studentUsersUtility.toStudentUserDto(studentUsersOptional.get());
+            return Optional.of(dto);
         }
 
-        return studentUsersUtility.toStudentUserDto(optional.get());
+        return Optional.empty();
     }
+
+
 
     @Override
     public List<StudentUserDto> getAllStudentUsers() {
-        List<StudentUsers> entities = studentUserRepository.findAll();
+        List<StudentUsers> entities = studentUsersRepository.findAll();
         List<StudentUserDto> result = new ArrayList<>();
 
         for (StudentUsers studentUser : entities) {
@@ -64,22 +63,37 @@ public class StudentUserService implements IStudentUserService
     }
 
     @Override
-    public StudentUserDto updateStudentUserById(UUID studentUserId) {
-        return null;
+    public StudentUserDto updateStudentUserByUsername(String username, StudentUserDto studentUserDto) {
+        Optional<StudentUsers> userOpt = studentUsersRepository.findByUsername(username);
+
+        if (!userOpt.isPresent()) {
+            throw new UserNotFoundException("StudentUser not found with username: " + username);
+        }
+
+        StudentUsers existingUser = userOpt.get();
+
+        // Update fields
+        existingUser.setEmail(studentUserDto.getEmail());
+        existingUser.setUsername(studentUserDto.getUsername());
+
+        if (studentUserDto.getRoles() != null) {
+            existingUser.setRoles(studentUsersUtility.toStudentUserEntity(studentUserDto).getRoles());
+        }
+
+        StudentUsers updatedUser = studentUsersRepository.save(existingUser);
+        return studentUsersUtility.toStudentUserDto(updatedUser);
     }
 
     @Override
-    public StudentUserDto deleteStudentUserById(UUID studentUserId) {
-        Optional<StudentUsers> optional = studentUserRepository.findById(studentUserId);
+    public void deleteStudentUserByUsername(String username) {
+        Optional<StudentUsers> userOpt = studentUsersRepository.findByUsername(username);
 
-        if (optional.isEmpty()) {
-            throw new ResourceNotFoundException("StudentUser", "id", studentUserId.toString());
+        if (!userOpt.isPresent()) {
+            throw new UserNotFoundException("StudentUser not found with username: " + username);
         }
 
-        StudentUsers studentUser = optional.get();
-        studentUserRepository.delete(studentUser);
-
-        return studentUsersUtility.toStudentUserDto(studentUser);
+        StudentUsers user = userOpt.get();
+        studentUsersRepository.delete(user);
     }
 
 }

@@ -12,4 +12,5 @@ public interface TeacherUserRepository extends JpaRepository<TeacherUsers, UUID>
 {
     public abstract Optional<TeacherUsers> findByEmail(String email);
 
+    public abstract Optional<TeacherUsers> findByUsername(String username);
 }
