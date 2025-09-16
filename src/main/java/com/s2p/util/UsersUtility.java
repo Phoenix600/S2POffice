@@ -9,5 +9,4 @@ public interface UsersUtility
 {
     public abstract Users toUsersEntity(UsersDto usersDto);
     public abstract UsersDto toUsersDto(Users users);
-
 }

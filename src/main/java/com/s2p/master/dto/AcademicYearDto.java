@@ -1,6 +1,7 @@
 package com.s2p.master.dto;
 
 import com.s2p.model.CourseFees;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +18,6 @@ import java.util.UUID;
 public class AcademicYearDto
 {
     private UUID academicYearId;
-
     private Integer academicYear;
-
     private List<CourseFees> courseFees = new ArrayList<>();
 }
