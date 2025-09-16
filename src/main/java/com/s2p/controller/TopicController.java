@@ -21,6 +21,7 @@ public class TopicController {
     }
 
     // --- CREATE ---
+    //http://localhost:8080/api/v1/topics/create
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<TopicDTO>> create(@RequestBody TopicDTO dto) {
         TopicDTO created = topicService.createTopic(dto);

@@ -1,4 +1,4 @@
-package com.s2p.service.impl;
+package com.s2p.services.impl;
 
 import com.s2p.dto.StudentInformationDto;
 import com.s2p.model.StudentInformation;

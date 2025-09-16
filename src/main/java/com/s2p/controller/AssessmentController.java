@@ -21,6 +21,7 @@ public class AssessmentController {
     }
 
     // --- CREATE ---
+    //http://localhost:8080/api/v1/assessments/create
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<AssessmentDTO>> create(@RequestBody AssessmentDTO dto) {
         AssessmentDTO created = assessmentService.createAssessment(dto);

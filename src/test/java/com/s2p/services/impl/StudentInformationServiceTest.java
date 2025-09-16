@@ -33,7 +33,7 @@ class StudentInformationServiceTest {
     private StudentInformationUtility studentInformationUtility;
 
     @InjectMocks
-    private com.s2p.service.impl.StudentInformationService studentInformationService;
+    private com.s2p.services.impl.StudentInformationService studentInformationService;
 
     private StudentInformation studentEntity1;
     private StudentInformation studentEntity2;

@@ -22,7 +22,7 @@ class EnquiryServiceJUnitTest
     EnquiryService enquiryService;
 
     @Autowired
-    com.s2p.service.impl.StudentInformationService studentInformationService;
+    com.s2p.services.impl.StudentInformationService studentInformationService;
 
     @Autowired
     CourseService courseService;

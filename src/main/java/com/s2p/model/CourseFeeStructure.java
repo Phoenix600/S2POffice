@@ -35,7 +35,10 @@ public class CourseFeeStructure
     private CourseFees courseFees;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
+    @JoinColumn(name = "student_information_id", referencedColumnName = "studentInformationId")
+    private StudentInformation studentInformation;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private StudentUsers studentUsers;
 
 }

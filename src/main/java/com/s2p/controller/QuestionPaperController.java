@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//DONE
+
 @RestController
 @RequestMapping("/api/v1/question-papers")
 public class QuestionPaperController {
@@ -20,7 +22,8 @@ public class QuestionPaperController {
         this.questionPaperService = questionPaperService;
     }
 
-    // --- CREATE ---
+    // --- CREATE ---DONE
+    //http://localhost:8080/api/v1/question-papers/create
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> create(@RequestBody QuestionPaperDTO dto) {
         QuestionPaperDTO created = questionPaperService.createQuestionPaper(dto);
@@ -33,7 +36,8 @@ public class QuestionPaperController {
         );
     }
 
-    // --- GET BY TITLE ---
+    // --- GET BY TITLE ---     DONE
+    //http://localhost:8080/api/v1/question-papers/{title}
     @GetMapping("/{title}")
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> getByTitle(@PathVariable String title) {
         QuestionPaperDTO qp = questionPaperService.getQuestionPaperByTitle(title);
@@ -46,7 +50,7 @@ public class QuestionPaperController {
         );
     }
 
-    // --- GET ALL ---
+    // --- GET ALL ---  DONE
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<QuestionPaperDTO>>> getAll() {
         List<QuestionPaperDTO> allQPs = questionPaperService.getAllQuestionPapers();
@@ -59,7 +63,8 @@ public class QuestionPaperController {
         );
     }
 
-    // --- UPDATE ---
+    // --- UPDATE ---  DONE
+    //http://localhost:8080/api/v1/question-papers/{title}
     @PutMapping("/{title}")
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> update(
             @PathVariable String title,
@@ -74,7 +79,8 @@ public class QuestionPaperController {
         );
     }
 
-    // --- DELETE ---
+    // --- DELETE ---   //DONE
+    //http://localhost:8080/api/v1/question-papers/{title}
     @DeleteMapping("/{title}")
     public ResponseEntity<ApiResponseDto<Void>> delete(@PathVariable String title) {
         questionPaperService.deleteQuestionPaper(title);

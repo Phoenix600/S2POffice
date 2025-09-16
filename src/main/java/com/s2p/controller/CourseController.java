@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/course")
+@RequestMapping("/api/v1/course")
 public class CourseController
 {
     @Autowired
     CourseService courseService;
 
+    //http://localhost:8080/api/v1/course/create-course
     @PostMapping("/create-course")
     public ResponseEntity<ApiResponseDto<CourseDto>> createCourse(@Valid @RequestBody CourseDto courseDto) {
         try {

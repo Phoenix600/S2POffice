@@ -15,7 +15,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("api/v1/courseFee")
-public class CourseFeeController
+public class  CourseFeeController
 {
     @Autowired
     CourseFeeService courseFeeService;
