@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
 import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +21,15 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/college")
 @RequiredArgsConstructor
+@Tag(name = "College Management",
+        description = "APIs for managing colleges")
 public class CollegeController {
 
     private final ICollegeService collegeService;
 
-    // --- Create College ---
     @PostMapping
+    @Operation(summary = "Create a new college",
+            description = "Creates and saves a new college based on the provided data.")
     public ResponseEntity<ApiResponseDto<CollegeDto>> createCollege(@Valid @RequestBody CollegeDto collegeDto) {
         College college = new College();
         college.setCollegeName(collegeDto.getCollegeName());
@@ -38,8 +44,9 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // --- Get All Colleges ---
     @GetMapping
+    @Operation(summary = "Get all colleges",
+            description = "Retrieves a list of all colleges from the system.")
     public ResponseEntity<ApiResponseDto<List<CollegeDto>>> getAllColleges() {
         List<College> colleges = collegeService.getAllColleges();
         List<CollegeDto> dtos = new ArrayList<>();
@@ -55,8 +62,9 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // --- Get College By ID ---
     @GetMapping("/{id}")
+    @Operation(summary = "Get college by ID",
+            description = "Fetches the details of a specific college using its unique ID.")
     public ResponseEntity<ApiResponseDto<CollegeDto>> getCollegeById(@PathVariable UUID id) {
         College college = collegeService.getCollegeById(id);
 
@@ -67,8 +75,9 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // --- Get College By Name ---
     @GetMapping("/name/{collegeName}")
+    @Operation(summary = "Get college by name",
+            description = "Fetches the details of a specific college using its name.")
     public ResponseEntity<ApiResponseDto<CollegeDto>> getCollegeByName(@PathVariable String collegeName) {
         College college = collegeService.getCollegeByName(collegeName);
 
@@ -79,8 +88,9 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // --- Update College ---
     @PutMapping("/{id}")
+    @Operation(summary = "Update college by ID",
+            description = "Updates an existing college using its unique ID.")
     public ResponseEntity<ApiResponseDto<CollegeDto>> updateCollege(@PathVariable UUID id,
                                                                     @Valid @RequestBody CollegeDto collegeDto) {
         College details = new College();
@@ -96,8 +106,9 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // --- Delete College By ID ---
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete college by ID",
+            description = "Deletes a college using its unique ID.")
     public ResponseEntity<ApiResponseDto<String>> deleteCollegeById(@PathVariable UUID id) {
         collegeService.deleteCollegeById(id);
 
@@ -108,8 +119,9 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // --- Delete College By Name ---
     @DeleteMapping("/name/{collegeName}")
+    @Operation(summary = "Delete college by name",
+            description = "Deletes a college using its name.")
     public ResponseEntity<ApiResponseDto<String>> deleteCollegeByName(@PathVariable String collegeName) {
         collegeService.deleteCollegeByName(collegeName);
 
@@ -120,7 +132,6 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    // -------- Helper Mapper --------
     private CollegeDto toDto(College college) {
         return new CollegeDto(college.getCollegeId(), college.getCollegeName(), college.getDepartmentSet());
     }

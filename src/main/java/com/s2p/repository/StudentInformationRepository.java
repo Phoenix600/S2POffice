@@ -17,8 +17,8 @@ public interface StudentInformationRepository extends JpaRepository<StudentInfor
 {
     Optional<StudentInformation> findByEmail(String email);
 
-    @Query("SELECT FUNCTION('YEAR', s.createdDate), FUNCTION('MONTH', s.createdDate), COUNT(s) " +
-            "FROM StudentInformation s GROUP BY FUNCTION('YEAR', s.createdDate), FUNCTION('MONTH', s.createdDate)")
+    @Query("SELECT FUNCTION('YEAR', s.createdAt), FUNCTION('MONTH', s.createdAt), COUNT(s) " +
+            "FROM StudentInformation s GROUP BY FUNCTION('YEAR', s.createdAt), FUNCTION('MONTH', s.createdAt)")
     List<Object[]> countStudentsByMonth();
 
 }

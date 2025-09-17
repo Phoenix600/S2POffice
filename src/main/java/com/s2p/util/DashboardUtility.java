@@ -9,6 +9,7 @@ import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class DashboardUtility {
@@ -57,24 +58,63 @@ public class DashboardUtility {
             return result;
         }
 
-        // Calculate total admissions
         long totalAdmissions = monthlyCounts.values().stream().mapToLong(Long::longValue).sum();
 
-        // Average per month (total admissions / total months)
         double averagePerMonth = (double) totalAdmissions / monthlyCounts.size();
 
-        // Calculate number of unique years
         long distinctYears = monthlyCounts.keySet().stream()
                 .map(YearMonth::getYear)
                 .distinct()
                 .count();
 
-        // Average per year (total admissions / distinct years)
         double averagePerYear = (double) totalAdmissions / distinctYears;
 
         Map<String, Double> result = new HashMap<>();
         result.put("averagePerMonth", averagePerMonth);
         result.put("averagePerYear", averagePerYear);
+        return result;
+    }
+    public Map<String, Object> getConversionRates() {
+        Map<YearMonth, Long> enquiryCounts = getMonthlyEnquiryCounts();
+        Map<YearMonth, Long> admissionCounts = getMonthlyAdmissionCounts();
+
+        Map<YearMonth, Double> monthlyConversionRates = new HashMap<>();
+        for (YearMonth ym : enquiryCounts.keySet()) {
+            long enquiries = enquiryCounts.getOrDefault(ym, 0L);
+            long admissions = admissionCounts.getOrDefault(ym, 0L);
+            double rate = enquiries == 0 ? 0.0 : (admissions * 100.0) / enquiries;
+            monthlyConversionRates.put(ym, rate);
+        }
+
+        Map<Integer, Long> yearlyEnquiries = enquiryCounts.entrySet().stream()
+                .collect(Collectors.groupingBy(
+                        e -> e.getKey().getYear(),
+                        Collectors.summingLong(Map.Entry::getValue)
+                ));
+
+        Map<Integer, Long> yearlyAdmissions = admissionCounts.entrySet().stream()
+                .collect(Collectors.groupingBy(
+                        e -> e.getKey().getYear(),
+                        Collectors.summingLong(Map.Entry::getValue)
+                ));
+
+        Map<Integer, Double> yearlyConversionRates = new HashMap<>();
+        for (Integer year : yearlyEnquiries.keySet()) {
+            long enquiries = yearlyEnquiries.getOrDefault(year, 0L);
+            long admissions = yearlyAdmissions.getOrDefault(year, 0L);
+            double rate = enquiries == 0 ? 0.0 : (admissions * 100.0) / enquiries;
+            yearlyConversionRates.put(year, rate);
+        }
+
+        long totalEnquiries = enquiryCounts.values().stream().mapToLong(Long::longValue).sum();
+        long totalAdmissions = admissionCounts.values().stream().mapToLong(Long::longValue).sum();
+        double overallConversionRate = totalEnquiries == 0 ? 0.0 : (totalAdmissions * 100.0) / totalEnquiries;
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("monthlyConversionRates", monthlyConversionRates);
+        result.put("yearlyConversionRates", yearlyConversionRates);
+        result.put("overallConversionRate", overallConversionRate);
+
         return result;
     }
 

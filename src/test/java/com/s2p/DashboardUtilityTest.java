@@ -103,4 +103,32 @@ class DashboardUtilityTest {
         assertEquals(0.0, result.get("averagePerMonth"));
         assertEquals(0.0, result.get("averagePerYear"));
     }
+    @Test
+    void testGetConversionRates() {
+        List<Object[]> enquiryData = Arrays.asList(
+                new Object[]{2024, 1, 100L},
+                new Object[]{2024, 2, 200L},
+                new Object[]{2025, 1, 300L}
+        );
+
+        List<Object[]> admissionData = Arrays.asList(
+                new Object[]{2024, 1, 10L},
+                new Object[]{2024, 2, 20L},
+                new Object[]{2025, 1, 60L}
+        );
+
+        when(enquiryRepository.countEnquiriesByMonth()).thenReturn(enquiryData);
+        when(admissionRepository.countAdmissionsByMonth()).thenReturn(admissionData);
+
+        Map<String, Object> result = dashboardUtility.getConversionRates();
+
+        Map<YearMonth, Double> monthly = (Map<YearMonth, Double>) result.get("monthlyConversionRates");
+        Map<Integer, Double> yearly = (Map<Integer, Double>) result.get("yearlyConversionRates");
+        double overall = (double) result.get("overallConversionRate");
+
+        assertEquals(10.0, monthly.get(YearMonth.of(2024, 1)));
+        assertEquals(10.0, yearly.get(2024));
+        assertEquals(20.0, yearly.get(2025)); // 60/300 *100 = 20%
+        assertEquals( (10+20+60)*100.0/(100+200+300), overall );
+    }
 }

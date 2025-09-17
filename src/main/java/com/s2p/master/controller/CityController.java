@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
 import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +21,15 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/city")
 @RequiredArgsConstructor
+@Tag(name = "City Management",
+        description = "APIs for managing cities")
 public class CityController {
 
     private final ICityService cityService;
 
-    // Create City
     @PostMapping
+    @Operation(summary = "Create a new city",
+            description = "Creates and saves a new city based on the provided data.")
     public ResponseEntity<ApiResponseDto<CityDto>> createCity(@Valid @RequestBody CityDto cityDto) {
         City city = new City();
         city.setCityName(cityDto.getCityName());
@@ -40,8 +46,9 @@ public class CityController {
         return ResponseEntity.ok(response);
     }
 
-    // Get All Cities
     @GetMapping
+    @Operation(summary = "Get all cities",
+            description = "Retrieves a list of all cities from the system.")
     public ResponseEntity<ApiResponseDto<List<CityDto>>> getAllCities() {
         List<City> cities = cityService.getAllCities();
         List<CityDto> cityDtos = new ArrayList<>();
@@ -58,8 +65,9 @@ public class CityController {
         return ResponseEntity.ok(response);
     }
 
-    // Get City by Name
     @GetMapping("/name/{cityName}")
+    @Operation(summary = "Get city by name",
+            description = "Fetches the details of a specific city using its name.")
     public ResponseEntity<ApiResponseDto<CityDto>> getCityByName(@PathVariable("cityName") String cityName) {
         City city = cityService.getCityByName(cityName);
         CityDto responseDto = new CityDto(city.getCityId(), null, city.getCityName());
@@ -72,8 +80,9 @@ public class CityController {
         return ResponseEntity.ok(response);
     }
 
-    // Update City by ID
     @PutMapping("/{id}")
+    @Operation(summary = "Update city by ID",
+            description = "Updates an existing city using its unique ID.")
     public ResponseEntity<ApiResponseDto<CityDto>> updateCity(@PathVariable("id") UUID id,
                                                               @Valid @RequestBody CityDto cityDto) {
         City cityDetails = new City();
@@ -91,8 +100,9 @@ public class CityController {
         return ResponseEntity.ok(response);
     }
 
-    // Delete City by ID
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete city by ID",
+            description = "Deletes a city using its unique ID.")
     public ResponseEntity<ApiResponseDto<String>> deleteCityById(@PathVariable("id") UUID id) {
         cityService.deleteCityById(id);
 
@@ -104,8 +114,9 @@ public class CityController {
         return ResponseEntity.ok(response);
     }
 
-    // Delete City by Name
     @DeleteMapping("/name/{cityName}")
+    @Operation(summary = "Delete city by name",
+            description = "Deletes a city using its name.")
     public ResponseEntity<ApiResponseDto<String>> deleteCityByName(@PathVariable("cityName") String cityName) {
         cityService.deleteCityByName(cityName);
 

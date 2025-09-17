@@ -32,5 +32,10 @@ public class DashboardController {
         Map<String, Double> averages = dashboardUtility.getAverageAdmissionCounts();
         return ResponseEntity.ok(averages);
     }
+    @GetMapping("/conversion-rates")
+    public ResponseEntity<Map<String, Object>> getConversionRates() {
+        return ResponseEntity.ok(dashboardUtility.getConversionRates());
+    }
+
 
 }

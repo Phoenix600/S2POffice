@@ -18,6 +18,5 @@ import java.util.UUID;
 public class AdmissionDto
 {
     private UUID admissionId;
-
     private LocalDate admissionDate;
 }
