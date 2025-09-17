@@ -77,4 +77,30 @@ class DashboardUtilityTest {
         assertEquals(1, result.size());
         assertEquals(8L, result.get(YearMonth.of(2025, 4)));
     }
+
+    @Test
+    void testGetAverageAdmissionCounts() {
+        List<Object[]> mockData = Arrays.asList(
+                new Object[]{2025, 1, 10L},
+                new Object[]{2025, 2, 20L},
+                new Object[]{2026, 1, 30L}
+        );
+        when(admissionRepository.countAdmissionsByMonth()).thenReturn(mockData);
+
+        Map<String, Double> result = dashboardUtility.getAverageAdmissionCounts();
+
+        assertEquals(3, mockData.size());
+        assertEquals(60.0 / 3, result.get("averagePerMonth"));
+        assertEquals(60.0 / 2, result.get("averagePerYear"));
+    }
+
+    @Test
+    void testGetAverageAdmissionCountsWhenEmpty() {
+        when(admissionRepository.countAdmissionsByMonth()).thenReturn(List.of());
+
+        Map<String, Double> result = dashboardUtility.getAverageAdmissionCounts();
+
+        assertEquals(0.0, result.get("averagePerMonth"));
+        assertEquals(0.0, result.get("averagePerYear"));
+    }
 }

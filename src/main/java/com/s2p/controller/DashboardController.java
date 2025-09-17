@@ -27,4 +27,10 @@ public class DashboardController {
         response.put("admissions", dashboardUtility.getMonthlyAdmissionCounts());
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/average-admissions")
+    public ResponseEntity<Map<String, Double>> getAverageAdmissions() {
+        Map<String, Double> averages = dashboardUtility.getAverageAdmissionCounts();
+        return ResponseEntity.ok(averages);
+    }
+
 }

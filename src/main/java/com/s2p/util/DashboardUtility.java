@@ -47,4 +47,35 @@ public class DashboardUtility {
         }
         return result;
     }
+    public Map<String, Double> getAverageAdmissionCounts() {
+        Map<YearMonth, Long> monthlyCounts = getMonthlyAdmissionCounts();
+
+        if (monthlyCounts.isEmpty()) {
+            Map<String, Double> result = new HashMap<>();
+            result.put("averagePerMonth", 0.0);
+            result.put("averagePerYear", 0.0);
+            return result;
+        }
+
+        // Calculate total admissions
+        long totalAdmissions = monthlyCounts.values().stream().mapToLong(Long::longValue).sum();
+
+        // Average per month (total admissions / total months)
+        double averagePerMonth = (double) totalAdmissions / monthlyCounts.size();
+
+        // Calculate number of unique years
+        long distinctYears = monthlyCounts.keySet().stream()
+                .map(YearMonth::getYear)
+                .distinct()
+                .count();
+
+        // Average per year (total admissions / distinct years)
+        double averagePerYear = (double) totalAdmissions / distinctYears;
+
+        Map<String, Double> result = new HashMap<>();
+        result.put("averagePerMonth", averagePerMonth);
+        result.put("averagePerYear", averagePerYear);
+        return result;
+    }
+
 }
