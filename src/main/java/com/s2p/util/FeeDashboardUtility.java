@@ -1,8 +1,10 @@
 package com.s2p.util;
 
 import com.s2p.repository.CourseFeeRepository;
+import com.s2p.repository.CourseFeeStructureRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
@@ -11,64 +13,64 @@ import java.util.Map;
 @Component
 public class FeeDashboardUtility {
 
-    private final CourseFeeRepository courseFeesRepository;
+    private final CourseFeeRepository courseFeeRepository;
+    private final CourseFeeStructureRepository courseFeeStructureRepository;
 
-    public FeeDashboardUtility(CourseFeeRepository courseFeesRepository) {
-        this.courseFeesRepository = courseFeesRepository;
+    public FeeDashboardUtility(CourseFeeRepository courseFeeRepository,
+                               CourseFeeStructureRepository courseFeeStructureRepository) {
+        this.courseFeeRepository = courseFeeRepository;
+        this.courseFeeStructureRepository = courseFeeStructureRepository;
     }
 
-    // Monthly Expected Fees
-    public Map<YearMonth, Double> getMonthlyExpectedFees() {
-        return convertToMonthlyMap(courseFeesRepository.countExpectedFeesByMonth());
-    }
+    public Map<YearMonth, Map<String, Double>> getMonthlyFeeSummary() {
+        Map<YearMonth, Map<String, Double>> summary = new HashMap<>();
 
-    // Monthly Actual Fees Collected
-    public Map<YearMonth, Double> getMonthlyActualFees() {
-        return convertToMonthlyMap(courseFeesRepository.countActualFeesByMonth());
-    }
+        List<Object[]> expectedFees = courseFeeRepository.findMonthlyExpectedFees();
+        List<Object[]> collectedFees = courseFeeStructureRepository.findMonthlyCollectedFees();
 
-    // Monthly Balance Fees = Expected - Actual
-    public Map<YearMonth, Double> getMonthlyBalanceFees() {
-        Map<YearMonth, Double> expected = getMonthlyExpectedFees();
-        Map<YearMonth, Double> actual = getMonthlyActualFees();
-        Map<YearMonth, Double> balance = new HashMap<>();
+        // Initialize with expected fees
+        for (Object[] row : expectedFees) {
+            int year = (int) row[0];
+            int month = (int) row[1];
+            double expected = (double) row[2];
 
-        for (YearMonth ym : expected.keySet()) {
-            double expectedAmount = expected.getOrDefault(ym, 0.0);
-            double actualAmount = actual.getOrDefault(ym, 0.0);
-            balance.put(ym, expectedAmount - actualAmount);
-        }
-        return balance;
-    }
+            YearMonth ym = YearMonth.of(year, month);
+            summary.putIfAbsent(ym, new HashMap<>());
+            Map<String, Double> feeData = summary.get(ym);
 
-    // Helper method to convert raw repository results to monthly map
-    private Map<YearMonth, Double> convertToMonthlyMap(List<Object[]> rawResults) {
-        Map<YearMonth, Double> result = new HashMap<>();
-        for (Object[] row : rawResults) {
-            int year = ((Number) row[0]).intValue();
-            int month = ((Number) row[1]).intValue();
-            double amount = ((Number) row[2]).doubleValue();
-            result.put(YearMonth.of(year, month), amount);
-        }
-        return result;
-    }
-
-    // Average per month and per year for fees
-    public Map<String, Double> getAverageFees(Map<YearMonth, Double> monthlyFees) {
-        Map<String, Double> result = new HashMap<>();
-        if (monthlyFees.isEmpty()) {
-            result.put("averagePerMonth", 0.0);
-            result.put("averagePerYear", 0.0);
-            return result;
+            feeData.put("expected", expected);
+            feeData.put("collected", feeData.getOrDefault("collected", 0.0));
+            feeData.put("balance", feeData.get("expected") - feeData.get("collected"));
         }
 
-        double total = monthlyFees.values().stream().mapToDouble(Double::doubleValue).sum();
-        double avgPerMonth = total / monthlyFees.size();
-        long distinctYears = monthlyFees.keySet().stream().map(YearMonth::getYear).distinct().count();
-        double avgPerYear = total / distinctYears;
+        // Add collected fees
+        for (Object[] row : collectedFees) {
+            int year = (int) row[0];
+            int month = (int) row[1];
+            double collected = (double) row[2];
 
-        result.put("averagePerMonth", avgPerMonth);
-        result.put("averagePerYear", avgPerYear);
-        return result;
+            YearMonth ym = YearMonth.of(year, month);
+            summary.putIfAbsent(ym, new HashMap<>());
+            Map<String, Double> feeData = summary.get(ym);
+
+            feeData.put("collected", collected);
+            feeData.put("expected", feeData.getOrDefault("expected", 0.0));
+            feeData.put("balance", feeData.get("expected") - feeData.get("collected"));
+        }
+
+        // Ensure all months have defaults
+        for (Map<String, Double> feeData : summary.values()) {
+            feeData.putIfAbsent("expected", 0.0);
+            feeData.putIfAbsent("collected", 0.0);
+            feeData.put("balance", feeData.get("expected") - feeData.get("collected"));
+        }
+
+        return summary;
+    }
+    // Total Fees collected today
+    public double getTodayCollectedFees() {
+        LocalDate today = LocalDate.now();
+        Double total = courseFeeStructureRepository.findTotalCollectedFeesByDate(today);
+        return total != null ? total : 0.0;
     }
 }

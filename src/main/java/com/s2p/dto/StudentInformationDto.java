@@ -1,62 +1,69 @@
 package com.s2p.dto;
 
-import com.s2p.model.*;
-import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import com.s2p.model.*;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-    /**
-     * File Name: StudentInformation.java
-     * Entity: StudentInformation
-     * Package: com.s2p.model
-     * Author: pranayramteke
-     * Date: 19/08/25
-     * Description:
-     */
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Getter
-    @Setter
-    public class StudentInformationDto
-    {
-        private UUID studentInformationId;
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Schema(description = "DTO representing detailed information about a Student")
+public class StudentInformationDto {
 
-        private String firstName;
+    @Schema(description = "Unique ID of the student", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6")
+    private UUID studentInformationId;
 
-        private String lastName;
+    @Schema(description = "First name of the student", example = "John")
+    private String firstName;
 
-        @Email(message = "Enter Valid Email")
-        private String email;
+    @Schema(description = "Last name of the student", example = "Doe")
+    private String lastName;
 
-        private String collegeName;
+    @Email(message = "Enter Valid Email")
+    @Schema(description = "Email address of the student", example = "john.doe@example.com")
+    private String email;
 
-        private String departName;
+    @Schema(description = "Name of the college", example = "JD College of Engineering")
+    private String collegeName;
 
-        private String semester;
+    @Schema(description = "Department of the student", example = "Computer Science")
+    private String departName;
 
-        private String passingYear;
+    @Schema(description = "Current semester of the student", example = "6th")
+    private String semester;
 
-        @Column(nullable = true)
-        private Boolean isGraduated;
+    @Schema(description = "Passing year of the student", example = "2025")
+    private String passingYear;
 
-        private Boolean isAdmitted;
+    @Schema(description = "Indicates whether the student has graduated", example = "true")
+    @Column(nullable = true)
+    private Boolean isGraduated;
 
-        private Boolean isDiscontinued;
+    @Schema(description = "Indicates whether the student is admitted", example = "true")
+    private Boolean isAdmitted;
 
-        private String reasonOfDiscontinue;
+    @Schema(description = "Indicates whether the student has discontinued", example = "false")
+    private Boolean isDiscontinued;
 
-        private Enquiry enquiry;
+    @Schema(description = "Reason for discontinuation if applicable", example = "Personal reasons")
+    private String reasonOfDiscontinue;
 
-        private Set<Batch> batches = new HashSet<>();
+    @Schema(description = "Associated Enquiry of the student")
+    private Enquiry enquiry;
 
-        private Set<Course> courses = new HashSet<>();
+    @Schema(description = "Set of batches the student belongs to")
+    private Set<Batch> batches = new HashSet<>();
 
-        private CourseFeeStructure courseFeeStructure;
-    }
+    @Schema(description = "Set of courses the student is enrolled in")
+    private Set<Course> courses = new HashSet<>();
+
+    @Schema(description = "Associated Course Fee Structure for the student")
+    private CourseFeeStructure courseFeeStructure;
+}
