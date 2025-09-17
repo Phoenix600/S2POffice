@@ -4,7 +4,6 @@ import com.s2p.master.model.AcademicYear;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -38,11 +37,4 @@ public class CourseFees extends BaseEntity
 	@JoinColumn(name = "academic_year_id", nullable = false)
 	private AcademicYear academicYear;
 
-	private Double amountExpected;
-
-	private LocalDate paymentDate;
-
-	private Double amountPaid;
-
-	private LocalDate dueDate;
 }

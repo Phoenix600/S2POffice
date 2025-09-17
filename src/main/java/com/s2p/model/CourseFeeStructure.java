@@ -13,13 +13,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CourseFeeStructure
+public class CourseFeeStructure extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID courseFeeStructureId;
 
     private Double downPayment;
+
     private Double remainingAmount;
     private Boolean isDiscountGiven;
     private Float isDiscountFactor;
@@ -35,10 +36,7 @@ public class CourseFeeStructure
     private CourseFees courseFees;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "student_information_id", referencedColumnName = "studentInformationId")
-    private StudentInformation studentInformation;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
     private StudentUsers studentUsers;
 
 }
