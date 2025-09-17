@@ -45,9 +45,4 @@ public class CourseFees extends BaseEntity
 	private Double amountPaid;
 
 	private LocalDate dueDate;
-
-
-
-
-
 }

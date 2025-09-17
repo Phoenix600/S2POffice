@@ -38,6 +38,24 @@ public interface CourseFeeStructureRepository extends JpaRepository<CourseFeeStr
           AND MONTH(cf.paymentDate) = MONTH(:date)
           AND YEAR(cf.paymentDate) = YEAR(:date)
     """)
-    Double getCollectedFeesThisMonth(@Param("date") LocalDate date);
+    Double getCollectedFeesThisMonth(@Param("date") LocalDate date);// Expected fees for admissions in a given month
+    @Query("SELECT COALESCE(SUM(cf.amountExpected), 0) " +
+            "FROM CourseFees cf " +
+            "JOIN cf.studentInformation s " +
+            "WHERE s.isAdmitted = true " +
+            "AND FUNCTION('MONTH', s.createdAt) = FUNCTION('MONTH', :date) " +
+            "AND FUNCTION('YEAR', s.createdAt) = FUNCTION('YEAR', :date)")
+    Double getExpectedFeesForMonth(@Param("date") LocalDate date);
+
+    // Actual fees collected in a given month
+    @Query("SELECT COALESCE(SUM(cf.amountPaid), 0) " +
+            "FROM CourseFees cf " +
+            "JOIN cf.studentInformation s " +
+            "WHERE s.isAdmitted = true " +
+            "AND FUNCTION('MONTH', cf.paymentDate) = FUNCTION('MONTH', :date) " +
+            "AND FUNCTION('YEAR', cf.paymentDate) = FUNCTION('YEAR', :date)")
+    Double getCollectedFeesForMonth(@Param("date") LocalDate date);
+
+
 
 }

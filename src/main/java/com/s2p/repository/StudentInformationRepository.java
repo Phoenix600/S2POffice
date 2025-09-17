@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,21 +16,9 @@ public interface StudentInformationRepository extends JpaRepository<StudentInfor
 {
     Optional<StudentInformation> findByEmail(String email);
 
-    @Query("SELECT COUNT(s) FROM StudentInformation s " +
-            "WHERE s.isAdmitted = true " +
-            "AND MONTH(s.createdAt) = MONTH(:date) " +
-            "AND YEAR(s.createdAt) = YEAR(:date)")
-    long countAdmissionsThisMonth(LocalDate date);
-
-    @Query("SELECT COALESCE(SUM(cf.courseFees), 0) " +
-                  "FROM StudentInformation s " +
-                  "JOIN s.courseFeeStructure cfs " +
-                  "JOIN cfs.courseFees cf " +
-                  "WHERE s.isAdmitted = true " +
-                  "AND MONTH(s.createdAt) = MONTH(:date) " +
-                  "AND YEAR(s.createdAt) = YEAR(:date)")
-    Double getExpectedFeesForAdmissionsThisMonth(@Param("date") LocalDate date);
-
+    @Query("SELECT FUNCTION('YEAR', s.createdDate), FUNCTION('MONTH', s.createdDate), COUNT(s) " +
+            "FROM StudentInformation s GROUP BY FUNCTION('YEAR', s.createdDate), FUNCTION('MONTH', s.createdDate)")
+    List<Object[]> countStudentsByMonth();
 
 
 }

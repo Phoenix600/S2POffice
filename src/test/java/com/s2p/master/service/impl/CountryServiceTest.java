@@ -237,7 +237,7 @@ class CountryServiceTest {
     @Description("Verify that a new country is created successfully when it does not already exist.")
     @Severity(SeverityLevel.CRITICAL) // Mark importance
     public void testCreateCountrySuccess() {
-        // ✅ use class-level country1 and country2 from setUp()
+
         when(countryRepository.findAll()).thenReturn(Collections.singletonList(country1));
         when(countryRepository.save(any(Country.class))).thenReturn(country2);
 
