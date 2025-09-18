@@ -4,7 +4,6 @@ import com.s2p.dto.StudentInformationDto;
 import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.StudentInformationRepository;
-import com.s2p.services.IStudentInformationService;
 import com.s2p.util.StudentInformationUtility;
 import io.qameta.allure.*;
 import io.qameta.allure.junit5.AllureJunit5;
@@ -35,13 +34,12 @@ class StudentInformationServiceTest {
     private StudentInformationUtility studentInformationUtility;
 
     @InjectMocks
+    private com.s2p.services.impl.StudentInformationService studentInformationService;
+
     private StudentInformation studentEntity1;
     private StudentInformation studentEntity2;
     private StudentInformationDto studentDto1;
     private StudentInformationDto studentDto2;
-
-    @InjectMocks
-    private IStudentInformationService studentInformationService;
 
     @BeforeEach
     void setUp() {

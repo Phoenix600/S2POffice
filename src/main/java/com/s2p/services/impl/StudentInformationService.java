@@ -1,6 +1,7 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.StudentInformationDto;
+import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.StudentInformationRepository;
 import com.s2p.repository.specifications.StudentSpecifications;
@@ -8,10 +9,14 @@ import com.s2p.services.IStudentInformationService;
 import com.s2p.util.StudentInformationUtility;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+
 import static com.s2p.repository.specifications.StudentSpecifications.*;
+import static java.lang.ScopedValue.where;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +53,31 @@ public class StudentInformationService implements IStudentInformationService
             return studentInformationUtility.toStudentInformationDto(savedStudent);
     }
 
+    @Override
+    public Optional<StudentInformationDto> getStudentByEmail(String email) {
+        Optional<StudentInformation> studentOpt = studentInformationRepository.findByEmail(email);
+
+        if (studentOpt.isPresent()) {
+            StudentInformationDto dto = studentInformationUtility.toStudentInformationDto(studentOpt.get());
+            return Optional.of(dto);
+        }
+
+        return Optional.empty();
+    }
 
 
+    @Override
+    public Set<StudentInformationDto> getAllStudents()
+    {
+        List<StudentInformation> allStudents = studentInformationRepository.findAll();
+        Set<StudentInformationDto> result = new HashSet<>();
+
+        for (StudentInformation student : allStudents) {
+            result.add(studentInformationUtility.toStudentInformationDto(student));
+        }
+
+        return result;
+    }
 
     @Override
     public String deleteStudent(String email) {
@@ -66,15 +94,6 @@ public class StudentInformationService implements IStudentInformationService
     }
 
     @Override
-    public StudentInformationDto getStudentByEmail(String email) {
-        return null;
-    }
-
-    @Override
-    public List<StudentInformationDto> getAllStudents() {
-        return List.of();
-    }
-
     public StudentInformationDto updateStudentByEmail(String email, StudentInformationDto studentInformationDto)
     {
         Optional<StudentInformation> existingStudentOpt = studentInformationRepository.findByEmail(email);
@@ -133,6 +152,7 @@ public class StudentInformationService implements IStudentInformationService
         return studentInformationUtility.toStudentInformationDto(updated);
     }
 
+    @Override
     public void deleteStudentByEmail(String email) {
         Optional<StudentInformation> existingStudentOpt = studentInformationRepository.findByEmail(email);
 
@@ -143,8 +163,20 @@ public class StudentInformationService implements IStudentInformationService
         studentInformationRepository.delete(existingStudentOpt.get());
     }
 
+    @Override
+    public List<StudentInformationDto> getAllStudents() {
+        List<StudentInformation> students = studentInformationRepository.findAll();
+        List<StudentInformationDto> studentDtos = new ArrayList<StudentInformationDto>();
 
+        for (StudentInformation student : students) {
+            StudentInformationDto dto = studentInformationUtility.toStudentInformationDto(student);
+            studentDtos.add(dto);
+        }
 
+        return studentDtos;
+    }
+
+    @Override
     public List<StudentInformationDto> searchStudents(
             String firstName,
             String lastName,
@@ -165,6 +197,14 @@ public class StudentInformationService implements IStudentInformationService
                 StudentSpecifications.hasPassingYear(passingYear),
                 StudentSpecifications.isGraduated(isGraduated)
         );
+//                .where(hasFirstName(firstName))
+//                .and(hasLastName(lastName))
+//                .and(hasEmail(email))
+//                .and(hasCollegeName(collegeName))
+//                .and(hasDegreeName(degreeName))
+//                .and(hasSemester(semester))
+//                .and(hasPassingYear(passingYear))
+//                .and(isGraduated(isGraduated));
 
         List<StudentInformation> students = studentInformationRepository.findAll(spec);
 
