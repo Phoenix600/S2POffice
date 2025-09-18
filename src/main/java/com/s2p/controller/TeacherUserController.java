@@ -62,7 +62,6 @@ public class TeacherUserController
         return ResponseEntity.ok(response);
     }
 
-
     //  GET:- http://localhost:8080/api/v1/teacherUser/teacherUsers
     // Get All Teachers
     @GetMapping("teacherUsers")
@@ -76,7 +75,6 @@ public class TeacherUserController
 
         return ResponseEntity.ok(response);
     }
-
 
     //  PUT:- http://localhost:8080/api/v1/teacherUser/update/{username}
     @PutMapping("/update/{username}")
@@ -95,7 +93,6 @@ public class TeacherUserController
         return ResponseEntity.ok(response);
     }
 
-
     //  DELETE:- http://localhost:8080/api/v1/teacherUser/delete/{username}
     @DeleteMapping("/delete/{username}")
     public ResponseEntity<ApiResponseDto<Void>> deleteTeacherUserByUsername(
@@ -111,6 +108,43 @@ public class TeacherUserController
 
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/batch/{batchId}")
+    public Set<TeacherUserDto> getByBatch(@PathVariable UUID batchId) {
+        return teacherUserService.getTeachersByBatch(batchId);
+    }
 
+    @PutMapping("/{teacherId}/batch/{batchId}")
+    public TeacherUserDto updateByBatch(@PathVariable UUID teacherId,
+                                        @PathVariable UUID batchId,
+                                        @RequestBody TeacherUserDto dto) {
+        return teacherUserService.updateTeacherByBatch(batchId, teacherId, dto);
+    }
+
+    @DeleteMapping("/{teacherId}/batch/{batchId}")
+    public void removeFromBatch(@PathVariable UUID teacherId, @PathVariable UUID batchId) {
+        teacherUserService.removeTeacherFromBatch(batchId, teacherId);
+    }
+    @GetMapping("/course/{courseId}")
+    public ResponseEntity<Set<TeacherUserDto>> getTeachersByCourse(@PathVariable UUID courseId) {
+        return ResponseEntity.ok(teacherUserService.getTeachersByCourse(courseId));
+    }
+
+    // Update teacher and assign to course
+    @PutMapping("/course/{courseId}/{teacherId}")
+    public ResponseEntity<TeacherUserDto> updateTeacherByCourse(
+            @PathVariable UUID courseId,
+            @PathVariable UUID teacherId,
+            @RequestBody TeacherUserDto dto) {
+        return ResponseEntity.ok(teacherUserService.updateTeacherByCourse(courseId, teacherId, dto));
+    }
+
+    // Remove teacher from course
+    @DeleteMapping("/course/{courseId}/{teacherId}")
+    public ResponseEntity<Void> removeTeacherFromCourse(
+            @PathVariable UUID courseId,
+            @PathVariable UUID teacherId) {
+        teacherUserService.removeTeacherFromCourse(courseId, teacherId);
+        return ResponseEntity.noContent().build();
+    }
 
 }

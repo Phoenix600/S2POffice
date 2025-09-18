@@ -83,7 +83,11 @@ class ProjectSecurityConfig
 
                 .requestMatchers("/swagger-ui/index.html#").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
-                .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession", "/apiLogin").permitAll());
+                .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession", "/apiLogin").permitAll()
+                                .requestMatchers("/api/v1/auth/forgot-password").permitAll()
+                                .requestMatchers("/api/v1/auth/reset-password").permitAll()
+                                .requestMatchers("/api/v1/auth/verify-otp").permitAll()
+                );
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new  CustomBasicAuthenticationEntryPoint()));
         http.exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomerAccessDeniedHandler()));

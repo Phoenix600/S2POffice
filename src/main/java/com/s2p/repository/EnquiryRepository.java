@@ -2,6 +2,7 @@ package com.s2p.repository;
 
 import com.s2p.model.Enquiry;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -22,4 +23,8 @@ public interface EnquiryRepository extends JpaRepository<Enquiry,UUID>
     List<Enquiry> findByEnquiryDate(LocalDate enquiryDate);
 
     boolean existsByStudentInformation_Email(String email);
+
+    @Query("SELECT FUNCTION('YEAR', e.enquiryDate), FUNCTION('MONTH', e.enquiryDate), COUNT(e) " +
+            "FROM Enquiry e GROUP BY FUNCTION('YEAR', e.enquiryDate), FUNCTION('MONTH', e.enquiryDate)")
+    List<Object[]> countEnquiriesByMonth();
 }

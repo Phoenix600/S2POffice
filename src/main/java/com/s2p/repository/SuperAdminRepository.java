@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface SuperAdminRepository extends JpaRepository<SuperAdminUsers, UUID>
 {
-    public abstract Optional<SuperAdminUsers> findByEmail(String email);
+    Optional<SuperAdminUsers> findByEmail(String email);
 
 }

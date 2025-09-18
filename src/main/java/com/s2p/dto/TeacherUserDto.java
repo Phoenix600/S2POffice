@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,10 +16,10 @@ import java.util.UUID;
 public class TeacherUserDto
 {
     private UUID teacherUserId;
-
     private String email;
-
     private String username;
-
     private RolesDto roles;
+    private Set<UUID> batchIds;
+    private Set<UUID> courseIds;
+
 }

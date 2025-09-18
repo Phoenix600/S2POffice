@@ -7,6 +7,7 @@ import com.s2p.repository.StudentInformationRepository;
 import com.s2p.util.StudentInformationUtility;
 import io.qameta.allure.*;
 import io.qameta.allure.junit5.AllureJunit5;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class StudentInformationServiceTest {
     private StudentInformationUtility studentInformationUtility;
 
     @InjectMocks
-    private com.s2p.services.impl.StudentInformationService studentInformationService;
+    private StudentInformationService studentInformationService;
 
     private StudentInformation studentEntity1;
     private StudentInformation studentEntity2;
@@ -84,7 +85,7 @@ class StudentInformationServiceTest {
         when(studentInformationRepository.save(studentEntity2)).thenReturn(studentEntity2);
         when(studentInformationUtility.toStudentInformationDto(studentEntity2)).thenReturn(studentDto2);
 
-        StudentInformationDto result = studentInformationService.createStudent(studentDto2);
+        StudentInformationDto result = studentInformationService.createStudentInformation(studentDto2);
 
         assertNotNull(result);
         assertEquals("john@test.com", result.getEmail());
@@ -99,7 +100,7 @@ class StudentInformationServiceTest {
         when(studentInformationRepository.findAll()).thenReturn(Collections.singletonList(studentEntity1));
 
         assertThrows(BadRequestException.class,
-                () -> studentInformationService.createStudent(studentDto1));
+                () -> studentInformationService.createStudentInformation(studentDto1));
     }
 
     @Test
@@ -110,7 +111,7 @@ class StudentInformationServiceTest {
                 .thenReturn(Optional.of(studentEntity1));
         when(studentInformationUtility.toStudentInformationDto(studentEntity1)).thenReturn(studentDto1);
 
-        Optional<StudentInformationDto> result = Optional.ofNullable(studentInformationService.getStudentByEmail("pranay@test.com"));
+        Optional<StudentInformationDto> result = studentInformationService.getStudentByEmail("pranay@test.com");
 
         assertTrue(result.isPresent());
         assertEquals("Pranay", result.get().getFirstName());
@@ -123,7 +124,7 @@ class StudentInformationServiceTest {
         when(studentInformationRepository.findByEmail("unknown@test.com"))
                 .thenReturn(Optional.empty());
 
-        Optional<StudentInformationDto> result = Optional.ofNullable(studentInformationService.getStudentByEmail("unknown@test.com"));
+        Optional<StudentInformationDto> result = studentInformationService.getStudentByEmail("unknown@test.com");
 
         assertFalse(result.isPresent());
     }
@@ -136,7 +137,7 @@ class StudentInformationServiceTest {
         when(studentInformationUtility.toStudentInformationDto(studentEntity1)).thenReturn(studentDto1);
         when(studentInformationUtility.toStudentInformationDto(studentEntity2)).thenReturn(studentDto2);
 
-        Set<StudentInformationDto> result = (Set<StudentInformationDto>) studentInformationService.getAllStudents();
+        Set<StudentInformationDto> result = studentInformationService.getAllStudents();
 
         assertEquals(2, result.size());
         verify(studentInformationRepository, times(1)).findAll();
@@ -151,7 +152,7 @@ class StudentInformationServiceTest {
         when(studentInformationUtility.toStudentInformationDto(studentEntity1)).thenReturn(studentDto1);
 
         studentDto1.setFirstName("PranayUpdated");
-        StudentInformationDto result = studentInformationService.updateStudent("pranay@test.com", studentDto1);
+        StudentInformationDto result = studentInformationService.updateStudentByEmail("pranay@test.com", studentDto1);
 
         assertEquals("PranayUpdated", result.getFirstName());
         verify(studentInformationRepository, times(1)).save(studentEntity1);
@@ -164,7 +165,7 @@ class StudentInformationServiceTest {
         when(studentInformationRepository.findByEmail("unknown@test.com")).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class,
-                () -> studentInformationService.updateStudent("unknown@test.com", studentDto1));
+                () -> studentInformationService.updateStudentByEmail("unknown@test.com", studentDto1));
     }
 
     @Test
@@ -173,7 +174,7 @@ class StudentInformationServiceTest {
     void testDeleteStudentByEmail_Success() {
         when(studentInformationRepository.findByEmail("pranay@test.com")).thenReturn(Optional.of(studentEntity1));
 
-        studentInformationService.deleteStudent("pranay@test.com");
+        studentInformationService.deleteStudentByEmail("pranay@test.com");
 
         verify(studentInformationRepository, times(1)).delete(studentEntity1);
     }
@@ -185,6 +186,6 @@ class StudentInformationServiceTest {
         when(studentInformationRepository.findByEmail("unknown@test.com")).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class,
-                () -> studentInformationService.deleteStudent("unknown@test.com"));
+                () -> studentInformationService.deleteStudentByEmail("unknown@test.com"));
     }
 }
