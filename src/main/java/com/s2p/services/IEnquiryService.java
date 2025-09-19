@@ -1,6 +1,7 @@
 package com.s2p.services;
 
 import com.s2p.dto.EnquiryDto;
+import com.s2p.model.Enquiry;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,5 +23,6 @@ public interface IEnquiryService
 
     public abstract boolean deleteEnquiryByStudentEmail(String email);
 
+    public abstract List<Enquiry> searchEnquiries(String firstName, String email, LocalDate enquiryDate);
 
 }

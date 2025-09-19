@@ -6,6 +6,8 @@ import com.s2p.dto.SuperAdminUserDto;
 import com.s2p.exceptions.UserNotFoundException;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.SuperAdminUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +17,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/superAdminUser")
+@Tag(name = "Super Admin User Management", description = "APIs for managing super admin users including create, fetch, update, and delete operations")
 public class SuperAdminUserController {
+
     @Autowired
     SuperAdminUserService superAdminUserService;
 
-    // POST: http://localhost:8080/api/v1/superAdminUser/create
+    // CREATE
     @PostMapping("/create")
+    @Operation(
+            summary = "Create Super Admin User",
+            description = "Creates a new super admin user with the provided details."
+    )
     public ResponseEntity<ApiResponseDto<SuperAdminUserDto>> createSuperAdminUser(
             @Valid @RequestBody SuperAdminUserDto superAdminUserDto) {
 
@@ -39,8 +46,12 @@ public class SuperAdminUserController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    // GET: http://localhost:8080/api/v1/superAdminUser/{username}
+    // GET BY USERNAME
     @GetMapping("/{username}")
+    @Operation(
+            summary = "Get Super Admin User by Username",
+            description = "Fetches a super admin user by their unique username."
+    )
     public ResponseEntity<ApiResponseDto<SuperAdminUserDto>> getByUsername(
             @PathVariable @NotBlank String username) {
 
@@ -59,9 +70,12 @@ public class SuperAdminUserController {
         return ResponseEntity.ok(response);
     }
 
-    // Get all
-    // GET: http://localhost:8080/api/v1/superAdminUser/all
+    // GET ALL
     @GetMapping("/all")
+    @Operation(
+            summary = "Get All Super Admin Users",
+            description = "Retrieves a list of all super admin users in the system."
+    )
     public ResponseEntity<ApiResponseDto<Set<SuperAdminUserDto>>> getAllSuperAdminUsers() {
         Set<SuperAdminUserDto> all = superAdminUserService.getAllSuperAdminUsers();
 
@@ -73,8 +87,12 @@ public class SuperAdminUserController {
         return ResponseEntity.ok(response);
     }
 
-    // PUT: http://localhost:8080/api/v1/superAdminUser/update/{username}
+    // UPDATE
     @PutMapping("/update/{username}")
+    @Operation(
+            summary = "Update Super Admin User",
+            description = "Updates the details of an existing super admin user identified by their username."
+    )
     public ResponseEntity<ApiResponseDto<SuperAdminUserDto>> updateByUsername(
             @PathVariable @NotBlank String username,
             @Valid @RequestBody SuperAdminUserDto superAdminUserDto) {
@@ -90,8 +108,12 @@ public class SuperAdminUserController {
         return ResponseEntity.ok(response);
     }
 
-    // DELETE: http://localhost:8080/api/v1/superAdminUser/delete/{username}
+    // DELETE
     @DeleteMapping("/delete/{username}")
+    @Operation(
+            summary = "Delete Super Admin User",
+            description = "Deletes a super admin user identified by their username."
+    )
     public ResponseEntity<ApiResponseDto<Void>> deleteByUsername(@PathVariable @NotBlank String username) {
 
         superAdminUserService.deleteSuperAdminUserByUsername(username);

@@ -9,22 +9,26 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/enquiry")
-public class EnquiryController
-{
+@Tag(name = "Enquiry APIs", description = "APIs for managing student enquiries")
+public class EnquiryController {
+
     @Autowired
     EnquiryService enquiryService;
 
-    // Create Enquiry
+    @Operation(
+            summary = "Create Enquiry",
+            description = "Create a new enquiry record for a student"
+    )
     @PostMapping
     public ResponseEntity<ApiResponseDto<EnquiryDto>> createEnquiry(@Valid @RequestBody EnquiryDto enquiryDto) {
         EnquiryDto saved = enquiryService.createEnquiry(enquiryDto);
@@ -37,6 +41,10 @@ public class EnquiryController
         return ResponseEntity.ok(response);
     }
 
+    @Operation(
+            summary = "Get Enquiries by Date",
+            description = "Fetch all enquiries made on a specific date"
+    )
     @GetMapping("/date/{date}")
     public ResponseEntity<ApiResponseDto<List<EnquiryDto>>> getEnquiriesByDate(@PathVariable("date") String date) {
         LocalDate enquiryDate = LocalDate.parse(date);
@@ -44,7 +52,10 @@ public class EnquiryController
         return ResponseEntity.ok(new ApiResponseDto<>("Enquiries fetched successfully", EOperationStatus.RESULT_SUCCESS, enquiries));
     }
 
-
+    @Operation(
+            summary = "Get Enquiry by Student Email",
+            description = "Retrieve a student's enquiry details using their email address"
+    )
     @GetMapping("/student/{email}")
     public ResponseEntity<ApiResponseDto<EnquiryDto>> getEnquiryByStudentEmail(@PathVariable("email") String email) {
         Optional<EnquiryDto> enquiryOpt = enquiryService.getEnquiryByStudentEmail(email);
@@ -55,7 +66,10 @@ public class EnquiryController
         }
     }
 
-    // Get all Enquiries
+    @Operation(
+            summary = "Get All Enquiries",
+            description = "Fetch all enquiries stored in the system"
+    )
     @GetMapping("/getAllEnquiries")
     public ResponseEntity<ApiResponseDto<Set<EnquiryDto>>> getAllEnquiries() {
         Set<EnquiryDto> enquiries = enquiryService.getAllEnquiries();
@@ -68,6 +82,10 @@ public class EnquiryController
         return ResponseEntity.ok(response);
     }
 
+    @Operation(
+            summary = "Update Enquiry by Email",
+            description = "Update an existing enquiry record using the student's email"
+    )
     @PutMapping("/update/{email}")
     public ResponseEntity<ApiResponseDto<EnquiryDto>> updateEnquiry(@PathVariable("email") String email, @RequestBody EnquiryDto enquiryDto) {
         Optional<EnquiryDto> updatedOpt = enquiryService.updateEnquiryByStudentEmail(email, enquiryDto);
@@ -78,6 +96,10 @@ public class EnquiryController
         }
     }
 
+    @Operation(
+            summary = "Delete Enquiry by Email",
+            description = "Delete a student's enquiry record using their email"
+    )
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<ApiResponseDto<Void>> deleteEnquiry(@PathVariable("email") String email) {
         boolean deleted = enquiryService.deleteEnquiryByStudentEmail(email);

@@ -5,6 +5,8 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.AssessmentResultDTO;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.AssessmentResultService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +17,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/assessment-results")
+@Tag(name = "Assessment Result Controller", description = "APIs for managing Assessment Results for students")
 public class AssessmentResultController {
 
     @Autowired
     AssessmentResultService assessmentResultService;
 
-    // ✅ Create
+    @Operation(
+            summary = "Create a new Assessment Result",
+            description = "This API creates a new assessment result for a student using the provided details."
+    )
     @PostMapping
     public ResponseEntity<ApiResponseDto<AssessmentResultDTO>> create(@RequestBody AssessmentResultDTO dto) {
         try {
@@ -43,7 +49,10 @@ public class AssessmentResultController {
         }
     }
 
-    // ✅ Update by student email
+    @Operation(
+            summary = "Update Assessment Result by Student Email",
+            description = "This API updates an existing assessment result identified by the student's email."
+    )
     @PutMapping("/{studentEmail}")
     public ResponseEntity<ApiResponseDto<AssessmentResultDTO>> update(
             @PathVariable String studentEmail,
@@ -69,7 +78,10 @@ public class AssessmentResultController {
         }
     }
 
-    // ✅ Delete by student email
+    @Operation(
+            summary = "Delete Assessment Result by Student Email",
+            description = "This API deletes an assessment result identified by the student's email."
+    )
     @DeleteMapping("/{studentEmail}")
     public ResponseEntity<ApiResponseDto<String>> delete(
             @PathVariable String studentEmail,
@@ -95,7 +107,10 @@ public class AssessmentResultController {
         }
     }
 
-    // ✅ Get specific result by student email + assessment
+    @Operation(
+            summary = "Get a specific Assessment Result by Student Email",
+            description = "This API retrieves a specific assessment result for a student using their email and assessment details."
+    )
     @GetMapping("/{studentEmail}")
     public ResponseEntity<ApiResponseDto<AssessmentResultDTO>> getOne(
             @PathVariable String studentEmail,
@@ -130,7 +145,10 @@ public class AssessmentResultController {
         }
     }
 
-    // ✅ Get all results of one student
+    @Operation(
+            summary = "Get all Assessment Results of a Student",
+            description = "This API retrieves all assessment results for a specific student identified by their email."
+    )
     @GetMapping("/student/{studentEmail}")
     public ResponseEntity<ApiResponseDto<List<AssessmentResultDTO>>> getAllByStudent(
             @PathVariable String studentEmail
@@ -155,7 +173,10 @@ public class AssessmentResultController {
         }
     }
 
-    // ✅ Get all results
+    @Operation(
+            summary = "Get all Assessment Results",
+            description = "This API retrieves all assessment results for all students in the system."
+    )
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<AssessmentResultDTO>>> getAll() {
         try {

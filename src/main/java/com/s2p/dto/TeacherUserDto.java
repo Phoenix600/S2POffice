@@ -1,7 +1,11 @@
 package com.s2p.dto;
 
+import com.s2p.model.Batch;
+import com.s2p.model.Course;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -23,9 +27,9 @@ public class TeacherUserDto {
     @Schema(description = "Roles assigned to the teacher user")
     private RolesDto roles;
 
-    @Schema(description = "IDs of batches assigned to the teacher")
-    private Set<UUID> batchIds;
+    @Schema(description = "Batches assigned to the teacher")
+    private Set<Batch> batch = new HashSet<>();
 
-    @Schema(description = "IDs of courses assigned to the teacher")
-    private Set<UUID> courseIds;
+    @Schema(description = "Courses assigned to the teacher")
+    private Set<Course> courses = new HashSet<>();
 }

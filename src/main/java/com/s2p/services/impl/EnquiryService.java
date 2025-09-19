@@ -4,9 +4,12 @@ import com.s2p.dto.EnquiryDto;
 import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Enquiry;
 import com.s2p.repository.EnquiryRepository;
+import com.s2p.repository.specifications.EnquirySpecification;
 import com.s2p.services.IEnquiryService;
 import com.s2p.util.EnquiryUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -83,5 +86,15 @@ public class EnquiryService implements IEnquiryService
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Enquiry> searchEnquiries(String firstName, String email, LocalDate enquiryDate) {
+        Specification<Enquiry> spec = Specification
+                .anyOf(EnquirySpecification.hasStudentName(firstName))
+                .or(EnquirySpecification.hasStudentEmail(email))
+                .or(EnquirySpecification.hasEnquiryDate(enquiryDate));
+
+        return enquiryRepository.findAll((Sort) spec);
     }
 }
