@@ -5,26 +5,29 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.StudentUserDto;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.StudentUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/studentUsers")
-public class StudentUserController
-{
+@Tag(name = "Student User Management", description = "APIs for managing student users including create, read, update, and delete operations")
+public class StudentUserController {
 
     @Autowired
     StudentUserService studentUserService;
 
-    //  Create StudentUser
     @PostMapping("create-studentUser")
+    @Operation(
+            summary = "Create Student User",
+            description = "Creates a new student user record with the provided details."
+    )
     public ResponseEntity<ApiResponseDto<StudentUserDto>> createStudentUser(@RequestBody StudentUserDto studentUserDto) {
         StudentUserDto created = studentUserService.createStudentUser(studentUserDto);
 
@@ -37,9 +40,11 @@ public class StudentUserController
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<ApiResponseDto<StudentUserDto>> getByUsername(
-            @PathVariable String username) {
-
+    @Operation(
+            summary = "Get Student User by Username",
+            description = "Fetches the student user details by their username."
+    )
+    public ResponseEntity<ApiResponseDto<StudentUserDto>> getByUsername(@PathVariable String username) {
         Optional<StudentUserDto> userOpt = studentUserService.getStudentUserByUsername(username);
 
         if (userOpt.isPresent()) {
@@ -59,8 +64,11 @@ public class StudentUserController
         return ResponseEntity.status(404).body(response);
     }
 
-    // Get All StudentUsers
     @GetMapping("/studentUsers")
+    @Operation(
+            summary = "Get All Student Users",
+            description = "Retrieves a list of all registered student users."
+    )
     public ResponseEntity<ApiResponseDto<List<StudentUserDto>>> getAllStudentUsers() {
         List<StudentUserDto> users = studentUserService.getAllStudentUsers();
 
@@ -73,6 +81,10 @@ public class StudentUserController
     }
 
     @PutMapping("/update/{username}")
+    @Operation(
+            summary = "Update Student User",
+            description = "Updates the details of an existing student user identified by their username."
+    )
     public ResponseEntity<ApiResponseDto<StudentUserDto>> updateByUsername(
             @PathVariable String username,
             @Valid @RequestBody StudentUserDto studentUserDto) {
@@ -89,6 +101,10 @@ public class StudentUserController
     }
 
     @DeleteMapping("/delete/{username}")
+    @Operation(
+            summary = "Delete Student User",
+            description = "Deletes a student user record identified by their username."
+    )
     public ResponseEntity<ApiResponseDto<Void>> deleteByUsername(@PathVariable String username) {
         studentUserService.deleteStudentUserByUsername(username);
 

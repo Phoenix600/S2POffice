@@ -8,7 +8,9 @@ import com.s2p.services.impl.OtpService;
 import com.s2p.util.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication APIs", description = "APIs for registration, login, and password management")
 public class AuthController
 {
     private final SuperAdminRepository superAdminRepository;
@@ -48,6 +51,7 @@ public class AuthController
     private final OtpService otpService;
     private final EmailUtility emailUtility;
 
+    @Operation(summary = "Register Super Admin", description = "Registers a new Super Admin and returns a JWT token")
     //POST:-  http://localhost:8080/api/v1/auth/superAdmin/register
     @PostMapping("/superAdmin/register")
     public ResponseEntity<RegisterResponseDto> registerSuperAdmin(
@@ -103,6 +107,7 @@ public class AuthController
     }
 
     //POST:-  http://localhost:8080/api/v1/auth/admin/register
+    @Operation(summary = "Register Admin", description = "Registers a new Admin and returns a JWT token")
     @PostMapping("/admin/register")
     public ResponseEntity<RegisterResponseDto> registerAdmin(
             @Parameter(description = "Admin registration data", required = true)
@@ -160,7 +165,9 @@ public class AuthController
     }
 
 
+
     // POST   http://localhost:8080/api/v1/public/student/register
+    @Operation(summary = "Register Student", description = "Registers a new Student and returns a JWT token")
     @PostMapping("/student/register")
     public ResponseEntity<RegisterResponseDto> registerStudent(
             @Parameter(description = "Student registration data", required = true)
@@ -217,6 +224,7 @@ public class AuthController
                 .body(registerResponseDto);
     }
 
+    @Operation(summary = "Register Teacher", description = "Registers a new Teacher and returns a JWT token")
     @PostMapping("/teacher/register")
     public ResponseEntity<RegisterResponseDto> registerTeacher(
             @Parameter(description = "Teacher registration data", required = true)
@@ -276,21 +284,25 @@ public class AuthController
 
 // ================= LOGIN APIs =================
 
+    @Operation(summary = "Super Admin Login", description = "Authenticates Super Admin and returns a JWT token")
     @PostMapping("/superAdmin/login")
     public ResponseEntity<?> loginSuperAdmin(@RequestBody Users users) {
         return handleLogin(users, superAdminRepository.findByEmail(users.getEmail()));
     }
 
+    @Operation(summary = "Admin Login", description = "Authenticates Admin and returns a JWT token")
     @PostMapping("/admin/login")
     public ResponseEntity<?> loginAdmin(@RequestBody Users users) {
         return handleLogin(users, adminUsersRepository.findByEmail(users.getEmail()));
     }
 
+    @Operation(summary = "Student Login", description = "Authenticates Student and returns a JWT token")
     @PostMapping("/student/login")
     public ResponseEntity<?> loginStudent(@RequestBody Users users) {
         return handleLogin(users, studentUserRepository.findByEmail(users.getEmail()));
     }
 
+    @Operation(summary = "Teacher Login", description = "Authenticates Teacher and returns a JWT token")
     @PostMapping("/teacher/login")
     public ResponseEntity<?> loginTeacher(@RequestBody Users users) {
         return handleLogin(users, teacherUserRepository.findByEmail(users.getEmail()));
@@ -366,6 +378,8 @@ public class AuthController
                 .signWith(secretKey)
                 .compact();
     }
+
+    @Operation(summary = "Forgot Password", description = "Generates OTP and sends it to the user’s registered email")
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody Users users) {
         try {
@@ -391,6 +405,7 @@ public class AuthController
         }
     }
 
+    @Operation(summary = "Reset Password", description = "Validates OTP and resets the user password")
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request) {
         try {

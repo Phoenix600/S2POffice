@@ -12,17 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/course")
-public class CourseController
-{
+@Tag(name = "Course Management APIs", description = "CRUD operations and search functionality for Courses")
+public class CourseController {
+
     @Autowired
     CourseService courseService;
 
-    //http://localhost:8080/api/v1/course/create-course
+    @Operation(summary = "Create Course", description = "Create a new course with details provided in the request body")
     @PostMapping("/create-course")
     public ResponseEntity<ApiResponseDto<CourseDto>> createCourse(@Valid @RequestBody CourseDto courseDto) {
         try {
@@ -37,6 +40,7 @@ public class CourseController
         }
     }
 
+    @Operation(summary = "Get Course by Name", description = "Retrieve details of a course using its name")
     @GetMapping("/{courseName}")
     public ResponseEntity<ApiResponseDto<CourseDto>> getCourseByName(@PathVariable String courseName) {
         try {
@@ -51,6 +55,7 @@ public class CourseController
         }
     }
 
+    @Operation(summary = "Update Course", description = "Update an existing course by its name with new details")
     @PutMapping("/update/{courseName}")
     public ResponseEntity<ApiResponseDto<CourseDto>> updateCourseByName(
             @PathVariable String courseName,
@@ -67,6 +72,7 @@ public class CourseController
         }
     }
 
+    @Operation(summary = "Delete Course", description = "Delete a course by its name")
     @DeleteMapping("/delete/{courseName}")
     public ResponseEntity<ApiResponseDto<String>> deleteCourseByName(@PathVariable String courseName) {
         try {
@@ -81,6 +87,7 @@ public class CourseController
         }
     }
 
+    @Operation(summary = "Search Courses", description = "Search courses using optional filters: name, description, or duration")
     @GetMapping("/search")
     public List<CourseDto> searchCourses(
             @RequestParam(required = false) String courseName,
