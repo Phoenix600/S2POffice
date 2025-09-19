@@ -5,6 +5,8 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.AssessmentDTO;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.AssessmentService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/assessments")
+@Tag(name = "Assessment Controller", description = "APIs for managing Assessments and related data")
 public class AssessmentController {
 
     private final AssessmentService assessmentService;
@@ -20,8 +23,10 @@ public class AssessmentController {
         this.assessmentService = assessmentService;
     }
 
-    // --- CREATE ---
-    //http://localhost:8080/api/v1/assessments/create
+    @Operation(
+            summary = "Create a new Assessment",
+            description = "This API creates a new assessment with the details provided in the request body."
+    )
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<AssessmentDTO>> create(@RequestBody AssessmentDTO dto) {
         AssessmentDTO created = assessmentService.createAssessment(dto);
@@ -34,7 +39,10 @@ public class AssessmentController {
         );
     }
 
-    // --- GET BY TITLE ---
+    @Operation(
+            summary = "Get Assessment by Title",
+            description = "This API retrieves an assessment using the title provided in the path variable."
+    )
     @GetMapping("/{title}")
     public ResponseEntity<ApiResponseDto<AssessmentDTO>> getByTitle(@PathVariable String title) {
         AssessmentDTO assessment = assessmentService.getAssessmentByTitle(title);
@@ -47,7 +55,10 @@ public class AssessmentController {
         );
     }
 
-    // --- GET ALL ---
+    @Operation(
+            summary = "Get All Assessments",
+            description = "This API retrieves a list of all assessments in the system."
+    )
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<AssessmentDTO>>> getAll() {
         List<AssessmentDTO> allAssessments = assessmentService.getAllAssessments();
@@ -60,7 +71,10 @@ public class AssessmentController {
         );
     }
 
-    // --- UPDATE ---
+    @Operation(
+            summary = "Update Assessment by Title",
+            description = "This API updates the details of an existing assessment identified by the title."
+    )
     @PutMapping("/{title}")
     public ResponseEntity<ApiResponseDto<AssessmentDTO>> update(
             @PathVariable String title,
@@ -75,7 +89,10 @@ public class AssessmentController {
         );
     }
 
-    // --- DELETE ---
+    @Operation(
+            summary = "Delete Assessment by Title",
+            description = "This API deletes an existing assessment identified by the title."
+    )
     @DeleteMapping("/{title}")
     public ResponseEntity<ApiResponseDto<Void>> delete(@PathVariable String title) {
         assessmentService.deleteAssessment(title);
@@ -88,7 +105,10 @@ public class AssessmentController {
         );
     }
 
-    // --- GET BY TOPIC NAME ---
+    @Operation(
+            summary = "Get Assessments by Topic Name",
+            description = "This API retrieves a list of assessments that belong to a specific topic."
+    )
     @GetMapping("/topic/{topicName}")
     public ResponseEntity<ApiResponseDto<List<AssessmentDTO>>> getByTopicName(@PathVariable String topicName) {
         List<AssessmentDTO> assessments = assessmentService.getAssessmentsByTopicName(topicName);

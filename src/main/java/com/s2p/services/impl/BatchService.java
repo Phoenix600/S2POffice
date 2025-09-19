@@ -98,7 +98,8 @@ public class BatchService implements IBatchService
 
     @Override
     public List<BatchDto> searchBatches(String batchName, LocalTime startTime, LocalTime endTime) {
-        Specification<Batch> spec = Specification.anyOf(BatchSpecification.hasBatchName(batchName))
+        Specification<Batch> spec = Specification.anyOf(
+                BatchSpecification.hasBatchName(batchName))
                 .or(BatchSpecification.hasStartTime(startTime))
                 .or(BatchSpecification.hasEndTime(endTime));
 

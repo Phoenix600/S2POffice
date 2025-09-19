@@ -7,21 +7,21 @@ import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.CourseFeeInstallmentTransactionsServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/courseFeeInstallmentTransaction")
-public class CourseFeeInstallmentTransactionController
-{
+@Tag(name = "Course Fee Installment Transactions APIs", description = "APIs for managing course fee installment transactions")
+public class CourseFeeInstallmentTransactionController {
+
     @Autowired
     CourseFeeInstallmentTransactionsServiceimpl courseFeeInstallmentTransactionsService;
 
-    // Create Transaction
+    @Operation(summary = "Create Transaction", description = "Create a new course fee installment transaction")
     @PostMapping("/create-transaction")
     public ApiResponseDto<CourseFeeInstallmentTransactionsDto> createTransaction(
             @RequestBody CourseFeeInstallmentTransactionsDto dto) {
@@ -35,8 +35,7 @@ public class CourseFeeInstallmentTransactionController
         );
     }
 
-
-    // Get All Transactions
+    @Operation(summary = "Get All Transactions", description = "Fetch all course fee installment transactions")
     @GetMapping("/getAllTransactions")
     public ApiResponseDto<Set<CourseFeeInstallmentTransactionsDto>> getAllTransactions() {
         Set<CourseFeeInstallmentTransactionsDto> transactions = courseFeeInstallmentTransactionsService.getAllCourseFeeInstallmentTransactions();
@@ -48,7 +47,7 @@ public class CourseFeeInstallmentTransactionController
         );
     }
 
-    // Get Transactions by Course Name
+    @Operation(summary = "Get Transactions by Course Name", description = "Retrieve all installment transactions for a specific course")
     @GetMapping("/course/{courseName}")
     public ApiResponseDto<List<CourseFeeInstallmentTransactionsDto>> getTransactionsByCourseName(
             @PathVariable String courseName) {
@@ -61,5 +60,4 @@ public class CourseFeeInstallmentTransactionController
                 transactions
         );
     }
-
 }

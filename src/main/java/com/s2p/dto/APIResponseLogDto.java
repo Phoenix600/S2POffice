@@ -1,7 +1,7 @@
 package com.s2p.dto;
 
 import com.s2p.model.ApiRequestLog;
-import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,22 +14,28 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class APIResponseLogDto
-{
+@Schema(description = "DTO representing an API response log")
+public class APIResponseLogDto {
+
+    @Schema(description = "Unique identifier of the API response", example = "201")
     private Long apiResponseId;
 
+    @Schema(description = "HTTP status code of the response", example = "200")
     private int status;
 
-    @Column(columnDefinition = "TEXT")
+    @Schema(description = "Response body in string format", example = "{\"success\": true, \"message\": \"Student created\"}")
     private String body;
 
     @CurrentTimestamp
+    @Schema(description = "Timestamp when the response was logged", example = "2025-09-22T12:45:30")
     private LocalDateTime timestamp;
 
-    private Long durationMs; // how long it took
+    @Schema(description = "Time taken to process the request in milliseconds", example = "152")
+    private Long durationMs;
 
+    @Schema(description = "Host that processed the request", example = "server-1.internal.local")
     private String host;
 
-    @JoinColumn(name = "api_response_id", referencedColumnName = "apiResponseId")
+    @Schema(description = "Associated request log that triggered this response")
     private ApiRequestLog requestLog;
 }

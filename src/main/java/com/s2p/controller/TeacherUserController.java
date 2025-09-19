@@ -6,14 +6,14 @@ import com.s2p.dto.TeacherUserDto;
 import com.s2p.exceptions.UserNotFoundException;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.impl.TeacherUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 import java.util.Set;
@@ -21,12 +21,13 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/teacherUser")
-public class TeacherUserController
-{
+@Tag(name = "Teacher User Management", description = "APIs for managing Teacher users, including CRUD operations, batch and course assignments")
+public class TeacherUserController {
+
     @Autowired
     TeacherUserService teacherUserService;
 
-    //  POST:- http://localhost:8080/api/v1/teacherUser/create-teacherUser
+    @Operation(summary = "Create Teacher User", description = "Creates a new Teacher user in the system")
     @PostMapping("create-teacherUser")
     public ResponseEntity<ApiResponseDto<TeacherUserDto>> createTeacherUser(
             @Valid @RequestBody TeacherUserDto teacherUserDto) {
@@ -42,7 +43,7 @@ public class TeacherUserController
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    //  GET:-  http://localhost:8080/api/v1/teacherUser/{username}
+    @Operation(summary = "Get Teacher User by Username", description = "Fetches details of a Teacher user using their username")
     @GetMapping("/{username}")
     public ResponseEntity<ApiResponseDto<TeacherUserDto>> getTeacherUserByUsername(
             @PathVariable @NotBlank String username) {
@@ -62,8 +63,7 @@ public class TeacherUserController
         return ResponseEntity.ok(response);
     }
 
-    //  GET:- http://localhost:8080/api/v1/teacherUser/teacherUsers
-    // Get All Teachers
+    @Operation(summary = "Get All Teacher Users", description = "Retrieves all Teacher users from the system")
     @GetMapping("teacherUsers")
     public ResponseEntity<ApiResponseDto<Set<TeacherUserDto>>> getAllTeachers() {
         Set<TeacherUserDto> teachers = teacherUserService.getAllTeachers();
@@ -76,7 +76,7 @@ public class TeacherUserController
         return ResponseEntity.ok(response);
     }
 
-    //  PUT:- http://localhost:8080/api/v1/teacherUser/update/{username}
+    @Operation(summary = "Update Teacher User by Username", description = "Updates an existing Teacher user identified by their username")
     @PutMapping("/update/{username}")
     public ResponseEntity<ApiResponseDto<TeacherUserDto>> updateTeacherUserByUsername(
             @PathVariable @NotBlank String username,
@@ -93,7 +93,7 @@ public class TeacherUserController
         return ResponseEntity.ok(response);
     }
 
-    //  DELETE:- http://localhost:8080/api/v1/teacherUser/delete/{username}
+    @Operation(summary = "Delete Teacher User by Username", description = "Deletes a Teacher user identified by their username")
     @DeleteMapping("/delete/{username}")
     public ResponseEntity<ApiResponseDto<Void>> deleteTeacherUserByUsername(
             @PathVariable @NotBlank String username) {
@@ -108,11 +108,14 @@ public class TeacherUserController
 
         return ResponseEntity.ok(response);
     }
+
+    @Operation(summary = "Get Teachers by Batch", description = "Fetches all Teacher users assigned to a specific batch")
     @GetMapping("/batch/{batchId}")
     public Set<TeacherUserDto> getByBatch(@PathVariable UUID batchId) {
         return teacherUserService.getTeachersByBatch(batchId);
     }
 
+    @Operation(summary = "Update Teacher by Batch", description = "Updates Teacher details and assigns them to a batch")
     @PutMapping("/{teacherId}/batch/{batchId}")
     public TeacherUserDto updateByBatch(@PathVariable UUID teacherId,
                                         @PathVariable UUID batchId,
@@ -120,16 +123,19 @@ public class TeacherUserController
         return teacherUserService.updateTeacherByBatch(batchId, teacherId, dto);
     }
 
+    @Operation(summary = "Remove Teacher from Batch", description = "Removes a Teacher user from a batch")
     @DeleteMapping("/{teacherId}/batch/{batchId}")
     public void removeFromBatch(@PathVariable UUID teacherId, @PathVariable UUID batchId) {
         teacherUserService.removeTeacherFromBatch(batchId, teacherId);
     }
+
+    @Operation(summary = "Get Teachers by Course", description = "Fetches all Teacher users assigned to a specific course")
     @GetMapping("/course/{courseId}")
     public ResponseEntity<Set<TeacherUserDto>> getTeachersByCourse(@PathVariable UUID courseId) {
         return ResponseEntity.ok(teacherUserService.getTeachersByCourse(courseId));
     }
 
-    // Update teacher and assign to course
+    @Operation(summary = "Update Teacher by Course", description = "Updates Teacher details and assigns them to a course")
     @PutMapping("/course/{courseId}/{teacherId}")
     public ResponseEntity<TeacherUserDto> updateTeacherByCourse(
             @PathVariable UUID courseId,
@@ -138,7 +144,7 @@ public class TeacherUserController
         return ResponseEntity.ok(teacherUserService.updateTeacherByCourse(courseId, teacherId, dto));
     }
 
-    // Remove teacher from course
+    @Operation(summary = "Remove Teacher from Course", description = "Removes a Teacher user from a course")
     @DeleteMapping("/course/{courseId}/{teacherId}")
     public ResponseEntity<Void> removeTeacherFromCourse(
             @PathVariable UUID courseId,
