@@ -34,3 +34,4 @@ build/
 /logs/archived/spring-boot-logger-2025-08-25.0.log
 /logs/archived/spring-boot-logger-2025-08-26.0.log
 /logs/archived/spring-boot-logger-2025-08-30.0.log
+/allure-results/

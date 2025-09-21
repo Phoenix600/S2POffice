@@ -48,13 +48,13 @@ public class AuthController
     private final OtpService otpService;
     private final EmailUtility emailUtility;
 
-    //POST:-  http://localhost:8080/api/v1/auth/admin/register
+    //POST:-  http://localhost:8080/api/v1/auth/superAdmin/register
     @PostMapping("/superAdmin/register")
     public ResponseEntity<RegisterResponseDto> registerSuperAdmin(
             @Parameter(description = "User registration data", required = true)
             @RequestBody Users users)
     {
-        Roles roles = rolesRepository.findByRolesName("ROLE_SUPER_ADMIN");
+        Roles roles = rolesRepository.findByRolesName("ROLES_SUPER_ADMIN");
         SuperAdminUsers superAdminUsers = new SuperAdminUsers();
 
         // Populating Admin User Details
