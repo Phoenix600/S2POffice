@@ -4,6 +4,7 @@ import com.s2p.dto.StudentInformationDto;
 import org.apache.coyote.BadRequestException;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IStudentInformationService {
 
@@ -13,9 +14,20 @@ public interface IStudentInformationService {
 
     StudentInformationDto createStudentInformation(StudentInformationDto studentInformationDto) throws BadRequestException;
 
-    String deleteStudent(String email);
+    String deleteStudentByEmail(String email);
 
-    StudentInformationDto getStudentByEmail(String email);
+    Optional<StudentInformationDto> getStudentByEmail(String email);
 
     List<StudentInformationDto> getAllStudents();
+
+    public StudentInformationDto updateStudentByEmail(String email, StudentInformationDto studentInformationDto);
+    public List<StudentInformationDto> searchStudents(
+            String firstName,
+            String lastName,
+            String email,
+            String collegeName,
+            String degreeName,
+            String semester,
+            String passingYear,
+            Boolean isGraduated);
 }

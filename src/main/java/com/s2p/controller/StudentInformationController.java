@@ -35,7 +35,7 @@ public class StudentInformationController {
     @GetMapping("/{email}")
     public ResponseEntity<ApiResponseDto<StudentInformationDto>> getStudentByEmail(@PathVariable String email) {
         try {
-            StudentInformationDto student = studentInformationService.getStudentByEmail(email);
+            StudentInformationDto student = studentInformationService.getStudentByEmail(email).get();
             ApiResponseDto<StudentInformationDto> response = new ApiResponseDto<>(
                     EApiResponseMessage.DATA_FOUND.getMessage(),
                     EOperationStatus.RESULT_SUCCESS,
@@ -93,7 +93,7 @@ public class StudentInformationController {
     @DeleteMapping("/{email}")
     public ResponseEntity<ApiResponseDto<Void>> deleteStudent(@PathVariable String email) {
         try {
-            studentInformationService.deleteStudent(email);
+            studentInformationService.deleteStudentByEmail(email);
             ApiResponseDto<Void> response = new ApiResponseDto<>(
                     EApiResponseMessage.DATA_DELETED.getMessage(),
                     EOperationStatus.RESULT_SUCCESS,

@@ -66,21 +66,21 @@ public class StudentInformationService implements IStudentInformationService
     }
 
 
+//    @Override
+//    public List<StudentInformationDto>  getAllStudents()
+//    {
+//        List<StudentInformation> allStudents = studentInformationRepository.findAll();
+//        List<StudentInformationDto> result = new LinkedList<>();
+//
+//        for (StudentInformation student : allStudents) {
+//            result.add(studentInformationUtility.toStudentInformationDto(student));
+//        }
+//
+//        return result;
+//    }
+
     @Override
-    public Set<StudentInformationDto> getAllStudents()
-    {
-        List<StudentInformation> allStudents = studentInformationRepository.findAll();
-        Set<StudentInformationDto> result = new HashSet<>();
-
-        for (StudentInformation student : allStudents) {
-            result.add(studentInformationUtility.toStudentInformationDto(student));
-        }
-
-        return result;
-    }
-
-    @Override
-    public String deleteStudent(String email) {
+    public String deleteStudentByEmail(String email) {
         Optional<StudentInformation> optionalStudent = studentInformationRepository.findByEmail(email);
 
         if (!optionalStudent.isPresent()) {
@@ -122,6 +122,9 @@ public class StudentInformationService implements IStudentInformationService
         StudentInformation updatedEntity = studentInformationRepository.save(existingStudent);
         return studentInformationUtility.toStudentInformationDto(updatedEntity);
     }
+
+
+
     @Override
     public StudentInformationDto updateStudent(String email, StudentInformationDto dto) {
         Optional<StudentInformation> optionalStudent = studentInformationRepository.findByEmail(email);
@@ -152,16 +155,16 @@ public class StudentInformationService implements IStudentInformationService
         return studentInformationUtility.toStudentInformationDto(updated);
     }
 
-    @Override
-    public void deleteStudentByEmail(String email) {
-        Optional<StudentInformation> existingStudentOpt = studentInformationRepository.findByEmail(email);
-
-        if (!existingStudentOpt.isPresent()) {
-            throw new RuntimeException("Student not found with email: " + email);
-        }
-
-        studentInformationRepository.delete(existingStudentOpt.get());
-    }
+//    @Override
+//    public void deleteStudentByEmail(String email) {
+//        Optional<StudentInformation> existingStudentOpt = studentInformationRepository.findByEmail(email);
+//
+//        if (!existingStudentOpt.isPresent()) {
+//            throw new RuntimeException("Student not found with email: " + email);
+//        }
+//
+//        studentInformationRepository.delete(existingStudentOpt.get());
+//    }
 
     @Override
     public List<StudentInformationDto> getAllStudents() {

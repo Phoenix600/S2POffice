@@ -16,7 +16,7 @@ import java.util.Set;
 public class TeacherUserDto
 {
     private UUID teacherUserId;
-    private String email;
+    private String email;;
     private String username;
     private RolesDto roles;
     private Set<UUID> batchIds;

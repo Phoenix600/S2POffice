@@ -137,7 +137,7 @@ class StudentInformationServiceTest {
         when(studentInformationUtility.toStudentInformationDto(studentEntity1)).thenReturn(studentDto1);
         when(studentInformationUtility.toStudentInformationDto(studentEntity2)).thenReturn(studentDto2);
 
-        Set<StudentInformationDto> result = studentInformationService.getAllStudents();
+        List<StudentInformationDto> result = studentInformationService.getAllStudents();
 
         assertEquals(2, result.size());
         verify(studentInformationRepository, times(1)).findAll();

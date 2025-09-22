@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,7 +75,7 @@ class EvaluationServiceTest {
     public void testGenerateScoreCard() {
         // Mock behavior
         when(evaluationService.evaluate(request)).thenReturn(evalResult);
-        when(studentService.getStudentByEmail("student@example.com")).thenReturn(studentDto);
+        when(studentService.getStudentByEmail("student@example.com")).thenReturn(Optional.of(studentDto));
 
         // Call service
         ScoreCardDTO scoreCard = scoreCardService.generateScoreCard(request);
