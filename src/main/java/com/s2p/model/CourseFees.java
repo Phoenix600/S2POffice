@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -15,14 +16,14 @@ import java.util.UUID;
  * Date: 19/08/25
  * Description: Represents the fees for a course in a specific academic year.
  */
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Schema(description = "Entity representing the fees of a course for a specific academic year")
-public class CourseFees extends BaseEntity {
-
+public class CourseFees extends BaseEntity
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Schema(description = "Unique identifier for the course fees record", example = "123e4567-e89b-12d3-a456-426614174000")
@@ -41,4 +42,12 @@ public class CourseFees extends BaseEntity {
 	@JoinColumn(name = "academic_year_id", nullable = false)
 	@Schema(description = "Academic year for which these fees are applicable")
 	private AcademicYear academicYear;
+
+	private Double amountExpected;
+
+	private LocalDate paymentDate;
+
+	private Double amountPaid;
+
+	private LocalDate dueDate;
 }

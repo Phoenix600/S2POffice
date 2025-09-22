@@ -2,18 +2,13 @@ package com.s2p.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
-/**
- * File Name: CourseFeeStructure.java
- * Entity: CourseFeeStructure
- * Package: com.s2p.model
- * Author: pranayramteke
- * Date: 19/08/25
- * Description: Represents the structure of course fees for a student, including down payment, installments, and discounts.
- */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -59,4 +54,5 @@ public class CourseFeeStructure extends BaseEntity {
     @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
     @Schema(description = "Student user for whom this fee structure is assigned")
     private StudentUsers studentUsers;
+
 }
