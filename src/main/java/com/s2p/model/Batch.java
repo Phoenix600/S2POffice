@@ -22,24 +22,19 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Schema(description = "Entity representing a batch of students, linked to courses and teachers.")
 public class Batch extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Schema(description = "Unique identifier for the batch", example = "550e8400-e29b-41d4-a716-446655440000")
     private UUID batchId;
 
     @Column(nullable = true)
-    @Schema(description = "Name of the batch", example = "Batch A - Morning")
     private String batchName;
 
     @Column(nullable = false)
-    @Schema(description = "Start time of the batch", example = "09:00:00")
     private LocalTime startTime;
 
     @Column(nullable = false)
-    @Schema(description = "End time of the batch", example = "11:00:00")
     private LocalTime endTime;
 
     @ManyToMany
@@ -48,11 +43,9 @@ public class Batch extends BaseEntity {
             joinColumns = @JoinColumn(name = "batch_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    @Schema(description = "Set of courses assigned to this batch")
     private Set<Course> courseSet = new HashSet<>();
 
     @ManyToMany(mappedBy = "batches")
-    @Schema(description = "Set of students enrolled in this batch")
     private Set<StudentInformation> students = new HashSet<>();
 
     @ManyToMany
@@ -61,6 +54,5 @@ public class Batch extends BaseEntity {
             joinColumns = @JoinColumn(name = "batch_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id")
     )
-    @Schema(description = "Set of teachers associated with this batch")
     private Set<TeacherUsers> teacher = new HashSet<>();
 }

@@ -26,20 +26,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Schema(description = "Entity representing a student enquiry with courses and student details")
 public class Enquiry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Schema(description = "Unique identifier for the enquiry", example = "123e4567-e89b-12d3-a456-426614174000")
     private UUID enquiryId;
 
     @CreatedDate
-    @Schema(description = "Date when the enquiry was created", example = "2025-08-19")
     private LocalDate enquiryDate;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, optional = false)
-    @Schema(description = "Student information associated with this enquiry")
     private StudentInformation studentInformation;
 
     @ManyToMany
@@ -48,6 +44,5 @@ public class Enquiry {
             joinColumns = {@JoinColumn(name = "enquiry_id", referencedColumnName = "enquiryId")},
             inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "courseId")}
     )
-    @Schema(description = "Set of courses that the student is enquiring about")
     private Set<Course> courseSet = new HashSet<>();
 }

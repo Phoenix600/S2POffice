@@ -28,8 +28,8 @@ public class TeacherUserDto {
     private RolesDto roles;
 
     @Schema(description = "Batches assigned to the teacher")
-    private Set<Batch> batch = new HashSet<>();
+    private Set<BatchDto> batch = new HashSet<>();
 
     @Schema(description = "Courses assigned to the teacher")
-    private Set<Course> courses = new HashSet<>();
+    private Set<CourseDto> courses = new HashSet<>();
 }

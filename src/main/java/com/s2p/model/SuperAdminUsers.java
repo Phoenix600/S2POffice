@@ -10,17 +10,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Schema(description = "Entity representing a Super Admin user account")
 public class SuperAdminUsers extends Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Schema(description = "Unique identifier for the Super Admin user", example = "a12b34cd-56ef-78gh-90ij-klmnopqrstuv")
     private UUID superAdminUserId;
 
-    @Schema(description = "Email of the Super Admin user", example = "superadmin@example.com")
+    @Column(unique = true)
     private String email;
 
-    @Schema(description = "Username of the Super Admin user", example = "superadmin")
+    @Column(unique = true)
     private String username;
 }

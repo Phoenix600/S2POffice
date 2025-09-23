@@ -14,13 +14,7 @@ class QuestionServiceImplJunit {
 
     @Test
     void createQuestion() {
-        QuestionDTO questionDTO = new QuestionDTO();
-        questionDTO.setQuestionText("What is the capital of France?");
-        questionDTO.setOptionA("Paris");
-        questionDTO.setOptionB("London");
-        questionDTO.setOptionC("Berlin");
-        questionDTO.setOptionD("Madrid");
-        questionDTO.setQuestionPaperId(1);
+
     }
 
     @Test
