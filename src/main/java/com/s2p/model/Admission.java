@@ -31,10 +31,9 @@ public class Admission extends BaseEntity
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "admission_id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
-    @Schema(description = "Unique identifier of Admission", accessMode = Schema.AccessMode.READ_ONLY)
-	private UUID admissionId;
+  	private UUID admissionId;
 
-    @Schema(description = "Admission date of the Student", example = "2025/01/01")
+    @Column(nullable = false)
     private LocalDate admissionDate;
 
 }

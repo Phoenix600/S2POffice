@@ -10,14 +10,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Schema(description = "Entity representing a Role assigned to a user")
 public class Roles extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
-	@Schema(description = "Unique identifier for the role", example = "f47ac10b-58cc-4372-a567-0e02b2c3d479")
 	private UUID rolesId;
 
-	@Schema(description = "Name of the role", example = "ADMIN")
+	@Column(nullable = false)
 	private String rolesName;
 }
