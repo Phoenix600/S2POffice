@@ -9,18 +9,21 @@ import com.s2p.services.impl.CourseFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("api/v1/courseFee")
-public class CourseFeeController
-{
+@Tag(name = "Course Fee Management APIs", description = "CRUD operations and search functionality for Course Fees")
+public class CourseFeeController {
+
     @Autowired
     CourseFeeService courseFeeService;
 
-    // Create Course Fee
+    @Operation(summary = "Create Course Fee", description = "Create a new course fee with details provided in the request body")
     @PostMapping("create-courseFees")
     public ResponseEntity<ApiResponseDto<CourseFeeDto>> createCourseFee(@RequestBody CourseFeeDto courseFeeDto) {
         CourseFeeDto created = courseFeeService.createCourseFee(courseFeeDto);
@@ -33,6 +36,7 @@ public class CourseFeeController
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Get Fees by Course Name", description = "Retrieve all course fees associated with a specific course")
     @GetMapping("/course/{courseName}")
     public ApiResponseDto<List<CourseFeeDto>> getFeesByCourseName(@PathVariable String courseName) {
         List<CourseFeeDto> fees = courseFeeService.getFeesByCourseName(courseName);
@@ -43,6 +47,7 @@ public class CourseFeeController
         );
     }
 
+    @Operation(summary = "Get Fees by Academic Year", description = "Retrieve course fees for a given academic year")
     @GetMapping("/year/{academicYearName}")
     public ApiResponseDto<List<CourseFeeDto>> getFeesByAcademicYear(@PathVariable AcademicYear academicYear) {
         List<CourseFeeDto> fees = courseFeeService.getFeesByAcademicYear(academicYear);
@@ -53,7 +58,7 @@ public class CourseFeeController
         );
     }
 
-    // Get all
+    @Operation(summary = "Get All Course Fees", description = "Fetch all course fees available in the system")
     @GetMapping("/getAllCourseFees")
     public ResponseEntity<ApiResponseDto<Set<CourseFeeDto>>> getAllCourseFees() {
         Set<CourseFeeDto> all = courseFeeService.getAllCourses();
@@ -66,11 +71,10 @@ public class CourseFeeController
         return ResponseEntity.ok(response);
     }
 
-    //Update
+    @Operation(summary = "Update Course Fee", description = "Update course fees for a specific course by name")
     @PutMapping("/update/course/{courseName}")
     public ApiResponseDto<CourseFeeDto> updateCourseFeeByCourseName(@PathVariable String courseName,
-                                                                    @RequestBody CourseFeeDto dto)
-    {
+                                                                    @RequestBody CourseFeeDto dto) {
         CourseFeeDto updated = courseFeeService.updateCourseFeeByCourseName(courseName, dto);
         return new ApiResponseDto<>(
                 EApiResponseMessage.DATA_UPDATED.getMessage(),
@@ -79,7 +83,7 @@ public class CourseFeeController
         );
     }
 
-    // Delete
+    @Operation(summary = "Delete Course Fee", description = "Delete course fees associated with a specific course name")
     @DeleteMapping("/delete/course/{courseName}")
     public ApiResponseDto<String> deleteCourseFeesByCourseName(@PathVariable String courseName) {
         String message = courseFeeService.deleteCourseFeesByCourseName(courseName);
@@ -89,6 +93,4 @@ public class CourseFeeController
                 message
         );
     }
-
-
 }

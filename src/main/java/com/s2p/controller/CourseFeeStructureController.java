@@ -10,18 +10,20 @@ import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/courseFeeStructure")
-public class CourseFeeStructureController
-{
+@Tag(name = "Course Fee Structure APIs", description = "APIs for managing course fee structures by course or student")
+public class CourseFeeStructureController {
+
     @Autowired
     CourseFeeStructureService courseFeeStructureService;
 
-    // Create
+    @Operation(summary = "Create Course Fee Structure", description = "Create a new course fee structure")
     @PostMapping
     public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> createCourseFeeStructure(
             @RequestBody CourseFeeStructureDto dto) {
@@ -35,7 +37,7 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Get fee structure by course name
+    @Operation(summary = "Get Fee Structure by Course Name", description = "Retrieve the fee structure associated with a specific course")
     @GetMapping("/course/{courseName}")
     public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> getFeeByCourseName(
             @PathVariable String courseName) {
@@ -51,7 +53,7 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Get all
+    @Operation(summary = "Get All Course Fee Structures", description = "Fetch all course fee structures available")
     @GetMapping
     public ResponseEntity<ApiResponseDto<Set<CourseFeeStructureDto>>> getAllCourseFeeStructures() {
         Set<CourseFeeStructureDto> all = courseFeeStructureService.getAllCourseFeeStructures();
@@ -64,7 +66,7 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Get fee structure by student email
+    @Operation(summary = "Get Fee Structure by Student Email", description = "Retrieve the fee structure for a specific student using their email address")
     @GetMapping("/student")
     public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> getFeeByStudentEmail(
             @RequestParam @Email(message = "Invalid email format") String email) {
@@ -80,7 +82,7 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Update fee structure by student email
+    @Operation(summary = "Update Fee Structure by Student Email", description = "Update the fee structure for a student using their email address")
     @PutMapping("/student")
     public ResponseEntity<ApiResponseDto<CourseFeeStructureDto>> updateFeeByStudentEmail(
             @RequestParam @Email(message = "Invalid email format") String email,
@@ -97,7 +99,7 @@ public class CourseFeeStructureController
         return ResponseEntity.ok(response);
     }
 
-    // Delete fee structure by student email
+    @Operation(summary = "Delete Fee Structure by Student Email", description = "Delete the fee structure associated with a student email")
     @DeleteMapping("/student")
     public ResponseEntity<ApiResponseDto<String>> deleteFeeByStudentEmail(
             @RequestParam @Email(message = "Invalid email format") String email) {

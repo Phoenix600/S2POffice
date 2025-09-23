@@ -1,10 +1,7 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.StudentUserDto;
-import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.exceptions.UserNotFoundException;
-import com.s2p.model.CourseFees;
-import com.s2p.model.StudentInformation;
 import com.s2p.model.StudentUsers;
 import com.s2p.repository.StudentInformationRepository;
 import com.s2p.repository.StudentUserRepository;
@@ -17,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class StudentUserService implements IStudentUserService
