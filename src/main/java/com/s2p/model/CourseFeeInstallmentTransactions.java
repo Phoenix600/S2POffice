@@ -40,7 +40,10 @@ public class CourseFeeInstallmentTransactions extends BaseEntity
     @JoinColumn(name = "course_fee_structure_id", referencedColumnName = "courseFeeStructureId")
     private CourseFeeStructure courseFeeStructure;
 
-    @ManyToOne
-    @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "student_information_id", referencedColumnName = "studentInformationId")
+    private StudentInformation studentInformation;
+
+    @ManyToOne @JoinColumn(name = "student_user_id", referencedColumnName = "studentUserId")
     private StudentUsers studentUsers;
 }

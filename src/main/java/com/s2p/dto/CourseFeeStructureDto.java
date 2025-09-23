@@ -2,6 +2,7 @@ package com.s2p.dto;
 
 import com.s2p.model.Course;
 import com.s2p.model.CourseFees;
+import com.s2p.model.StudentInformation;
 import com.s2p.model.StudentUsers;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,9 @@ public class CourseFeeStructureDto
     private Course course;
 
     private CourseFees courseFees;
-    
+
+    private StudentInformation studentInformation;
+
     private StudentUsers studentUsers;
 
 }

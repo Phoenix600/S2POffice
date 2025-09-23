@@ -13,13 +13,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CourseFeeStructure
+public class CourseFeeStructure extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID courseFeeStructureId;
 
     private Double downPayment;
+
     private Double remainingAmount;
     private Boolean isDiscountGiven;
     private Float isDiscountFactor;

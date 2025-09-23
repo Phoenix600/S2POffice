@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -19,6 +20,12 @@ public class CourseFeeDto
     private UUID courseFeesID;
 
     private Double courseFees;
+
+    private Double amountExpected;
+
+    private Double amountPaid;
+
+    private LocalDate dueDate;
 
     private CourseFeeStructure feeStructure;
 

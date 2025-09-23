@@ -1,0 +1,1 @@
+{"uuid":"3347f238-5140-405e-903a-b832b32cba22","name":"getEnquiryByEmail() — success test","children":["d6535b44-de64-42e7-a922-060d4f6c9071"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1756797134046,"stop":1756797134052}],"afters":[],"start":1756797134038,"stop":1756797134067}

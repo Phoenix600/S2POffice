@@ -5,6 +5,9 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.QuestionDTO;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.IQuestionService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/questions")
+@RequiredArgsConstructor
 public class QuestionController {
 
     private final IQuestionService questionService;
 
-    public QuestionController(IQuestionService questionService) {
-        this.questionService = questionService;
-    }
-
-    // --- CREATE ---
+    // --- CREATE ---   DONE
+    //http://localhost:8080/api/v1/questions/create
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<QuestionDTO>> create(@RequestBody QuestionDTO dto) {
         QuestionDTO created = questionService.createQuestion(dto);
@@ -33,7 +34,6 @@ public class QuestionController {
         );
     }
 
-    // --- GET BY QUESTION TEXT ---
     @GetMapping("/{questionText}")
     public ResponseEntity<ApiResponseDto<QuestionDTO>> getByText(@PathVariable String questionText) {
         QuestionDTO q = questionService.getQuestionByText(questionText);
@@ -47,7 +47,7 @@ public class QuestionController {
     }
 
     // --- GET ALL ---
-    @GetMapping
+    @GetMapping("all")
     public ResponseEntity<ApiResponseDto<List<QuestionDTO>>> getAll() {
         List<QuestionDTO> allQuestions = questionService.getAllQuestions();
         return ResponseEntity.ok(
