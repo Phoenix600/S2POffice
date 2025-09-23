@@ -23,6 +23,11 @@ public interface CourseFeeStructureRepository extends JpaRepository<CourseFeeStr
             "GROUP BY YEAR(cfs.createdAt), MONTH(cfs.createdAt)")
     List<Object[]> findMonthlyCollectedFees();
 
+    @Query("SELECT SUM(cfs.downPayment + cfs.remainingAmount) " +
+            "FROM CourseFeeStructure cfs " +
+            "WHERE DATE(cfs.createdAt) = :date")
+    Double findTotalCollectedFeesByDate(@Param("date") LocalDate date);
+
 
 
 }

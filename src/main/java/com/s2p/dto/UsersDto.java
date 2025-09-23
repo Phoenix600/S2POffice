@@ -1,33 +1,29 @@
 package com.s2p.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Transient;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Schema(description = "DTO for creating or updating Users")
 public class UsersDto {
-    @NotNull
+    @Schema(description = "Username of the user", example = "john_doe")
     private String username;
 
-    @NotNull
+    @Schema(description = "Email of the user", example = "john.doe@example.com")
     @Email
     private String email;
 
-    @NotNull
+    @Schema(description = "Confirm Email of the user", example = "john.doe@example.com")
     @Email
     private String confirmEmail;
 
-    @NotNull
+    @Schema(description = "Password of the user", example = "Password123!")
     private String pwd;
 
-    @NotNull
+    @Schema(description = "Confirm Password of the user", example = "Password123!")
     private String confirmPwd;
 }

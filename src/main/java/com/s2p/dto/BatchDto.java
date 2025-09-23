@@ -1,15 +1,10 @@
 package com.s2p.dto;
 
+import com.s2p.model.Batch;
 import com.s2p.model.Course;
 import com.s2p.model.StudentInformation;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -20,20 +15,24 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class BatchDto
-{
+@Schema(description = "DTO representing a Batch assigned to students")
+public class BatchDto {
+
+    @Schema(description = "Unique ID of the Batch", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6")
     private UUID batchId;
 
-    @Column(nullable = true)
+    @Schema(description = "Name of the Batch", example = "Batch A")
     private String batchName;
 
-    @Column(nullable = false)
+    @Schema(description = "Start time of the Batch", example = "09:00")
     private LocalTime startTime;
 
-    @Column(nullable = false)
+    @Schema(description = "End time of the Batch", example = "11:00")
     private LocalTime endTime;
 
+    @Schema(description = "Set of Courses assigned to this Batch")
     private Set<Course> courseSet = new HashSet<>();
 
+    @Schema(description = "Set of Students assigned to this Batch")
     private Set<StudentInformation> students = new HashSet<>();
 }

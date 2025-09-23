@@ -11,22 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.time.LocalTime;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/batch")
-public class BatchController
-{
+@Tag(name = "Batch Management APIs", description = "CRUD operations and search functionality for Batches")
+public class BatchController {
+
     @Autowired
     BatchService batchService;
 
-    // Create Batch
+    @Operation(summary = "Create Batch", description = "Create a new batch with details provided in the request body")
     @PostMapping("/create-batch")
-    public ResponseEntity<ApiResponseDto<BatchDto>> createBatch(@Valid @RequestBody BatchDto batchDto) throws BadRequestException
-    {
+    public ResponseEntity<ApiResponseDto<BatchDto>> createBatch(@Valid @RequestBody BatchDto batchDto) throws BadRequestException {
         BatchDto createdBatch = batchService.createBatch(batchDto);
 
         ApiResponseDto<BatchDto> response = new ApiResponseDto<>();
@@ -37,10 +38,9 @@ public class BatchController
         return ResponseEntity.ok(response);
     }
 
-    //  Get Batch by ID
+    @Operation(summary = "Get Batch by Name", description = "Retrieve details of a batch by its name")
     @GetMapping("/{batchName}")
-    public ResponseEntity<ApiResponseDto<BatchDto>> getBatchByName(@PathVariable String batchName)
-    {
+    public ResponseEntity<ApiResponseDto<BatchDto>> getBatchByName(@PathVariable String batchName) {
         BatchDto batch = batchService.getBatchByName(batchName);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
@@ -51,11 +51,9 @@ public class BatchController
         );
     }
 
-
-    // Get All Batches
+    @Operation(summary = "Get All Batches", description = "Fetch a list of all available batches")
     @GetMapping("/getAllBatches")
-    public ResponseEntity<ApiResponseDto<List<BatchDto>>> getAllBatches()
-    {
+    public ResponseEntity<ApiResponseDto<List<BatchDto>>> getAllBatches() {
         List<BatchDto> batches = batchService.getAllBatches();
 
         ApiResponseDto<List<BatchDto>> response = new ApiResponseDto<>();
@@ -66,12 +64,11 @@ public class BatchController
         return ResponseEntity.ok(response);
     }
 
-    // Full Update Batch
+    @Operation(summary = "Update Batch", description = "Update an existing batch by its name with full details")
     @PutMapping("/update/{batchName}")
     public ResponseEntity<ApiResponseDto<BatchDto>> updateBatch(
             @PathVariable String batchName,
-            @RequestBody BatchDto dto)
-    {
+            @RequestBody BatchDto dto) {
         BatchDto updated = batchService.updateBatchByName(batchName, dto);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
@@ -82,10 +79,9 @@ public class BatchController
         );
     }
 
-    // Delete Batch
+    @Operation(summary = "Delete Batch", description = "Delete a batch by its name")
     @DeleteMapping("/delete/{batchName}")
-    public ResponseEntity<ApiResponseDto<Void>> deleteBatch(@PathVariable String batchName)
-    {
+    public ResponseEntity<ApiResponseDto<Void>> deleteBatch(@PathVariable String batchName) {
         batchService.deleteBatchByName(batchName);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
@@ -96,15 +92,13 @@ public class BatchController
         );
     }
 
-
+    @Operation(summary = "Search Batches", description = "Search batches by optional filters: name, start time, and end time")
     @GetMapping("/search")
     public List<BatchDto> searchBatches(
             @RequestParam(required = false) String batchName,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime
-    )
-    {
+    ) {
         return batchService.searchBatches(batchName, startTime, endTime);
     }
 }
-

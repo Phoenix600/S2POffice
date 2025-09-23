@@ -5,6 +5,8 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.TopicDTO;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.ITopicService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/topics")
+@Tag(name = "Topic Management", description = "APIs for managing topics, including CRUD operations")
 public class TopicController {
 
     private final ITopicService topicService;
@@ -20,8 +23,7 @@ public class TopicController {
         this.topicService = topicService;
     }
 
-    // --- CREATE ---
-    //http://localhost:8080/api/v1/topics/create
+    @Operation(summary = "Create Topic", description = "Creates a new topic in the system")
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto<TopicDTO>> create(@RequestBody TopicDTO dto) {
         TopicDTO created = topicService.createTopic(dto);
@@ -34,7 +36,7 @@ public class TopicController {
         );
     }
 
-    // --- GET BY NAME ---
+    @Operation(summary = "Get Topic by Name", description = "Fetches a topic based on the provided topic name")
     @GetMapping("/{topicName}")
     public ResponseEntity<ApiResponseDto<TopicDTO>> getByName(@PathVariable String topicName) {
         TopicDTO topic = topicService.getTopicByName(topicName);
@@ -47,7 +49,7 @@ public class TopicController {
         );
     }
 
-    // --- GET ALL ---
+    @Operation(summary = "Get All Topics", description = "Retrieves all topics from the system")
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<TopicDTO>>> getAll() {
         List<TopicDTO> topics = topicService.getAllTopics();
@@ -60,7 +62,7 @@ public class TopicController {
         );
     }
 
-    // --- UPDATE ---
+    @Operation(summary = "Update Topic", description = "Updates the details of a topic identified by its name")
     @PutMapping("/{topicName}")
     public ResponseEntity<ApiResponseDto<TopicDTO>> update(
             @PathVariable String topicName,
@@ -75,7 +77,7 @@ public class TopicController {
         );
     }
 
-    // --- DELETE ---
+    @Operation(summary = "Delete Topic", description = "Deletes a topic from the system using its name")
     @DeleteMapping("/{topicName}")
     public ResponseEntity<ApiResponseDto<Void>> delete(@PathVariable String topicName) {
         topicService.deleteTopic(topicName);

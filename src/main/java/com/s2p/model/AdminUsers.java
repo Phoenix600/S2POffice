@@ -1,6 +1,5 @@
 package com.s2p.model;
 
-import com.s2p.dto.RolesDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,18 +17,37 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Schema(description = "Entity Representing an Admin Users")
-public class AdminUsers extends Users
-{
+@Schema(
+        name = "AdminUsers",
+        description = "Entity representing an administrative user with roles and login details."
+)
+public class AdminUsers extends Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Schema(description = "Unique identifier for the admin user.", accessMode = Schema.AccessMode.READ_ONLY)
-    private UUID AdminUserId;
+    @Schema(
+            description = "Unique identifier for the Admin User",
+            example = "550e8400-e29b-41d4-a716-446655440000"
+    )
+    private UUID adminUserId;
 
+    @Schema(
+            description = "Email address of the admin user",
+            example = "admin@example.com",
+            required = true
+    )
     private String email;
 
+    @Schema(
+            description = "Username chosen by the admin user",
+            example = "admin123",
+            required = true
+    )
     private String username;
 
+    @Schema(
+            description = "Role assigned to the admin user",
+            example = "SUPER_ADMIN"
+    )
     private Roles roles;
-
 }

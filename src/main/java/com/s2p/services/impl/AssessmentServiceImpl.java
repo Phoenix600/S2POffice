@@ -38,6 +38,7 @@ public class AssessmentServiceImpl implements AssessmentService {
 
     @Override
     public AssessmentDTO createAssessment(AssessmentDTO assessmentDTO) {
+
         Course course = courseRepository.findById(assessmentDTO.getCourseId())
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 

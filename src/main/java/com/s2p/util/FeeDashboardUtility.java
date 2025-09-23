@@ -4,6 +4,7 @@ import com.s2p.repository.CourseFeeRepository;
 import com.s2p.repository.CourseFeeStructureRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
@@ -24,34 +25,52 @@ public class FeeDashboardUtility {
     public Map<YearMonth, Map<String, Double>> getMonthlyFeeSummary() {
         Map<YearMonth, Map<String, Double>> summary = new HashMap<>();
 
-        // Expected fees
-        for (Object[] row : courseFeeRepository.findMonthlyExpectedFees()) {
-            int year = ((Number) row[0]).intValue();
-            int month = ((Number) row[1]).intValue();
-            double expected = ((Number) row[2]).doubleValue();
+        List<Object[]> expectedFees = courseFeeRepository.findMonthlyExpectedFees();
+        List<Object[]> collectedFees = courseFeeStructureRepository.findMonthlyCollectedFees();
+
+        // Initialize with expected fees
+        for (Object[] row : expectedFees) {
+            int year = (int) row[0];
+            int month = (int) row[1];
+            double expected = (double) row[2];
 
             YearMonth ym = YearMonth.of(year, month);
-            summary.computeIfAbsent(ym, k -> new HashMap<>()).put("expected", expected);
+            summary.putIfAbsent(ym, new HashMap<>());
+            Map<String, Double> feeData = summary.get(ym);
+
+            feeData.put("expected", expected);
+            feeData.put("collected", feeData.getOrDefault("collected", 0.0));
+            feeData.put("balance", feeData.get("expected") - feeData.get("collected"));
         }
 
-        // Collected fees
-        for (Object[] row : courseFeeStructureRepository.findMonthlyCollectedFees()) {
-            int year = ((Number) row[0]).intValue();
-            int month = ((Number) row[1]).intValue();
-            double collected = ((Number) row[2]).doubleValue();
+        // Add collected fees
+        for (Object[] row : collectedFees) {
+            int year = (int) row[0];
+            int month = (int) row[1];
+            double collected = (double) row[2];
 
             YearMonth ym = YearMonth.of(year, month);
-            summary.computeIfAbsent(ym, k -> new HashMap<>()).put("collected", collected);
+            summary.putIfAbsent(ym, new HashMap<>());
+            Map<String, Double> feeData = summary.get(ym);
+
+            feeData.put("collected", collected);
+            feeData.put("expected", feeData.getOrDefault("expected", 0.0));
+            feeData.put("balance", feeData.get("expected") - feeData.get("collected"));
         }
 
-        // Balance fees = expected - collected
-        for (YearMonth ym : summary.keySet()) {
-            Map<String, Double> data = summary.get(ym);
-            double expected = data.getOrDefault("expected", 0.0);
-            double collected = data.getOrDefault("collected", 0.0);
-            data.put("balance", expected - collected);
+        // Ensure all months have defaults
+        for (Map<String, Double> feeData : summary.values()) {
+            feeData.putIfAbsent("expected", 0.0);
+            feeData.putIfAbsent("collected", 0.0);
+            feeData.put("balance", feeData.get("expected") - feeData.get("collected"));
         }
 
         return summary;
+    }
+    // Total Fees collected today
+    public double getTodayCollectedFees() {
+        LocalDate today = LocalDate.now();
+        Double total = courseFeeStructureRepository.findTotalCollectedFeesByDate(today);
+        return total != null ? total : 0.0;
     }
 }

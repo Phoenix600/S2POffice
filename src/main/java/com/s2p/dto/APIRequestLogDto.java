@@ -1,7 +1,7 @@
 package com.s2p.dto;
 
 import com.s2p.model.ApiResponseLog;
-import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,27 +11,27 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class APIRequestLogDto
-{
+@Schema(description = "DTO representing an API request log")
+public class APIRequestLogDto {
+
+    @Schema(description = "Unique identifier of the API request", example = "101")
     private Long apiRequestId;
 
+    @Schema(description = "HTTP method of the request", example = "POST")
     private String method;
 
+    @Schema(description = "Request URI", example = "/api/v1/students")
     private String uri;
 
-    @Column(columnDefinition = "TEXT")
+    @Schema(description = "Request headers in string format", example = "{Content-Type: application/json}")
     private String headers;
 
-    @Column(columnDefinition = "TEXT")
+    @Schema(description = "Request body", example = "{\"name\": \"John Doe\", \"age\": 22}")
     private String body;
 
-    @Column(nullable = false)
+    @Schema(description = "Name of the caller or service", example = "StudentService")
     private String callerName;
 
-    @OneToOne
-    @JoinColumn(
-            name = "api_response_id", referencedColumnName = "apiResponseId",
-            nullable = false
-    )
+    @Schema(description = "Response details corresponding to the request")
     private ApiResponseLog responseLog;
 }
