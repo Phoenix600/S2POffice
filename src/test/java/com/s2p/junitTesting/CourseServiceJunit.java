@@ -27,7 +27,6 @@ public class CourseServiceJunit
 
     }
 
-
     @Test
     void test_create_course_with_partial_fields_failure()
     {
@@ -42,5 +41,27 @@ public class CourseServiceJunit
         // Verify
         String expectedMessage = "Required fields are missing";
         assertTrue(exception.getMessage().contains(expectedMessage));
+    }
+
+    @Test
+    void getCourseByName()
+    {
+
+    }
+
+    @Test
+    void getAllCourses() {
+    }
+
+    @Test
+    void updateCourseByName() {
+    }
+
+    @Test
+    void deleteCourseByName() {
+    }
+
+    @Test
+    void searchCourses() {
     }
 }
