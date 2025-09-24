@@ -4,8 +4,11 @@ import com.s2p.dto.StudentInformationDto;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.StudentInformationRepository;
 import com.s2p.services.IStudentInformationService;
+import com.s2p.util.BatchUtility;
+import com.s2p.util.CourseUtility;
 import com.s2p.util.StudentInformationUtility;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +18,12 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StudentInformationService implements IStudentInformationService {
+
+    @Autowired
+    BatchUtility batchUtility;
+
+    @Autowired
+    CourseUtility courseUtility;
 
     private final StudentInformationRepository studentInformationRepository;
     private final StudentInformationUtility studentInformationUtility;

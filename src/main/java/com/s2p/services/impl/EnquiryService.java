@@ -1,16 +1,20 @@
 package com.s2p.services.impl;
 
+import com.s2p.dto.CourseDto;
 import com.s2p.dto.EnquiryDto;
 import com.s2p.exceptions.ResourceNotFoundException;
+import com.s2p.model.Course;
 import com.s2p.model.Enquiry;
 import com.s2p.repository.EnquiryRepository;
 import com.s2p.services.IEnquiryService;
+import com.s2p.util.CourseUtility;
 import com.s2p.util.EnquiryUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EnquiryService implements IEnquiryService
@@ -22,6 +26,9 @@ public class EnquiryService implements IEnquiryService
     @Autowired
     EnquiryUtility enquiryUtility;
 
+    @Autowired
+    CourseUtility courseUtility;
+
     @Override
     public EnquiryDto createEnquiry(EnquiryDto enquiryDto) {
         Enquiry enquiry = enquiryUtility.toEnquiryEntity(enquiryDto);
@@ -32,11 +39,11 @@ public class EnquiryService implements IEnquiryService
     @Override
     public List<EnquiryDto> getEnquiriesByDate(LocalDate date) {
         List<Enquiry> enquiries = enquiryRepository.findByEnquiryDate(date);
-        List<EnquiryDto> enquiryDtos = new ArrayList<>();
+        List<EnquiryDto> enquiryDto = new ArrayList<>();
         for (Enquiry e : enquiries) {
-            enquiryDtos.add(enquiryUtility.toEnquiryDto(e));
+            enquiryDto.add(enquiryUtility.toEnquiryDto(e));
         }
-        return enquiryDtos;
+        return enquiryDto;
     }
 
 
@@ -59,7 +66,14 @@ public class EnquiryService implements IEnquiryService
             Enquiry existing = optionalEnquiry.get();
             existing.setEnquiryDate(enquiryDto.getEnquiryDate());
             existing.setStudentInformation(enquiryDto.getStudentInformation());
-            existing.setCourseSet(enquiryDto.getCourseSet());
+
+            Set<Course> courses = new HashSet<>();
+            for(CourseDto courseDto : enquiryDto.getCourseSet())
+            {
+                courses.add(courseUtility.toCourseEntity(courseDto));
+            }
+
+            existing.setCourseSet(courses);
             Enquiry updated = enquiryRepository.save(existing);
             return Optional.of(enquiryUtility.toEnquiryDto(updated));
         }
