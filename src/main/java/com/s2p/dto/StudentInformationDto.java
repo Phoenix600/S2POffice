@@ -59,10 +59,10 @@ public class StudentInformationDto {
     private Enquiry enquiry;
 
     @Schema(description = "Set of batches the student belongs to")
-    private Set<Batch> batches = new HashSet<>();
+    private Set<BatchDto> batches = new HashSet<>();
 
     @Schema(description = "Set of courses the student is enrolled in")
-    private Set<Course> courses = new HashSet<>();
+    private Set<CourseDto> courses = new HashSet<>();
 
     @Schema(description = "Associated Course Fee Structure for the student")
     private CourseFeeStructure courseFeeStructure;

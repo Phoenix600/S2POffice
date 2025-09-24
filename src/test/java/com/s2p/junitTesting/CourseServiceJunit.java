@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class CourseServiceJunit
+public class  CourseServiceJunit
 {
     @Autowired
     ICourseService courseService;
