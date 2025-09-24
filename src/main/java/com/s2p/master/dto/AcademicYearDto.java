@@ -1,5 +1,6 @@
 package com.s2p.master.dto;
 
+import com.s2p.dto.CourseFeeDto;
 import com.s2p.model.CourseFees;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,5 +20,5 @@ public class AcademicYearDto
 {
     private UUID academicYearId;
     private Integer academicYear;
-    private List<CourseFees> courseFees = new ArrayList<>();
+    private List<CourseFeeDto> courseFees = new ArrayList<>();
 }
