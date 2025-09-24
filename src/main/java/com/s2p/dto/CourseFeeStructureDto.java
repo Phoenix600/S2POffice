@@ -38,14 +38,14 @@ public class CourseFeeStructureDto {
     private Byte remainingInstallments;
 
     @Schema(description = "Course associated with this fee structure")
-    private Course course;
+    private CourseDto courseDto;
 
     @Schema(description = "Course fee details linked to this structure")
-    private CourseFees courseFees;
+    private CourseFeeDto courseFeeDto;
 
     @Schema(description = "Student information associated with this structure")
-    private StudentInformation studentInformation;
+    private StudentInformationDto studentInformationDto;
 
     @Schema(description = "Student user associated with this structure")
-    private StudentUsers studentUsers;
+    private StudentUserDto studentUserDto;
 }

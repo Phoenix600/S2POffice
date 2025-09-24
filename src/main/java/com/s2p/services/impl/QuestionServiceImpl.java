@@ -6,6 +6,8 @@ import com.s2p.model.QuestionPaper;
 import com.s2p.repository.QuestionPaperRepository;
 import com.s2p.repository.QuestionRepository;
 import com.s2p.services.IQuestionService;
+import com.s2p.util.QuestionPaperUtility;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,33 +18,36 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class QuestionServiceImpl implements IQuestionService {
 
     private final QuestionRepository questionRepository;
     private final QuestionPaperRepository questionPaperRepository;
-
-    public QuestionServiceImpl(QuestionRepository questionRepository,
-                               QuestionPaperRepository questionPaperRepository) {
-        this.questionRepository = questionRepository;
-        this.questionPaperRepository = questionPaperRepository;
-    }
+    private final QuestionPaperUtility questionPaperUtility;
 
     @Override
-    public QuestionDTO createQuestion(QuestionDTO questionDTO) {
-        Optional<QuestionPaper> qpOpt = questionPaperRepository.findById(questionDTO.getQuestionPaperId());
-        if (!qpOpt.isPresent()) {
-            throw new RuntimeException("QuestionPaper not found with id: " + questionDTO.getQuestionPaperId());
+    public QuestionDTO createQuestion(QuestionDTO questionDTO,String questionPaperTitle) {
+
+        // 1. Created Lookup For Question By QuestionTitle
+        Optional<QuestionPaper> questionPaperOptional = questionPaperRepository.findByTitle(questionPaperTitle);
+
+        // 2. If Question Paper Not Found Throw Error
+        if (questionPaperOptional.isEmpty()) {
+            throw new RuntimeException("QuestionPaper not found with title: " + questionPaperTitle);
         }
 
+        // 3. Create Question
         Question question = new Question();
         question.setQuestionText(questionDTO.getQuestionText());
         question.setOptionA(questionDTO.getOptionA());
         question.setOptionB(questionDTO.getOptionB());
         question.setOptionC(questionDTO.getOptionC());
         question.setOptionD(questionDTO.getOptionD());
-        question.setQuestionPaper(qpOpt.get());
+        question.setQuestionPaper(questionPaperOptional.get());
 
+        // Saving The Object
         Question saved = questionRepository.save(question);
+        var savedQuestionPaper = saved.getQuestionPaper();
 
         QuestionDTO dto = new QuestionDTO();
         dto.setQuestionId(saved.getQuestionId());
@@ -51,15 +56,16 @@ public class QuestionServiceImpl implements IQuestionService {
         dto.setOptionB(saved.getOptionB());
         dto.setOptionC(saved.getOptionC());
         dto.setOptionD(saved.getOptionD());
-        dto.setQuestionPaperId(saved.getQuestionPaper().getQuestionPaperId());
+        dto.setQuestionPaperDto(questionPaperUtility.toQuestionPaperDto(savedQuestionPaper));
 
         return dto;
     }
 
     @Override
-    public QuestionDTO getQuestionByText(String questionText) {
+    public QuestionDTO getQuestionByText(String questionText, String paperTitle) {
+
         Optional<Question> qOpt = Optional.ofNullable(questionRepository.findByQuestionText(questionText));
-        if (!qOpt.isPresent()) {
+        if (qOpt.isEmpty()) {
             throw new RuntimeException("Question not found with text: " + questionText);
         }
 
@@ -71,7 +77,7 @@ public class QuestionServiceImpl implements IQuestionService {
         dto.setOptionB(q.getOptionB());
         dto.setOptionC(q.getOptionC());
         dto.setOptionD(q.getOptionD());
-        dto.setQuestionPaperId(q.getQuestionPaper().getQuestionPaperId());
+        dto.setQuestionPaperDto(questionPaperUtility.toQuestionPaperDto(q.getQuestionPaper()));
 
         return dto;
     }
@@ -89,7 +95,7 @@ public class QuestionServiceImpl implements IQuestionService {
             dto.setOptionB(q.getOptionB());
             dto.setOptionC(q.getOptionC());
             dto.setOptionD(q.getOptionD());
-            dto.setQuestionPaperId(q.getQuestionPaper().getQuestionPaperId());
+            dto.setQuestionPaperDto(questionPaperUtility.toQuestionPaperDto(q.getQuestionPaper()));
             result.add(dto);
         }
 
@@ -99,7 +105,7 @@ public class QuestionServiceImpl implements IQuestionService {
     @Override
     public QuestionDTO updateQuestion(String questionText, QuestionDTO questionDTO) {
         Optional<Question> qOpt = Optional.ofNullable(questionRepository.findByQuestionText(questionText));
-        if (!qOpt.isPresent()) {
+        if (qOpt.isEmpty()) {
             throw new RuntimeException("Question not found with text: " + questionText);
         }
 
@@ -110,10 +116,10 @@ public class QuestionServiceImpl implements IQuestionService {
         if (questionDTO.getOptionB() != null) existing.setOptionB(questionDTO.getOptionB());
         if (questionDTO.getOptionC() != null) existing.setOptionC(questionDTO.getOptionC());
         if (questionDTO.getOptionD() != null) existing.setOptionD(questionDTO.getOptionD());
-        if (questionDTO.getQuestionPaperId() != null) {
-            Optional<QuestionPaper> qpOpt = questionPaperRepository.findById(questionDTO.getQuestionPaperId());
-            if (!qpOpt.isPresent()) {
-                throw new RuntimeException("QuestionPaper not found with id: " + questionDTO.getQuestionPaperId());
+        if (questionDTO.getQuestionPaperDto() != null) {
+            Optional<QuestionPaper> qpOpt = questionPaperRepository.findById(questionDTO.getQuestionPaperDto().getQuestionPaperId());
+            if (qpOpt.isEmpty()) {
+                throw new RuntimeException("QuestionPaper not found with id: " + questionDTO.getQuestionPaperDto().getQuestionPaperId());
             }
             existing.setQuestionPaper(qpOpt.get());
         }
@@ -127,7 +133,12 @@ public class QuestionServiceImpl implements IQuestionService {
         dto.setOptionB(updated.getOptionB());
         dto.setOptionC(updated.getOptionC());
         dto.setOptionD(updated.getOptionD());
-        dto.setQuestionPaperId(updated.getQuestionPaper().getQuestionPaperId());
+
+        dto.setQuestionPaperDto(
+                questionPaperUtility.toQuestionPaperDto(
+                        updated.getQuestionPaper()
+                )
+        );
 
         return dto;
     }
@@ -135,7 +146,7 @@ public class QuestionServiceImpl implements IQuestionService {
     @Override
     public void deleteQuestion(String questionText) {
         Optional<Question> qOpt = Optional.ofNullable(questionRepository.findByQuestionText(questionText));
-        if (!qOpt.isPresent()) {
+        if (qOpt.isEmpty()) {
             throw new RuntimeException("Question not found with text: " + questionText);
         }
 

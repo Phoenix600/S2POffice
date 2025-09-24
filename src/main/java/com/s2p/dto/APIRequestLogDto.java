@@ -33,5 +33,5 @@ public class APIRequestLogDto {
     private String callerName;
 
     @Schema(description = "Response details corresponding to the request")
-    private ApiResponseLog responseLog;
+    private APIResponseLogDto responseLogDto;
 }

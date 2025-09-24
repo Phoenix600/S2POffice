@@ -31,8 +31,8 @@ public class BatchDto {
     private LocalTime endTime;
 
     @Schema(description = "Set of Courses assigned to this Batch")
-    private Set<Course> courseSet = new HashSet<>();
+    private Set<CourseDto> courseSet = new HashSet<>();
 
     @Schema(description = "Set of Students assigned to this Batch")
-    private Set<StudentInformation> students = new HashSet<>();
+    private Set<StudentInformationDto> students = new HashSet<>();
 }

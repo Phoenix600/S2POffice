@@ -12,24 +12,21 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Schema(description = "Entity representing a Teacher user account")
+
 public class TeacherUsers extends Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Schema(description = "Unique identifier for the Teacher user", example = "b12c34de-56fg-78hi-90jk-lmnopqrstuvwx")
     private UUID teacherUserId;
 
-    @Schema(description = "Email of the Teacher user", example = "teacher@example.com")
+    @Column(unique = true)
     private String email;
 
-    @Schema(description = "Username of the Teacher user", example = "teacher123")
+    @Column(unique = true)
     private String username;
 
-    @Schema(description = "Roles assigned to the Teacher user")
     private Roles roles;
 
-    @Schema(description = "Batches assigned to the Teacher")
     @ManyToMany
     @JoinTable(
             name = "teacher_batch",
@@ -38,7 +35,6 @@ public class TeacherUsers extends Users {
     )
     private Set<Batch> batch = new HashSet<>();
 
-    @Schema(description = "Courses assigned to the Teacher")
     @ManyToMany
     @JoinTable(
             name = "teacher_course",

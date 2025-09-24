@@ -6,6 +6,7 @@ import com.s2p.model.AdminUsers;
 import com.s2p.repository.AdminUsersRepository;
 import com.s2p.services.IAdminUserService;
 import com.s2p.util.AdminUserUtility;
+import com.s2p.util.RolesUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class AdminUserService implements IAdminUserService
 
     @Autowired
     AdminUserUtility adminUserUtility;
+
+    @Autowired
+    RolesUtility rolesUtility;
 
     @Override
     public AdminUserDto createAdminUser(AdminUserDto adminUserDto) {
@@ -54,7 +58,7 @@ public class AdminUserService implements IAdminUserService
 
         existing.setEmail(adminUserDto.getEmail());
         existing.setUsername(adminUserDto.getUsername());
-        existing.setRoles(adminUserDto.getRoles());
+        existing.setRoles(rolesUtility.toRoles(adminUserDto.getRolesDto()));
 
         AdminUsers updated = adminUsersRepository.save(existing);
         return adminUserUtility.toAdminUserDto(updated);

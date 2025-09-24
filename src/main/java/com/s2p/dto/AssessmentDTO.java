@@ -1,5 +1,6 @@
 package com.s2p.dto;
 
+import com.s2p.model.QuestionPaper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -27,12 +28,13 @@ public class AssessmentDTO {
     @Schema(description = "Passing marks required for the Assessment", example = "35")
     private Integer passingMarks;
 
-    @Schema(description = "ID of the associated Course", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6")
-    private UUID courseId;
+    @Schema(description = "")
+    private CourseDto courseDto;
 
-    @Schema(description = "ID of the associated Topic", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6")
-    private UUID topicId;
+    @Schema(description = "")
+    private TopicDTO topicDTO;
 
-    @Schema(description = "ID of the associated Question Paper", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6")
-    private UUID questionPaperId;
+    @Schema(description = "")
+    private QuestionPaperDTO questionPaperDto;
+
 }

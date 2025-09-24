@@ -32,14 +32,14 @@ public class CourseDto {
     private Byte courseDurationInMonths;
 
     @Schema(description = "Set of Enquiries associated with this Course")
-    private Set<Enquiry> enquirySet = new HashSet<>();
+    private Set<EnquiryDto> enquirySet = new HashSet<>();
 
     @Schema(description = "Set of Batches associated with this Course")
-    private Set<Batch> batches = new HashSet<>();
+    private Set<BatchDto> batches = new HashSet<>();
 
     @Schema(description = "Set of Students enrolled in this Course")
-    private Set<StudentInformation> students = new HashSet<>();
+    private Set<StudentInformationDto> students = new HashSet<>();
 
     @Schema(description = "Set of Course Fees associated with this Course")
-    private Set<CourseFees> courseFeesSet = new HashSet<>();
+    private Set<CourseFeeDto> courseFeesSet = new HashSet<>();
 }

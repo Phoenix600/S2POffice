@@ -20,5 +20,5 @@ public class StudentUserDto {
     private String username;
 
     @Schema(description = "Roles assigned to the student user")
-    private RolesDto roles;
+    private RolesDto rolesDto;
 }

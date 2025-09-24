@@ -37,7 +37,9 @@ public class QuestionPaperServiceImpl implements IQuestionPaperService {
     @Override
     public QuestionPaperDTO createQuestionPaper(QuestionPaperDTO questionPaperDTO) {
         Optional<Topic> topicOpt = topicRepository.findById(questionPaperDTO.getTopicId());
-        if (!topicOpt.isPresent()) {
+
+        if (!topicOpt.isPresent())
+        {
             throw new RuntimeException("Topic not found with id: " + questionPaperDTO.getTopicId());
         }
 

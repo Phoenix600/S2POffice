@@ -22,6 +22,7 @@ public enum EAdminUsersMessage implements IMessage {
     // --- Validation ---
     USERNAME_EXISTS("Admin username already exists"),
     EMAIL_EXISTS("Admin email already exists"),
+    EMAIL_SHOULD_NOT_BE_EMPTY("Admin email field should not be empty"),
 
     // --- Authentication ---
     LOGIN_SUCCESS("Admin login successful"),
