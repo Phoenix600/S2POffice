@@ -16,7 +16,7 @@ public class QuestionPaper extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID questionPaperId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String title;
 
     @ManyToOne

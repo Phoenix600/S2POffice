@@ -34,9 +34,9 @@ public class QuestionPaperDTO {
 
         @Schema(
                 description = "Topic associated with the question paper",
-                implementation = Topic.class
+                implementation = TopicDTO.class
         )
-        private Topic topic;
+        private TopicDTO topicDTO;
 
         @Schema(
                 description = "Set of questions included in the question paper",
@@ -47,8 +47,8 @@ public class QuestionPaperDTO {
 
         @Schema(
                 description = "Answer key containing correct answers for the question paper",
-                implementation = AnswerKey.class
+                implementation = AnswerKeyDTO.class
         )
-        private AnswerKey answerKey;
+        private AnswerKeyDTO answerKeyDto;
 
 }

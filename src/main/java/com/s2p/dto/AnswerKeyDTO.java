@@ -34,5 +34,5 @@ public class AnswerKeyDTO {
             description = "The Question Paper associated with this Answer Key",
             implementation = QuestionPaper.class
     )
-    private QuestionPaper questionPaper;
+    private QuestionPaperDTO questionPaperDto;
 }

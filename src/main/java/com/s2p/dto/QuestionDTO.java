@@ -52,8 +52,8 @@ public class QuestionDTO {
 
     @Schema(
             description = "The Question Paper this question belongs to",
-            implementation = QuestionPaper.class
+            implementation = QuestionPaperDTO.class
     )
-    private QuestionPaper questionPaper;
+    private QuestionPaperDTO questionPaperDto;
 
 }

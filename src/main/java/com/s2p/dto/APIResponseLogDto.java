@@ -37,5 +37,5 @@ public class APIResponseLogDto {
     private String host;
 
     @Schema(description = "Associated request log that triggered this response")
-    private ApiRequestLog requestLog;
+    private APIRequestLogDto requestLogDto;
 }

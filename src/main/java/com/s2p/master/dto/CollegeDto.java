@@ -22,5 +22,5 @@ public class CollegeDto {
     @NotBlank(message = "College name is mandatory")
     private String collegeName;
 
-    private Set<Department> departmentSet = new LinkedHashSet<>();
+    private Set<DepartmentDto> departmentSet = new LinkedHashSet<>();
 }

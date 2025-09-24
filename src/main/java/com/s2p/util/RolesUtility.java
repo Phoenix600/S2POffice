@@ -3,6 +3,7 @@ package com.s2p.util;
 import com.s2p.dto.RolesDto;
 import com.s2p.model.Roles;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 /**
  * File Name: RolesUtility.java
@@ -13,7 +14,7 @@ import org.mapstruct.Mapper;
  * Description:
  */
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",	unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RolesUtility
 {
 	public abstract Roles toRoles(RolesDto rolesDto);

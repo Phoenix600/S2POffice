@@ -36,12 +36,12 @@ public class EnquiryDto {
             description = "Information about the student who made the enquiry",
             implementation = StudentInformation.class
     )
-    private StudentInformation studentInformation;
+    private StudentInformationDto studentInformationDto;
 
     @Schema(
             description = "Set of courses the student enquired about",
             implementation = Course.class,
             example = "[{\"courseId\":\"101\",\"courseName\":\"Computer Science\"}, {\"courseId\":\"102\",\"courseName\":\"Mathematics\"}]"
     )
-    private Set<CourseDto> courseSet = new HashSet<>();
+    private Set<CourseDto> courseDtoSet = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package com.s2p.dto;
 
+import com.s2p.master.dto.AcademicYearDto;
 import com.s2p.master.model.AcademicYear;
 import com.s2p.model.Course;
 import com.s2p.model.CourseFeeStructure;
@@ -32,11 +33,11 @@ public class CourseFeeDto {
     private LocalDate dueDate;
 
     @Schema(description = "Course Fee Structure details associated with this fee")
-    private CourseFeeStructure feeStructure;
+    private CourseFeeStructureDto feeStructureDto;
 
     @Schema(description = "Academic year associated with this fee")
-    private AcademicYear academicYear;
+    private AcademicYearDto academicYearDto;
 
     @Schema(description = "Course associated with this fee")
-    private Course course;
+    private CourseDto courseDto;
 }

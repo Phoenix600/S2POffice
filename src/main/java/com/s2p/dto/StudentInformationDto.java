@@ -56,7 +56,7 @@ public class StudentInformationDto {
     private String reasonOfDiscontinue;
 
     @Schema(description = "Associated Enquiry of the student")
-    private Enquiry enquiry;
+    private EnquiryDto enquiryDto;
 
     @Schema(description = "Set of batches the student belongs to")
     private Set<BatchDto> batches = new HashSet<>();
@@ -65,5 +65,5 @@ public class StudentInformationDto {
     private Set<CourseDto> courses = new HashSet<>();
 
     @Schema(description = "Associated Course Fee Structure for the student")
-    private CourseFeeStructure courseFeeStructure;
+    private CourseFeeStructureDto courseFeeStructureDto;
 }
