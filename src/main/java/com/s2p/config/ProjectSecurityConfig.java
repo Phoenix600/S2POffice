@@ -63,7 +63,7 @@ class ProjectSecurityConfig
                 .requestMatchers("/api/v1/adminUser/**").authenticated()
                 .requestMatchers("/api/v1/admission/**").authenticated()
                 .requestMatchers("/api/v1/batch/**").authenticated()
-                .requestMatchers("/api/v1/course/**").authenticated()
+                .requestMatchers("/api/v1/course/**").permitAll()
                 .requestMatchers("/api/v1/topic/**").authenticated()
                 .requestMatchers("/api/v1/courseFee/**").authenticated()
                 .requestMatchers("/api/v1/courseFeeInstallmentTransaction/**").authenticated()
@@ -87,6 +87,7 @@ class ProjectSecurityConfig
                                 .requestMatchers("/api/v1/auth/forgot-password").permitAll()
                                 .requestMatchers("/api/v1/auth/reset-password").permitAll()
                                 .requestMatchers("/api/v1/auth/verify-otp").permitAll()
+                                .requestMatchers("/api/v1/course/**").permitAll()
                 );
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new  CustomBasicAuthenticationEntryPoint()));
@@ -102,7 +103,7 @@ class ProjectSecurityConfig
 						.requestMatchers("/api/v1/authController/login").permitAll()
 						.requestMatchers("/api/v1/authController/login").permitAll()
 						.requestMatchers("/api/v1/academic-years/**").permitAll()
-
+                        .requestMatchers("/pdf/upload").permitAll()
                         // Everything else requires authentication
                         .anyRequest().authenticated()
                 )
