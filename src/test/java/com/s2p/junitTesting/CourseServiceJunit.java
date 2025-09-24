@@ -24,7 +24,6 @@ public class CourseServiceJunit
         courseDto.setCourseDurationInMonths((byte)12);
 
         CourseDto savedCourseDto =  courseService.createCourse(courseDto);
-
     }
 
     @Test

@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,44 +18,15 @@ public interface CourseFeeStructureRepository extends JpaRepository<CourseFeeStr
 
     Optional<CourseFeeStructure> findByCourse_CourseName(String courseName);
 
-    @Query("""
-        SELECT COALESCE(SUM(cf.courseFees), 0)
-        FROM CourseFeeStructure cfs
-        JOIN cfs.courseFees cf
-        JOIN cfs.studentInformation s
-        WHERE s.isAdmitted = true
-          AND MONTH(s.createdAt) = MONTH(:date)
-          AND YEAR(s.createdAt) = YEAR(:date)
-    """)
-    Double getExpectedFeesForAdmissionsThisMonth(@Param("date") LocalDate date);
+    @Query("SELECT YEAR(cfs.createdAt), MONTH(cfs.createdAt), SUM(cfs.downPayment + cfs.remainingAmount) " +
+            "FROM CourseFeeStructure cfs " +
+            "GROUP BY YEAR(cfs.createdAt), MONTH(cfs.createdAt)")
+    List<Object[]> findMonthlyCollectedFees();
 
-    // Collected fees for admitted students in the given month
-    @Query("""
-        SELECT COALESCE(SUM(cf.amountPaid), 0)
-        FROM CourseFeeStructure cfs
-        JOIN cfs.courseFees cf
-        JOIN cfs.studentInformation s
-        WHERE s.isAdmitted = true
-          AND MONTH(cf.paymentDate) = MONTH(:date)
-          AND YEAR(cf.paymentDate) = YEAR(:date)
-    """)
-    Double getCollectedFeesThisMonth(@Param("date") LocalDate date);// Expected fees for admissions in a given month
-    @Query("SELECT COALESCE(SUM(cf.amountExpected), 0) " +
-            "FROM CourseFees cf " +
-            "JOIN cf.studentInformation s " +
-            "WHERE s.isAdmitted = true " +
-            "AND FUNCTION('MONTH', s.createdAt) = FUNCTION('MONTH', :date) " +
-            "AND FUNCTION('YEAR', s.createdAt) = FUNCTION('YEAR', :date)")
-    Double getExpectedFeesForMonth(@Param("date") LocalDate date);
-
-    // Actual fees collected in a given month
-    @Query("SELECT COALESCE(SUM(cf.amountPaid), 0) " +
-            "FROM CourseFees cf " +
-            "JOIN cf.studentInformation s " +
-            "WHERE s.isAdmitted = true " +
-            "AND FUNCTION('MONTH', cf.paymentDate) = FUNCTION('MONTH', :date) " +
-            "AND FUNCTION('YEAR', cf.paymentDate) = FUNCTION('YEAR', :date)")
-    Double getCollectedFeesForMonth(@Param("date") LocalDate date);
+    @Query("SELECT SUM(cfs.downPayment + cfs.remainingAmount) " +
+            "FROM CourseFeeStructure cfs " +
+            "WHERE DATE(cfs.createdAt) = :date")
+    Double findTotalCollectedFeesByDate(@Param("date") LocalDate date);
 
 
 

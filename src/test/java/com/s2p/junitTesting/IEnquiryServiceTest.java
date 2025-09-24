@@ -48,10 +48,19 @@ class IEnquiryServiceTest {
         courseDto.setCourseName("Java Full Stack Development");
         courseDto.setDescription("End-to-end full stack mastery");
         courseDto.setCourseDurationInMonths((byte) 6);
+
+        EnquiryDto savedEnquiry = enquiryService.createEnquiry(enquiryDto);
+    }
+
+    void test_create_enquiry_with_partial_fields_failure()
+    {
+        EnquiryDto enquiryDto = new EnquiryDto();
+
     }
 
     @Test
-    void getEnquiriesByDate() {
+    void getEnquiriesByDate()
+    {
     }
 
     @Test
