@@ -38,6 +38,7 @@ public class StudentInformationService implements IStudentInformationService {
     public StudentInformationDto updateStudentInformationByEmail(String email, StudentInformationDto dto) {
         // Fetch existing StudentInformation by email
         Optional<StudentInformation> optionalStudent = studentInformationRepository.findByEmail(email);
+
         if (!optionalStudent.isPresent()) {
             throw new RuntimeException("Student not found with email: " + email);
         }
