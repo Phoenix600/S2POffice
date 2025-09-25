@@ -1,16 +1,19 @@
 package com.s2p.services.impl;
 
+import com.s2p.dto.BatchDto;
+import com.s2p.dto.CourseDto;
 import com.s2p.dto.StudentInformationDto;
+import com.s2p.model.Batch;
+import com.s2p.model.Course;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.StudentInformationRepository;
 import com.s2p.services.IStudentInformationService;
-import com.s2p.util.StudentInformationUtility;
+import com.s2p.util.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,10 @@ public class StudentInformationService implements IStudentInformationService {
 
     private final StudentInformationRepository studentInformationRepository;
     private final StudentInformationUtility studentInformationUtility;
+    private final EnquiryUtility enquiryUtility;
+    private final BatchUtility batchUtility;
+    private final CourseUtility courseUtility;
+    private final CourseFeesStructureUtility courseFeeStructureUtility;
 
     @Override
     public StudentInformationDto createStudent(StudentInformationDto dto) {
@@ -27,18 +34,20 @@ public class StudentInformationService implements IStudentInformationService {
     }
 
     @Override
-    public StudentInformationDto updateStudent(String email, StudentInformationDto dto) {
+    @Transactional
+    public StudentInformationDto updateStudentInformationByEmail(String email, StudentInformationDto dto) {
+        // Fetch existing StudentInformation by email
         Optional<StudentInformation> optionalStudent = studentInformationRepository.findByEmail(email);
-
         if (!optionalStudent.isPresent()) {
             throw new RuntimeException("Student not found with email: " + email);
         }
 
         StudentInformation existingStudent = optionalStudent.get();
 
-        // set updated fields
+        // Update basic fields
         existingStudent.setFirstName(dto.getFirstName());
         existingStudent.setLastName(dto.getLastName());
+        existingStudent.setEmail(dto.getEmail());
         existingStudent.setCollegeName(dto.getCollegeName());
         existingStudent.setDepartName(dto.getDepartName());
         existingStudent.setSemester(dto.getSemester());
@@ -47,14 +56,39 @@ public class StudentInformationService implements IStudentInformationService {
         existingStudent.setIsAdmitted(dto.getIsAdmitted());
         existingStudent.setIsDiscontinued(dto.getIsDiscontinued());
         existingStudent.setReasonOfDiscontinue(dto.getReasonOfDiscontinue());
-        existingStudent.setEnquiry(dto.getEnquiry());
-        existingStudent.setBatches(dto.getBatches());
-        existingStudent.setCourses(dto.getCourses());
-        existingStudent.setCourseFeeStructure(dto.getCourseFeeStructure());
 
-        StudentInformation updated = studentInformationRepository.save(existingStudent);
-        return studentInformationUtility.toStudentInformationDto(updated);
+        if (dto.getEnquiryDto() != null) {
+            existingStudent.setEnquiry(enquiryUtility.toEnquiryEntity(dto.getEnquiryDto()));
+        }
+
+        if (dto.getBatches() != null && !dto.getBatches().isEmpty()) {
+            Set<Batch> batchEntities = new HashSet<>();
+            for (BatchDto batchDto : dto.getBatches()) {
+                batchEntities.add(batchUtility.toBatchEntity(batchDto));
+            }
+            existingStudent.setBatches(batchEntities);
+        }
+
+        if (dto.getCourses() != null && !dto.getCourses().isEmpty()) {
+            Set<Course> courseEntities = new HashSet<>();
+            for (CourseDto courseDto : dto.getCourses()) {
+                courseEntities.add(courseUtility.toCourseEntity(courseDto));
+            }
+            existingStudent.setCourses(courseEntities);
+        }
+
+        if (dto.getCourseFeeStructureDto() != null) {
+            existingStudent.setCourseFeeStructure(
+                    courseFeeStructureUtility.toCourseFeeStructureEntity(dto.getCourseFeeStructureDto())
+            );
+        }
+
+        StudentInformation updatedStudent = studentInformationRepository.save(existingStudent);
+
+        return studentInformationUtility.toStudentInformationDto(updatedStudent);
     }
+
+
 
     @Override
     public String deleteStudent(String email) {

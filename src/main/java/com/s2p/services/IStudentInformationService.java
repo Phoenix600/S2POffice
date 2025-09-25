@@ -8,7 +8,7 @@ public interface IStudentInformationService {
 
     StudentInformationDto createStudent(StudentInformationDto dto);
 
-    StudentInformationDto updateStudent(String email, StudentInformationDto dto);
+    StudentInformationDto updateStudentInformationByEmail(String email, StudentInformationDto dto);
 
     String deleteStudent(String email);
 

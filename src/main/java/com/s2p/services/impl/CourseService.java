@@ -5,17 +5,14 @@ import com.s2p.exceptions.AlreadyExistsException;
 import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Course;
 import com.s2p.repository.CourseRepository;
-import com.s2p.repository.specifications.CourseSpecification;
 import com.s2p.services.ICourseService;
 import com.s2p.util.CourseUtility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class CourseService implements ICourseService {
@@ -33,19 +30,19 @@ public class CourseService implements ICourseService {
         }
 
         Course course = courseUtility.toCourseEntity(courseDto);
-        Course saved = courseRepository.save(course);
-        return courseUtility.toCourseDto(saved);
+        Course savedCourse = courseRepository.save(course);
+        return courseUtility.toCourseDto(savedCourse);
     }
 
     @Override
     public CourseDto getCourseByName(String courseName) {
-        Optional<Course> optional = courseRepository.findByCourseName(courseName);
+        Optional<Course> courseOptional = courseRepository.findByCourseName(courseName);
 
-        if (optional.isEmpty()) {
+        if (courseOptional.isEmpty()) {
             throw new ResourceNotFoundException("Course not found with name: " + courseName);
         }
 
-        return courseUtility.toCourseDto(optional.get());
+        return courseUtility.toCourseDto(courseOptional.get());
     }
 
 
@@ -85,13 +82,13 @@ public class CourseService implements ICourseService {
     @Override
     public void deleteCourseByName(String courseName)
     {
-        Optional<Course> optional = courseRepository.findByCourseName(courseName);
+        Optional<Course> courseOptional = courseRepository.findByCourseName(courseName);
 
-        if (optional.isEmpty()) {
+        if (courseOptional.isEmpty()) {
             throw new ResourceNotFoundException("Course not found with name: " + courseName);
         }
 
-        courseRepository.delete(optional.get());
+        courseRepository.delete(courseOptional.get());
     }
 
     @Override

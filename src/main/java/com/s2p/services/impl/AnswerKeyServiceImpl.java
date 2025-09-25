@@ -30,16 +30,15 @@ public class AnswerKeyServiceImpl implements AnswerKeyService {
     }
 
     @Override
-    public AnswerKeyDTO createAnswerKey(AnswerKeyDTO answerKeyDTO) {
-        QuestionPaper questionPaper = questionPaperRepository.findById(answerKeyDTO.getQuestionPaperId())
-                .orElseThrow(() -> new RuntimeException("QuestionPaper not found with id: " + answerKeyDTO.getQuestionPaperId()));
-
+    public AnswerKeyDTO createAnswerKey(AnswerKeyDTO answerKeyDTO)
+    {
         AnswerKey answerKey = answerKeyUtility.toAnswerKeyEntity(answerKeyDTO);
-        answerKey.setQuestionPaper(questionPaper);
 
-        AnswerKey saved = answerKeyRepository.save(answerKey);
-        return answerKeyUtility.toAnswerKeyDto(saved);
+        AnswerKey savedAnswerKey = answerKeyRepository.save(answerKey);
+
+        return answerKeyUtility.toAnswerKeyDto(savedAnswerKey);
     }
+
 
     @Override
     public AnswerKeyDTO getAnswerKeyByQuestionPaperTitle(String questionPaperTitle) {
