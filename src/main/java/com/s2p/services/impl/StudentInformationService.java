@@ -1,16 +1,19 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.StudentInformationDto;
+import com.s2p.model.Batch;
+import com.s2p.model.Course;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.StudentInformationRepository;
 import com.s2p.services.IStudentInformationService;
-import com.s2p.util.StudentInformationUtility;
+import com.s2p.util.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,10 @@ public class StudentInformationService implements IStudentInformationService {
 
     private final StudentInformationRepository studentInformationRepository;
     private final StudentInformationUtility studentInformationUtility;
+    private final EnquiryUtility enquiryUtility;
+    private final BatchUtility batchUtility;
+    private final CourseUtility courseUtility;
+    private final CourseFeesStructureUtility courseFeesStructureUtility;
 
     @Override
     public StudentInformationDto createStudent(StudentInformationDto dto) {
@@ -47,10 +54,10 @@ public class StudentInformationService implements IStudentInformationService {
         existingStudent.setIsAdmitted(dto.getIsAdmitted());
         existingStudent.setIsDiscontinued(dto.getIsDiscontinued());
         existingStudent.setReasonOfDiscontinue(dto.getReasonOfDiscontinue());
-        existingStudent.setEnquiry(dto.getEnquiry());
-        existingStudent.setBatches(dto.getBatches());
-        existingStudent.setCourses(dto.getCourses());
-        existingStudent.setCourseFeeStructure(dto.getCourseFeeStructure());
+        existingStudent.setEnquiry(enquiryUtility.toEnquiryDto(existingStudent.getEnquiry()));
+        existingStudent.setBatches((Set<Batch>) batchUtility.toBatchDto((Batch) existingStudent.getBatches()));
+        existingStudent.setCourses((Set<Course>) courseUtility.toCourseDto((Course) existingStudent.getCourses()));
+        existingStudent.setCourseFeeStructure(courseFeesStructureUtility.toCourseFeeStructureDto(existingStudent.getCourseFeeStructure()));
 
         StudentInformation updated = studentInformationRepository.save(existingStudent);
         return studentInformationUtility.toStudentInformationDto(updated);

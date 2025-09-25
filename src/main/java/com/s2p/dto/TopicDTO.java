@@ -17,5 +17,5 @@ public class TopicDTO {
     private String topicName;
 
     @Schema(description = "ID of the parent course", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6")
-    private UUID courseId;
+    private CourseDto courseDto;
 }

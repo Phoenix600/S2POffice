@@ -10,6 +10,8 @@ import com.s2p.repository.CourseRepository;
 import com.s2p.repository.QuestionPaperRepository;
 import com.s2p.repository.TopicRepository;
 import com.s2p.services.AssessmentService;
+import com.s2p.util.CourseUtility;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +21,14 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AssessmentServiceImpl implements AssessmentService {
 
     private final AssessmentRepository assessmentRepository;
     private final CourseRepository courseRepository;
     private final TopicRepository topicRepository;
     private final QuestionPaperRepository questionPaperRepository;
+    private final CourseUtility courseUtility;
 
     public AssessmentServiceImpl(AssessmentRepository assessmentRepository,
                                  CourseRepository courseRepository,
@@ -37,15 +41,24 @@ public class AssessmentServiceImpl implements AssessmentService {
     }
 
     @Override
-    public AssessmentDTO createAssessment(AssessmentDTO assessmentDTO) {
-        Course course = courseRepository.findById(assessmentDTO.getCourseId())
+    public AssessmentDTO createAssessment(AssessmentDTO assessmentDTO,String assessmentTitle)
+    {
+        Course course = courseRepository.findByCourseName(String.valueOf(assessmentDTO.getCourseDto()))
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
-        Topic topic = topicRepository.findById(assessmentDTO.getTopicId())
+        Topic topic = topicRepository.findByTopicName(String.valueOf(assessmentDTO.getTopicDTO()))
                 .orElseThrow(() -> new RuntimeException("Topic not found"));
 
-        QuestionPaper questionPaper = questionPaperRepository.findById(assessmentDTO.getQuestionPaperId())
+        QuestionPaper questionPaper = questionPaperRepository.findByTitle(String.valueOf(assessmentDTO.getQuestionPaperDto()))
                 .orElseThrow(() -> new RuntimeException("QuestionPaper not found"));
+
+        Assessment assessment = new Assessment();
+        assessment.setTitle(assessmentDTO.getTitle());
+        assessment.setDescription(assessmentDTO.getDescription());
+        assessment.setPassingMarks(assessmentDTO.getPassingMarks());
+        assessment.setTotalMarks(assessmentDTO.getTotalMarks());
+        assessment.setCourse(assessmentDTO.getCourseDto());
+
 
         Assessment assessment = new Assessment();
         assessment.setTitle(assessmentDTO.getTitle());
