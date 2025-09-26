@@ -1,0 +1,1 @@
+{"uuid":"dbabb24e-e78c-441b-8863-e5e03f2eab56","name":"testGetStudentByEmail_Success()","children":["0e313a70-0ace-4c79-95d4-001ba86a1faf"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1756724357985,"stop":1756724357987}],"afters":[],"start":1756724357983,"stop":1756724357990}

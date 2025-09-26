@@ -1,0 +1,1 @@
+{"uuid":"50639629-f9fa-4ca5-b9f3-12ba61573619","name":"testDeleteStudentByEmail_Success()","children":["d8da2997-f1a1-4a4c-92f8-675d5afb48ae"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1756724357975,"stop":1756724357978}],"afters":[],"start":1756724357973,"stop":1756724357982}
