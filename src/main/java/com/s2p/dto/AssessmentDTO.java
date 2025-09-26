@@ -1,6 +1,5 @@
 package com.s2p.dto;
 
-import com.s2p.model.QuestionPaper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 

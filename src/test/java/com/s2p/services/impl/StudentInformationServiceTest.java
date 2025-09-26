@@ -148,7 +148,7 @@ class StudentInformationServiceTest {
         when(studentInformationUtility.toStudentInformationDto(studentEntity1)).thenReturn(studentDto1);
 
         studentDto1.setFirstName("PranayUpdated");
-        StudentInformationDto result = studentInformationService.updateStudent("pranay@test.com", studentDto1);
+        StudentInformationDto result = studentInformationService.updateStudentInformationByEmail("pranay@test.com", studentDto1);
 
         assertEquals("PranayUpdated", result.getFirstName());
         verify(studentInformationRepository, times(1)).save(studentEntity1);
@@ -161,7 +161,7 @@ class StudentInformationServiceTest {
         when(studentInformationRepository.findByEmail("unknown@test.com")).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class,
-                () -> studentInformationService.updateStudent("unknown@test.com", studentDto1));
+                () -> studentInformationService.updateStudentInformationByEmail("unknown@test.com", studentDto1));
     }
 
     @Test

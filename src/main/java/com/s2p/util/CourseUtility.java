@@ -1,12 +1,7 @@
 package com.s2p.util;
 
 import com.s2p.dto.CourseDto;
-import com.s2p.dto.CourseFeeDto;
 import com.s2p.model.Course;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.mapstruct.Mapper;
 
 

@@ -6,6 +6,8 @@ import com.s2p.model.Topic;
 import com.s2p.repository.CourseRepository;
 import com.s2p.repository.TopicRepository;
 import com.s2p.services.ITopicService;
+import com.s2p.util.TopicUtility;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,99 +17,86 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class TopicServiceImpl implements ITopicService {
 
     private final TopicRepository topicRepository;
     private final CourseRepository courseRepository;
-
-    public TopicServiceImpl(TopicRepository topicRepository, CourseRepository courseRepository) {
-        this.topicRepository = topicRepository;
-        this.courseRepository = courseRepository;
-    }
+    private final TopicUtility topicUtility;
 
     @Override
-    public TopicDTO createTopic(TopicDTO topicDTO) {
-        Optional<Course> courseOpt = courseRepository.findById(topicDTO.getCourseId());
-        if (!courseOpt.isPresent()) {
-            throw new RuntimeException("Course not found with id: " + topicDTO.getCourseId());
+    @Transactional
+    public TopicDTO createTopic(TopicDTO dto) {
+        // Fetch Course via courseName
+        Optional<Course> courseOptional = courseRepository.findByCourseName(dto.getCourseDto().getCourseName());
+        if (!courseOptional.isPresent()) {
+            throw new RuntimeException("Course not found with name: " + dto.getCourseDto().getCourseName());
         }
 
-        Topic topic = new Topic();
-        topic.setTopicName(topicDTO.getTopicName());
-        topic.setCourse(courseOpt.get());
+        Topic topic = topicUtility.toTopicEntity(dto);
+        topic.setCourse(courseOptional.get());
 
-        Topic saved = topicRepository.save(topic);
+        Topic savedTopic = topicRepository.save(topic);
 
-        TopicDTO dto = new TopicDTO();
-        dto.setTopicId(saved.getTopicId());
-        dto.setTopicName(saved.getTopicName());
-        dto.setCourseId(saved.getCourse().getCourseId());
-
-        return dto;
+        return topicUtility.toTopicDto(savedTopic);
     }
 
     @Override
     public TopicDTO getTopicByName(String topicName) {
-        Optional<Topic> topicOpt = topicRepository.findByTopicName(topicName);
-        if (!topicOpt.isPresent()) {
+        // Fetch Topic via topicName
+        Optional<Topic> optionalTopic = topicRepository.findByTopicName(topicName);
+        if (!optionalTopic.isPresent()) {
             throw new RuntimeException("Topic not found with name: " + topicName);
         }
 
-        Topic topic = topicOpt.get();
-        TopicDTO dto = new TopicDTO();
-        dto.setTopicId(topic.getTopicId());
-        dto.setTopicName(topic.getTopicName());
-        dto.setCourseId(topic.getCourse().getCourseId());
-
-        return dto;
+        // Map entity to DTO
+        return topicUtility.toTopicDto(optionalTopic.get());
     }
 
     @Override
     public List<TopicDTO> getAllTopics() {
-        List<Topic> allTopics = topicRepository.findAll();
-        List<TopicDTO> result = new ArrayList<>();
+        // Fetch all Topic entities
+        List<Topic> topics = topicRepository.findAll();
 
-        for (Topic t : allTopics) {
-            TopicDTO dto = new TopicDTO();
-            dto.setTopicId(t.getTopicId());
-            dto.setTopicName(t.getTopicName());
-            dto.setCourseId(t.getCourse().getCourseId());
-            result.add(dto);
+        // Map each Topic entity to TopicDTO
+        List<TopicDTO> topicDTOs = new ArrayList<>();
+        for (Topic topic : topics) {
+            topicDTOs.add(topicUtility.toTopicDto(topic));
         }
 
-        return result;
+        return topicDTOs;
     }
 
     @Override
-    public TopicDTO updateTopic(String topicName, TopicDTO topicDTO) {
-        Optional<Topic> topicOpt = topicRepository.findByTopicName(topicName);
-        if (!topicOpt.isPresent()) {
+    @Transactional
+    public TopicDTO updateTopicByTopicName(String topicName, TopicDTO dto) {
+        // Fetch existing Topic via topicName
+        Optional<Topic> optionalTopic = topicRepository.findByTopicName(topicName);
+        if (!optionalTopic.isPresent()) {
             throw new RuntimeException("Topic not found with name: " + topicName);
         }
 
-        Topic existing = topicOpt.get();
+        Topic existingTopic = optionalTopic.get();
 
-        if (topicDTO.getTopicName() != null) {
-            existing.setTopicName(topicDTO.getTopicName());
-        }
+        // Update fields
+        existingTopic.setTopicName(dto.getTopicName());
 
-        if (topicDTO.getCourseId() != null) {
-            Optional<Course> courseOpt = courseRepository.findById(topicDTO.getCourseId());
-            if (!courseOpt.isPresent()) {
-                throw new RuntimeException("Course not found with id: " + topicDTO.getCourseId());
+        // Fetch Course via courseName if provided
+        if (dto.getCourseDto() != null) {
+            Optional<Course> courseOptional = courseRepository.findByCourseName(dto.getCourseDto().getCourseName());
+            if (!courseOptional.isPresent()) {
+                throw new RuntimeException("Course not found with name: " + dto.getCourseDto().getCourseName());
             }
-            existing.setCourse(courseOpt.get());
+            existingTopic.setCourse(courseOptional.get());
         }
 
-        Topic updated = topicRepository.save(existing);
+        // Save updated entity
+        Topic updatedTopic = topicRepository.save(existingTopic);
 
-        TopicDTO dto = new TopicDTO();
-        dto.setTopicId(updated.getTopicId());
-        dto.setTopicName(updated.getTopicName());
-        dto.setCourseId(updated.getCourse().getCourseId());
-
-        return dto;
+        // Map back to DTO
+        return topicUtility.toTopicDto(updatedTopic);
     }
+
 
     @Override
     public void deleteTopic(String topicName) {

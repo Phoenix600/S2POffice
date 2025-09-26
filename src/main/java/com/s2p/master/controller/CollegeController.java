@@ -27,22 +27,22 @@ public class CollegeController {
 
     private final ICollegeService collegeService;
 
-    @PostMapping
-    @Operation(summary = "Create a new college",
-            description = "Creates and saves a new college based on the provided data.")
-    public ResponseEntity<ApiResponseDto<CollegeDto>> createCollege(@Valid @RequestBody CollegeDto collegeDto) {
-        College college = new College();
-        college.setCollegeName(collegeDto.getCollegeName());
-        college.setDepartmentSet(collegeDto.getDepartmentSet());
-
-        College created = collegeService.createCollege(college);
-
-        ApiResponseDto<CollegeDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_SAVED.getMessage());
-        response.setData(toDto(created));
-        return ResponseEntity.ok(response);
-    }
+//    @PostMapping
+//    @Operation(summary = "Create a new college",
+//            description = "Creates and saves a new college based on the provided data.")
+//    public ResponseEntity<ApiResponseDto<CollegeDto>> createCollege(@Valid @RequestBody CollegeDto collegeDto) {
+//        College college = new College();
+//        college.setCollegeName(collegeDto.getCollegeName());
+//        college.setDepartmentSet(collegeDto.getDepartmentSet());
+//
+//        College created = collegeService.createCollege(college);
+//
+//        ApiResponseDto<CollegeDto> response = new ApiResponseDto<>();
+//        response.setStatus(EOperationStatus.RESULT_SUCCESS);
+//        response.setMessage(EApiResponseMessage.DATA_SAVED.getMessage());
+//        response.setData(toDto(created));
+//        return ResponseEntity.ok(response);
+//    }
 
     @GetMapping
     @Operation(summary = "Get all colleges",
@@ -88,23 +88,23 @@ public class CollegeController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update college by ID",
-            description = "Updates an existing college using its unique ID.")
-    public ResponseEntity<ApiResponseDto<CollegeDto>> updateCollege(@PathVariable UUID id,
-                                                                    @Valid @RequestBody CollegeDto collegeDto) {
-        College details = new College();
-        details.setCollegeName(collegeDto.getCollegeName());
-        details.setDepartmentSet(collegeDto.getDepartmentSet());
-
-        College updated = collegeService.updateCollege(id, details);
-
-        ApiResponseDto<CollegeDto> response = new ApiResponseDto<>();
-        response.setStatus(EOperationStatus.RESULT_SUCCESS);
-        response.setMessage(EApiResponseMessage.DATA_UPDATED.getMessage());
-        response.setData(toDto(updated));
-        return ResponseEntity.ok(response);
-    }
+//    @PutMapping("/{id}")
+//    @Operation(summary = "Update college by ID",
+//            description = "Updates an existing college using its unique ID.")
+//    public ResponseEntity<ApiResponseDto<CollegeDto>> updateCollege(@PathVariable UUID id,
+//                                                                    @Valid @RequestBody CollegeDto collegeDto) {
+//        College details = new College();
+//        details.setCollegeName(collegeDto.getCollegeName());
+//        details.setDepartmentSet(collegeDto.getDepartmentSet());
+//
+//        College updated = collegeService.updateCollege(id, details);
+//
+//        ApiResponseDto<CollegeDto> response = new ApiResponseDto<>();
+//        response.setStatus(EOperationStatus.RESULT_SUCCESS);
+//        response.setMessage(EApiResponseMessage.DATA_UPDATED.getMessage());
+//        response.setData(toDto(updated));
+//        return ResponseEntity.ok(response);
+//    }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete college by ID",
@@ -133,6 +133,6 @@ public class CollegeController {
     }
 
     private CollegeDto toDto(College college) {
-        return new CollegeDto(college.getCollegeId(), college.getCollegeName(), college.getDepartmentSet());
+        return new CollegeDto();
     }
 }

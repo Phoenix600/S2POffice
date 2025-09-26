@@ -7,6 +7,6 @@ public interface ITopicService {
     public abstract TopicDTO createTopic(TopicDTO topicDTO);
     public abstract TopicDTO getTopicByName(String topicName);
     public abstract List<TopicDTO> getAllTopics();
-    public abstract TopicDTO updateTopic(String topicName, TopicDTO topicDTO);
+    public abstract TopicDTO updateTopicByTopicName(String topicName, TopicDTO dto);
     public abstract void deleteTopic(String topicName);
 }

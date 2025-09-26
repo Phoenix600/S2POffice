@@ -28,8 +28,8 @@ public class AssessmentController {
             description = "This API creates a new assessment with the details provided in the request body."
     )
     @PostMapping("/create")
-    public ResponseEntity<ApiResponseDto<AssessmentDTO>> create(@RequestBody AssessmentDTO dto) {
-        AssessmentDTO created = assessmentService.createAssessment(dto);
+    public ResponseEntity<ApiResponseDto<AssessmentDTO>> create(@RequestBody AssessmentDTO dto, @PathVariable("paper_title") String assessmentTitle) {
+        AssessmentDTO created = assessmentService.createAssessment(dto,assessmentTitle);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
                         EApiResponseMessage.DATA_SAVED.getMessage(),
