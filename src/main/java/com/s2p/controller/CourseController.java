@@ -26,6 +26,7 @@ public class CourseController {
     CourseService courseService;
 
     @Operation(summary = "Create Course", description = "Create a new course with details provided in the request body")
+    //POST  http://localhost:8080/api/v1/course/create-course
     @PostMapping("/create-course")
     public ResponseEntity<ApiResponseDto<CourseDto>> createCourse(@Valid @RequestBody CourseDto courseDto) {
         try {
@@ -33,9 +34,9 @@ public class CourseController {
             return ResponseEntity.status(HttpStatus.CREATED).body(
                     new ApiResponseDto<>(EApiResponseMessage.DATA_SAVED.getMessage(), EOperationStatus.RESULT_SUCCESS, created)
             );
-        } catch (AlreadyExistsException ex) {
+        } catch (AlreadyExistsException alreadyExistsException) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                    new ApiResponseDto<>(ex.getMessage(), EOperationStatus.RESULT_FAILURE, null)
+                    new ApiResponseDto<>(alreadyExistsException.getMessage(), EOperationStatus.RESULT_FAILURE, null)
             );
         }
     }
