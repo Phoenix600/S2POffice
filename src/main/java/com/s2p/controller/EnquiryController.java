@@ -29,7 +29,8 @@ public class EnquiryController {
             summary = "Create Enquiry",
             description = "Create a new enquiry record for a student"
     )
-    @PostMapping
+    //POST  http://localhost:8080/api/v1/enquiry/create-enquiry
+    @PostMapping("/create-enquiry")
     public ResponseEntity<ApiResponseDto<EnquiryDto>> createEnquiry(@Valid @RequestBody EnquiryDto enquiryDto) {
         EnquiryDto saved = enquiryService.createEnquiry(enquiryDto);
 
@@ -45,6 +46,7 @@ public class EnquiryController {
             summary = "Get Enquiries by Date",
             description = "Fetch all enquiries made on a specific date"
     )
+    //GET   http://localhost:8080/api/v1/enquiry/date/{date}
     @GetMapping("/date/{date}")
     public ResponseEntity<ApiResponseDto<List<EnquiryDto>>> getEnquiriesByDate(@PathVariable("date") String date) {
         LocalDate enquiryDate = LocalDate.parse(date);
