@@ -1,0 +1,1 @@
+{"uuid":"eb7c4cce-36ce-49c8-904d-625c57d66e30","name":"testGetAllStudents()","children":["6f24e66c-08c0-48bf-a8c1-f146778bf02f"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1758615021211,"stop":1758615021215}],"afters":[],"start":1758615021206,"stop":1758615021224}
