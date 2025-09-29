@@ -10,6 +10,7 @@ import com.s2p.util.StudentInformationUtility;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class StudentInformationService implements IStudentInformationService
+public  class StudentInformationService implements IStudentInformationService
 {
     private final StudentInformationRepository studentInformationRepository;
     private final StudentInformationUtility studentInformationUtility;
@@ -33,6 +34,11 @@ public class StudentInformationService implements IStudentInformationService
         StudentInformation entity = studentInformationUtility.toStudentInformationEntity(dto);
         StudentInformation savedEntity = studentInformationRepository.save(entity);
         return studentInformationUtility.toStudentInformationDto(savedEntity);
+    }
+
+    @Override
+    public StudentInformationDto updateStudentInformationByEmail(String email, StudentInformationDto dto) {
+        return null;
     }
 
     @Override
@@ -209,7 +215,7 @@ public class StudentInformationService implements IStudentInformationService
 //                .and(hasPassingYear(passingYear))
 //                .and(isGraduated(isGraduated));
 
-        List<StudentInformation> students = studentInformationRepository.findAll(spec);
+        List<StudentInformation> students = studentInformationRepository.findAll((Sort) spec);
 
         List<StudentInformationDto> result = new ArrayList<>();
         for (StudentInformation student : students) {

@@ -1,6 +1,9 @@
 package com.s2p.services.impl;
 
 import com.s2p.dto.AssessmentDTO;
+import com.s2p.dto.CourseDto;
+import com.s2p.dto.QuestionPaperDTO;
+import com.s2p.dto.TopicDTO;
 import com.s2p.model.Assessment;
 import com.s2p.model.Course;
 import com.s2p.model.QuestionPaper;
@@ -24,115 +27,170 @@ import java.util.Optional;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class AssessmentServiceImpl implements AssessmentService {
 
     private final AssessmentRepository assessmentRepository;
     private final CourseRepository courseRepository;
     private final TopicRepository topicRepository;
     private final QuestionPaperRepository questionPaperRepository;
-    private final AssessmentUtility assessmentUtility;
 
+
+    public AssessmentServiceImpl(AssessmentRepository assessmentRepository,
+                                 CourseRepository courseRepository,
+                                 TopicRepository topicRepository,
+                                 QuestionPaperRepository questionPaperRepository) {
+        this.assessmentRepository = assessmentRepository;
+        this.courseRepository = courseRepository;
+        this.topicRepository = topicRepository;
+        this.questionPaperRepository = questionPaperRepository;
+    }
 
     @Override
     public AssessmentDTO createAssessment(AssessmentDTO assessmentDTO) {
+        Course course = courseRepository.findById(assessmentDTO.getCourseId())
+                .orElseThrow(() -> new RuntimeException("Course not found"));
 
-        Assessment assessment = assessmentUtility.toAssessmentEntity(assessmentDTO);
+        Topic topic = topicRepository.findById(assessmentDTO.getTopicId())
+                .orElseThrow(() -> new RuntimeException("Topic not found"));
 
-        Course course = courseRepository.findByCourseName(
-                assessmentDTO.getCourseDto().getCourseName()
-        ).orElseThrow(() -> new RuntimeException("Course not found"));
+        QuestionPaper questionPaper = questionPaperRepository.findById(assessmentDTO.getQuestionPaperId())
+                .orElseThrow(() -> new RuntimeException("QuestionPaper not found"));
 
-        Topic topic = topicRepository.findByTopicName(
-                assessmentDTO.getTopicDTO().getTopicName()
-        ).orElseThrow(() -> new RuntimeException("Topic not found"));
-
-        QuestionPaper questionPaper = questionPaperRepository.findByTitle(
-                assessmentDTO.getQuestionPaperDto().getTitle()
-        ).orElseThrow(() -> new RuntimeException("Question Paper not found"));
-
-
-        assessment.setCourse(course);
-        assessment.setTopic(topic);
-        assessment.setQuestionPaper(questionPaper);
-
-        Assessment savedAssessment = assessmentRepository.save(assessment);
-
-        return assessmentUtility.toAssessmentDto(savedAssessment);
-    }
-
-    @Override
-    public AssessmentDTO getAssessmentByTitle(String title) {
-        // fetch assessment by title
-        Optional<Assessment> optionalAssessment = assessmentRepository.findByTitle(title);
-        if (!optionalAssessment.isPresent()) {
-            throw new RuntimeException("Assessment not found with title: " + title);
-        }
-        Assessment assessment = optionalAssessment.get();
-
-        // convert to DTO and return
-        return assessmentUtility.toAssessmentDto(assessment);
-    }
-
-
-    @Override
-    public List<AssessmentDTO> getAllAssessments() {
-        List<Assessment> assessments = assessmentRepository.findAll();
-        List<AssessmentDTO> assessmentDTOList = new ArrayList<AssessmentDTO>();
-
-        for (Assessment assessment : assessments) {
-            assessmentDTOList.add(assessmentUtility.toAssessmentDto(assessment));
-        }
-
-        return assessmentDTOList;
-    }
-
-    @Override
-    public AssessmentDTO updateAssessment(String assessmentTitle, AssessmentDTO assessmentDTO) {
-
-        // fetch Assessment by title
-        Optional<Assessment> optionalAssessment = assessmentRepository.findByTitle(assessmentTitle);
-        if (!optionalAssessment.isPresent()) {
-            throw new RuntimeException("Assessment not found with title: " + assessmentTitle);
-        }
-        Assessment assessment = optionalAssessment.get();
-
-        // update basic fields
+        Assessment assessment = new Assessment();
         assessment.setTitle(assessmentDTO.getTitle());
         assessment.setDescription(assessmentDTO.getDescription());
         assessment.setTotalMarks(assessmentDTO.getTotalMarks());
         assessment.setPassingMarks(assessmentDTO.getPassingMarks());
+        assessment.setCourse(course);
+        assessment.setTopic(topic);
+        assessment.setQuestionPaper(questionPaper);
 
-        // update Course if provided
-        if (assessmentDTO.getCourseDto() != null && assessmentDTO.getCourseDto().getCourseName() != null) {
-            Optional<Course> courseOpt = courseRepository.findByCourseName(assessmentDTO.getCourseDto().getCourseName());
-            if (!courseOpt.isPresent()) {
-                throw new RuntimeException("Course not found with name: " + assessmentDTO.getCourseDto().getCourseName());
-            }
-            assessment.setCourse(courseOpt.get());
+        Assessment saved = assessmentRepository.save(assessment);
+
+        AssessmentDTO resultDTO = new AssessmentDTO();
+        resultDTO.setAssessmentId(saved.getAssessmentId());
+        resultDTO.setTitle(saved.getTitle());
+        resultDTO.setDescription(saved.getDescription());
+        resultDTO.setTotalMarks(saved.getTotalMarks());
+        resultDTO.setPassingMarks(saved.getPassingMarks());
+        
+        // Set CourseDto
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(saved.getCourse().getCourseId());
+        resultDTO.setCourseDto(courseDto);
+        
+        // Set TopicDTO
+        TopicDTO topicDTO = new TopicDTO();
+        topicDTO.setTopicId(saved.getTopic().getTopicId());
+        topicDTO.setTopicName(saved.getTopic().getTopicName());
+        resultDTO.setTopicDTO(topicDTO);
+        
+        // Set QuestionPaperDTO
+        QuestionPaperDTO questionPaperDTO = new QuestionPaperDTO();
+        questionPaperDTO.setQuestionPaperId(saved.getQuestionPaper().getQuestionPaperId());
+        resultDTO.setQuestionPaperDto(questionPaperDTO);
+
+        return resultDTO;
+    }
+
+    @Override
+    public AssessmentDTO getAssessmentByTitle(String title) {
+        Assessment assessment = assessmentRepository.findByTitle(title)
+                .orElseThrow(() -> new RuntimeException("Assessment not found"));
+
+        AssessmentDTO dto = new AssessmentDTO();
+        dto.setAssessmentId(assessment.getAssessmentId());
+        dto.setTitle(assessment.getTitle());
+        dto.setDescription(assessment.getDescription());
+        dto.setTotalMarks(assessment.getTotalMarks());
+        dto.setPassingMarks(assessment.getPassingMarks());
+
+        // Set CourseDto
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(assessment.getCourse().getCourseId());
+        dto.setCourseDto(courseDto);
+
+        // Set TopicDTO
+        TopicDTO topicDTO = new TopicDTO();
+        topicDTO.setTopicId(assessment.getTopic().getTopicId());
+        dto.setTopicDTO(topicDTO);
+
+        // Set QuestionPaperDTO
+        QuestionPaperDTO questionPaperDTO = new QuestionPaperDTO();
+        questionPaperDTO.setQuestionPaperId(assessment.getQuestionPaper().getQuestionPaperId());
+        dto.setQuestionPaperDto(questionPaperDTO);
+
+        return dto;
+    }
+
+    @Override
+    public List<AssessmentDTO> getAllAssessments() {
+        List<Assessment> allAssessments = assessmentRepository.findAll();
+        List<AssessmentDTO> result = new ArrayList<>();
+
+        for (Assessment a : allAssessments) {
+            AssessmentDTO dto = new AssessmentDTO();
+            dto.setAssessmentId(a.getAssessmentId());
+            dto.setTitle(a.getTitle());
+            dto.setDescription(a.getDescription());
+            dto.setTotalMarks(a.getTotalMarks());
+            dto.setPassingMarks(a.getPassingMarks());
+
+            // Set CourseDto
+            CourseDto courseDto = new CourseDto();
+            courseDto.setCourseId(a.getCourse().getCourseId());
+            dto.setCourseDto(courseDto);
+
+            // Set TopicDTO
+            TopicDTO topicDTO = new TopicDTO();
+            topicDTO.setTopicId(a.getTopic().getTopicId());
+            dto.setTopicDTO(topicDTO);
+
+            // Set QuestionPaperDTO
+            QuestionPaperDTO questionPaperDTO = new QuestionPaperDTO();
+            questionPaperDTO.setQuestionPaperId(a.getQuestionPaper().getQuestionPaperId());
+            dto.setQuestionPaperDto(questionPaperDTO);
+
         }
 
-        // update Topic if provided
-        if (assessmentDTO.getTopicDTO() != null && assessmentDTO.getTopicDTO().getTopicName() != null) {
-            Optional<Topic> topicOpt = topicRepository.findByTopicName(assessmentDTO.getTopicDTO().getTopicName());
-            if (!topicOpt.isPresent()) {
-                throw new RuntimeException("Topic not found with name: " + assessmentDTO.getTopicDTO().getTopicName());
-            }
-            assessment.setTopic(topicOpt.get());
-        }
+        return result;
+    }
 
-        // update QuestionPaper if provided
-        if (assessmentDTO.getQuestionPaperDto() != null && assessmentDTO.getQuestionPaperDto().getTitle() != null) {
-            Optional<QuestionPaper> qpOpt = questionPaperRepository.findByTitle(assessmentDTO.getQuestionPaperDto().getTitle());
-            if (!qpOpt.isPresent()) {
-                throw new RuntimeException("QuestionPaper not found with title: " + assessmentDTO.getQuestionPaperDto().getTitle());
-            }
-            assessment.setQuestionPaper(qpOpt.get());
-        }
+    @Override
+    public AssessmentDTO updateAssessment(String title, AssessmentDTO assessmentDTO) {
+        Assessment existing = assessmentRepository.findByTitle(title)
+                .orElseThrow(() -> new RuntimeException("Assessment not found"));
 
-        Assessment updatedAssessment = assessmentRepository.save(assessment);
+        if (assessmentDTO.getTitle() != null) existing.setTitle(assessmentDTO.getTitle());
+        if (assessmentDTO.getDescription() != null) existing.setDescription(assessmentDTO.getDescription());
+        if (assessmentDTO.getTotalMarks() != null) existing.setTotalMarks(assessmentDTO.getTotalMarks());
+        if (assessmentDTO.getPassingMarks() != null) existing.setPassingMarks(assessmentDTO.getPassingMarks());
 
-        return assessmentUtility.toAssessmentDto(updatedAssessment);
+        Assessment updated = assessmentRepository.save(existing);
+
+        AssessmentDTO dto = new AssessmentDTO();
+        dto.setAssessmentId(updated.getAssessmentId());
+        dto.setTitle(updated.getTitle());
+        dto.setDescription(updated.getDescription());
+        dto.setTotalMarks(updated.getTotalMarks());
+        dto.setPassingMarks(updated.getPassingMarks());
+
+        // Set CourseDto
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(updated.getCourse().getCourseId());
+        dto.setCourseDto(courseDto);
+
+        // Set TopicDTO
+        TopicDTO topicDTO = new TopicDTO();
+        topicDTO.setTopicId(updated.getTopic().getTopicId());
+        dto.setTopicDTO(topicDTO);
+
+        // Set QuestionPaperDTO
+        QuestionPaperDTO questionPaperDTO = new QuestionPaperDTO();
+        questionPaperDTO.setQuestionPaperId(updated.getQuestionPaper().getQuestionPaperId());
+        dto.setQuestionPaperDto(questionPaperDTO);
+
+        return dto;
     }
 
     @Override
@@ -143,16 +201,41 @@ public class AssessmentServiceImpl implements AssessmentService {
         assessmentRepository.delete(existing);
     }
 
+    @Override
     public List<AssessmentDTO> getAssessmentsByTopicName(String topicName) {
-        List<Assessment> assessmentList = assessmentRepository.findByTopic_TopicName(topicName);
-        List<AssessmentDTO> assessmentDtoList = new ArrayList<AssessmentDTO>();
+        Optional<Topic> topicOpt = topicRepository.findByTopicName(topicName);
+        List<AssessmentDTO> result = new ArrayList<>();
 
-        for (Assessment assessment : assessmentList) {
-            AssessmentDTO dto = assessmentUtility.toAssessmentDto(assessment);
-            assessmentDtoList.add(dto);
+        if (topicOpt.isPresent()) {
+            Topic t = topicOpt.get();
+            List<Assessment> assessments = assessmentRepository.findByTopic(t);
+
+            for (Assessment a : assessments) {
+                AssessmentDTO dto = new AssessmentDTO();
+                dto.setAssessmentId(a.getAssessmentId());
+                dto.setTitle(a.getTitle());
+                dto.setDescription(a.getDescription());
+                dto.setTotalMarks(a.getTotalMarks());
+                dto.setPassingMarks(a.getPassingMarks());
+                // Set CourseDto
+                CourseDto courseDto = new CourseDto();
+                courseDto.setCourseId(a.getCourse().getCourseId());
+                dto.setCourseDto(courseDto);
+
+                // Set TopicDTO
+                TopicDTO topicDTO = new TopicDTO();
+                topicDTO.setTopicId(a.getTopic().getTopicId());
+                dto.setTopicDTO(topicDTO);
+
+                // Set QuestionPaperDTO
+                QuestionPaperDTO questionPaperDTO = new QuestionPaperDTO();
+                questionPaperDTO.setQuestionPaperId(a.getQuestionPaper().getQuestionPaperId());
+                dto.setQuestionPaperDto(questionPaperDTO);
+                result.add(dto);
+            }
         }
 
-        return assessmentDtoList;
+        return result;
     }
 
 }
