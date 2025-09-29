@@ -119,25 +119,9 @@ public class EnquiryService implements IEnquiryService
         Optional<Enquiry> optionalEnquiry = enquiryRepository.findByStudentInformation_Email(email);
         if (optionalEnquiry.isPresent()) {
             Enquiry existing = optionalEnquiry.get();
-
-            // Update enquiry date
             existing.setEnquiryDate(enquiryDto.getEnquiryDate());
-
-            // Convert StudentInformationDto -> StudentInformation entity
-            StudentInformation student = studentInformationUtility.toStudentInformationEntity(
-                    enquiryDto.getStudentInformationDto()
-            );
-            existing.setStudentInformation(student);
-
-            // Convert CourseDto set -> Course entity set
-            Set<Course> courses = new HashSet<>();
-            for (CourseDto courseDto : enquiryDto.getCourseDtoSet()) {
-                Course course = courseUtility.toCourseEntity(courseDto);
-                courses.add(course);
-            }
-            existing.setCourseSet(courses);
-
-            // Save updated enquiry
+            existing.setStudentInformation(enquiryDto.getStudentInformationDto());
+            existing.setCourseSet(enquiryDto.getCourseSet());
             Enquiry updated = enquiryRepository.save(existing);
             return Optional.of(enquiryUtility.toEnquiryDto(updated));
         }

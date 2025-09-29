@@ -27,13 +27,13 @@ public class AssessmentDTO {
     @Schema(description = "Passing marks required for the Assessment", example = "35")
     private Integer passingMarks;
 
-    @Schema(description = "Course associated with the Assessment")
+    @Schema(description = "")
     private CourseDto courseDto;
 
-    @Schema(description = "Topic associated with the Assessment")
+    @Schema(description = "")
     private TopicDTO topicDTO;
 
-    @Schema(description = "Question paper associated with the Assessment")
+    @Schema(description = "")
     private QuestionPaperDTO questionPaperDto;
 
     public UUID getCourseId() {
@@ -47,6 +47,7 @@ public class AssessmentDTO {
     public UUID getQuestionPaperId() {
         return questionPaperDto != null ? questionPaperDto.getQuestionPaperId() : null;
     }
+
 
 
 }
