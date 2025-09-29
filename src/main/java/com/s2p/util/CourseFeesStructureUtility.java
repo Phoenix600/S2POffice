@@ -9,6 +9,6 @@ import org.mapstruct.Mapper;
 public interface CourseFeesStructureUtility
 {
     public abstract CourseFeeStructure toCourseFeeStructureEntity(CourseFeeStructureDto courseFeeStructureDto);
-    public abstract CourseFeeStructure toCourseFeeStructureDto(CourseFeeStructure courseFeeStructure);
+    public abstract CourseFeeStructureDto toCourseFeeStructureDto(CourseFeeStructure courseFeeStructure);
 
 }

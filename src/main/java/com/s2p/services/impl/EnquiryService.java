@@ -2,19 +2,25 @@ package com.s2p.services.impl;
 
 import com.s2p.dto.CourseDto;
 import com.s2p.dto.EnquiryDto;
+import com.s2p.dto.StudentInformationDto;
 import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Course;
 import com.s2p.model.Enquiry;
+import com.s2p.model.StudentInformation;
+import com.s2p.repository.CourseRepository;
 import com.s2p.repository.EnquiryRepository;
+import com.s2p.repository.StudentInformationRepository;
 import com.s2p.services.IEnquiryService;
 import com.s2p.util.CourseUtility;
 import com.s2p.util.EnquiryUtility;
 import com.s2p.util.StudentInformationUtility;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Supplier;
 
 @Service
 public class EnquiryService implements IEnquiryService
@@ -32,12 +38,58 @@ public class EnquiryService implements IEnquiryService
     @Autowired
     CourseUtility courseUtility;
 
+    @Autowired
+    StudentInformationRepository studentInformationRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
+
     @Override
+    @Transactional
     public EnquiryDto createEnquiry(EnquiryDto enquiryDto) {
+        // Convert DTO -> Entity
         Enquiry enquiry = enquiryUtility.toEnquiryEntity(enquiryDto);
+
+        // ----------------------------
+        // 1. Handle Student Information
+        // ----------------------------
+        StudentInformationDto studentDto = enquiryDto.getStudentInformationDto();
+        StudentInformation student = studentInformationRepository.findByEmail(studentDto.getEmail())
+                .orElseGet(() -> studentInformationRepository.save(
+                        studentInformationUtility.toStudentInformationEntity(studentDto)
+                ));
+        enquiry.setStudentInformation(student);
+
+        // ----------------------------
+        // 2. Handle Courses
+        // ----------------------------
+        Set<Course> courses = new HashSet<>();
+        for (CourseDto courseDto : enquiryDto.getCourseDtoSet()) {
+            Course course;
+
+            Optional<Course> existingCourse = courseRepository.findByCourseName(courseDto.getCourseName());
+            if (existingCourse.isPresent()) {
+                course = existingCourse.get();
+            } else {
+                course = courseUtility.toCourseEntity(courseDto);
+                course = courseRepository.save(course);
+            }
+
+            courses.add(course);
+        }
+        enquiry.setCourseSet(courses);
+
+        // ----------------------------
+        // 3. Save Enquiry
+        // ----------------------------
         Enquiry saved = enquiryRepository.save(enquiry);
+
+        // ----------------------------
+        // 4. Return DTO
+        // ----------------------------
         return enquiryUtility.toEnquiryDto(saved);
     }
+
 
     @Override
     public List<EnquiryDto> getEnquiriesByDate(LocalDate date) {

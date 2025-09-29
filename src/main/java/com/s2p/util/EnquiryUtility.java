@@ -8,5 +8,5 @@ import org.mapstruct.Mapper;
 public interface EnquiryUtility
 {
     public abstract Enquiry toEnquiryEntity(EnquiryDto enquiryDto);
-    public abstract Enquiry toEnquiryDto(Enquiry enquiry);
+    public abstract EnquiryDto toEnquiryDto(Enquiry enquiry);
 }
