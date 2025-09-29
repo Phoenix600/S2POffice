@@ -1,0 +1,1 @@
+{"uuid":"3c00674f-8f3b-4626-9e6e-980084362e1f","name":"testGenerateScoreCard()","children":["57e30a1e-9c70-4c2e-b0ce-095938e76e97"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1758187256901,"stop":1758187257698}],"afters":[],"start":1758187256843,"stop":1758187257800}

@@ -120,7 +120,7 @@ public class EnquiryService implements IEnquiryService
         if (optionalEnquiry.isPresent()) {
             Enquiry existing = optionalEnquiry.get();
             existing.setEnquiryDate(enquiryDto.getEnquiryDate());
-            existing.setStudentInformation(enquiryDto.getStudentInformation());
+            existing.setStudentInformation(enquiryDto.getStudentInformationDto());
             existing.setCourseSet(enquiryDto.getCourseSet());
             Enquiry updated = enquiryRepository.save(existing);
             return Optional.of(enquiryUtility.toEnquiryDto(updated));

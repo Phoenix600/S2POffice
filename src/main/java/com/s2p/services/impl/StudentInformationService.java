@@ -10,6 +10,7 @@ import com.s2p.util.StudentInformationUtility;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -209,7 +210,7 @@ public class StudentInformationService implements IStudentInformationService
 //                .and(hasPassingYear(passingYear))
 //                .and(isGraduated(isGraduated));
 
-        List<StudentInformation> students = studentInformationRepository.findAll(spec);
+        List<StudentInformation> students = studentInformationRepository.findAll((Sort) spec);
 
         List<StudentInformationDto> result = new ArrayList<>();
         for (StudentInformation student : students) {

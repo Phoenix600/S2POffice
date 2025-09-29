@@ -1,0 +1,1 @@
+{"uuid":"1e75a33a-2e03-4be4-bf8c-236ad1fc4a7a","name":"testCreateStudentInformation_Success()","children":["3fac0f9e-c287-4a29-8e4a-d4eb93410890"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1758615021165,"stop":1758615021169}],"afters":[],"start":1758615021160,"stop":1758615021186}

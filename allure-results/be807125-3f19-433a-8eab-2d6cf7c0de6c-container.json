@@ -1,0 +1,1 @@
+{"uuid":"be807125-3f19-433a-8eab-2d6cf7c0de6c","name":"testCreateStudentInformation_DuplicateEmail()","children":["5ab7db65-e59e-461a-9f15-29783d9bddf2"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1758615021143,"stop":1758615021146}],"afters":[],"start":1758615021140,"stop":1758615021157}
