@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface QuestionPaperRepository extends JpaRepository<QuestionPaper, UUID> {
 
-    List<QuestionPaper> findByTopicName(String topicName);
+    List<QuestionPaper> findByTopic_TopicName(String topicName);
 
     Optional<QuestionPaper> findByTitle(String title);
 }

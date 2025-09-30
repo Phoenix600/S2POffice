@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StudentUserService implements IStudentUserService
+public class  StudentUserService implements IStudentUserService
 {
     @Autowired
     StudentUserRepository studentUsersRepository;

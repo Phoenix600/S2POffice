@@ -44,7 +44,7 @@ public class StudentInformationController {
     )
     public ResponseEntity<ApiResponseDto<StudentInformationDto>> getStudentByEmail(@PathVariable String email) {
         try {
-            StudentInformationDto student = studentInformationService.getStudentByEmail(email).get();
+            StudentInformationDto student = studentInformationService.getStudentByEmail(email);
             ApiResponseDto<StudentInformationDto> response = new ApiResponseDto<>(
                     EApiResponseMessage.DATA_FOUND.getMessage(),
                     EOperationStatus.RESULT_SUCCESS,

@@ -44,7 +44,7 @@ public class TopicServiceImpl implements ITopicService {
     @Override
     public TopicDTO getTopicByName(String topicName) {
         // Fetch Topic via topicName
-        Optional<Topic> optionalTopic = topicRepository.findByTopicName(topicName);
+        Optional<Topic> optionalTopic = topicRepository.findByTopicName((topicName));
         if (!optionalTopic.isPresent()) {
             throw new RuntimeException("Topic not found with name: " + topicName);
         }
@@ -71,7 +71,7 @@ public class TopicServiceImpl implements ITopicService {
     @Transactional
     public TopicDTO updateTopicByTopicName(String topicName, TopicDTO dto) {
         // Fetch existing Topic via topicName
-        Optional<Topic> optionalTopic = topicRepository.findByTopicName(topicName);
+        Optional<Topic> optionalTopic = topicRepository.findByTopicName((topicName));
         if (!optionalTopic.isPresent()) {
             throw new RuntimeException("Topic not found with name: " + topicName);
         }
@@ -100,7 +100,7 @@ public class TopicServiceImpl implements ITopicService {
 
     @Override
     public void deleteTopic(String topicName) {
-        Optional<Topic> topicOpt = topicRepository.findByTopicName(topicName);
+        Optional<Topic> topicOpt = topicRepository.findByTopicName((topicName));
         if (!topicOpt.isPresent()) {
             throw new RuntimeException("Topic not found with name: " + topicName);
         }

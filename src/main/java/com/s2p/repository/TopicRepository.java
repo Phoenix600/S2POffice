@@ -11,7 +11,8 @@ import java.util.UUID;
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, UUID> {
 
-    List<Topic> findByCourseName(String courseName);
+    // List<Topic> findByCourse_CourseName(String courseName);
+    List<Topic> findByCourse_CourseName(String courseName);
 
     Optional<Topic> findByTopicName(String topicName);
 
