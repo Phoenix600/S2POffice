@@ -23,7 +23,7 @@ public class ForgotPasswordController {
             description = "Generates an OTP and sends it to the provided email address for password reset"
     )
     @PostMapping("/send-otp")
-    public String sendOtp(@RequestParam String email) {
+    public String sendOtp(@RequestBody String email) {
         String otp = otpService.generateOtp(email);
         emailUtility.sendOtpEmail(email, otp);
         return "OTP sent to " + email;
@@ -34,7 +34,7 @@ public class ForgotPasswordController {
             description = "Validates the OTP provided by the user against the stored OTP"
     )
     @PostMapping("/verify-otp")
-    public String verifyOtp(@RequestParam String email, @RequestParam String otp) {
+    public String verifyOtp(@RequestBody String email, @RequestBody String otp) {
         boolean isValid = otpService.validateOtp(email, otp);
         return isValid ? "OTP verified" : "Invalid or expired OTP";
     }
