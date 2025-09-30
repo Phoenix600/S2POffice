@@ -1,5 +1,6 @@
 package com.s2p.services.impl;
 
+import com.s2p.dto.CourseDto;
 import com.s2p.dto.TopicDTO;
 import com.s2p.model.Course;
 import com.s2p.model.Topic;
@@ -7,6 +8,7 @@ import com.s2p.repository.CourseRepository;
 import com.s2p.repository.TopicRepository;
 import com.s2p.services.ITopicService;
 import com.s2p.util.TopicUtility;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,21 +26,27 @@ public class TopicServiceImpl implements ITopicService {
     private final CourseRepository courseRepository;
     private final TopicUtility topicUtility;
 
-    @Override
-    @Transactional
-    public TopicDTO createTopic(TopicDTO dto) {
-        // Fetch Course via courseName
-        Optional<Course> courseOptional = courseRepository.findByCourseName(dto.getCourseDto().getCourseName());
-        if (!courseOptional.isPresent()) {
-            throw new RuntimeException("Course not found with name: " + dto.getCourseDto().getCourseName());
-        }
 
-        Topic topic = topicUtility.toTopicEntity(dto);
-        topic.setCourse(courseOptional.get());
+    @Override
+    public TopicDTO createTopicByCourseName(String courseName, TopicDTO topicDTO) {
+
+        Course course = courseRepository.findByCourseNameIgnoreCase(courseName)
+                .orElseThrow(() -> new EntityNotFoundException("Course not found with name: " + courseName));
+
+        Topic topic = topicUtility.toTopicEntity(topicDTO);
+
+        topic.setCourse(course);
 
         Topic savedTopic = topicRepository.save(topic);
 
-        return topicUtility.toTopicDto(savedTopic);
+        TopicDTO responseDTO = topicUtility.toTopicDto(savedTopic);
+
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(course.getCourseId());
+        courseDto.setCourseName(course.getCourseName());
+        responseDTO.setCourseDto(courseDto);
+
+        return responseDTO;
     }
 
     @Override

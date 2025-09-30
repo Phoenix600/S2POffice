@@ -61,10 +61,10 @@ class ProjectSecurityConfig
 
                 http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/api/v1/adminUser/**").authenticated()
-                .requestMatchers("/api/v1/admission/**").authenticated()
-                .requestMatchers("/api/v1/batch/**").authenticated()
+                .requestMatchers("/api/v1/admission/**").permitAll()
+                .requestMatchers("/api/v1/batch/**").permitAll()
                 .requestMatchers("/api/v1/course/**").permitAll()
-                .requestMatchers("/api/v1/topic/**").authenticated()
+                .requestMatchers("/api/v1/topics/**").permitAll()
                 .requestMatchers("/api/v1/courseFee/**").authenticated()
                 .requestMatchers("/api/v1/courseFeeInstallmentTransaction/**").authenticated()
                 .requestMatchers("/api/v1/courseFeeStructure/**").authenticated()

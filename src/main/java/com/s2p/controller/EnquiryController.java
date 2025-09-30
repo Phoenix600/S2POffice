@@ -91,6 +91,7 @@ public class EnquiryController {
             summary = "Update Enquiry by Email",
             description = "Update an existing enquiry record using the student's email"
     )
+//    http://localhost:8080/api/v1/enquiry/update/{email}
     @PutMapping("/update/{email}")
     public ResponseEntity<ApiResponseDto<EnquiryDto>> updateEnquiry(@PathVariable("email") String email, @RequestBody EnquiryDto enquiryDto) {
         Optional<EnquiryDto> updatedOpt = enquiryService.updateEnquiryByStudentEmail(email, enquiryDto);

@@ -28,6 +28,7 @@ public class AdmissionController {
             summary = "Create a new Admission",
             description = "This API creates a new student admission with the details provided in the request body."
     )
+    //http://localhost:8080/api/v1/admission/create-admission
     @PostMapping("/create-admission")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> createAdmission(@RequestBody @Valid AdmissionDto admissionDto) {
         AdmissionDto response = admissionServiceImpl.createAdmission(admissionDto);
@@ -43,6 +44,7 @@ public class AdmissionController {
             summary = "Get Admission by Date",
             description = "This API retrieves a student admission using the admission date provided in the path."
     )
+    //http://localhost:8080/api/v1/admission/{admissionDate}
     @GetMapping("/{admissionDate}")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> getByDate(@PathVariable String admissionDate) {
         AdmissionDto admission = admissionServiceImpl.getAdmissionByDate(LocalDate.parse(admissionDate));
@@ -59,6 +61,7 @@ public class AdmissionController {
             summary = "Get All Admissions",
             description = "This API retrieves a list of all student admissions in the system."
     )
+//    http://localhost:8080/api/v1/admission/getAllAdmissions
     @GetMapping("/getAllAdmissions")
     public ResponseEntity<ApiResponseDto<List<AdmissionDto>>> getAllAdmissions() {
         List<AdmissionDto> admissions = admissionServiceImpl.getAllAdmissions();
@@ -74,6 +77,7 @@ public class AdmissionController {
             summary = "Update Admission by Date",
             description = "This API updates the details of an existing student admission identified by the admission date."
     )
+//    http://localhost:8080/api/v1/admission/update/{admissionDate}
     @PutMapping("/update/{admissionDate}")
     public ResponseEntity<ApiResponseDto<AdmissionDto>> updateByDate(
             @PathVariable String admissionDate,
@@ -92,6 +96,7 @@ public class AdmissionController {
             summary = "Delete Admission by Date",
             description = "This API deletes an existing student admission identified by the admission date."
     )
+//    http://localhost:8080/api/v1/admission/delete/{admissionDate}
     @DeleteMapping("/delete/{admissionDate}")
     public ResponseEntity<ApiResponseDto<Void>> deleteByDate(@PathVariable String admissionDate) {
         admissionServiceImpl.deleteAdmissionByDate(LocalDate.parse(admissionDate));

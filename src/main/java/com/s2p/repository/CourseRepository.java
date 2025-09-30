@@ -14,4 +14,6 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, JpaSpecif
     Optional<Course> findByCourseName(String courseName);
 
     boolean existsByCourseName(String courseName);
+
+    Optional<Course> findByCourseNameIgnoreCase(String courseName);
 }

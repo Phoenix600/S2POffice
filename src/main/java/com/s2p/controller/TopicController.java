@@ -23,21 +23,20 @@ public class TopicController {
         this.topicService = topicService;
     }
 
-    @Operation(summary = "Create Topic", description = "Creates a new topic in the system")
-    @PostMapping("/create")
-    public ResponseEntity<ApiResponseDto<TopicDTO>> create(@RequestBody TopicDTO dto) {
-        TopicDTO created = topicService.createTopic(dto);
-        return ResponseEntity.ok(
-                new ApiResponseDto<>(
-                        EApiResponseMessage.DATA_SAVED.getMessage(),
-                        EOperationStatus.RESULT_SUCCESS,
-                        created
-                )
-        );
+    @Operation(summary = "Create Topic By Course Name",description = "Create a new topic under a course using course name")
+    @PostMapping("/{courseName}/create-topic")
+    //http://localhost:8080/api/v1/topics/{courseName}/create-topic
+    public ResponseEntity<TopicDTO> createTopicByCourseName(
+            @PathVariable String courseName,
+            @RequestBody TopicDTO topicDTO) {
+
+        TopicDTO createdTopic = topicService.createTopicByCourseName(courseName, topicDTO);
+        return ResponseEntity.ok(createdTopic);
     }
 
     @Operation(summary = "Get Topic by Name", description = "Fetches a topic based on the provided topic name")
     @GetMapping("/{topicName}")
+    //http://localhost:8080/api/v1/topics/{topicName}
     public ResponseEntity<ApiResponseDto<TopicDTO>> getByName(@PathVariable String topicName) {
         TopicDTO topic = topicService.getTopicByName(topicName);
         return ResponseEntity.ok(

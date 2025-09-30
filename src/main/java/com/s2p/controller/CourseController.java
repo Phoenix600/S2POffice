@@ -43,6 +43,7 @@ public class CourseController {
 
     @Operation(summary = "Get Course by Name", description = "Retrieve details of a course using its name")
     @GetMapping("/{courseName}")
+//    http://localhost:8080/api/v1/course/{courseName}
     public ResponseEntity<ApiResponseDto<CourseDto>> getCourseByName(@PathVariable String courseName) {
         try {
             CourseDto found = courseService.getCourseByName(courseName);
@@ -58,6 +59,7 @@ public class CourseController {
 
     @Operation(summary = "Update Course", description = "Update an existing course by its name with new details")
     @PutMapping("/update/{courseName}")
+//    http://localhost:8080/api/v1/course/update/{courseName}
     public ResponseEntity<ApiResponseDto<CourseDto>> updateCourseByName(
             @PathVariable String courseName,
             @Valid @RequestBody CourseDto courseDto) {
@@ -75,6 +77,7 @@ public class CourseController {
 
     @Operation(summary = "Delete Course", description = "Delete a course by its name")
     @DeleteMapping("/delete/{courseName}")
+//    http://localhost:8080/api/v1/course/delete/{courseName}
     public ResponseEntity<ApiResponseDto<String>> deleteCourseByName(@PathVariable String courseName) {
         try {
             courseService.deleteCourseByName(courseName);
@@ -90,6 +93,7 @@ public class CourseController {
 
     @Operation(summary = "Search Courses", description = "Search courses using optional filters: name, description, or duration")
     @GetMapping("/search")
+//    GET http://localhost:8080/api/v1/course/search?courseName=
     public List<CourseDto> searchCourses(
             @RequestParam(required = false) String courseName,
             @RequestParam(required = false) String description,
