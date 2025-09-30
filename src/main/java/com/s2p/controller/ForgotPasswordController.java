@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/forgot-password")
+@RequestMapping("/api/v1/auth/forgot-password")
 @Tag(name = "Forgot Password APIs", description = "Endpoints for sending and verifying OTP during password reset process")
 public class ForgotPasswordController {
 
