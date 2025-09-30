@@ -22,9 +22,9 @@ public class OpenAPIConfig
         OpenAPI openAPI = new OpenAPI();
 
         openAPI.info(
-                new Info().title("Student Self Reflection API")
+                new Info().title("S2P Office API")
                         .version("1.0")
-                        .description("API documentation for S2P SSR backend")
+                        .description("API documentation for S2P Office backend")
         ).addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(new Components().addSecuritySchemes("bearerAuth",new SecurityScheme()
                         .type(SecurityScheme.Type.HTTP)

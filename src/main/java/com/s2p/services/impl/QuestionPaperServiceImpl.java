@@ -95,7 +95,7 @@ public class QuestionPaperServiceImpl implements IQuestionPaperService {
 //
 //        existingQuestionPaper.setQuestions(questionUtility.toQuestionEntity(dto.getQuestions()));
 //
-//        Optional<Topic> topicOptional = topicRepository.findByTopicName(dto.getTopicDTO().getTopicName());
+//        Optional<Topic> topicOptional = topicRepository.findByTopic_TopicName(dto.getTopicDTO().getTopicName());
 //        if (!topicOptional.isPresent()) {
 //            throw new RuntimeException("Topic not found with name: " + dto.getTopicDTO().getTopicName());
 //        }

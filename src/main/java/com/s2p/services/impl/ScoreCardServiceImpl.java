@@ -31,7 +31,7 @@ public class ScoreCardServiceImpl implements IScoreCardService {
         EvaluationResultDTO evalResult = evaluationService.evaluate(request);
 
         // 2. Fetch student info
-        var studentDto = studentService.getStudentByEmail(request.getStudentEmail()).get();
+        var studentDto = studentService.getStudentByEmail(request.getStudentEmail());
 
         // 3. Prepare answer key map
         LinkedHashMap<String, String> answerMap = new LinkedHashMap<>();

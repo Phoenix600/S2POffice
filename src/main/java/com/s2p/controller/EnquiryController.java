@@ -58,6 +58,7 @@ public class EnquiryController {
             summary = "Get Enquiry by Student Email",
             description = "Retrieve a student's enquiry details using their email address"
     )
+    //GET   http://localhost:8080/api/v1/enquiry/student/{email}
     @GetMapping("/student/{email}")
     public ResponseEntity<ApiResponseDto<EnquiryDto>> getEnquiryByStudentEmail(@PathVariable("email") String email) {
         Optional<EnquiryDto> enquiryOpt = enquiryService.getEnquiryByStudentEmail(email);
@@ -68,10 +69,12 @@ public class EnquiryController {
         }
     }
 
+
     @Operation(
             summary = "Get All Enquiries",
             description = "Fetch all enquiries stored in the system"
     )
+    //GET   http://localhost:8080/api/v1/enquiry/getAllEnquiries
     @GetMapping("/getAllEnquiries")
     public ResponseEntity<ApiResponseDto<Set<EnquiryDto>>> getAllEnquiries() {
         Set<EnquiryDto> enquiries = enquiryService.getAllEnquiries();
