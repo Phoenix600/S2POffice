@@ -40,7 +40,7 @@ class ProjectSecurityConfig
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                         CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(Collections.singletonList("*"));
+                        config.setAllowedOrigins(Collections.singletonList("http://localhost:5173"));
                         config.setAllowedMethods(Collections.singletonList("*"));
                         config.setAllowCredentials(true);
                         config.setAllowedHeaders(Collections.singletonList("*"));
@@ -86,6 +86,7 @@ class ProjectSecurityConfig
                 .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession", "/apiLogin").permitAll()
                                 .requestMatchers("/api/v1/auth/forgot-password").permitAll()
                                 .requestMatchers("/api/v1/auth/reset-password").permitAll()
+
                                 .requestMatchers("/api/v1/auth/verify-otp").permitAll()
                                 .requestMatchers("/api/v1/course/**").permitAll()
                 );
@@ -104,6 +105,7 @@ class ProjectSecurityConfig
 						.requestMatchers("/api/v1/authController/login").permitAll()
 						.requestMatchers("/api/v1/academic-years/**").permitAll()
                         .requestMatchers("/pdf/upload").permitAll()
+                        .requestMatchers("/api/v1/auth/forgot-password/send-otp").permitAll()
                         // Everything else requires authentication
                         .anyRequest().authenticated()
                 )

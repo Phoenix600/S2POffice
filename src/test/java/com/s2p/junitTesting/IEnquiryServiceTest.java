@@ -41,7 +41,7 @@ class IEnquiryServiceTest {
                 studentInformationUtility.toStudentInformationEntity(studentInformationDto);
 
         // Now set into enquiryDto
-        enquiryDto.setStudentInformation(studentInformation);
+//        enquiryDto.setStudentInformation(studentInformation);
 
         // Create and set Course
         CourseDto courseDto = new CourseDto();
