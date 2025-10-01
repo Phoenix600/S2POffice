@@ -106,14 +106,14 @@ public class StudentInformationService implements IStudentInformationService {
     }
 
     @Override
-    public Optional<StudentInformationDto> getStudentByEmail(String email) {
+    public StudentInformationDto getStudentByEmail(String email) {
         Optional<StudentInformation> optionalStudent = studentInformationRepository.findByEmail(email);
 
         if (!optionalStudent.isPresent()) {
             throw new RuntimeException("Student not found with email: " + email);
         }
 
-        return Optional.ofNullable(studentInformationUtility.toStudentInformationDto(optionalStudent.get()));
+        return studentInformationUtility.toStudentInformationDto(optionalStudent.get());
     }
 
     @Override
