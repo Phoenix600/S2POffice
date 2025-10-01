@@ -284,9 +284,6 @@ public class AuthController
 
 // ================= LOGIN APIs =================
 
-
-
-
     @Operation(summary = "Super Admin Login", description = "Authenticates Super Admin and returns a JWT token")
     @PostMapping("/superAdmin/login")
     public ResponseEntity<?> loginSuperAdmin(@RequestBody Users users) {

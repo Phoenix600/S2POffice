@@ -206,13 +206,19 @@ public class EnquiryService implements IEnquiryService
     }
 
     @Override
+    @Transactional
     public Optional<EnquiryDto> getEnquiryByStudentEmail(String email) {
         Optional<Enquiry> optionalEnquiry = enquiryRepository.findByStudentInformation_Email(email);
+
         if (optionalEnquiry.isPresent()) {
-            return Optional.of(enquiryUtility.toEnquiryDto(optionalEnquiry.get()));
+            Enquiry enquiry = optionalEnquiry.get();
+            EnquiryDto dto = enquiryUtility.toEnquiryDto(enquiry);
+            return Optional.of(dto);
         }
+
         return Optional.empty();
     }
+
 
     @Override
     @Transactional

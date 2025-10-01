@@ -46,7 +46,7 @@ class AdminUserServiceTest {
         sampleAdminUserDto.setAdminUserId(UUID.randomUUID());
         sampleAdminUserDto.setEmail("admin@example.com");
         sampleAdminUserDto.setUsername("adminUser");
-        sampleAdminUserDto.setRoles(null); // replace with Roles if needed
+//        sampleAdminUserDto.setRoles(null); // replace with Roles if needed
 
         // Sample Entity
         sampleAdminUser = new AdminUsers();

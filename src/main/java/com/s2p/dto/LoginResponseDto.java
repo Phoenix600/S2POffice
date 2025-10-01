@@ -16,5 +16,4 @@ public class LoginResponseDto
     private String email;
     private RolesDto rolesDto;
     private String token;
-
 }
