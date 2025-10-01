@@ -8,6 +8,9 @@ import com.s2p.repository.QuestionPaperRepository;
 import com.s2p.repository.QuestionRepository;
 import com.s2p.repository.TopicRepository;
 import com.s2p.services.IQuestionPaperService;
+import com.s2p.util.QuestionPaperUtility;
+import com.s2p.util.QuestionUtility;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,147 +23,90 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class QuestionPaperServiceImpl implements IQuestionPaperService {
 
     private final QuestionPaperRepository questionPaperRepository;
     private final TopicRepository topicRepository;
     private final QuestionRepository questionRepository;
-
-    public QuestionPaperServiceImpl(QuestionPaperRepository questionPaperRepository,
-                                    TopicRepository topicRepository,
-                                    QuestionRepository questionRepository) {
-        this.questionPaperRepository = questionPaperRepository;
-        this.topicRepository = topicRepository;
-        this.questionRepository = questionRepository;
-    }
+    private final QuestionPaperUtility questionPaperUtility;
+    private final QuestionUtility  questionUtility;
 
     @Override
+    @Transactional
     public QuestionPaperDTO createQuestionPaper(QuestionPaperDTO questionPaperDTO) {
-        Optional<Topic> topicOpt = topicRepository.findById(questionPaperDTO.getTopicId());
-        if (!topicOpt.isPresent()) {
-            throw new RuntimeException("Topic not found with id: " + questionPaperDTO.getTopicId());
+
+        Optional<Topic> topicOptional = topicRepository.findByTopicName(questionPaperDTO.getTopicDTO().getTopicName());
+        if (!topicOptional.isPresent()) {
+            throw new RuntimeException("Topic not found with name: " + questionPaperDTO.getTopicDTO().getTopicName());
         }
 
-        QuestionPaper qp = new QuestionPaper();
-        qp.setTitle(questionPaperDTO.getTitle());
-        qp.setTopic(topicOpt.get());
+        Topic topic = topicOptional.get();
 
-        Set<Question> questions = new HashSet<>();
-        if (questionPaperDTO.getQuestionIds() != null) {
-            for (UUID qId : questionPaperDTO.getQuestionIds()) {
-                Optional<Question> qOpt = questionRepository.findById(qId);
-                if (qOpt.isPresent()) {
-                    questions.add(qOpt.get());
-                }
-            }
-        }
-        qp.setQuestions(questions);
+        QuestionPaper questionPaper = questionPaperUtility.toQuestionPaperEntity(questionPaperDTO);
+        questionPaper.setTopic(topic); // Set the actual Topic entity
 
-        QuestionPaper saved = questionPaperRepository.save(qp);
+        QuestionPaper savedQuestionPaper = questionPaperRepository.save(questionPaper);
 
-        QuestionPaperDTO dto = new QuestionPaperDTO();
-        dto.setQuestionPaperId(saved.getQuestionPaperId());
-        dto.setTitle(saved.getTitle());
-        dto.setTopicId(saved.getTopic().getTopicId());
-
-        Set<UUID> qIds = new HashSet<>();
-        for (Question q : saved.getQuestions()) {
-            qIds.add(q.getQuestionId());
-        }
-        dto.setQuestionIds(qIds);
-
-        return dto;
+        return questionPaperUtility.toQuestionPaperDto(savedQuestionPaper);
     }
+
 
     @Override
     public QuestionPaperDTO getQuestionPaperByTitle(String title) {
-        Optional<QuestionPaper> qpOpt = questionPaperRepository.findByTitle(title);
-        if (!qpOpt.isPresent()) {
-            throw new RuntimeException("QuestionPaper not found with title: " + title);
+
+        Optional<QuestionPaper> questionPaperOptional = questionPaperRepository.findByTitle(title);
+
+        if (!questionPaperOptional.isPresent()) {
+            throw new RuntimeException("Question Paper not found with title: " + title);
         }
 
-        QuestionPaper qp = qpOpt.get();
-        QuestionPaperDTO dto = new QuestionPaperDTO();
-        dto.setQuestionPaperId(qp.getQuestionPaperId());
-        dto.setTitle(qp.getTitle());
-        dto.setTopicId(qp.getTopic().getTopicId());
-
-        Set<UUID> qIds = new HashSet<>();
-        for (Question q : qp.getQuestions()) {
-            qIds.add(q.getQuestionId());
-        }
-        dto.setQuestionIds(qIds);
-
-        return dto;
+        QuestionPaper questionPaper = questionPaperOptional.get();
+        return questionPaperUtility.toQuestionPaperDto(questionPaper);
     }
+
+
 
     @Override
     public List<QuestionPaperDTO> getAllQuestionPapers() {
-        List<QuestionPaper> allQPs = questionPaperRepository.findAll();
-        List<QuestionPaperDTO> result = new ArrayList<>();
+        // Fetch all QuestionPaper entities
+        List<QuestionPaper> questionPapers = questionPaperRepository.findAll();
 
-        for (QuestionPaper qp : allQPs) {
-            QuestionPaperDTO dto = new QuestionPaperDTO();
-            dto.setQuestionPaperId(qp.getQuestionPaperId());
-            dto.setTitle(qp.getTitle());
-            dto.setTopicId(qp.getTopic().getTopicId());
-
-            Set<UUID> qIds = new HashSet<>();
-            for (Question q : qp.getQuestions()) {
-                qIds.add(q.getQuestionId());
-            }
-            dto.setQuestionIds(qIds);
-
-            result.add(dto);
+        // Map each entity to DTO
+        List<QuestionPaperDTO> dtoList = new ArrayList<>();
+        for (QuestionPaper qp : questionPapers) {
+            dtoList.add(questionPaperUtility.toQuestionPaperDto(qp));
         }
 
-        return result;
+        return dtoList;
     }
 
     @Override
-    public QuestionPaperDTO updateQuestionPaper(String title, QuestionPaperDTO questionPaperDTO) {
-        Optional<QuestionPaper> qpOpt = questionPaperRepository.findByTitle(title);
-        if (!qpOpt.isPresent()) {
-            throw new RuntimeException("QuestionPaper not found with title: " + title);
+    @Transactional
+    public QuestionPaperDTO updateQuestionPaperByTitle(String title, QuestionPaperDTO dto) {
+        Optional<QuestionPaper> optionalQuestionPaper = questionPaperRepository.findByTitle(title);
+        if (!optionalQuestionPaper.isPresent()) {
+            throw new RuntimeException("Question Paper not found with title: " + title);
         }
-
-        QuestionPaper existing = qpOpt.get();
-
-        if (questionPaperDTO.getTitle() != null) existing.setTitle(questionPaperDTO.getTitle());
-        if (questionPaperDTO.getTopicId() != null) {
-            Optional<Topic> topicOpt = topicRepository.findById(questionPaperDTO.getTopicId());
-            if (!topicOpt.isPresent()) {
-                throw new RuntimeException("Topic not found with id: " + questionPaperDTO.getTopicId());
-            }
-            existing.setTopic(topicOpt.get());
-        }
-
-        if (questionPaperDTO.getQuestionIds() != null) {
-            Set<Question> questions = new HashSet<>();
-            for (UUID qId : questionPaperDTO.getQuestionIds()) {
-                Optional<Question> qOpt = questionRepository.findById(qId);
-                if (qOpt.isPresent()) {
-                    questions.add(qOpt.get());
-                }
-            }
-            existing.setQuestions(questions);
-        }
-
-        QuestionPaper updated = questionPaperRepository.save(existing);
-
-        QuestionPaperDTO dto = new QuestionPaperDTO();
-        dto.setQuestionPaperId(updated.getQuestionPaperId());
-        dto.setTitle(updated.getTitle());
-        dto.setTopicId(updated.getTopic().getTopicId());
-
-        Set<UUID> qIds = new HashSet<>();
-        for (Question q : updated.getQuestions()) {
-            qIds.add(q.getQuestionId());
-        }
-        dto.setQuestionIds(qIds);
-
-        return dto;
+//
+        QuestionPaper existingQuestionPaper = optionalQuestionPaper.get();
+//
+//        existingQuestionPaper.setTitle(dto.getTitle());
+//
+//        existingQuestionPaper.setQuestions(questionUtility.toQuestionEntity(dto.getQuestions()));
+//
+//        Optional<Topic> topicOptional = topicRepository.findByTopicName(dto.getTopicDTO().getTopicName());
+//        if (!topicOptional.isPresent()) {
+//            throw new RuntimeException("Topic not found with name: " + dto.getTopicDTO().getTopicName());
+//        }
+//        existingQuestionPaper.setTopic(topicOptional.get());
+//
+        QuestionPaper updatedQuestionPaper = questionPaperRepository.save(existingQuestionPaper);
+//
+        return questionPaperUtility.toQuestionPaperDto(updatedQuestionPaper);
     }
+
+
 
     @Override
     public void deleteQuestionPaper(String title) {

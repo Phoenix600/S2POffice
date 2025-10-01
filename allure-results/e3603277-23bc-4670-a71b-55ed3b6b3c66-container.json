@@ -1,1 +1,0 @@
-{"uuid":"e3603277-23bc-4670-a71b-55ed3b6b3c66","name":"getAllEnquiries() — empty test","children":["e392af7e-3682-437d-9862-bcd7d4a41eca"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1756715792481,"stop":1756715792492}],"afters":[],"start":1756715792480,"stop":1756715792560}

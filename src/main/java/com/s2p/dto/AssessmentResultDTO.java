@@ -24,8 +24,8 @@ public class AssessmentResultDTO {
     private Boolean passed;
 
     @Schema(description = "Student associated with this result")
-    private StudentInformation student;
+    private StudentInformationDto student;
 
     @Schema(description = "Assessment associated with this result")
-    private Assessment assessment;
+    private AssessmentDTO assessment;
 }

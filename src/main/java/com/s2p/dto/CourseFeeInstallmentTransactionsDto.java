@@ -22,11 +22,11 @@ public class CourseFeeInstallmentTransactionsDto {
     private Double paidAmount;
 
     @Schema(description = "Course associated with this transaction")
-    private Course course;
+    private CourseDto courseDto;
 
     @Schema(description = "Fee structure associated with this transaction")
-    private CourseFeeStructure courseFeeStructure;
+    private CourseFeeStructureDto courseFeeStructureDto;
 
     @Schema(description = "Student user who made the transaction")
-    private StudentUsers studentUsers;
+    private StudentUserDto studentUserDto;
 }

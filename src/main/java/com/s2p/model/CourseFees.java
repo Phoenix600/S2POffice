@@ -26,28 +26,28 @@ public class CourseFees extends BaseEntity
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
-	@Schema(description = "Unique identifier for the course fees record", example = "123e4567-e89b-12d3-a456-426614174000")
 	private UUID courseFeesID;
 
 	@ManyToOne
 	@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false)
-	@Schema(description = "Course associated with these fees")
 	private Course course;
 
 	@Column(nullable = false)
-	@Schema(description = "Fees amount for the course", example = "50000.0")
 	private Double courseFees;
 
 	@ManyToOne
 	@JoinColumn(name = "academic_year_id", nullable = false)
-	@Schema(description = "Academic year for which these fees are applicable")
 	private AcademicYear academicYear;
 
+	@Column(nullable = false)
 	private Double amountExpected;
 
+	@Column(nullable = false)
 	private LocalDate paymentDate;
 
+	@Column(nullable = false)
 	private Double amountPaid;
 
+	@Column(nullable = false)
 	private LocalDate dueDate;
 }

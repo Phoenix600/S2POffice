@@ -79,7 +79,7 @@ public class QuestionPaperController {
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> update(
             @PathVariable String title,
             @RequestBody QuestionPaperDTO dto) {
-        QuestionPaperDTO updated = questionPaperService.updateQuestionPaper(title, dto);
+        QuestionPaperDTO updated = questionPaperService.updateQuestionPaperByTitle(title, dto);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
                         EApiResponseMessage.DATA_UPDATED.getMessage(),

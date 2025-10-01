@@ -76,7 +76,7 @@ public class StudentUserService implements IStudentUserService
         existingUser.setEmail(studentUserDto.getEmail());
         existingUser.setUsername(studentUserDto.getUsername());
 
-        if (studentUserDto.getRoles() != null) {
+        if (studentUserDto.getRolesDto() != null) {
             existingUser.setRoles(studentUsersUtility.toStudentUserEntity(studentUserDto).getRoles());
         }
 

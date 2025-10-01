@@ -5,7 +5,6 @@ import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.QuestionDTO;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.IQuestionService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +25,11 @@ public class QuestionController {
             summary = "Create a new Question",
             description = "Adds a new question to the system"
     )
-    @PostMapping("/create")
-    public ResponseEntity<ApiResponseDto<QuestionDTO>> create(@RequestBody QuestionDTO dto) {
-        QuestionDTO created = questionService.createQuestion(dto);
+    @PostMapping("/create/{paper_title}")
+    public ResponseEntity<ApiResponseDto<QuestionDTO>> create(@RequestBody QuestionDTO dto,@PathVariable("paper_title")String paperTitle ) {
+
+        QuestionDTO created = questionService.createQuestion(dto,paperTitle);
+
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
                         EApiResponseMessage.DATA_SAVED.getMessage(),
@@ -42,9 +43,9 @@ public class QuestionController {
             summary = "Get Question by Text",
             description = "Fetches a question using its text as identifier"
     )
-    @GetMapping("/{questionText}")
-    public ResponseEntity<ApiResponseDto<QuestionDTO>> getByText(@PathVariable String questionText) {
-        QuestionDTO q = questionService.getQuestionByText(questionText);
+    @GetMapping("/{questionText}/{paper_title}")
+    public ResponseEntity<ApiResponseDto<QuestionDTO>> getByText(@PathVariable String questionText, @PathVariable String title) {
+        QuestionDTO q = questionService.getQuestionByText(questionText,title);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
                         EApiResponseMessage.DATA_FOUND.getMessage(),

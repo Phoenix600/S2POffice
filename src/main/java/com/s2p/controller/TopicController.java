@@ -67,7 +67,7 @@ public class TopicController {
     public ResponseEntity<ApiResponseDto<TopicDTO>> update(
             @PathVariable String topicName,
             @RequestBody TopicDTO dto) {
-        TopicDTO updated = topicService.updateTopic(topicName, dto);
+        TopicDTO updated = topicService.updateTopicByTopicName(topicName, dto);
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
                         EApiResponseMessage.DATA_UPDATED.getMessage(),

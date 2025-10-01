@@ -1,13 +1,16 @@
 package com.s2p.master.service.impl;
 
+import com.s2p.dto.CourseFeeDto;
 import com.s2p.master.dto.AcademicYearDto;
 import com.s2p.master.model.AcademicYear;
 import com.s2p.master.repository.AcademicYearRepository;
 import com.s2p.master.service.IAcademicYearService;
+import com.s2p.util.CourseFeesUtility;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,12 +19,13 @@ import java.util.UUID;
 public class AcademicYearServiceImpl implements IAcademicYearService {
 
     private final AcademicYearRepository academicYearRepository;
+    private final CourseFeesUtility courseFeesUtility;
 
     @Override
     public AcademicYear createAcademicYear(AcademicYearDto academicYearDto) {
         AcademicYear academicYear = new AcademicYear();
         academicYear.setAcademicYear(academicYearDto.getAcademicYear());
-        academicYear.setCourseFees(academicYearDto.getCourseFees());
+        academicYear.setCourseFees(Collections.singletonList(courseFeesUtility.toCourseFeeEntity((CourseFeeDto) academicYearDto.getCourseFees())));
         return academicYearRepository.save(academicYear);
     }
 
@@ -51,7 +55,7 @@ public class AcademicYearServiceImpl implements IAcademicYearService {
                 .orElseThrow(() -> new EntityNotFoundException("Academic Year not found with ID: " + academicYearId));
 
         existingAcademicYear.setAcademicYear(academicYearDto.getAcademicYear());
-        existingAcademicYear.setCourseFees(academicYearDto.getCourseFees());
+        existingAcademicYear.setCourseFees(Collections.singletonList(courseFeesUtility.toCourseFeeEntity((CourseFeeDto) existingAcademicYear.getCourseFees())));
 
         return academicYearRepository.save(existingAcademicYear);
     }

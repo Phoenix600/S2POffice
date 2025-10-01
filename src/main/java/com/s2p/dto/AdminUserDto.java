@@ -2,6 +2,7 @@ package com.s2p.dto;
 
 import com.s2p.model.Roles;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,12 @@ public class AdminUserDto {
     private UUID AdminUserId;
 
     @Schema(description = "Email of the Admin User", example = "admin@example.com")
+    @Email(message = "email field should not be empty")
     private String email;
 
     @Schema(description = "Username of the Admin User", example = "admin123")
     private String username;
 
     @Schema(description = "Role assigned to the Admin User")
-    private Roles roles;
+    private RolesDto rolesDto;
 }

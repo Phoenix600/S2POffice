@@ -6,7 +6,9 @@ import com.s2p.master.model.AcademicYear;
 import com.s2p.model.CourseFees;
 import com.s2p.repository.CourseFeeRepository;
 import com.s2p.services.ICourseFeeService;
+import com.s2p.util.AcademicYearUtility;
 import com.s2p.util.CourseFeesUtility;
+import com.s2p.util.CourseUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,12 @@ public class CourseFeeService implements ICourseFeeService
 
     @Autowired
     CourseFeesUtility courseFeesUtility;
+
+    @Autowired
+    AcademicYearUtility academicYearUtility;
+
+    @Autowired
+    CourseUtility courseUtility;
 
     @Override
     public CourseFeeDto createCourseFee(CourseFeeDto courseFeeDto)
@@ -80,8 +88,8 @@ public class CourseFeeService implements ICourseFeeService
 
         CourseFees fee = fees.get(0);
         fee.setCourseFees(dto.getCourseFees());
-        fee.setAcademicYear(dto.getAcademicYear());
-        fee.setCourse(dto.getCourse());
+        fee.setAcademicYear(academicYearUtility.toAcademicYearEntity(dto.getAcademicYearDto()));
+        fee.setCourse(courseUtility.toCourseEntity(dto.getCourseDto()));
 
         CourseFees updated = courseFeeRepository.save(fee);
         return courseFeesUtility.toCourseFeeDto(updated);

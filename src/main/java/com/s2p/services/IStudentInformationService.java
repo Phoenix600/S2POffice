@@ -10,11 +10,13 @@ public interface IStudentInformationService {
 
     StudentInformationDto createStudent(StudentInformationDto dto);
 
-    StudentInformationDto updateStudent(String email, StudentInformationDto dto);
+    StudentInformationDto updateStudentInformationByEmail(String email, StudentInformationDto dto);
 
     StudentInformationDto createStudentInformation(StudentInformationDto studentInformationDto) throws BadRequestException;
 
     String deleteStudentByEmail(String email);
+
+    String deleteStudent(String email);
 
     Optional<StudentInformationDto> getStudentByEmail(String email);
 

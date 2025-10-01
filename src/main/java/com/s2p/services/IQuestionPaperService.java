@@ -7,6 +7,6 @@ public interface IQuestionPaperService {
     public abstract QuestionPaperDTO createQuestionPaper(QuestionPaperDTO questionPaperDTO);
     public abstract QuestionPaperDTO getQuestionPaperByTitle(String title);
     public abstract List<QuestionPaperDTO> getAllQuestionPapers();
-    public abstract QuestionPaperDTO updateQuestionPaper(String title, QuestionPaperDTO questionPaperDTO);
+    public abstract QuestionPaperDTO updateQuestionPaperByTitle(String title, QuestionPaperDTO dto);
     public abstract void deleteQuestionPaper(String title);
 }

@@ -87,7 +87,7 @@ public class StudentInformationController {
             @PathVariable String email,
             @RequestBody StudentInformationDto dto) {
         try {
-            StudentInformationDto updated = studentInformationService.updateStudent(email, dto);
+            StudentInformationDto updated = studentInformationService.updateStudentInformationByEmail(email, dto);
             ApiResponseDto<StudentInformationDto> response = new ApiResponseDto<>(
                     EApiResponseMessage.DATA_UPDATED.getMessage(),
                     EOperationStatus.RESULT_SUCCESS,
