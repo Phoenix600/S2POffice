@@ -40,7 +40,7 @@ class ProjectSecurityConfig
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                         CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(Collections.singletonList("*"));
+                        config.setAllowedOrigins(Collections.singletonList("http://localhost:5173"));
                         config.setAllowedMethods(Collections.singletonList("*"));
                         config.setAllowCredentials(true);
                         config.setAllowedHeaders(Collections.singletonList("*"));
@@ -88,6 +88,7 @@ class ProjectSecurityConfig
                                 .requestMatchers("/api/v1/auth/reset-password").permitAll()
 
                                 .requestMatchers("/api/v1/auth/verify-otp").permitAll()
+                                .requestMatchers("/api/v1/auth/register/admin").hasRole("ROLE_SUPERADMIN")
                                 .requestMatchers("/api/v1/course/**").permitAll()
                 );
         http.formLogin(withDefaults());

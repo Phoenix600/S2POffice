@@ -1,11 +1,13 @@
 package com.s2p.services.impl;
 
+import com.s2p.dto.CourseDto;
 import com.s2p.dto.EnquiryDto;
 import com.s2p.model.Course;
 import com.s2p.model.Enquiry;
 import com.s2p.model.StudentInformation;
 import com.s2p.repository.EnquiryRepository;
 import com.s2p.util.EnquiryUtility;
+import com.s2p.util.StudentInformationUtility;
 import io.qameta.allure.*;
 import io.qameta.allure.junit5.AllureJunit5;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +42,9 @@ class EnquiryServiceTest {
 
     @Autowired
     EnquiryUtility enquiryUtility;
+
+    @Autowired
+    StudentInformationUtility studentInformationUtility;
 
     private StudentInformation student1;
     private StudentInformation student2;
@@ -119,7 +124,7 @@ class EnquiryServiceTest {
         assertTrue(result.isPresent(), "Expected enquiry to be found");
 
         EnquiryDto dto = result.get();
-        assertEquals(student1.getEmail(), dto.getStudentInformation().getEmail(), "Student email should match");
+        assertEquals(student1.getEmail(), dto.getStudentInformationDto().getEmail() , "Student email should match");
 
         verify(enquiryRepository, times(1)).findByStudentInformation_Email(email);
     }
@@ -151,8 +156,8 @@ class EnquiryServiceTest {
 
         EnquiryDto updateDto = new EnquiryDto();
         updateDto.setEnquiryDate(LocalDate.of(2025, 9, 1));
-        updateDto.setStudentInformation(student2);
-        updateDto.setCourseSet(new HashSet<Course>());
+        updateDto.setStudentInformationDto(studentInformationUtility.toStudentInformationDto(student2));
+        updateDto.setCourseDtoSet(new HashSet<CourseDto>());
 
         when(enquiryRepository.save(any(Enquiry.class))).thenReturn(enquiry1);
 
@@ -164,7 +169,7 @@ class EnquiryServiceTest {
 
         EnquiryDto updatedDto = result.get();
         assertEquals(updateDto.getEnquiryDate(), updatedDto.getEnquiryDate(), "Enquiry date should be updated");
-        assertEquals(student2.getEmail(), updatedDto.getStudentInformation().getEmail(), "Student email should be updated");
+        assertEquals(student2.getEmail(), updatedDto.getStudentInformationDto().getEmail(), "Student email should be updated");
 
         verify(enquiryRepository, times(1)).findByStudentInformation_Email(email);
         verify(enquiryRepository, times(1)).save(any(Enquiry.class));
