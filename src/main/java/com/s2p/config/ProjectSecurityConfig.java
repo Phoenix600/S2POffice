@@ -65,7 +65,7 @@ class ProjectSecurityConfig
                 .requestMatchers("/api/v1/batch/**").permitAll()
                 .requestMatchers("/api/v1/course/**").permitAll()
                 .requestMatchers("/api/v1/topics/**").permitAll()
-                .requestMatchers("/api/v1/courseFee/**").authenticated()
+                .requestMatchers("/api/v1/courseFee/**").permitAll()
                 .requestMatchers("/api/v1/courseFeeInstallmentTransaction/**").authenticated()
                 .requestMatchers("/api/v1/courseFeeStructure/**").authenticated()
                 .requestMatchers("/api/v1/auth/**").permitAll()

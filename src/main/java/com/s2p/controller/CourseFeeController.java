@@ -25,6 +25,7 @@ public class CourseFeeController {
 
     @Operation(summary = "Create Course Fee", description = "Create a new course fee with details provided in the request body")
     @PostMapping("create-courseFees")
+    //http://localhost:8080/api/v1/courseFee/create-courseFees
     public ResponseEntity<ApiResponseDto<CourseFeeDto>> createCourseFee(@RequestBody CourseFeeDto courseFeeDto) {
         CourseFeeDto created = courseFeeService.createCourseFee(courseFeeDto);
 

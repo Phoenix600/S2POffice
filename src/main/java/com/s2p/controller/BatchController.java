@@ -27,6 +27,7 @@ public class BatchController {
 
     @Operation(summary = "Create Batch", description = "Create a new batch with details provided in the request body")
     @PostMapping("/create-batch")
+    //http://localhost:8080/api/v1/batch/create-batch
     public ResponseEntity<ApiResponseDto<BatchDto>> createBatch(@Valid @RequestBody BatchDto batchDto) throws BadRequestException {
         BatchDto createdBatch = batchService.createBatch(batchDto);
 
