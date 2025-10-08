@@ -270,3 +270,1041 @@
 2025-10-09 00:34:13,836 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-10-09 00:34:13,839 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2025-10-09 00:34:13,854 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:34:18,411 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 21796 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:34:18,414 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:34:19,816 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:34:20,034 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 206 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:34:21,123 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:34:21,140 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:34:21,143 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:34:21,144 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:34:21,226 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:34:21,228 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2750 ms
+2025-10-09 00:34:21,472 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:34:22,062 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2964511
+2025-10-09 00:34:22,065 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:34:22,784 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:34:24,517 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:34:25,086 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:34:27,142 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:34:27,236 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:34:27,237 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:34:27,644 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:34:27,790 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:34:27,853 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:34:27,855 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:34:27,895 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:34:28,012 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:34:28,045 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:34:28,098 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:34:28,383 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:34:28,392 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:34:28,402 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 10.841 seconds (process running for 11.42)
+2025-10-09 00:34:33,918 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-5] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:34:33,918 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:34:33,919 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected StandardServletMultipartResolver
+2025-10-09 00:34:33,919 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:34:33,919 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected FixedThemeResolver
+2025-10-09 00:34:33,920 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@770ad1f0
+2025-10-09 00:34:33,921 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected org.springframework.web.servlet.support.SessionFlashMapManager@60e17c7d
+2025-10-09 00:34:33,922 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:34:33,922 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Completed initialization in 4 ms
+2025-10-09 00:34:33,958 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-5] Authentication Is In Progress
+2025-10-09 00:34:33,966 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] DELETE "/api/v1/topics/delete/OOP%20Concepts", parameters={}
+2025-10-09 00:34:33,970 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-5] Mapped to com.s2p.controller.TopicController#delete(String)
+2025-10-09 00:34:34,103 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-5] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:34:34,105 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-5] An exception occurred due to : Topic not found with name: OOP Concepts
+2025-10-09 00:34:34,165 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-5] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:34:34,169 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:34:34,193 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [java.lang.RuntimeException: Topic not found with name: OOP Concepts]
+2025-10-09 00:34:34,196 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:34:49,464 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:34:49,465 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] DELETE "/api/v1/topics/delete/Object%20Oriented%20Programming", parameters={}
+2025-10-09 00:34:49,467 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.TopicController#delete(String)
+2025-10-09 00:34:49,585 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:34:49,586 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=Data deleted successfully, status=RESULT_SUCCESS, data=null)]
+2025-10-09 00:34:49,590 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
+2025-10-09 00:34:18,411 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 21796 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:34:18,414 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:34:19,816 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:34:20,034 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 206 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:34:21,123 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:34:21,140 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:34:21,143 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:34:21,144 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:34:21,226 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:34:21,228 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2750 ms
+2025-10-09 00:34:21,472 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:34:22,062 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2964511
+2025-10-09 00:34:22,065 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:34:22,784 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:34:24,517 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:34:25,086 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:34:27,142 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:34:27,236 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:34:27,237 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:34:27,644 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:34:27,790 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:34:27,853 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:34:27,855 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:34:27,895 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:34:28,012 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:34:28,045 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:34:28,098 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:34:28,383 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:34:28,392 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:34:28,402 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 10.841 seconds (process running for 11.42)
+2025-10-09 00:34:33,918 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-5] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:34:33,918 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:34:33,919 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected StandardServletMultipartResolver
+2025-10-09 00:34:33,919 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:34:33,919 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected FixedThemeResolver
+2025-10-09 00:34:33,920 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@770ad1f0
+2025-10-09 00:34:33,921 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] Detected org.springframework.web.servlet.support.SessionFlashMapManager@60e17c7d
+2025-10-09 00:34:33,922 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:34:33,922 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Completed initialization in 4 ms
+2025-10-09 00:34:33,958 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-5] Authentication Is In Progress
+2025-10-09 00:34:33,966 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] DELETE "/api/v1/topics/delete/OOP%20Concepts", parameters={}
+2025-10-09 00:34:33,970 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-5] Mapped to com.s2p.controller.TopicController#delete(String)
+2025-10-09 00:34:34,103 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-5] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:34:34,105 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-5] An exception occurred due to : Topic not found with name: OOP Concepts
+2025-10-09 00:34:34,165 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-5] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:34:34,169 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:34:34,193 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [java.lang.RuntimeException: Topic not found with name: OOP Concepts]
+2025-10-09 00:34:34,196 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:34:49,464 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:34:49,465 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] DELETE "/api/v1/topics/delete/Object%20Oriented%20Programming", parameters={}
+2025-10-09 00:34:49,467 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.TopicController#delete(String)
+2025-10-09 00:34:49,585 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:34:49,586 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=Data deleted successfully, status=RESULT_SUCCESS, data=null)]
+2025-10-09 00:34:49,590 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
+2025-10-09 00:41:31,872 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-7] Authentication Is In Progress
+2025-10-09 00:41:31,875 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-7] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
+2025-10-09 00:45:03,829 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:45:03,844 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:45:03,861 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:45:03,869 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:45:03,884 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:45:12,425 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 4060 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:45:12,428 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:45:14,069 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:45:14,345 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 262 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:45:15,572 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:45:15,593 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:45:15,598 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:45:15,598 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:45:15,709 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:45:15,710 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3197 ms
+2025-10-09 00:45:15,962 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:45:16,479 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@13fe5bb7
+2025-10-09 00:45:16,482 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:45:17,296 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:45:19,388 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:45:20,168 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:45:22,583 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:45:22,630 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:45:22,631 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:45:23,098 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:45:23,267 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:45:23,376 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:45:23,380 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:45:23,453 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:45:23,626 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:45:23,671 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:45:23,731 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:45:24,054 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:45:24,070 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:45:24,081 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 12.928 seconds (process running for 13.77)
+2025-10-09 00:45:35,777 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:45:35,778 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:45:35,778 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2025-10-09 00:45:35,779 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:45:35,779 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2025-10-09 00:45:35,780 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@69b74dc2
+2025-10-09 00:45:35,782 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@44e49229
+2025-10-09 00:45:35,783 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:45:35,784 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2025-10-09 00:45:35,858 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
+2025-10-09 00:45:35,898 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-1] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
+2025-10-09 00:45:52,542 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-10] Authentication Is In Progress
+2025-10-09 00:45:52,546 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-10] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
+2025-10-09 00:46:00,676 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:46:00,690 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:46:00,708 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:46:00,714 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:46:00,751 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:46:08,310 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 16900 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:46:08,315 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:46:10,452 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:46:10,720 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 256 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:46:11,978 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:46:12,010 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:46:12,014 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:46:12,015 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:46:12,143 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:46:12,145 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3749 ms
+2025-10-09 00:46:12,369 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:46:13,062 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71f0806b
+2025-10-09 00:46:13,066 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:46:13,842 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:46:16,187 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:46:17,007 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:46:19,293 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:46:19,328 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:46:19,329 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:46:19,658 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:46:19,797 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:46:19,877 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:46:19,879 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:46:19,925 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:46:20,049 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:46:20,088 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:46:20,156 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:46:20,455 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:46:20,469 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:46:20,487 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.473 seconds (process running for 14.202)
+2025-10-09 00:46:34,269 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:46:34,270 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:46:34,271 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2025-10-09 00:46:34,273 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:46:34,273 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2025-10-09 00:46:34,275 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@28b7afdb
+2025-10-09 00:46:34,277 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@7d707e72
+2025-10-09 00:46:34,279 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:46:34,280 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 9 ms
+2025-10-09 00:46:34,333 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
+2025-10-09 00:46:34,350 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] GET "/api/v1/question-papers/Java%20Basics%20Question%20Paper", parameters={}
+2025-10-09 00:46:34,356 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-1] Mapped to com.s2p.controller.QuestionPaperController#getByTitle(String)
+2025-10-09 00:46:34,625 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-1] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:46:34,627 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-1] An exception occurred due to : Question Paper not found with title: Java Basics Question Paper
+2025-10-09 00:46:34,711 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:46:34,715 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:46:34,746 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [java.lang.RuntimeException: Question Paper not found with title: Java Basics Question Paper]
+2025-10-09 00:46:34,749 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:50:33,379 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-4] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 00:50:33,416 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:50:33,422 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] "ERROR" dispatch for POST "/error", parameters={}
+2025-10-09 00:50:33,425 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 00:50:33,441 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:50:33,446 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [{timestamp=Thu Oct 09 00:50:33 IST 2025, status=500, error=Internal Server Error, path=/api/v1/quest (truncated)...]
+2025-10-09 00:50:33,468 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Exiting from "ERROR" dispatch, status 500
+2025-10-09 00:50:37,032 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-6] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 00:50:37,035 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-6] Authentication Is In Progress
+2025-10-09 00:50:37,037 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] "ERROR" dispatch for POST "/error", parameters={}
+2025-10-09 00:50:37,038 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-6] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 00:50:37,041 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-6] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:50:37,042 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Writing [{timestamp=Thu Oct 09 00:50:37 IST 2025, status=500, error=Internal Server Error, path=/api/v1/quest (truncated)...]
+2025-10-09 00:50:37,044 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Exiting from "ERROR" dispatch, status 500
+2025-10-09 00:50:42,657 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-8] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 00:50:42,661 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-8] Authentication Is In Progress
+2025-10-09 00:50:42,664 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-8] "ERROR" dispatch for POST "/error", parameters={}
+2025-10-09 00:50:42,665 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-8] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 00:50:42,667 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-8] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:50:42,668 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-8] Writing [{timestamp=Thu Oct 09 00:50:42 IST 2025, status=500, error=Internal Server Error, path=/api/v1/quest (truncated)...]
+2025-10-09 00:50:42,671 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-8] Exiting from "ERROR" dispatch, status 500
+2025-10-09 00:52:25,991 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-10] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 00:52:25,994 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-10] Authentication Is In Progress
+2025-10-09 00:52:25,997 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-10] "ERROR" dispatch for POST "/error", parameters={}
+2025-10-09 00:52:25,998 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-10] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 00:52:26,000 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-10] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:52:26,000 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-10] Writing [{timestamp=Thu Oct 09 00:52:25 IST 2025, status=500, error=Internal Server Error, path=/api/question (truncated)...]
+2025-10-09 00:52:26,002 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-10] Exiting from "ERROR" dispatch, status 500
+2025-10-09 00:54:54,443 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
+2025-10-09 00:54:54,449 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] GET "/api/v1/topics/all", parameters={}
+2025-10-09 00:54:54,451 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-1] Mapped to com.s2p.controller.TopicController#getAll()
+2025-10-09 00:54:54,604 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:54:54,610 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Writing [ApiResponseDto(message=Data retrieved successfully, status=RESULT_SUCCESS, data=[com.s2p.dto.TopicDT (truncated)...]
+2025-10-09 00:54:54,616 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed 200 OK
+2025-10-09 00:55:26,535 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 00:55:26,539 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-3] Authentication Is In Progress
+2025-10-09 00:55:26,546 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] "ERROR" dispatch for POST "/error", parameters={}
+2025-10-09 00:55:26,553 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-3] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 00:55:26,558 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-3] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:55:26,558 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] Writing [{timestamp=Thu Oct 09 00:55:26 IST 2025, status=500, error=Internal Server Error, path=/api/v1/quest (truncated)...]
+2025-10-09 00:55:26,562 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Exiting from "ERROR" dispatch, status 500
+2025-10-09 00:56:54,389 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:56:54,405 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:56:54,422 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:56:54,427 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:56:54,443 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:57:01,473 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 10928 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:57:01,478 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:57:03,518 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:57:03,846 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 312 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:57:05,131 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:57:05,153 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:57:05,158 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:57:05,159 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:57:05,283 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:57:05,286 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3719 ms
+2025-10-09 00:57:05,652 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:57:06,398 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ea66c33
+2025-10-09 00:57:06,402 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:57:07,272 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:57:09,412 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:57:10,108 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:57:12,251 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:57:12,307 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:57:12,309 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:57:12,641 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:57:12,775 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:57:12,829 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:57:12,830 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:57:12,870 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:57:13,001 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:57:13,032 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:57:13,083 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:57:13,372 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:57:13,383 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:57:13,394 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.194 seconds (process running for 14.046)
+2025-10-09 00:57:35,816 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:57:35,822 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:57:35,822 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected StandardServletMultipartResolver
+2025-10-09 00:57:35,824 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:57:35,824 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected FixedThemeResolver
+2025-10-09 00:57:35,826 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@381a4407
+2025-10-09 00:57:35,826 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.support.SessionFlashMapManager@4aaa6e62
+2025-10-09 00:57:35,831 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:57:35,831 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 9 ms
+2025-10-09 00:57:36,101 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 00:57:36,134 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-2] Authentication Is In Progress
+2025-10-09 00:57:36,156 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-2] "ERROR" dispatch for POST "/error", parameters={}
+2025-10-09 00:57:36,158 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-2] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 00:57:36,215 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-2] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:57:36,215 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-2] Writing [{timestamp=Thu Oct 09 00:57:36 IST 2025, status=500, error=Internal Server Error, path=/api/v1/quest (truncated)...]
+2025-10-09 00:57:36,280 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Exiting from "ERROR" dispatch, status 500
+2025-10-09 00:58:51,082 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:58:51,084 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] POST "/api/v1/question-papers/create-questionpaper", parameters={}
+2025-10-09 00:58:51,086 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.QuestionPaperController#create(QuestionPaperDTO)
+2025-10-09 00:58:51,212 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Read "application/json;charset=UTF-8" to [com.s2p.dto.QuestionPaperDTO@a8efaa5]
+2025-10-09 00:58:51,572 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:58:51,573 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=Data saved successfully, status=RESULT_SUCCESS, data=com.s2p.dto.QuestionPape (truncated)...]
+2025-10-09 00:58:51,582 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
+2025-10-09 00:59:17,938 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-5] Authentication Is In Progress
+2025-10-09 00:59:17,940 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] POST "/api/v1/question-papers/create-questionpaper", parameters={}
+2025-10-09 00:59:17,943 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-5] Mapped to com.s2p.controller.QuestionPaperController#create(QuestionPaperDTO)
+2025-10-09 00:59:17,947 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] Read "application/json;charset=UTF-8" to [com.s2p.dto.QuestionPaperDTO@20f540ff]
+2025-10-09 00:59:18,015 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-5] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:59:18,016 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] Writing [ApiResponseDto(message=Data saved successfully, status=RESULT_SUCCESS, data=com.s2p.dto.QuestionPape (truncated)...]
+2025-10-09 00:59:18,021 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Completed 200 OK
+2025-10-09 00:59:27,695 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-6] Authentication Is In Progress
+2025-10-09 00:59:27,698 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] POST "/api/v1/question-papers/create-questionpaper", parameters={}
+2025-10-09 00:59:27,701 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-6] Mapped to com.s2p.controller.QuestionPaperController#create(QuestionPaperDTO)
+2025-10-09 00:59:27,705 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Read "application/json;charset=UTF-8" to [com.s2p.dto.QuestionPaperDTO@482b10ce]
+2025-10-09 00:59:27,734 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-6] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:59:27,736 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Writing [ApiResponseDto(message=Data saved successfully, status=RESULT_SUCCESS, data=com.s2p.dto.QuestionPape (truncated)...]
+2025-10-09 00:59:27,740 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Completed 200 OK
+2025-10-09 01:00:22,800 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-7] Authentication Is In Progress
+2025-10-09 01:00:22,800 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] GET "/api/v1/question-papers/Collection%20Frameworks%20Advanced%20Test", parameters={}
+2025-10-09 01:00:22,808 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-7] Mapped to com.s2p.controller.QuestionPaperController#getByTitle(String)
+2025-10-09 01:00:22,955 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-7] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:00:22,955 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] Writing [ApiResponseDto(message=Data retrieved successfully, status=RESULT_SUCCESS, data=com.s2p.dto.Question (truncated)...]
+2025-10-09 01:00:22,964 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-7] Completed 200 OK
+2025-10-09 01:00:43,230 ERROR o.a.j.l.DirectJDKLog [http-nio-8080-exec-8] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.authentication.BadCredentialsException: Invalid Token Received!
+	at com.s2p.filters.JwtTokenValidatorFilter.doFilterInternal(JwtTokenValidatorFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.s2p.filters.RequestBeforeValidation.doFilter(RequestBeforeValidation.java:44)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:216)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:202)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.ui.DefaultResourcesFilter.doFilter(DefaultResourcesFilter.java:72)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.channel.ChannelProcessingFilter.doFilter(ChannelProcessingFilter.java:135)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+2025-10-09 01:00:43,238 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-8] Authentication Is In Progress
+2025-10-09 01:00:43,238 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-8] "ERROR" dispatch for GET "/error", parameters={}
+2025-10-09 01:00:43,245 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-8] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-10-09 01:00:43,246 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-8] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:00:43,246 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-8] Writing [{timestamp=Thu Oct 09 01:00:43 IST 2025, status=500, error=Internal Server Error, path=/api/v1/quest (truncated)...]
+2025-10-09 01:00:43,246 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-8] Exiting from "ERROR" dispatch, status 500
+2025-10-09 01:00:47,190 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-10] Authentication Is In Progress
+2025-10-09 01:00:47,192 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-10] GET "/api/v1/question-papers", parameters={}
+2025-10-09 01:00:47,194 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-10] Mapped to com.s2p.controller.QuestionPaperController#getAll()
+2025-10-09 01:00:47,290 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-10] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:00:47,297 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-10] Writing [ApiResponseDto(message=Data retrieved successfully, status=RESULT_SUCCESS, data=[com.s2p.dto.Questio (truncated)...]
+2025-10-09 01:00:47,306 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-10] Completed 200 OK
+2025-10-09 01:01:57,242 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-3] Authentication Is In Progress
+2025-10-09 01:01:57,242 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] PUT "/api/v1/question-papers/Collection%20Frameworks%20Advanced%20Test", parameters={}
+2025-10-09 01:01:57,248 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-3] Mapped to com.s2p.controller.QuestionPaperController#update(String, QuestionPaperDTO)
+2025-10-09 01:01:57,250 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] Read "application/json;charset=UTF-8" to [com.s2p.dto.QuestionPaperDTO@773fec29]
+2025-10-09 01:01:57,308 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-3] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:01:57,308 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] Writing [ApiResponseDto(message=Data updated successfully, status=RESULT_SUCCESS, data=com.s2p.dto.QuestionPa (truncated)...]
+2025-10-09 01:01:57,316 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed 200 OK
+2025-10-09 01:02:23,149 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 01:02:23,149 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] PUT "/api/v1/question-papers/Collection%20Frameworks%20Advanced%20Test", parameters={}
+2025-10-09 01:02:23,161 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.QuestionPaperController#update(String, QuestionPaperDTO)
+2025-10-09 01:02:23,165 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Read "application/json;charset=UTF-8" to [com.s2p.dto.QuestionPaperDTO@1d987dab]
+2025-10-09 01:02:23,199 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:02:23,199 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=Data updated successfully, status=RESULT_SUCCESS, data=com.s2p.dto.QuestionPa (truncated)...]
+2025-10-09 01:02:23,199 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
+2025-10-09 01:03:00,395 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 01:03:00,409 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 01:03:00,426 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 01:03:00,436 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 01:03:00,454 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 01:03:06,396 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 22148 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 01:03:06,400 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 01:03:08,587 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 01:03:08,846 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 243 ms. Found 30 JPA repository interfaces.
+2025-10-09 01:03:10,543 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 01:03:10,581 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 01:03:10,586 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 01:03:10,587 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 01:03:10,777 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 01:03:10,779 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 4278 ms
+2025-10-09 01:03:11,347 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 01:03:12,588 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6501b105
+2025-10-09 01:03:12,590 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 01:03:13,807 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 01:03:16,753 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 01:03:18,023 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 01:03:21,087 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 01:03:21,135 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 01:03:21,135 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 01:03:21,507 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 01:03:21,684 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 01:03:21,769 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 01:03:21,771 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 01:03:21,838 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 01:03:22,060 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 01:03:22,127 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 01:03:22,231 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 01:03:22,564 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 01:03:22,578 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 01:03:22,589 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 17.79 seconds (process running for 19.8)
+2025-10-09 01:07:31,523 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 01:07:31,536 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 01:07:31,550 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 01:07:31,555 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 01:07:31,573 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 01:07:35,390 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 3176 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 01:07:35,393 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 01:07:37,451 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 01:07:37,785 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 317 ms. Found 30 JPA repository interfaces.
+2025-10-09 01:07:39,178 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 01:07:39,204 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 01:07:39,209 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 01:07:39,209 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 01:07:39,341 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 01:07:39,342 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3865 ms
+2025-10-09 01:07:39,633 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 01:07:40,442 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63a84bb6
+2025-10-09 01:07:40,446 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 01:07:41,460 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 01:07:43,988 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 01:07:44,721 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 01:07:46,651 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 01:07:46,701 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 01:07:46,702 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 01:07:47,030 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 01:07:47,175 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 01:07:47,290 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 01:07:47,293 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 01:07:47,339 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 01:07:47,457 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 01:07:47,485 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 01:07:47,533 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 01:07:47,829 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 01:07:47,840 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 01:07:47,850 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.742 seconds (process running for 14.624)
+2025-10-09 01:07:58,204 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 01:07:58,205 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-10-09 01:07:58,206 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2025-10-09 01:07:58,206 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2025-10-09 01:07:58,207 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2025-10-09 01:07:58,209 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@463aa3da
+2025-10-09 01:07:58,209 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@710f4a91
+2025-10-09 01:07:58,210 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 01:07:58,212 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2025-10-09 01:07:58,271 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
+2025-10-09 01:07:58,286 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] PUT "/api/v1/question-papers/Collection%20Frameworks%20Advanced%20Test", parameters={}
+2025-10-09 01:07:58,293 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-1] Mapped to com.s2p.controller.QuestionPaperController#update(String, QuestionPaperDTO)
+2025-10-09 01:07:58,610 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Read "application/json;charset=UTF-8" to [com.s2p.dto.QuestionPaperDTO@40b5517]
+2025-10-09 01:07:59,094 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:07:59,100 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Writing [ApiResponseDto(message=Data updated successfully, status=RESULT_SUCCESS, data=com.s2p.dto.QuestionPa (truncated)...]
+2025-10-09 01:07:59,141 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed 200 OK
+2025-10-09 01:08:31,168 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-6] Authentication Is In Progress
+2025-10-09 01:08:31,168 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] PUT "/api/v1/question-papers/CF%20Advanced%20Test", parameters={}
+2025-10-09 01:08:31,173 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-6] Mapped to com.s2p.controller.QuestionPaperController#update(String, QuestionPaperDTO)
+2025-10-09 01:08:31,188 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Read "application/octet-stream" to []
+2025-10-09 01:08:31,188 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-6] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 01:08:31,196 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-6] An exception occurred due to : Required request body is missing: public org.springframework.http.ResponseEntity<com.s2p.dto.ApiResponseDto<com.s2p.dto.QuestionPaperDTO>> com.s2p.controller.QuestionPaperController.update(java.lang.String,com.s2p.dto.QuestionPaperDTO)
+2025-10-09 01:08:31,196 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-6] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:08:31,196 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 01:08:31,211 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.s2p.dto.ApiResponseDto<com.s2p.dto.QuestionPaperDTO>> com.s2p.controller.QuestionPaperController.update(java.lang.String,com.s2p.dto.QuestionPaperDTO)]
+2025-10-09 01:08:31,213 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 01:08:41,271 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-8] Authentication Is In Progress
+2025-10-09 01:08:41,274 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-8] DELETE "/api/v1/question-papers/CF%20Advanced%20Test", parameters={}
+2025-10-09 01:08:41,274 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-8] Mapped to com.s2p.controller.QuestionPaperController#delete(String)
+2025-10-09 01:08:41,355 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-8] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 01:08:41,355 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-8] Writing [ApiResponseDto(message=Data deleted successfully, status=RESULT_SUCCESS, data=null)]
+2025-10-09 01:08:41,363 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-8] Completed 200 OK
+2025-10-09 01:12:09,879 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 01:12:09,891 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 01:12:09,907 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 01:12:09,915 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 01:12:09,935 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

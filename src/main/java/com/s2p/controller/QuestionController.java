@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/v1/questions")
 @RequiredArgsConstructor
 @Tag(name = "Question APIs", description = "CRUD operations for managing questions")
-public class QuestionController {
+public class  QuestionController {
 
     private final IQuestionService questionService;
 

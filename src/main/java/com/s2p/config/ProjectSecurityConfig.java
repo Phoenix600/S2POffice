@@ -74,12 +74,15 @@ class ProjectSecurityConfig
                 .requestMatchers("/api/v1/studentUsers/**").permitAll()
                 .requestMatchers("/api/v1/superAdminUser/**").permitAll()
                 .requestMatchers("/api/v1/teacherUser/**").permitAll()
+                .requestMatchers("/api/v1/question-papers/**").permitAll()
+
                         //MASTER
                 .requestMatchers("/api/v1/academic-years/**").permitAll()
                 .requestMatchers("/api/v1/branches/**").permitAll()
                 .requestMatchers("/api/v1/city/**").permitAll()
                 .requestMatchers("/api/v1/college/**").permitAll()
                 .requestMatchers("/api/v1/country/**").permitAll()
+
 
                 .requestMatchers("/swagger-ui/index.html#").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()

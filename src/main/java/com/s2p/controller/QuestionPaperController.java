@@ -23,11 +23,12 @@ public class QuestionPaperController {
         this.questionPaperService = questionPaperService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create-questionpaper")
     @Operation(
             summary = "Create a new Question Paper",
             description = "Creates a new Question Paper based on the provided details."
     )
+    //http://localhost:8080/api/v1/question-papers/create-questionpaper
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> create(@RequestBody QuestionPaperDTO dto) {
         QuestionPaperDTO created = questionPaperService.createQuestionPaper(dto);
         return ResponseEntity.ok(
@@ -44,6 +45,7 @@ public class QuestionPaperController {
             summary = "Get Question Paper by Title",
             description = "Retrieves a specific Question Paper using its title."
     )
+    //http://localhost:8080/api/v1/question-papers/{title}
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> getByTitle(@PathVariable String title) {
         QuestionPaperDTO qp = questionPaperService.getQuestionPaperByTitle(title);
         return ResponseEntity.ok(
@@ -55,11 +57,12 @@ public class QuestionPaperController {
         );
     }
 
-    @GetMapping
+    @GetMapping("all")
     @Operation(
             summary = "Get all Question Papers",
             description = "Fetches a list of all available Question Papers."
     )
+    //http://localhost:8080/api/v1/question-papers/all
     public ResponseEntity<ApiResponseDto<List<QuestionPaperDTO>>> getAll() {
         List<QuestionPaperDTO> allQPs = questionPaperService.getAllQuestionPapers();
         return ResponseEntity.ok(
@@ -71,11 +74,12 @@ public class QuestionPaperController {
         );
     }
 
-    @PutMapping("/{title}")
+    @PutMapping("update/{title}")
     @Operation(
             summary = "Update Question Paper",
             description = "Updates the details of an existing Question Paper using its title."
     )
+    //http://localhost:8080/api/v1/question-papers/update/{title}
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> update(
             @PathVariable String title,
             @RequestBody QuestionPaperDTO dto) {
@@ -89,11 +93,12 @@ public class QuestionPaperController {
         );
     }
 
-    @DeleteMapping("/{title}")
+    @DeleteMapping("delete/{title}")
     @Operation(
             summary = "Delete Question Paper",
             description = "Deletes a specific Question Paper using its title."
     )
+    //http://localhost:8080/api/v1/question-papers/delete/{title}
     public ResponseEntity<ApiResponseDto<Void>> delete(@PathVariable String title) {
         questionPaperService.deleteQuestionPaper(title);
         return ResponseEntity.ok(

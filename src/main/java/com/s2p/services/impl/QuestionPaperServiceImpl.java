@@ -1,5 +1,6 @@
 package com.s2p.services.impl;
 
+import com.s2p.dto.QuestionDTO;
 import com.s2p.dto.QuestionPaperDTO;
 import com.s2p.model.Question;
 import com.s2p.model.QuestionPaper;
@@ -14,12 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -83,28 +79,39 @@ public class QuestionPaperServiceImpl implements IQuestionPaperService {
 
     @Override
     @Transactional
-    public QuestionPaperDTO updateQuestionPaperByTitle(String title, QuestionPaperDTO dto) {
+    public QuestionPaperDTO updateQuestionPaperByTitle(String title, QuestionPaperDTO questionPaperDTO) {
         Optional<QuestionPaper> optionalQuestionPaper = questionPaperRepository.findByTitle(title);
         if (!optionalQuestionPaper.isPresent()) {
             throw new RuntimeException("Question Paper not found with title: " + title);
         }
-//
+
         QuestionPaper existingQuestionPaper = optionalQuestionPaper.get();
-//
-//        existingQuestionPaper.setTitle(dto.getTitle());
-//
-//        existingQuestionPaper.setQuestions(questionUtility.toQuestionEntity(dto.getQuestions()));
-//
-//        Optional<Topic> topicOptional = topicRepository.findByTopicName(dto.getTopicDTO().getTopicName());
-//        if (!topicOptional.isPresent()) {
-//            throw new RuntimeException("Topic not found with name: " + dto.getTopicDTO().getTopicName());
-//        }
-//        existingQuestionPaper.setTopic(topicOptional.get());
-//
+
+        // Update the title if provided
+        if (questionPaperDTO.getTitle() != null && !questionPaperDTO.getTitle().isEmpty()) {
+            existingQuestionPaper.setTitle(questionPaperDTO.getTitle());
+        }
+
+        // Update questions if provided
+        if (questionPaperDTO.getQuestions() != null && !questionPaperDTO.getQuestions().isEmpty()) {
+            existingQuestionPaper.setQuestions(Collections.singleton(questionUtility.toQuestionEntity((QuestionDTO) questionPaperDTO.getQuestions())));
+        }
+
+        // Update topic if provided
+        if (questionPaperDTO.getTopicDTO() != null && questionPaperDTO.getTopicDTO().getTopicName() != null) {
+            Optional<Topic> topicOptional = topicRepository.findByTopicName(questionPaperDTO.getTopicDTO().getTopicName());
+            if (!topicOptional.isPresent()) {
+                throw new RuntimeException("Topic not found with name: " + questionPaperDTO.getTopicDTO().getTopicName());
+            }
+            existingQuestionPaper.setTopic(topicOptional.get());
+        }
+
+        // Save updated entity
         QuestionPaper updatedQuestionPaper = questionPaperRepository.save(existingQuestionPaper);
-//
+
         return questionPaperUtility.toQuestionPaperDto(updatedQuestionPaper);
     }
+
 
 
 
