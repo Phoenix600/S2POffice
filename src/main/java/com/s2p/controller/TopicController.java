@@ -49,7 +49,8 @@ public class TopicController {
     }
 
     @Operation(summary = "Get All Topics", description = "Retrieves all topics from the system")
-    @GetMapping
+    @GetMapping("/all")
+    //http://localhost:8080/api/v1/topics/all
     public ResponseEntity<ApiResponseDto<List<TopicDTO>>> getAll() {
         List<TopicDTO> topics = topicService.getAllTopics();
         return ResponseEntity.ok(
@@ -62,7 +63,8 @@ public class TopicController {
     }
 
     @Operation(summary = "Update Topic", description = "Updates the details of a topic identified by its name")
-    @PutMapping("/{topicName}")
+    @PutMapping("/update/{topicName}")
+    //http://localhost:8080/api/v1/topics/update/{topicName}
     public ResponseEntity<ApiResponseDto<TopicDTO>> update(
             @PathVariable String topicName,
             @RequestBody TopicDTO dto) {
@@ -77,7 +79,8 @@ public class TopicController {
     }
 
     @Operation(summary = "Delete Topic", description = "Deletes a topic from the system using its name")
-    @DeleteMapping("/{topicName}")
+    @DeleteMapping("/delete/{topicName}")
+    //http://localhost:8080/api/v1/topics/delete/{topicName}
     public ResponseEntity<ApiResponseDto<Void>> delete(@PathVariable String topicName) {
         topicService.deleteTopic(topicName);
         return ResponseEntity.ok(

@@ -1,406 +1,272 @@
-2025-10-06 12:16:58,773 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 21692 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 12:16:58,778 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 12:17:01,075 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 12:17:01,406 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 312 ms. Found 30 JPA repository interfaces.
-2025-10-06 12:17:02,830 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 12:17:02,852 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 12:17:02,857 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 12:17:02,858 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 12:17:02,980 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 12:17:02,981 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 4126 ms
-2025-10-06 12:17:03,223 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 12:17:04,264 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@59b447a4
-2025-10-06 12:17:04,266 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 12:17:05,321 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 12:17:07,927 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 12:17:08,791 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 12:17:11,056 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 12:17:11,114 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 12:17:11,115 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 12:17:11,519 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 12:17:11,670 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 12:17:11,716 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 12:17:11,717 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 12:17:11,760 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 12:17:11,917 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 12:17:11,954 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 12:17:12,023 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 12:17:12,301 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 12:17:12,314 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 12:17:12,325 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 14.643 seconds (process running for 16.332)
-2025-10-06 12:19:21,543 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 12:19:21,545 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2025-10-06 12:19:21,548 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
-2025-10-06 12:19:21,549 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
-2025-10-06 12:19:21,549 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
-2025-10-06 12:19:21,553 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4cda59e6
-2025-10-06 12:19:21,556 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@5bdd5b86
-2025-10-06 12:19:21,560 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 12:19:21,562 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 15 ms
-2025-10-06 12:19:21,660 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
-2025-10-06 12:19:21,680 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] GET "/api/v1/course/search?courseName=Java%20Full%20Stack%20Mastery", parameters={masked}
-2025-10-06 12:19:21,688 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-1] Mapped to com.s2p.controller.CourseController#searchCourses(String, String, Byte)
-2025-10-06 12:19:21,943 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2025-10-06 12:19:21,946 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Writing [[]]
-2025-10-06 12:19:21,979 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed 200 OK
-2025-10-06 12:35:15,942 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1:housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m11s545ms476µs200ns).
-2025-10-06 13:02:12,421 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1:housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=22m56s464ms824µs300ns).
-2025-10-06 13:11:52,109 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 11424 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 13:11:52,113 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 13:11:54,469 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 13:11:54,806 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 322 ms. Found 30 JPA repository interfaces.
-2025-10-06 13:11:56,192 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 13:11:56,217 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 13:11:56,221 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 13:11:56,222 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 13:11:56,325 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 13:11:56,326 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 4099 ms
-2025-10-06 13:11:56,605 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 13:11:57,426 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44864536
-2025-10-06 13:11:57,428 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 13:11:58,480 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 13:12:01,031 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 13:12:01,865 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 13:12:04,007 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 13:12:04,049 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 13:12:04,050 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 13:12:04,461 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 13:12:04,578 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 13:12:04,645 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 13:12:04,647 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 13:12:04,698 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 13:12:04,885 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 13:12:04,930 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 13:12:04,996 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 13:12:05,353 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 13:12:05,368 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 13:12:05,380 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 14.39 seconds (process running for 16.174)
-2025-10-06 13:20:15,521 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1:housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m47s977ms923µs400ns).
-2025-10-06 13:29:34,411 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1:housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m18s882ms788µs400ns).
-2025-10-06 14:54:01,894 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 15668 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 14:54:01,899 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 14:54:04,233 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 14:54:04,498 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 249 ms. Found 30 JPA repository interfaces.
-2025-10-06 14:54:05,691 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 14:54:05,715 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 14:54:05,719 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 14:54:05,720 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 14:54:05,815 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 14:54:05,816 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3813 ms
-2025-10-06 14:54:06,074 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 14:54:07,051 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@368424db
-2025-10-06 14:54:07,053 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 14:54:08,130 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 14:54:11,047 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 14:54:12,138 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 14:54:14,746 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 14:54:14,802 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 14:54:14,802 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 14:54:15,348 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 14:54:15,513 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 14:54:15,603 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 14:54:15,607 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 14:54:15,664 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 14:54:15,872 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 14:54:15,914 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 14:54:16,010 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 14:54:16,555 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 14:54:16,570 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 14:54:16,584 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 15.86 seconds (process running for 17.828)
-2025-10-06 14:55:48,647 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 14:55:48,648 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
-2025-10-06 14:55:48,648 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected StandardServletMultipartResolver
-2025-10-06 14:55:48,649 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected AcceptHeaderLocaleResolver
-2025-10-06 14:55:48,649 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected FixedThemeResolver
-2025-10-06 14:55:48,654 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@202684ba
-2025-10-06 14:55:48,654 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected org.springframework.web.servlet.support.SessionFlashMapManager@3e3c2aa4
-2025-10-06 14:55:48,654 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 14:55:48,654 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 6 ms
-2025-10-06 14:55:48,700 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-3] Authentication Is In Progress
-2025-10-06 14:55:48,700 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-3] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
-2025-10-06 14:56:15,640 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-06 14:56:15,654 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
-2025-10-06 14:56:15,665 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 14:56:15,669 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-10-06 14:56:15,680 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-10-06 14:56:21,815 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 9920 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 14:56:21,819 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 14:56:23,379 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 14:56:23,584 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 192 ms. Found 30 JPA repository interfaces.
-2025-10-06 14:56:24,576 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 14:56:24,592 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 14:56:24,597 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 14:56:24,597 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 14:56:24,689 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 14:56:24,691 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2801 ms
-2025-10-06 14:56:24,875 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 14:56:25,534 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ea66c33
-2025-10-06 14:56:25,537 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 14:56:26,469 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 14:56:28,567 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 14:56:29,069 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 14:56:30,665 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 14:56:30,699 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 14:56:30,699 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 14:56:30,953 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 14:56:31,051 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 14:56:31,100 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 14:56:31,102 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 14:56:31,137 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 14:56:31,292 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 14:56:31,333 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 14:56:31,399 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 14:56:31,681 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 14:56:31,695 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 14:56:31,707 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 10.884 seconds (process running for 11.429)
-2025-10-06 14:57:17,709 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 14:57:17,710 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
-2025-10-06 14:57:17,710 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected StandardServletMultipartResolver
-2025-10-06 14:57:17,711 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected AcceptHeaderLocaleResolver
-2025-10-06 14:57:17,711 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected FixedThemeResolver
-2025-10-06 14:57:17,712 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4cda59e6
-2025-10-06 14:57:17,713 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected org.springframework.web.servlet.support.SessionFlashMapManager@5bdd5b86
-2025-10-06 14:57:17,714 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 14:57:17,714 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 4 ms
-2025-10-06 14:57:17,746 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-3] Authentication Is In Progress
-2025-10-06 14:57:17,755 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-3] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
-2025-10-06 14:57:31,145 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-2] Authentication Is In Progress
-2025-10-06 14:57:31,147 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-2] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
-2025-10-06 14:58:11,234 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-06 14:58:11,243 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
-2025-10-06 14:58:11,252 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 14:58:11,256 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-10-06 14:58:11,266 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-10-06 14:58:14,165 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 22056 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 14:58:14,169 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 14:58:15,595 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 14:58:15,811 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 203 ms. Found 30 JPA repository interfaces.
-2025-10-06 14:58:16,950 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 14:58:16,969 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 14:58:16,972 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 14:58:16,973 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 14:58:17,064 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 14:58:17,065 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2823 ms
-2025-10-06 14:58:17,253 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 14:58:17,769 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@467ef400
-2025-10-06 14:58:17,771 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 14:58:18,543 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 14:58:20,374 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 14:58:20,978 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 14:58:22,864 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 14:58:22,908 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 14:58:22,909 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 14:58:23,216 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 14:58:23,341 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 14:58:23,413 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 14:58:23,415 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 14:58:23,462 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 14:58:23,571 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 14:58:23,597 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 14:58:23,644 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 14:58:23,902 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 14:58:23,924 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 14:58:23,935 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 10.874 seconds (process running for 11.748)
-2025-10-06 14:59:45,851 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-6] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 14:59:45,853 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Initializing Servlet 'dispatcherServlet'
-2025-10-06 14:59:45,854 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected StandardServletMultipartResolver
-2025-10-06 14:59:45,854 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected AcceptHeaderLocaleResolver
-2025-10-06 14:59:45,854 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected FixedThemeResolver
-2025-10-06 14:59:45,855 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1b15e7f6
-2025-10-06 14:59:45,856 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected org.springframework.web.servlet.support.SessionFlashMapManager@58cb1f78
-2025-10-06 14:59:45,857 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 14:59:45,858 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Completed initialization in 5 ms
-2025-10-06 14:59:45,883 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-6] Authentication Is In Progress
-2025-10-06 14:59:45,890 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-6] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
-2025-10-06 15:00:23,880 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-06 15:00:23,890 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
-2025-10-06 15:00:23,900 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 15:00:23,904 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-10-06 15:00:23,917 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-10-06 15:00:26,770 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 13944 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 15:00:26,773 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 15:00:28,374 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 15:00:28,616 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 229 ms. Found 30 JPA repository interfaces.
-2025-10-06 15:00:29,717 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 15:00:29,737 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 15:00:29,743 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 15:00:29,744 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 15:00:29,834 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 15:00:29,836 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2994 ms
-2025-10-06 15:00:30,033 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 15:00:30,631 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@701d2b59
-2025-10-06 15:00:30,634 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 15:00:31,401 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 15:00:33,216 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 15:00:33,827 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 15:00:35,955 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 15:00:35,992 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 15:00:35,992 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 15:00:36,325 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 15:00:36,513 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 15:00:36,587 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 15:00:36,589 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 15:00:36,628 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 15:00:36,796 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 15:00:36,852 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 15:00:36,914 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 15:00:37,199 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 15:00:37,208 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 15:00:37,218 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 11.372 seconds (process running for 12.257)
-2025-10-06 15:50:30,419 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1:housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=27m28s832ms942µs).
-2025-10-06 22:44:24,252 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 20968 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 22:44:24,256 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 22:44:26,255 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 22:44:26,541 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 269 ms. Found 30 JPA repository interfaces.
-2025-10-06 22:44:28,001 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 22:44:28,034 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 22:44:28,038 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 22:44:28,039 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 22:44:28,184 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 22:44:28,186 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3850 ms
-2025-10-06 22:44:28,452 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 22:44:29,203 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ea66c33
-2025-10-06 22:44:29,207 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 22:44:30,193 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 22:44:32,737 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 22:44:33,528 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 22:44:35,741 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 22:44:35,789 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 22:44:35,790 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 22:44:36,229 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 22:44:36,373 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 22:44:36,470 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 22:44:36,472 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 22:44:36,525 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 22:44:36,741 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 22:44:36,784 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 22:44:36,843 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 22:44:37,199 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 22:44:37,213 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 22:44:37,227 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 14.012 seconds (process running for 15.67)
-2025-10-06 22:47:14,612 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 22:47:14,612 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2025-10-06 22:47:14,621 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
-2025-10-06 22:47:14,621 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
-2025-10-06 22:47:14,621 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
-2025-10-06 22:47:14,628 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@643afff3
-2025-10-06 22:47:14,628 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@6b8eb7b2
-2025-10-06 22:47:14,628 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 22:47:14,628 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 7 ms
-2025-10-06 22:47:14,706 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
-2025-10-06 22:47:14,727 ERROR c.s.e.AuthorizationEvents [http-nio-8080-exec-1] Authorization failed for the user : anonymousUser due to : AuthorizationDecision [granted=false]
-2025-10-06 22:48:16,290 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-06 22:48:16,316 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
-2025-10-06 22:48:16,340 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 22:48:16,346 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-10-06 22:48:16,385 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-10-06 22:48:23,997 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 13144 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 22:48:24,002 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 22:48:26,076 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 22:48:26,353 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 259 ms. Found 30 JPA repository interfaces.
-2025-10-06 22:48:27,592 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 22:48:27,618 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 22:48:27,624 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 22:48:27,625 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 22:48:27,735 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 22:48:27,736 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3654 ms
-2025-10-06 22:48:27,965 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 22:48:28,722 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63187d63
-2025-10-06 22:48:28,725 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 22:48:29,668 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 22:48:32,090 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 22:48:32,855 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 22:48:35,013 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 22:48:35,066 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 22:48:35,067 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 22:48:35,433 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 22:48:35,575 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 22:48:35,652 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 22:48:35,655 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 22:48:35,704 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 22:48:35,845 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 22:48:35,880 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 22:48:35,937 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 22:48:36,231 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 22:48:36,242 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 22:48:36,253 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.55 seconds (process running for 14.297)
-2025-10-06 22:49:17,663 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-7] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 22:49:17,663 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-7] Initializing Servlet 'dispatcherServlet'
-2025-10-06 22:49:17,664 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] Detected StandardServletMultipartResolver
-2025-10-06 22:49:17,664 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] Detected AcceptHeaderLocaleResolver
-2025-10-06 22:49:17,665 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] Detected FixedThemeResolver
-2025-10-06 22:49:17,667 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@357a3cb9
-2025-10-06 22:49:17,669 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] Detected org.springframework.web.servlet.support.SessionFlashMapManager@40c14f20
-2025-10-06 22:49:17,671 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-7] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 22:49:17,671 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-7] Completed initialization in 7 ms
-2025-10-06 22:49:17,726 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-7] Authentication Is In Progress
-2025-10-06 22:49:17,741 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] POST "/api/v1/topics/Full%20Stack%20Java%20Development/create-topic", parameters={}
-2025-10-06 22:49:17,746 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-7] Mapped to com.s2p.controller.TopicController#createTopicByCourseName(String, TopicDTO)
-2025-10-06 22:49:18,051 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] Read "application/json;charset=UTF-8" to [com.s2p.dto.TopicDTO@72bbb892]
-2025-10-06 22:49:18,453 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-7] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2025-10-06 22:49:18,455 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] Writing [com.s2p.dto.TopicDTO@7467a60b]
-2025-10-06 22:49:18,477 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-7] Completed 200 OK
-2025-10-06 22:52:43,373 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
-2025-10-06 22:52:43,375 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] GET "/api/v1/topics/OOP%20Concepts", parameters={}
-2025-10-06 22:52:43,378 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.TopicController#getByName(String)
-2025-10-06 22:52:43,474 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2025-10-06 22:52:43,477 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=Data retrieved successfully, status=RESULT_SUCCESS, data=com.s2p.dto.TopicDTO (truncated)...]
-2025-10-06 22:52:43,485 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
-2025-10-06 23:14:43,512 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1:housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m44s646ms152µs100ns).
-2025-10-06 23:21:05,054 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-06 23:21:05,070 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
-2025-10-06 23:21:05,089 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 23:21:05,097 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-10-06 23:21:05,106 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-10-06 23:21:12,767 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 22172 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
-2025-10-06 23:21:12,771 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-10-06 23:21:14,583 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-06 23:21:14,849 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 252 ms. Found 30 JPA repository interfaces.
-2025-10-06 23:21:16,227 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-10-06 23:21:16,256 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-10-06 23:21:16,260 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2025-10-06 23:21:16,261 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-06 23:21:16,380 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-10-06 23:21:16,382 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3535 ms
-2025-10-06 23:21:16,692 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2025-10-06 23:21:17,514 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@27896d3b
-2025-10-06 23:21:17,516 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-10-06 23:21:18,441 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-06 23:21:20,879 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-06 23:21:21,554 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-06 23:21:23,754 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-06 23:21:23,813 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
-2025-10-06 23:21:23,813 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-06 23:21:24,188 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
-2025-10-06 23:21:24,336 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2025-10-06 23:21:24,422 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 23:21:24,425 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-10-06 23:21:24,483 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
-2025-10-06 23:21:24,636 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-06 23:21:24,678 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-10-06 23:21:24,733 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-10-06 23:21:25,055 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-10-06 23:21:25,065 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-10-06 23:21:25,076 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.66 seconds (process running for 14.415)
-2025-10-06 23:22:23,081 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-6] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-06 23:22:23,082 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Initializing Servlet 'dispatcherServlet'
-2025-10-06 23:22:23,083 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected StandardServletMultipartResolver
-2025-10-06 23:22:23,085 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected AcceptHeaderLocaleResolver
-2025-10-06 23:22:23,085 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected FixedThemeResolver
-2025-10-06 23:22:23,088 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@60e17c7d
-2025-10-06 23:22:23,089 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] Detected org.springframework.web.servlet.support.SessionFlashMapManager@c0684ee
-2025-10-06 23:22:23,090 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-10-06 23:22:23,092 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Completed initialization in 9 ms
-2025-10-06 23:22:23,143 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-6] Authentication Is In Progress
-2025-10-06 23:22:23,157 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] POST "/api/v1/topics/Full%20Stack%20Java%20Development/create-topic", parameters={}
-2025-10-06 23:22:23,162 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-6] Mapped to com.s2p.controller.TopicController#createTopicByCourseName(String, TopicDTO)
-2025-10-06 23:22:23,388 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Read "application/json;charset=UTF-8" to [com.s2p.dto.TopicDTO@3037b349]
-2025-10-06 23:22:23,760 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-6] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2025-10-06 23:22:23,763 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-6] Writing [com.s2p.dto.TopicDTO@32c9f279]
-2025-10-06 23:22:23,792 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Completed 200 OK
-2025-10-06 23:24:15,883 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-5] Authentication Is In Progress
-2025-10-06 23:24:15,883 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] GET "/api/v1/topics/OOP%20Concepts", parameters={}
-2025-10-06 23:24:15,889 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-5] Mapped to com.s2p.controller.TopicController#getByName(String)
-2025-10-06 23:24:15,974 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-5] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2025-10-06 23:24:15,979 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-5] Writing [ApiResponseDto(message=Data retrieved successfully, status=RESULT_SUCCESS, data=com.s2p.dto.TopicDTO (truncated)...]
-2025-10-06 23:24:15,979 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-5] Completed 200 OK
+2025-10-09 00:03:13,103 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 11164 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:03:13,109 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:03:14,880 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:03:15,104 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 210 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:03:16,233 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:03:16,259 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:03:16,266 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:03:16,267 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:03:16,382 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:03:16,384 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3204 ms
+2025-10-09 00:03:16,632 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:03:17,359 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69ba3f4e
+2025-10-09 00:03:17,361 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:03:18,264 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:03:20,483 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:03:21,262 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:03:23,099 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:03:23,143 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:03:23,143 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:03:23,491 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:03:23,614 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:03:23,665 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:03:23,667 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:03:23,701 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:03:23,868 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:03:23,903 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:03:23,959 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:03:24,240 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:03:24,254 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:03:24,267 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 12.179 seconds (process running for 13.698)
+2025-10-09 00:09:57,856 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 12476 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:09:57,862 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:10:00,366 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:10:00,622 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 238 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:10:01,768 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:10:01,796 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:10:01,801 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:10:01,801 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:10:01,909 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:10:01,911 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3960 ms
+2025-10-09 00:10:02,137 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:10:03,091 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69ba3f4e
+2025-10-09 00:10:03,096 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:10:04,335 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:10:07,285 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:10:08,023 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:10:11,342 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:10:11,392 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:10:11,393 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:10:11,786 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:10:12,123 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:10:12,330 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:10:12,335 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:10:12,429 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:10:12,631 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:10:12,676 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:10:12,746 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:10:13,172 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:10:13,187 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:10:13,199 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 16.567 seconds (process running for 29.013)
+2025-10-09 00:10:31,862 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:10:31,863 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:10:31,863 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected StandardServletMultipartResolver
+2025-10-09 00:10:31,863 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:10:31,864 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected FixedThemeResolver
+2025-10-09 00:10:31,866 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@381a4407
+2025-10-09 00:10:31,867 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.support.SessionFlashMapManager@4aaa6e62
+2025-10-09 00:10:31,869 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:10:31,870 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 6 ms
+2025-10-09 00:10:31,911 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-2] Authentication Is In Progress
+2025-10-09 00:10:31,925 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-2] GET "/api/v1/topics/all", parameters={}
+2025-10-09 00:10:31,927 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-2] Mapped to com.s2p.controller.TopicController#getAll()
+2025-10-09 00:10:32,439 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-2] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:10:32,444 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-2] Writing [ApiResponseDto(message=Data retrieved successfully, status=RESULT_SUCCESS, data=[com.s2p.dto.TopicDT (truncated)...]
+2025-10-09 00:10:32,474 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed 200 OK
+2025-10-09 00:20:57,778 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:20:57,792 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:20:57,808 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:20:57,825 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:20:57,841 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:21:10,625 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 16692 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:21:10,629 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:21:12,969 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:21:13,231 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 249 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:21:14,259 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:21:14,280 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:21:14,285 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:21:14,285 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:21:14,419 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:21:14,422 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3710 ms
+2025-10-09 00:21:14,674 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:21:15,499 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1657b017
+2025-10-09 00:21:15,502 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:21:16,462 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:21:18,784 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:21:19,487 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:21:21,313 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:21:21,352 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:21:21,353 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:21:21,657 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:21:21,781 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:21:21,848 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:21:21,850 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:21:21,897 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:21:22,062 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:21:22,103 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:21:22,170 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:21:22,461 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:21:22,473 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:21:22,483 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.117 seconds (process running for 15.5)
+2025-10-09 00:28:41,522 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:28:41,522 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:28:41,523 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2025-10-09 00:28:41,524 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:28:41,525 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2025-10-09 00:28:41,527 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@202684ba
+2025-10-09 00:28:41,528 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@3e3c2aa4
+2025-10-09 00:28:41,529 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:28:41,529 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2025-10-09 00:28:41,564 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
+2025-10-09 00:28:41,576 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] POST "/api/v1/topics/Java%20Full%20Stack%20Mastery/create-topic", parameters={}
+2025-10-09 00:28:41,579 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-1] Mapped to com.s2p.controller.TopicController#createTopicByCourseName(String, TopicDTO)
+2025-10-09 00:28:41,715 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Read "application/json;charset=UTF-8" to [com.s2p.dto.TopicDTO@7bb0f9ab]
+2025-10-09 00:28:41,944 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-1] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:28:41,945 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-1] An exception occurred due to : Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [com.s2p.model.Topic#9b4d2f98-2f3b-4f73-9a60-b3e5a6bdb9a1]
+2025-10-09 00:28:41,968 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:28:41,970 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:28:41,988 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [com.s2p.model.Topic#9b4d2f98-2f3b-4f73-9a60-b3e5a6bdb9a1]]
+2025-10-09 00:28:41,991 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:29:02,387 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:29:02,388 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] POST "/api/v1/topics/Java%20Full%20Stack%20Mastery/create-topic", parameters={}
+2025-10-09 00:29:02,389 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.TopicController#createTopicByCourseName(String, TopicDTO)
+2025-10-09 00:29:02,391 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Read "application/json;charset=UTF-8" to [com.s2p.dto.TopicDTO@7456a2d6]
+2025-10-09 00:29:02,469 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:29:02,470 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [com.s2p.dto.TopicDTO@66a42dcf]
+2025-10-09 00:29:02,482 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
+2025-10-09 00:30:28,070 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-7] Authentication Is In Progress
+2025-10-09 00:30:28,074 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] PUT "/api/v1/topics/OOP%20Concepts", parameters={}
+2025-10-09 00:30:28,078 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-7] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:30:28,079 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-7] An exception occurred due to : Request method 'PUT' is not supported
+2025-10-09 00:30:28,081 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-7] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:30:28,081 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-7] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:30:28,082 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-7] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-10-09 00:30:28,084 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-7] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:30:46,578 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:30:46,587 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:30:46,600 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:30:46,605 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:30:46,613 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:30:50,032 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 4536 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:30:50,036 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:30:51,585 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:30:51,809 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 212 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:30:53,162 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:30:53,180 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:30:53,185 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:30:53,186 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:30:53,263 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:30:53,265 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3149 ms
+2025-10-09 00:30:53,474 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:30:53,988 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2342f1ff
+2025-10-09 00:30:53,991 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:30:54,742 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:30:56,695 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:30:57,585 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:31:00,065 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:31:00,114 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:31:00,115 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:31:00,514 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:31:00,670 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:31:00,756 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:31:00,759 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:31:00,829 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:31:01,020 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:31:01,060 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:31:01,120 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:31:01,410 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:31:01,421 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:31:01,433 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 12.451 seconds (process running for 13.619)
+2025-10-09 00:31:19,824 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:31:19,825 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:31:19,826 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected StandardServletMultipartResolver
+2025-10-09 00:31:19,827 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:31:19,827 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected FixedThemeResolver
+2025-10-09 00:31:19,828 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2090d3d1
+2025-10-09 00:31:19,829 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] Detected org.springframework.web.servlet.support.SessionFlashMapManager@55f20d7e
+2025-10-09 00:31:19,831 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:31:19,832 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 6 ms
+2025-10-09 00:31:19,873 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-3] Authentication Is In Progress
+2025-10-09 00:31:19,882 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] PUT "/api/v1/topics/OOP%20Concepts", parameters={}
+2025-10-09 00:31:19,891 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-3] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:31:19,893 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-3] An exception occurred due to : Request method 'PUT' is not supported
+2025-10-09 00:31:19,943 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-3] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:31:19,946 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-3] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:31:19,965 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-10-09 00:31:19,967 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:31:53,074 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:31:53,076 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] PUT "/api/v1/topics/update/OOP%20Concepts", parameters={}
+2025-10-09 00:31:53,077 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to com.s2p.controller.TopicController#update(String, TopicDTO)
+2025-10-09 00:31:53,170 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Read "application/json;charset=UTF-8" to [com.s2p.dto.TopicDTO@11e601e6]
+2025-10-09 00:31:53,441 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:31:53,441 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=Data updated successfully, status=RESULT_SUCCESS, data=com.s2p.dto.TopicDTO@1 (truncated)...]
+2025-10-09 00:31:53,449 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 200 OK
+2025-10-09 00:33:12,243 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:33:12,253 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:33:12,262 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:33:12,266 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:33:12,276 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-10-09 00:33:17,578 INFO o.s.b.StartupInfoLogger [main] Starting S2POfficeApplication using Java 24.0.2 with PID 8800 (D:\Project\S2POffice\target\classes started by harsh in D:\Project\S2POffice)
+2025-10-09 00:33:17,581 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-10-09 00:33:19,371 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09 00:33:19,635 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 241 ms. Found 30 JPA repository interfaces.
+2025-10-09 00:33:20,768 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-10-09 00:33:20,803 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:33:20,807 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-10-09 00:33:20,809 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09 00:33:20,943 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-10-09 00:33:20,945 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3299 ms
+2025-10-09 00:33:21,369 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-10-09 00:33:22,018 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71f0806b
+2025-10-09 00:33:22,021 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-10-09 00:33:22,807 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09 00:33:24,944 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:33:25,656 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-09 00:33:28,393 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09 00:33:28,434 INFO o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer [main] Global AuthenticationManager configured with AuthenticationProvider bean with name s2POfficeUsernameAndPasswordAuthenticationProvider
+2025-10-09 00:33:28,435 WARN o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-09 00:33:28,749 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 155 mappings in 'requestMappingHandlerMapping'
+2025-10-09 00:33:28,916 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-09 00:33:29,020 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/admin/register] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:33:29,022 WARN o.s.s.c.a.w.AbstractRequestMatcherRegistry [main] One of the patterns in [api/v1/auth/superAdmin] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-10-09 00:33:29,070 INFO o.s.s.w.a.c.ChannelProcessingFilter [main] Validated configuration attributes
+2025-10-09 00:33:29,195 INFO o.s.v.b.OptionalValidatorFactoryBean [main] Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09 00:33:29,225 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-09 00:33:29,282 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-09 00:33:29,571 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-10-09 00:33:29,582 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-10-09 00:33:29,594 INFO o.s.b.StartupInfoLogger [main] Started S2POfficeApplication in 13.164 seconds (process running for 13.739)
+2025-10-09 00:33:37,290 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09 00:33:37,292 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-10-09 00:33:37,293 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2025-10-09 00:33:37,293 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2025-10-09 00:33:37,294 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2025-10-09 00:33:37,295 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3e3c2aa4
+2025-10-09 00:33:37,296 DEBUG o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@4e06d526
+2025-10-09 00:33:37,297 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-09 00:33:37,298 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 5 ms
+2025-10-09 00:33:37,334 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-1] Authentication Is In Progress
+2025-10-09 00:33:37,343 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] DELETE "/api/v1/topics/delete/OOP%20Concepts", parameters={}
+2025-10-09 00:33:37,348 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-1] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-10-09 00:33:37,360 DEBUG o.s.w.s.r.ResourceHttpRequestHandler [http-nio-8080-exec-1] Resource not found
+2025-10-09 00:33:37,367 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-1] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:33:37,368 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-1] An exception occurred due to : No static resource api/v1/topics/delete/OOP%20Concepts.
+2025-10-09 00:33:37,418 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:33:37,420 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-1] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:33:37,440 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/v1/topics/delete/OOP%20Concepts.]
+2025-10-09 00:33:37,442 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:33:44,548 INFO c.s.f.AuthoritiesLogginAtFilter [http-nio-8080-exec-4] Authentication Is In Progress
+2025-10-09 00:33:44,549 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] DELETE "/api/v1/topics/delete/OOP%20Concepts", parameters={}
+2025-10-09 00:33:44,550 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8080-exec-4] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-10-09 00:33:44,554 DEBUG o.s.w.s.r.ResourceHttpRequestHandler [http-nio-8080-exec-4] Resource not found
+2025-10-09 00:33:44,555 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [http-nio-8080-exec-4] Using @ExceptionHandler com.s2p.exceptions.GlobalExceptionHandler#handleGlobalException(Exception, WebRequest)
+2025-10-09 00:33:44,556 ERROR c.s.e.GlobalExceptionHandler [http-nio-8080-exec-4] An exception occurred due to : No static resource api/v1/topics/delete/OOP%20Concepts.
+2025-10-09 00:33:44,557 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8080-exec-4] Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-09 00:33:44,558 DEBUG o.s.c.l.LogFormatUtils [http-nio-8080-exec-4] Writing [ApiResponseDto(message=An internal server error occurred, status=RESULT_FAILURE, data=com.s2p.core.E (truncated)...]
+2025-10-09 00:33:44,559 DEBUG o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/v1/topics/delete/OOP%20Concepts.]
+2025-10-09 00:33:44,560 DEBUG o.s.w.s.FrameworkServlet [http-nio-8080-exec-4] Completed 500 INTERNAL_SERVER_ERROR
+2025-10-09 00:34:13,817 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09 00:34:13,828 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-10-09 00:34:13,836 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09 00:34:13,839 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-10-09 00:34:13,854 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
