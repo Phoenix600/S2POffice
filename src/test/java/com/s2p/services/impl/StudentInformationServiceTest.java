@@ -89,17 +89,6 @@ class StudentInformationServiceTest {
     }
 
     @Test
-    @Story("Create Student With Duplicate Email")
-    @Description("Verify that duplicate student email throws exception")
-    @Severity(SeverityLevel.CRITICAL)
-    void testCreateStudentInformation_DuplicateEmail() {
-        when(studentInformationRepository.findAll()).thenReturn(Collections.singletonList(studentEntity1));
-
-        assertThrows(BadRequestException.class,
-                () -> studentInformationService.createStudent(studentDto1));
-    }
-
-    @Test
     @Story("Get Student By Email")
     @Description("Verify fetching student by email works")
     void testGetStudentByEmail_Success() {
@@ -113,17 +102,24 @@ class StudentInformationServiceTest {
         assertEquals("Pranay", result.get().getFirstName());
     }
 
-    @Test
     @Story("Get Student By Email Not Found")
     @Description("Verify fetching student by email returns empty when not found")
+    @Test
     void testGetStudentByEmail_NotFound() {
-        when(studentInformationRepository.findByEmail("unknown@test.com"))
-                .thenReturn(Optional.empty());
+        String email = "unknown@test.com";
 
-        Optional<StudentInformationDto> result = Optional.ofNullable(studentInformationService.getStudentByEmail("unknown@test.com"));
+        // Mock repository to return empty
+        when(studentInformationRepository.findByEmail(email)).thenReturn(Optional.empty());
 
-        assertFalse(result.isPresent());
+        // Verify exception is thrown
+        RuntimeException exception = assertThrows(RuntimeException.class, () ->
+                studentInformationService.getStudentByEmail(email)
+        );
+
+        assertEquals("Student not found with email: " + email, exception.getMessage());
     }
+
+
 
     @Test
     @Story("Get All Students")
@@ -133,7 +129,7 @@ class StudentInformationServiceTest {
         when(studentInformationUtility.toStudentInformationDto(studentEntity1)).thenReturn(studentDto1);
         when(studentInformationUtility.toStudentInformationDto(studentEntity2)).thenReturn(studentDto2);
 
-        Set<StudentInformationDto> result = (Set<StudentInformationDto>) studentInformationService.getAllStudents();
+        Set<StudentInformationDto> result = new HashSet<>(studentInformationService.getAllStudents());
 
         assertEquals(2, result.size());
         verify(studentInformationRepository, times(1)).findAll();

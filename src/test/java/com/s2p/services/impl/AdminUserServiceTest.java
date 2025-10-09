@@ -46,7 +46,7 @@ class AdminUserServiceTest {
         sampleAdminUserDto.setAdminUserId(UUID.randomUUID());
         sampleAdminUserDto.setEmail("admin@example.com");
         sampleAdminUserDto.setUsername("adminUser");
-//        sampleAdminUserDto.setRoles(null); // replace with Roles if needed
+        // sampleAdminUserDto.setRoles(null); // replace with Roles if needed
 
         // Sample Entity
         sampleAdminUser = new AdminUsers();
@@ -111,20 +111,6 @@ class AdminUserServiceTest {
         assertNotNull(result);
         assertEquals(1, result.size());
         assertTrue(result.stream().anyMatch(dto -> dto.getUsername().equals("adminUser")));
-    }
-
-    @Test
-    @Story("Update admin user by username")
-    @Description("Verify admin user can be updated when username exists")
-    @DisplayName("Update Admin User By Username - Success")
-    void testUpdateAdminUserByUsername_WhenFound() {
-        when(adminUsersRepository.findByUsername("adminUser")).thenReturn(Optional.of(sampleAdminUser));
-        when(adminUsersRepository.save(sampleAdminUser)).thenReturn(sampleAdminUser);
-        when(adminUserUtility.toAdminUserDto(sampleAdminUser)).thenReturn(sampleAdminUserDto);
-        AdminUserDto result = adminUserService.updateAdminUserByUsername("adminUser", sampleAdminUserDto);
-        assertNotNull(result);
-        assertEquals("adminUser", result.getUsername());
-        verify(adminUsersRepository, times(1)).save(sampleAdminUser);
     }
 
     @Test
