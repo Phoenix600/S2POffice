@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/academic-years")
+    @RequestMapping("/api/v1/academic-years")
 @RequiredArgsConstructor
 @Tag(name = "Academic Year Management",
         description = "APIs for managing academic years")
@@ -70,7 +70,6 @@ public class AcademicYearController {
     @DeleteMapping("/by-value/{year}")
     @Operation(summary = "Delete academic year by value",
             description = "Deletes an academic year using its year value.")
-
     public ResponseEntity<String> deleteAcademicYearByValue(@PathVariable Integer year) {
         academicYearService.deleteAcademicYearByValue(year);
         return ResponseEntity.ok("Academic Year deleted successfully with value: " + year);
