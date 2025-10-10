@@ -2,6 +2,7 @@ package com.s2p.services.impl;
 
 import com.s2p.dto.QuestionDTO;
 import com.s2p.dto.QuestionPaperDTO;
+import com.s2p.exceptions.ResourceNotFoundException;
 import com.s2p.model.Question;
 import com.s2p.model.QuestionPaper;
 import com.s2p.model.Topic;
@@ -50,16 +51,12 @@ public class QuestionPaperServiceImpl implements IQuestionPaperService {
 
     @Override
     public QuestionPaperDTO getQuestionPaperByTitle(String title) {
+        QuestionPaper questionPaper = questionPaperRepository.findByTitle(title)
+                .orElseThrow(() -> new ResourceNotFoundException("Question Paper not found with title: " + title));
 
-        Optional<QuestionPaper> questionPaperOptional = questionPaperRepository.findByTitle(title);
-
-        if (!questionPaperOptional.isPresent()) {
-            throw new RuntimeException("Question Paper not found with title: " + title);
-        }
-
-        QuestionPaper questionPaper = questionPaperOptional.get();
         return questionPaperUtility.toQuestionPaperDto(questionPaper);
     }
+
 
 
 

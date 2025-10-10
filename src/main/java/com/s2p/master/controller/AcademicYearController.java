@@ -22,9 +22,10 @@ public class AcademicYearController {
 
     private final IAcademicYearService academicYearService;
 
-    @PostMapping
+    @PostMapping("/create")
     @Operation(summary = "Create a new academic year",
             description = "Creates and saves a new academic year based on the provided data.")
+    //http://localhost:8080/api/v1/academic-years/create
     public ResponseEntity<AcademicYear> createAcademicYear(@RequestBody AcademicYearDto academicYearDto) {
         AcademicYear academicYear = academicYearService.createAcademicYear(academicYearDto);
         return ResponseEntity.ok(academicYear);

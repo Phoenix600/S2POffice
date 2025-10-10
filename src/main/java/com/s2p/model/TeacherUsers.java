@@ -19,11 +19,11 @@ public class TeacherUsers extends Users {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID teacherUserId;
 
-    @Column(unique = true)
-    private String email;
-
-    @Column(unique = true)
-    private String username;
+//    @Column(unique = true)
+//    private String email;
+//
+//    @Column(unique = true)
+//    private String username;
 
     private Roles roles;
 

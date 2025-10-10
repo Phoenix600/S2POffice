@@ -18,11 +18,11 @@ public class StudentUsers extends Users {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID studentUserId;
 
-    @Column(unique = true)
-    private String email;
-
-    @Column(unique = true)
-    private String username;
+//    @Column(unique = true)
+//    private String email;
+//
+//    @Column(unique = true)
+//    private String username;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "role_id", referencedColumnName = "rolesId")

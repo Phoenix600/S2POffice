@@ -20,11 +20,11 @@ public class AdminUsers extends Users {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID adminUserId;
 
-    @Column(unique = true)
-    private String email;
-
-    @Column(unique = true)
-    private String username;
+//    @Column(unique = true)
+//    private String email;
+//
+//    @Column(unique = true)
+//    private String username;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "role_id", referencedColumnName = "rolesId")

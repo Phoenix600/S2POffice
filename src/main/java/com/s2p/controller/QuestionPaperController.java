@@ -28,7 +28,7 @@ public class QuestionPaperController {
             summary = "Create a new Question Paper",
             description = "Creates a new Question Paper based on the provided details."
     )
-    //http://localhost:8080/api/v1/question-papers/create-questionpaper
+    //
     public ResponseEntity<ApiResponseDto<QuestionPaperDTO>> create(@RequestBody QuestionPaperDTO dto) {
         QuestionPaperDTO created = questionPaperService.createQuestionPaper(dto);
         return ResponseEntity.ok(

@@ -3,8 +3,10 @@ package com.s2p.controller;
 import com.s2p.constants.EOperationStatus;
 import com.s2p.dto.ApiResponseDto;
 import com.s2p.dto.QuestionDTO;
+import com.s2p.dto.QuestionPaperDTO;
 import com.s2p.message.EApiResponseMessage;
 import com.s2p.services.IQuestionService;
+import com.s2p.services.impl.QuestionPaperServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,14 @@ public class  QuestionController {
 
     private final IQuestionService questionService;
 
+    private final QuestionPaperServiceImpl questionPaperService;
+
     @Operation(
             summary = "Create a new Question",
             description = "Adds a new question to the system"
     )
     @PostMapping("/create/{paper_title}")
+    //http://localhost:8080/api/v1/questions/create/{paper_title}
     public ResponseEntity<ApiResponseDto<QuestionDTO>> create(@RequestBody QuestionDTO dto,@PathVariable("paper_title")String paperTitle ) {
 
         QuestionDTO created = questionService.createQuestion(dto,paperTitle);
@@ -43,23 +48,32 @@ public class  QuestionController {
             summary = "Get Question by Text",
             description = "Fetches a question using its text as identifier"
     )
-    @GetMapping("/{questionText}/{paper_title}")
-    public ResponseEntity<ApiResponseDto<QuestionDTO>> getByText(@PathVariable String questionText, @PathVariable String title) {
-        QuestionDTO q = questionService.getQuestionByText(questionText,title);
+    @GetMapping("/get/{question_text}/{paper_title}")
+// Example: http://localhost:8080/api/v1/questions/get/{question_title}/{paper_title}
+    public ResponseEntity<ApiResponseDto<QuestionDTO>> getQuestionByTitle(
+            @PathVariable("question_text") String questionText,
+            @PathVariable("paper_title") String paperTitle) {
+
+        QuestionDTO question = questionService.getQuestionByText(questionText, paperTitle);
+
         return ResponseEntity.ok(
                 new ApiResponseDto<>(
                         EApiResponseMessage.DATA_FOUND.getMessage(),
                         EOperationStatus.RESULT_SUCCESS,
-                        q
+                        question
                 )
         );
     }
+
+
+
 
     @Operation(
             summary = "Get All Questions",
             description = "Retrieves a list of all available questions"
     )
     @GetMapping("/all")
+    //http://localhost:8080//api/v1/questions/all
     public ResponseEntity<ApiResponseDto<List<QuestionDTO>>> getAll() {
         List<QuestionDTO> allQuestions = questionService.getAllQuestions();
         return ResponseEntity.ok(
@@ -75,7 +89,8 @@ public class  QuestionController {
             summary = "Update Question",
             description = "Updates an existing question identified by its text"
     )
-    @PutMapping("/{questionText}")
+    @PutMapping("/update/{questionText}")
+    //http://localhost:8080//api/v1/questions/update/{questionText}
     public ResponseEntity<ApiResponseDto<QuestionDTO>> update(
             @PathVariable String questionText,
             @RequestBody QuestionDTO dto) {
